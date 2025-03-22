@@ -1,3 +1,13 @@
+"use client";
+
+import AnimatedGradientText from "@/UI/AnimatedGradientText";
+
 export default function Home() {
-  return <div>hello loavable Devs</div>;
+  return (
+    <div>
+      <AnimatedGradientText className="mt-96 text-center">
+        hello loavable Devs
+      </AnimatedGradientText>
+    </div>
+  );
 }
