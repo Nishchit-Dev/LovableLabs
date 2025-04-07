@@ -10,7 +10,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[rgba(14,14,17,0.8)] backdrop-blur-lg text-white px-8 py-4 sticky top-0 z-[99] border-b border-[rgba(255,255,255,0.1)] shadow-lg rounded-b-xl">
+    <nav className="bg-[rgba(14,14,17,0.8)] backdrop-blur-lg text-white px-8 py-4 sticky top-0 z-[99] border-b border-[rgba(255,255,255,0.1)] shadow-lg ">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-6">
           {/* Logo */}

@@ -1,0 +1,43 @@
+// Navigation item type for sidebar items
+export type NavItem = {
+    icon?: string;
+    label: string;
+    path: string;
+    badge?: {
+        text: string;
+        color: string;
+        bgColor: string;
+    };
+};
+
+// Category type for grouping navigation items
+export type Category = {
+    title: string;
+    slug: string;
+    items: NavItem[];
+};
+
+// Table of contents item for right sidebar
+export type TableOfContentsItem = {
+    label: string;
+    anchor: string;
+    isHeading?: boolean;
+    subItems?: {
+        label: string;
+        anchor: string;
+    }[];
+};
+
+// Content section type for documentation pages
+export type ContentSection = {
+    title: string;
+    content: string;
+    code?: string;
+};
+
+// Full document content type
+export type DocContent = {
+    title: string;
+    description: string;
+    sections: ContentSection[];
+}; 

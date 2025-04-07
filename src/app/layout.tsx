@@ -35,8 +35,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`  ${geistSans.variable} ${geistMono.variable} ${jetBrainsMono.variable} grain-bg antialiased`}
-        style={{ backgroundColor: "rgb(17, 17, 17)" }}
+        className={`  ${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} grain-bg antialiased`}
       >
         <Navbar />
         {children}
