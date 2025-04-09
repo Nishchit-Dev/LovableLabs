@@ -1,5 +1,6 @@
 "use client";
 
+import ShinyText from "@/UI/ShinyText";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -10,13 +11,13 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[rgba(14,14,17,0.8)] backdrop-blur-lg text-white px-8 py-4 sticky top-0 z-[99] border-b border-[rgba(255,255,255,0.1)] shadow-lg ">
+    <nav className="bg-[rgba(14,14,17,0.8)] backdrop-blur-lg text-white px-6 py-3 fixed top-5 z-[99] border border-[rgba(255,255,255,0.1)] shadow-blue-300 shadow-sm w-[65%] left-1/2 -translate-x-1/2 rounded-full">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <motion.div
-              className="w-8 h-8 bg-[var(--bg-blue)] rounded flex items-center justify-center text-black font-bold"
+              className="w-6 h-6 bg-[var(--bg-blue)] rounded flex items-center justify-center text-black text-[16px] font-bold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -27,42 +28,53 @@ export default function Navbar() {
           {/* Nav links */}
           <div className="flex gap-6">
             {links.map((link, index) => (
-              <Link
-                href={link.path}
+              <motion.div
                 key={index}
-                className="text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors"
+                className="relative group"
+                whileHover="hover"
+                initial="rest"
+                animate="rest"
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.path}
+                  className="text-[var(--font-gray)] group-hover:text-[var(--font-white)] transition-colors duration-300"
+                >
+                  <motion.span
+                    variants={{
+                      rest: { textShadow: "0px 0px 0px rgba(255,255,255,0)" },
+                      hover: {
+                        textShadow: "0px 0px 8px rgba(255,255,255,0.8)",
+                      },
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {link.label}
+                  </motion.span>
+
+                  {/* Underline animation */}
+                  <motion.div
+                    className="absolute left-0 -bottom-1 h-[2px] bg-[var(--font-white)] rounded"
+                    variants={{
+                      rest: { width: 0 },
+                      hover: { width: "100%" },
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Right side */}
         <div className="flex items-center space-x-4">
-          <button className="text-[var(--font-gray)] hover:text-[var(--font-white)]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-          </button>
-          <motion.button
-            className="bg-[var(--bg-blue)] text-[var(--bg-offwhite)] font-medium px-4 py-2 rounded-md flex items-center"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Prem+
-          </motion.button>
+          <ShinyText
+            text="Get Prem +"
+            speed={3}
+            isHoverEnable={true}
+            hoverClass="hover:text-blue-300"
+            className="cursor-pointer"
+          />
         </div>
       </div>
     </nav>
