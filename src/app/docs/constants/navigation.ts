@@ -20,6 +20,28 @@ export const docCategories: Category[] = [
         ],
     },
     {
+        title: "Animation",
+        slug: "animation",
+        items: [
+            { label: "Overview", path: "/docs/animation-overview" },
+            { label: "Gestures", path: "/docs/animation-gestures" },
+            { label: "Scroll", path: "/docs/animation-scroll" },
+            { label: "Layout", path: "/docs/animation-layout" },
+            { label: "Transitions", path: "/docs/animation-transitions" },
+        ],
+    },
+    {
+        title: "Animation",
+        slug: "animation",
+        items: [
+            { label: "Overview", path: "/docs/animation-overview" },
+            { label: "Gestures", path: "/docs/animation-gestures" },
+            { label: "Scroll", path: "/docs/animation-scroll" },
+            { label: "Layout", path: "/docs/animation-layout" },
+            { label: "Transitions", path: "/docs/animation-transitions" },
+        ],
+    },
+    {
         title: "Components",
         slug: "components",
         items: [

@@ -24,19 +24,17 @@
   }
 } */
 
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
+body {
+  font-family: var(--font-jetbrains);
+}
 
 * {
   box-sizing: border-box;
 }
 
-body.grain-bg {
-  overflow: auto !important; /* Override the hidden overflow specifically for body */
-}
+/* body.grain-bg {
+  overflow: auto !important; 
+} */
 
 .grain-bg {
   position: relative;

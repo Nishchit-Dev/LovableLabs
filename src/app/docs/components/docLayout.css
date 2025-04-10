@@ -1,0 +1,44 @@
+/* Modern scrollbar styles */
+.modern-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* For Firefox */
+.modern-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+/* Fade mask for all scrollable content */
+.fade-edges {
+  overflow-y: hidden;
+  mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 5.7633727477477485%,
+    rgba(0, 0, 0, 1) 94.21276745495494%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 5.7633727477477485%,
+    rgba(0, 0, 0, 1) 94.21276745495494%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
