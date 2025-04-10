@@ -2,11 +2,12 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
-  navItems,
+  getNavItems,
   getTableOfContents,
   getPageNavigation,
+  frameworks,
   TableOfContentsItem,
 } from "../constants";
 
@@ -18,6 +19,9 @@ export default function DocLayoutClient({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [selectedFramework, setSelectedFramework] = useState("react");
   const [tableOfContents, setTableOfContents] = useState<TableOfContentsItem[]>(
     []
   );
@@ -34,6 +38,22 @@ export default function DocLayoutClient({
   // Check if we're on the main docs page
   const isMainDocsPage = pathname === "/docs";
 
+  // Get current navigation based on selected framework
+  const navItems = getNavItems(selectedFramework);
+
+  // Update framework from URL or set default
+  useEffect(() => {
+    const framework = searchParams.get("framework");
+    if (framework && frameworks.some((f) => f.id === framework)) {
+      setSelectedFramework(framework);
+    } else if (!isMainDocsPage && !framework) {
+      // If no framework specified in URL, add it
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("framework", selectedFramework);
+      router.replace(`${pathname}?${newParams.toString()}`);
+    }
+  }, [pathname, searchParams, router, isMainDocsPage, selectedFramework]);
+
   useEffect(() => {
     if (isMainDocsPage) {
       // If on main docs page, reset navigation and TOC
@@ -48,9 +68,23 @@ export default function DocLayoutClient({
     // Get table of contents for current page
     setTableOfContents(getTableOfContents(slug));
 
-    // Get navigation links
-    setNavigation(getPageNavigation(pathname));
-  }, [pathname, isMainDocsPage]);
+    // Get navigation links with current framework
+    setNavigation(getPageNavigation(pathname, selectedFramework));
+  }, [pathname, isMainDocsPage, selectedFramework]);
+
+  // Handle framework tab change
+  const handleFrameworkChange = (framework: string) => {
+    if (framework === selectedFramework) return;
+
+    setSelectedFramework(framework);
+
+    // Update URL with new framework
+    if (!isMainDocsPage) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set("framework", framework);
+      router.replace(`${pathname}?${newParams.toString()}`);
+    }
+  };
 
   // Set up scroll event handlers
   useEffect(() => {
@@ -176,7 +210,7 @@ export default function DocLayoutClient({
   }
 
   return (
-    <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24   lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
+    <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24 lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
       {/* Left Sidebar */}
       <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden">
         <div
@@ -185,15 +219,23 @@ export default function DocLayoutClient({
         >
           <div className="px-4 py-6">
             <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)]">
-              <button className="px-4 py-2 text-[var(--font-gray)] hover:text-[var(--font-white)]">
-                JS
-              </button>
-              <button className="px-4 py-2 text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]">
-                React
-              </button>
-              <button className="px-4 py-2 text-[var(--font-gray)] hover:text-[var(--font-white)]">
-                Vue
-              </button>
+              {frameworks.map((framework) => (
+                <button
+                  key={framework.id}
+                  className={`px-4 py-2 ${
+                    selectedFramework === framework.id
+                      ? "text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]"
+                      : "text-[var(--font-gray)] hover:text-[var(--font-white)]"
+                  }`}
+                  onClick={() => handleFrameworkChange(framework.id)}
+                >
+                  {framework.id === "js"
+                    ? "JS"
+                    : framework.id === "react"
+                    ? "React"
+                    : "Angular"}
+                </button>
+              ))}
             </div>
 
             <div className="space-y-6">
@@ -202,7 +244,7 @@ export default function DocLayoutClient({
                   <Link
                     href={item.path}
                     className={`flex items-center transition-colors duration-200 ${
-                      pathname === item.path
+                      pathname === item.path.split("?")[0]
                         ? "text-[var(--font-white)]"
                         : "text-[var(--font-gray)] hover:text-[var(--font-white)]"
                     }`}
@@ -223,7 +265,7 @@ export default function DocLayoutClient({
                         <Link
                           href={item.path}
                           className={`${
-                            pathname === item.path
+                            pathname === item.path.split("?")[0]
                               ? "text-[var(--font-white)]"
                               : "text-[var(--font-gray)] hover:text-[var(--font-white)]"
                           } text-sm ${item.badge ? "flex items-center" : ""}`}
@@ -258,13 +300,10 @@ export default function DocLayoutClient({
         <div ref={mainContentRef} className="h-full fade-edges">
           <div className="max-w-4xl mx-auto px-8 py-12">
             {children}
-            {children}
-            {children}
-            {children}
-            {children}
-            {children}
+
+            {/* Page navigation */}
             {(navigation.previous || navigation.next) && (
-              <div className="flex justify-between mt-16 pt-8 ">
+              <div className="flex justify-between mt-16 pt-8">
                 {navigation.previous && (
                   <Link
                     href={navigation.previous.path}
@@ -273,6 +312,7 @@ export default function DocLayoutClient({
                     <span className="mr-2">←</span> {navigation.previous.label}
                   </Link>
                 )}
+
                 {navigation.next && (
                   <Link
                     href={navigation.next.path}
@@ -287,7 +327,7 @@ export default function DocLayoutClient({
         </div>
       </div>
 
-      {/* Right Sidebar - Only shown when we have table of contents */}
+      {/* Right Sidebar  */}
       {tableOfContents.length > 0 && (
         <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block">
           <div

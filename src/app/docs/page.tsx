@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
-import { docCategories } from "./constants/navigation";
+import { frameworks } from "./constants";
 
 export default function DocPage() {
   const fadeIn = {
@@ -18,11 +18,9 @@ export default function DocPage() {
     transition: { duration: 0.5 },
   };
 
-  // Get the first item from the first category
-  const getFirstDocPath = () => {
-    // In a real app, you would have different paths for different frameworks
-    // For now, we'll just use the first item in the first category
-    return docCategories[0]?.items[0]?.path || "/docs/animation-overview";
+  // Get the first doc path with the specified framework
+  const getFirstDocPath = (framework: string) => {
+    return `/docs/get-started?framework=${framework}`;
   };
 
   return (
@@ -53,81 +51,46 @@ export default function DocPage() {
           className="text-[var(--font-gray)] text-xl mb-12"
           {...fadeInUp}
         >
-          Lovable UI is available for vanilla JavaScript, React and Vue.
+          Lovable UI is available for JavaScript, React and Angular.
         </motion.p>
 
         <motion.div
           className="flex flex-wrap justify-center gap-4 mb-16"
           {...fadeInUp}
         >
-          <Link
-            href={getFirstDocPath()}
-            className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors"
-          >
-            <div className="bg-[#f7df1e] w-6 h-6 flex items-center justify-center rounded text-black">
-              JS
-            </div>
-            JavaScript
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {frameworks.map((framework) => (
+            <Link
+              key={framework.id}
+              href={getFirstDocPath(framework.id)}
+              className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
-
-          <Link
-            href={getFirstDocPath()}
-            className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors"
-          >
-            <div className="bg-[#61dafb] w-6 h-6 flex items-center justify-center rounded text-black">
-              R
-            </div>
-            React
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
-
-          <Link
-            href={getFirstDocPath()}
-            className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors"
-          >
-            <div className="bg-[#42b883] w-6 h-6 flex items-center justify-center rounded text-white">
-              V
-            </div>
-            Vue
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+              <div
+                className="w-6 h-6 flex items-center justify-center rounded text-black"
+                style={{
+                  backgroundColor: framework.color,
+                  color: framework.textColor,
+                }}
+              >
+                {framework.id === "js"
+                  ? "JS"
+                  : framework.id.charAt(0).toUpperCase()}
+              </div>
+              {framework.name}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          ))}
         </motion.div>
       </motion.div>
     </div>

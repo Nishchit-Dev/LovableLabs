@@ -1,7 +1,7 @@
 // Export types
 export * from './types';
 
-// Export navigation
+// Export frameworks 
 export * from './navigation';
 
 // Export table of contents

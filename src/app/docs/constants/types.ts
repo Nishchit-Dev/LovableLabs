@@ -1,3 +1,11 @@
+// Framework type for different documentation versions
+export type Framework = {
+    id: string;
+    name: string;
+    color: string;
+    textColor: string;
+};
+
 // Navigation item type for sidebar items
 export type NavItem = {
     icon?: string;
