@@ -1,11 +1,92 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { frameworks } from "./constants";
 import { cn } from "../utils/cn";
-import { Canvas } from "@react-three/fiber";
-import { SpotLight, Stars } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Stars } from "@react-three/drei";
+
+function InteractiveStars() {
+  const starsRef = useRef();
+
+  const targetRotation = useRef({ x: 0, y: 0 });
+
+  const isHovering = useRef(false);
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = document.querySelector(".stars-container");
+    if (!container) return;
+
+    containerRef.current = container;
+
+    const handleMouseMove = (e) => {
+      if (!isHovering.current) return;
+
+      // Get container bounds
+      const rect = containerRef.current.getBoundingClientRect();
+
+      // Calculate mouse position relative to the container
+      const relX = (e.clientX - rect.left) / rect.width;
+      const relY = (e.clientY - rect.top) / rect.height;
+
+      // Convert to -1 to 1 range
+      const normalizedX = relX * 2 - 1;
+      const normalizedY = -(relY * 2 - 1);
+
+      // Update target rotation based on mouse
+      targetRotation.current = {
+        x: normalizedY * 0.1,
+        y: normalizedX * 0.1,
+      };
+    };
+
+    const handleMouseEnter = () => {
+      isHovering.current = true;
+    };
+
+    const handleMouseLeave = () => {
+      isHovering.current = false;
+
+      targetRotation.current = { x: 0, y: 0 };
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  // Apply smooth interpolation in the render loop
+  useFrame(() => {
+    if (starsRef.current) {
+      starsRef.current.rotation.x +=
+        (targetRotation.current.x - starsRef.current.rotation.x) * 0.075;
+      starsRef.current.rotation.y +=
+        (targetRotation.current.y - starsRef.current.rotation.y) * 0.075;
+    }
+  });
+
+  return (
+    <Stars
+      ref={starsRef}
+      radius={240}
+      depth={80}
+      count={3200}
+      factor={4}
+      saturation={6}
+      fade
+      speed={0.5}
+    />
+  );
+}
 
 export default function DocPage() {
   const fadeIn = {
@@ -20,19 +101,17 @@ export default function DocPage() {
     transition: { duration: 0.5 },
   };
 
-  // Get the first doc path with the specified framework
-  const getFirstDocPath = (framework: string) => {
+  const getFirstDocPath = (framework) => {
     return `/docs/get-started?framework=${framework}`;
   };
 
   const linkVariants = {
     initial: { scale: 1, filter: "drop-shadow(0 0 0 transparent)" },
-    hover: (color: string) => ({
+    hover: (color) => ({
       scale: 1.05,
       filter: `drop-shadow(0 5px 5px ${color})`,
       transition: {
         duration: 0.4,
-
         scale: { duration: 0.4 },
         filter: { duration: 0.4 },
       },
@@ -57,20 +136,13 @@ export default function DocPage() {
         transition={{ duration: 0.5 }}
         className="absolute inset-0 top-0 bg-gradient-to-b from-[#1E1E1E] to-[#121212] h-screen md:h-auto md:rounded-b-full z-[5]"
       >
-        <div className="h-full w-full overflow-hidden md:rounded-b-full">
+        <div className="h-full w-full overflow-hidden md:rounded-b-full stars-container">
           <Canvas>
-            <Stars
-              radius={240}
-              depth={80}
-              count={3200}
-              factor={4}
-              saturation={6}
-              fade
-              speed={1}
-            />
+            <InteractiveStars />
           </Canvas>
         </div>
       </motion.div>
+
       <motion.div
         className="w-full max-w-4xl mx-auto text-center z-[10]"
         initial="initial"
