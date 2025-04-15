@@ -24,9 +24,15 @@ export default function DocPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] py-16">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] py-16 relative">
       <motion.div
-        className="w-full max-w-4xl mx-auto text-center"
+        initial={{ y: -150, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="absolute inset-0 bg-gradient-to-b from-[#1E1E1E] to-[#121212] h-screen md:h-auto  md:rounded-b-full   z-[5]"
+      ></motion.div>
+      <motion.div
+        className="w-full max-w-4xl mx-auto text-center z-[10]"
         initial="initial"
         animate="animate"
         transition={{ staggerChildren: 0.1 }}
@@ -35,7 +41,7 @@ export default function DocPage() {
           className="bg-[rgba(40,40,40,0.3)] inline-block px-4 py-1 rounded-full mb-8"
           {...fadeIn}
         >
-          <span className="text-[var(--font-gray)] uppercase text-sm tracking-wider">
+          <span className="text-[var(--font-gray)] text-shadow-lg text-shadow-white uppercase text-sm tracking-wider">
             Documentation
           </span>
         </motion.div>
@@ -48,7 +54,7 @@ export default function DocPage() {
         </motion.h1>
 
         <motion.p
-          className="text-[var(--font-gray)] text-xl mb-12"
+          className="text-[var(--font-gray)] text-xl mb-12 "
           {...fadeInUp}
         >
           Lovable UI is available for JavaScript, React and Angular.
@@ -62,10 +68,10 @@ export default function DocPage() {
             <Link
               key={framework.id}
               href={getFirstDocPath(framework.id)}
-              className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors"
+              className="bg-[rgba(30,30,30,0.6)] hover:bg-[rgba(40,40,40,0.8)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 transition-colors relative "
             >
               <div
-                className="w-6 h-6 flex items-center justify-center rounded text-black"
+                className="w-6 h-6 flex items-center justify-center rounded text-black z-100 "
                 style={{
                   backgroundColor: framework.color,
                   color: framework.textColor,

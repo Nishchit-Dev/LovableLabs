@@ -24,7 +24,6 @@
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
 
-/* Fade mask for all scrollable content */
 .fade-edges {
   overflow-y: hidden;
   mask: linear-gradient(

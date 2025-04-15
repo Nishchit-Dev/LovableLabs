@@ -300,7 +300,6 @@ export default function DocLayoutClient({
         <div ref={mainContentRef} className="h-full fade-edges">
           <div className="max-w-4xl mx-auto px-8 py-12">
             {children}
-
             {/* Page navigation */}
             {(navigation.previous || navigation.next) && (
               <div className="flex justify-between mt-16 pt-8">

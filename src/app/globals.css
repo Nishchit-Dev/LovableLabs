@@ -10,6 +10,16 @@
   --bg-offwhite: rgba(255, 255, 255, 0.9);
 }
 
+@theme {
+  --color-font-blue: var(--font-blue);
+  --color-font-gray: var(--font-gray);
+  --color-font-white: var(--font-white);
+  --color-bg-blue: var(--bg-blue);
+  --color-bg-gray: var(--bg-gray);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-offwhite: var(--bg-offwhite);
+}
+
 /* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
