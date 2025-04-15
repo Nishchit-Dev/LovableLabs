@@ -1,29 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
-import React, { useRef, useState, useEffect } from "react";
+import { motion, Variants } from "framer-motion";
+import React, { useRef, useState, useEffect, JSX } from "react";
 import { frameworks } from "./constants";
 import { cn } from "../utils/cn";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 import { Stars } from "@react-three/drei";
 
-function InteractiveStars() {
-  const starsRef = useRef();
+interface Framework {
+  id: string;
+  name: string;
+  color: string;
+  textColor: string;
+}
 
-  const targetRotation = useRef({ x: 0, y: 0 });
+interface TargetRotation {
+  x: number;
+  y: number;
+}
 
-  const isHovering = useRef(false);
-
-  const containerRef = useRef(null);
+function InteractiveStars(): JSX.Element {
+  const starsRef = useRef<THREE.Points>(null);
+  const targetRotation = useRef<TargetRotation>({ x: 0, y: 0 });
+  const isHovering = useRef<boolean>(false);
+  const containerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const container = document.querySelector(".stars-container");
     if (!container) return;
 
-    containerRef.current = container;
+    containerRef.current = container as HTMLElement;
 
-    const handleMouseMove = (e) => {
-      if (!isHovering.current) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isHovering.current || !containerRef.current) return;
 
       // Get container bounds
       const rect = containerRef.current.getBoundingClientRect();
@@ -49,7 +59,6 @@ function InteractiveStars() {
 
     const handleMouseLeave = () => {
       isHovering.current = false;
-
       targetRotation.current = { x: 0, y: 0 };
     };
 
@@ -88,7 +97,7 @@ function InteractiveStars() {
   );
 }
 
-export default function DocPage() {
+export default function DocPage(): JSX.Element {
   const fadeIn = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
@@ -101,13 +110,13 @@ export default function DocPage() {
     transition: { duration: 0.5 },
   };
 
-  const getFirstDocPath = (framework) => {
+  const getFirstDocPath = (framework: string): string => {
     return `/docs/get-started?framework=${framework}`;
   };
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     initial: { scale: 1, filter: "drop-shadow(0 0 0 transparent)" },
-    hover: (color) => ({
+    hover: (color: string) => ({
       scale: 1.05,
       filter: `drop-shadow(0 5px 5px ${color})`,
       transition: {
@@ -118,7 +127,7 @@ export default function DocPage() {
     }),
   };
 
-  const arrowVariants = {
+  const arrowVariants: Variants = {
     initial: { x: 0 },
     hover: {
       x: 7,
@@ -176,7 +185,7 @@ export default function DocPage() {
           className="flex flex-wrap justify-center gap-4 mb-16"
           {...fadeInUp}
         >
-          {frameworks.map((framework) => (
+          {frameworks.map((framework: Framework) => (
             <motion.a
               key={framework.id}
               href={getFirstDocPath(framework.id)}
