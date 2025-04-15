@@ -10,16 +10,21 @@ const jetBrainsMono = JetBrains_Mono({
   preload: true,
   variable: "--font-jetbrains",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
