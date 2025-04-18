@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import React, { useRef, useState, useEffect, JSX } from "react";
+import React, { useRef, useEffect, JSX } from "react";
 import { frameworks } from "./constants";
 import { cn } from "../utils/cn";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Stars } from "@react-three/drei";
 
@@ -97,6 +97,67 @@ function InteractiveStars(): JSX.Element {
   );
 }
 
+function ContinuousShineEffect(): JSX.Element {
+  return (
+    <motion.div
+      className="absolute inset-0 pointer-events-none overflow-hidden rounded-full"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent)",
+          transform: "skewX(-20deg)",
+        }}
+        animate={{
+          x: ["200%", "-200%"],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          boxShadow: "0 0 10px 2px rgba(255, 255, 255, 0.2)",
+        }}
+        animate={{
+          opacity: [0.2, 0.5, 0.2],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+
+      {/* Subtle bottom light effect - similar to the ::after in your CSS */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0"
+        style={{
+          height: "50%",
+          background:
+            "radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.2) 0%, transparent 70%)",
+        }}
+        animate={{
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
+      />
+    </motion.div>
+  );
+}
+
 export default function DocPage(): JSX.Element {
   const fadeIn = {
     initial: { opacity: 0 },
@@ -159,10 +220,13 @@ export default function DocPage(): JSX.Element {
         transition={{ staggerChildren: 0.1 }}
       >
         <motion.div
-          className="bg-[rgba(40,40,40,0.3)] inline-block px-4 py-1 rounded-full mb-8"
+          className="bg-[rgba(40,40,40,0.3)] inline-block px-4 py-1 rounded-full mb-8 backdrop-blur-sm relative"
           {...fadeIn}
         >
-          <span className="text-[var(--font-gray)] text-shadow-lg text-shadow-white uppercase text-sm tracking-wider">
+          {/* Add the continuous shine effect */}
+          <ContinuousShineEffect />
+
+          <span className="text-[var(--font-gray)] text-shadow-lg text-shadow-white uppercase text-sm tracking-wider relative z-10">
             Documentation
           </span>
         </motion.div>
@@ -190,7 +254,7 @@ export default function DocPage(): JSX.Element {
               key={framework.id}
               href={getFirstDocPath(framework.id)}
               className={cn(
-                "bg-[rgba(30,30,30,0.6)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 relative"
+                "bg-[rgba(30,30,30,0.6)] text-[var(--font-gray)] px-6 py-3 rounded-md flex items-center gap-3 relative backdrop-blur-sm"
               )}
               variants={linkVariants}
               initial="initial"

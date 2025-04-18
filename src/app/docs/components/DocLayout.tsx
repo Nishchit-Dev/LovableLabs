@@ -10,6 +10,7 @@ import {
   frameworks,
   TableOfContentsItem,
 } from "../constants";
+import { motion } from "framer-motion";
 
 import "./docLayout.css";
 
@@ -259,16 +260,28 @@ export default function DocLayoutClient({
                   <h3 className="text-[var(--font-white)] font-medium mb-2">
                     {category.title}
                   </h3>
-                  <ul className="space-y-2 pl-2">
+                  <ul className="space-y-2 pl-2 border-l border-white/35 border-dashed">
                     {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex}>
+                      <li
+                        key={itemIndex}
+                        className="flex items-center flex-row group relative overflow-hidden"
+                      >
+                        <motion.span
+                          className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
+                            pathname === item.path.split("?")[0]
+                              ? "bg-white w-1.5"
+                              : "bg-transparent group-hover:bg-white/50"
+                          } transition-all duration-200 ease-in-out absolute left-0`}
+                        />
                         <Link
                           href={item.path}
                           className={`${
                             pathname === item.path.split("?")[0]
-                              ? "text-[var(--font-white)]"
-                              : "text-[var(--font-gray)] hover:text-[var(--font-white)]"
-                          } text-sm ${item.badge ? "flex items-center" : ""}`}
+                              ? "text-[var(--font-white)] pl-3"
+                              : "text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0"
+                          } text-sm transition-all duration-200 ${
+                            item.badge ? "flex items-center" : ""
+                          }`}
                         >
                           {item.label}
                           {item.badge && (
@@ -338,7 +351,7 @@ export default function DocLayoutClient({
                 On this page
               </h3>
 
-              <ul className="space-y-2">
+              <ul className="space-y-2 pl-2 border-l border-white/35 border-dashed">
                 {tableOfContents.map((item, index) => (
                   <React.Fragment key={index}>
                     <li>
