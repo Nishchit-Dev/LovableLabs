@@ -92,7 +92,7 @@ function InteractiveStars(): JSX.Element {
       factor={4}
       saturation={6}
       fade
-      speed={0.5}
+      speed={1}
     />
   );
 }
