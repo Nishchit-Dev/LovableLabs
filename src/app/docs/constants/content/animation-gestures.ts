@@ -13,6 +13,7 @@ const animationGesturesContent: DocContent = {
 >
   Hover Me
 </motion.button>`,
+      isLiveDemo: false,
     },
     {
       title: "Drag Gestures",
@@ -28,6 +29,7 @@ const animationGesturesContent: DocContent = {
 >
   Drag me
 </motion.div>`,
+      isLiveDemo: false,
     },
   ],
 };

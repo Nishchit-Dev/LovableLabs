@@ -2,17 +2,17 @@ import { DocContent } from '../../types';
 
 // Animation Gestures content for React
 export const animationGestures: DocContent = {
-    title: 'Gesture Animations - React',
-    description: 'Learn how to create gesture-based animations with Lovable UI in React',
-    sections: [
-        {
-            title: 'Hover Animations',
-            content: `
+  title: 'Gesture Animations - React',
+  description: 'Learn how to create gesture-based animations with Lovable UI in React',
+  sections: [
+    {
+      title: 'Hover Animations',
+      content: `
 ## Hover Animations
 
 Create smooth hover animations with the \`whileHover\` prop:
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function HoverButton() {
@@ -28,16 +28,17 @@ function HoverButton() {
     </motion.button>
   );
 }
-      `
-        },
-        {
-            title: 'Drag Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Drag Gestures',
+      content: `
 ## Drag Gestures
 
 Enable drag interactions with the \`drag\` prop:
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function DraggableBox() {
@@ -55,16 +56,17 @@ function DraggableBox() {
     />
   );
 }
-      `
-        },
-        {
-            title: 'Tap Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Tap Gestures',
+      content: `
 ## Tap Gestures
 
 Create tap animations with the \`whileTap\` prop:
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function TapButton() {
@@ -77,7 +79,8 @@ function TapButton() {
     </motion.button>
   );
 }
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 

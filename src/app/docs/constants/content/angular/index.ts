@@ -2,12 +2,12 @@ import { DocContent } from '../../types';
 
 // Angular Get Started content
 export const getStarted: DocContent = {
-    title: 'Getting Started with Angular',
-    description: 'Learn how to use Lovable UI with Angular',
-    sections: [
-        {
-            title: 'Installation',
-            content: `
+  title: 'Getting Started with Angular',
+  description: 'Learn how to use Lovable UI with Angular',
+  sections: [
+    {
+      title: 'Installation',
+      content: `
 ## Installation
 
 You can install Lovable UI for Angular using npm or yarn:
@@ -20,7 +20,7 @@ yarn add lovable-ui
 
 Then import the Lovable UI module in your app module:
       `,
-            code: `
+      code: `
 // app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,16 +37,17 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-      `
-        },
-        {
-            title: 'Basic Usage',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 Lovable UI provides Angular directives for creating animations. Here's a basic example:
       `,
-            code: `
+      code: `
 // app.component.html
 <div lovable-motion
   [initial]="{ opacity: 0, y: 50 }"
@@ -63,11 +64,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {}
-      `
-        },
-        {
-            title: 'Next Steps',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Next Steps',
+      content: `
 ## Next Steps
 
 Now that you have Lovable UI set up, explore the different animation capabilities:
@@ -77,26 +79,27 @@ Now that you have Lovable UI set up, explore the different animation capabilitie
 - **Transitions**: Define custom transitions between states
 
 Check out the Animation section for more details.
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Animation Overview content
 export const animationOverview: DocContent = {
-    title: 'Animation Overview - Angular',
-    description: 'Learn about the animation capabilities in Lovable UI with Angular',
-    sections: [
-        {
-            title: 'Basic Animation',
-            content: `
+  title: 'Animation Overview - Angular',
+  description: 'Learn about the animation capabilities in Lovable UI with Angular',
+  sections: [
+    {
+      title: 'Basic Animation',
+      content: `
 ## Basic Animation
 
 Lovable UI provides directives for creating animations in Angular. 
 
 The core directive is \`lovable-motion\`, which lets you create smooth animations with a variety of options.
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <div lovable-motion
   [initial]="{ x: -100, opacity: 0 }"
@@ -113,11 +116,12 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {}
-      `
-        },
-        {
-            title: 'Animation Properties',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Properties',
+      content: `
 ## Animation Properties
 
 Lovable UI supports a wide range of properties to animate:
@@ -128,7 +132,7 @@ Lovable UI supports a wide range of properties to animate:
 
 You can animate multiple properties at once with different timings.
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <button lovable-motion
   [whileHover]="hoverState"
@@ -154,25 +158,26 @@ export class AppComponent {
     backgroundColor: { duration: 0.5, ease: 'linear' }
   };
 }
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Components Motion content
 export const componentsMotion: DocContent = {
-    title: 'Motion Component - Angular',
-    description: 'Learn how to use the motion component in Lovable UI with Angular',
-    sections: [
-        {
-            title: 'Basic Usage',
-            content: `
+  title: 'Motion Component - Angular',
+  description: 'Learn how to use the motion component in Lovable UI with Angular',
+  sections: [
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 The \`lovable-motion\` directive is the primary way to create animations in Angular:
 
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <div lovable-motion
   [initial]="{ opacity: 0 }"
@@ -190,17 +195,18 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {}
-      `
-        },
-        {
-            title: 'Animation Controls',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Controls',
+      content: `
 ## Animation Controls
 
 You can control animations with the \`AnimationController\` service:
 
       `,
-            code: `
+      code: `
 // app.component.html
 <div lovable-motion
   [animate]="controls"
@@ -238,61 +244,65 @@ export class AppComponent {
     });
   }
 }
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Angular Components Directives
 export const componentsDirectives: DocContent = {
-    title: 'Angular Directives',
-    description: 'Learn about Angular-specific directives in Lovable UI',
-    sections: [
-        {
-            title: 'lovable-motion',
-            content: `
+  title: 'Angular Directives',
+  description: 'Learn about Angular-specific directives in Lovable UI',
+  sections: [
+    {
+      title: 'lovable-motion',
+      content: `
 ## lovable-motion Directive
 
 The \`lovable-motion\` directive is the primary way to add animations to elements in Angular.
       `,
-            code: `
+      code: `
 <div lovable-motion
   [initial]="{ opacity: 0 }"
   [animate]="{ opacity: 1 }"
   [transition]="{ duration: 0.5 }">
   Content
 </div>
-      `
-        },
-        {
-            title: 'lovable-hover',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'lovable-hover',
+      content: `
 ## lovable-hover Directive
 
 The \`lovable-hover\` directive adds hover animations to elements.
       `,
-            code: `
+      code: `
 <div lovable-hover
   [hover]="{ scale: 1.1 }"
   [transition]="{ duration: 0.2 }">
   Hover me
 </div>
-      `
-        },
-        {
-            title: 'lovable-scroll',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'lovable-scroll',
+      content: `
 ## lovable-scroll Directive
 
 The \`lovable-scroll\` directive creates scroll-triggered animations.
       `,
-            code: `
+      code: `
 <div lovable-scroll
   [scrollAnimate]="{ opacity: [0, 1], y: [100, 0] }"
   [threshold]="0.2">
   I'll animate when scrolled into view
 </div>
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 

@@ -2,17 +2,17 @@ import { DocContent } from '../../types';
 
 // Animation Gestures content for Angular
 export const animationGestures: DocContent = {
-    title: 'Gesture Animations - Angular',
-    description: 'Learn how to create gesture-based animations with Lovable UI in Angular',
-    sections: [
-        {
-            title: 'Hover Animations',
-            content: `
+  title: 'Gesture Animations - Angular',
+  description: 'Learn how to create gesture-based animations with Lovable UI in Angular',
+  sections: [
+    {
+      title: 'Hover Animations',
+      content: `
 ## Hover Animations
 
 Create smooth hover animations with the \`lovable-hover\` directive or with \`lovable-motion\` and the \`[whileHover]\` property:
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <button lovable-motion
   [whileHover]="{ scale: 1.1, backgroundColor: '#0088ff' }"
@@ -26,16 +26,17 @@ Create smooth hover animations with the \`lovable-hover\` directive or with \`lo
   [transition]="{ duration: 0.2 }">
   Hover me
 </button>
-      `
-        },
-        {
-            title: 'Drag Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Drag Gestures',
+      content: `
 ## Drag Gestures
 
 Enable drag interactions with the \`lovable-drag\` directive:
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <div lovable-drag
   [dragConstraints]="{ left: 0, top: 0, right: 500, bottom: 300 }"
@@ -60,16 +61,17 @@ export class AppComponent {
     console.log('Drag ended');
   }
 }
-      `
-        },
-        {
-            title: 'Tap Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Tap Gestures',
+      content: `
 ## Tap Gestures
 
 Create tap animations with the \`lovable-tap\` directive or with \`lovable-motion\` and the \`[whileTap]\` property:
       `,
-            code: `
+      code: `
 <!-- app.component.html -->
 <button lovable-motion
   [whileTap]="{ scale: 0.95 }"
@@ -83,7 +85,8 @@ Create tap animations with the \`lovable-tap\` directive or with \`lovable-motio
   [transition]="{ duration: 0.1 }">
   Tap me
 </button>
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 

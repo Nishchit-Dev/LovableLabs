@@ -41,11 +41,13 @@ export type ContentSection = {
     title: string;
     content: string;
     code?: string;
+    isLiveDemo: boolean;
 };
 
 // Full document content type
 export type DocContent = {
     title: string;
+
     description: string;
     sections: ContentSection[];
 }; 

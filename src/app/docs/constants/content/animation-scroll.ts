@@ -15,6 +15,7 @@ const animationScrollContent: DocContent = {
 >
   I'll animate in when you scroll to me
 </motion.div>`,
+      isLiveDemo: false,
     },
   ],
 };

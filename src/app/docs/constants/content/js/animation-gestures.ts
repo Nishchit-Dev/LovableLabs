@@ -2,17 +2,17 @@ import { DocContent } from '../../types';
 
 // Animation Gestures content for JavaScript
 export const animationGestures: DocContent = {
-    title: 'Gesture Animations - JavaScript',
-    description: 'Learn how to create gesture-based animations with Lovable UI in JavaScript',
-    sections: [
-        {
-            title: 'Hover Animations',
-            content: `
+  title: 'Gesture Animations - JavaScript',
+  description: 'Learn how to create gesture-based animations with Lovable UI in JavaScript',
+  sections: [
+    {
+      title: 'Hover Animations',
+      content: `
 ## Hover Animations
 
 Create smooth hover animations with the \`hover\` helper:
       `,
-            code: `
+      code: `
 import { hover } from 'lovable-ui';
 
 // Get an element to animate
@@ -25,16 +25,17 @@ hover(button, {
 }, {
   duration: 0.2
 });
-      `
-        },
-        {
-            title: 'Drag Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Drag Gestures',
+      content: `
 ## Drag Gestures
 
 Enable drag interactions with the \`draggable\` helper:
       `,
-            code: `
+      code: `
 import { draggable } from 'lovable-ui';
 
 // Get an element to make draggable
@@ -46,16 +47,17 @@ draggable(box, {
   onDragStart: () => console.log('Drag started'),
   onDragEnd: () => console.log('Drag ended'),
 });
-      `
-        },
-        {
-            title: 'Tap Gestures',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Tap Gestures',
+      content: `
 ## Tap Gestures
 
 Create tap animations with the \`tap\` helper:
       `,
-            code: `
+      code: `
 import { tap } from 'lovable-ui';
 
 // Get an element to animate
@@ -67,7 +69,8 @@ tap(button, {
 }, {
   duration: 0.1
 });
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 

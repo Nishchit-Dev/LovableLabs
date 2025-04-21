@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { getContentBySlug } from "../constants";
 import { DocContent } from "../constants/types";
-import ReactMarkdown from "react-markdown";
+import DocSection from "../components/DocSection";
 
 export default function DocPage() {
   const params = useParams();
@@ -29,26 +29,11 @@ export default function DocPage() {
     );
   }
 
+  console.log(content);
+
   return (
-    <div className="text-[var(--font-white)]">
-      <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
-      <p className="text-[var(--font-gray)] mb-10">{content.description}</p>
-
-      {content.sections.map((section, index) => (
-        <div key={index} className="mb-12">
-          <div className="markdown-content text-[var(--font-white)]">
-            <ReactMarkdown>{section.content}</ReactMarkdown>
-          </div>
-
-          {section.code && (
-            <div className="mt-6 bg-[#1E1E1E] rounded-md p-4 overflow-x-auto">
-              <pre className="text-[var(--font-gray)] text-sm">
-                <code>{section.code}</code>
-              </pre>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+    <>
+      <DocSection content={content} />
+    </>
   );
 }

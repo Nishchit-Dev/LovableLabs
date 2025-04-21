@@ -16,6 +16,7 @@ const componentsMotionContent: DocContent = {
 >
   I'll animate my x position and color
 </motion.div>`,
+      isLiveDemo: false,
     },
   ],
 };

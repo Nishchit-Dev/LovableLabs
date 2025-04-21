@@ -2,12 +2,12 @@ import { DocContent } from '../../types';
 
 // React Get Started content
 export const getStarted: DocContent = {
-    title: 'Getting Started with React',
-    description: 'Learn how to use Lovable UI with React',
-    sections: [
-        {
-            title: 'Installation',
-            content: `
+  title: 'Getting Started with React',
+  description: 'Learn how to use Lovable UI with React',
+  sections: [
+    {
+      title: 'Installation',
+      content: `
 ## Installation
 
 You can install Lovable UI for React using npm or yarn:
@@ -18,19 +18,20 @@ npm install lovable-ui
 yarn add lovable-ui
 \`\`\`
       `,
-            code: `
+      code: `
 // Import Lovable components in your React file
 import { motion, AnimatePresence } from 'lovable-ui/react';
-      `
-        },
-        {
-            title: 'Basic Usage',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 Lovable UI provides a \`motion\` component that you can use to create animations. Here's a basic example:
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function MyComponent() {
@@ -44,11 +45,12 @@ function MyComponent() {
     </motion.div>
   );
 }
-      `
-        },
-        {
-            title: 'Next Steps',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Next Steps',
+      content: `
 ## Next Steps
 
 Now that you have Lovable UI set up, explore the different animation capabilities:
@@ -58,26 +60,31 @@ Now that you have Lovable UI set up, explore the different animation capabilitie
 - **Transitions**: Define custom transitions between states
 
 Check out the Animation section for more details.
-      `
-        }
-    ]
+      `,
+      code: `
+// Import Lovable components in your React file
+import { motion, AnimatePresence } from 'lovable-ui/react';
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Animation Overview content
 export const animationOverview: DocContent = {
-    title: 'Animation Overview - React',
-    description: 'Learn about the animation capabilities in Lovable UI with React',
-    sections: [
-        {
-            title: 'Basic Animation',
-            content: `
+  title: 'Animation Overview - React',
+  description: 'Learn about the animation capabilities in Lovable UI with React',
+  sections: [
+    {
+      title: 'Basic Animation',
+      content: `
 ## Basic Animation
 
 Lovable UI provides a simple yet powerful API for creating animations in React. 
 
 The core component is \`motion\`, which lets you create smooth animations with a variety of options.
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function MyComponent() {
@@ -91,11 +98,12 @@ function MyComponent() {
     </motion.div>
   );
 }
-      `
-        },
-        {
-            title: 'Animation Properties',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Properties',
+      content: `
 ## Animation Properties
 
 Lovable UI supports a wide range of properties to animate:
@@ -106,7 +114,7 @@ Lovable UI supports a wide range of properties to animate:
 
 You can animate multiple properties at once with different timings.
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function AnimatedButton() {
@@ -125,25 +133,26 @@ function AnimatedButton() {
     </motion.button>
   );
 }
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Components Motion content
 export const componentsMotion: DocContent = {
-    title: 'Motion Component - React',
-    description: 'Learn how to use the motion component in Lovable UI with React',
-    sections: [
-        {
-            title: 'Basic Usage',
-            content: `
+  title: 'Motion Component - React',
+  description: 'Learn how to use the motion component in Lovable UI with React',
+  sections: [
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 The \`motion\` component is the primary way to create animations in React:
 
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function App() {
@@ -158,17 +167,18 @@ function App() {
     </motion.div>
   );
 }
-      `
-        },
-        {
-            title: 'Animation Controls',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Controls',
+      content: `
 ## Animation Controls
 
 You can control animations with the \`useAnimation\` hook:
 
       `,
-            code: `
+      code: `
 import { motion, useAnimation } from 'lovable-ui/react';
 import { useEffect } from 'react';
 
@@ -199,7 +209,8 @@ function ControlledAnimation() {
     />
   );
 }
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 

@@ -14,6 +14,7 @@ const animationOverviewContent: DocContent = {
 >
   Hello World
 </motion.div>`,
+      isLiveDemo: false,
     },
     {
       title: "Animation Properties",
@@ -25,6 +26,7 @@ const animationOverviewContent: DocContent = {
 >
   I scale in!
 </motion.div>`,
+      isLiveDemo: false,
     },
   ],
 };

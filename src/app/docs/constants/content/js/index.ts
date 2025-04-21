@@ -2,12 +2,12 @@ import { DocContent } from '../../types';
 
 // JS Get Started content
 export const getStarted: DocContent = {
-    title: 'Getting Started with JavaScript',
-    description: 'Learn how to use Lovable UI with vanilla JavaScript',
-    sections: [
-        {
-            title: 'Installation',
-            content: `
+  title: 'Getting Started with JavaScript',
+  description: 'Learn how to use Lovable UI with vanilla JavaScript',
+  sections: [
+    {
+      title: 'Installation',
+      content: `
 ## Installation
 
 You can install Lovable UI for JavaScript using npm or yarn:
@@ -24,22 +24,23 @@ Or include it directly in your HTML:
 <script src="https://unpkg.com/lovable-ui@latest/dist/lovable.min.js"></script>
 \`\`\`
       `,
-            code: `
+      code: `
 // Import Lovable in your JavaScript file
 import { animate, scroll } from 'lovable-ui';
 
 // Or access it globally if using the script tag
 // const { animate, scroll } = window.Lovable;
-      `
-        },
-        {
-            title: 'Basic Usage',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 Lovable UI provides a simple API for creating animations. Here's a basic example:
       `,
-            code: `
+      code: `
 // Get an element to animate
 const element = document.querySelector('.my-element');
 
@@ -51,11 +52,12 @@ animate(element, {
   duration: 0.5, 
   easing: 'ease-out' 
 });
-      `
-        },
-        {
-            title: 'Next Steps',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Next Steps',
+      content: `
 ## Next Steps
 
 Now that you have Lovable UI set up, explore the different animation capabilities:
@@ -65,26 +67,27 @@ Now that you have Lovable UI set up, explore the different animation capabilitie
 - **Transitions**: Define custom transitions between states
 
 Check out the Animation section for more details.
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Animation Overview content
 export const animationOverview: DocContent = {
-    title: 'Animation Overview - JavaScript',
-    description: 'Learn about the animation capabilities in Lovable UI with JavaScript',
-    sections: [
-        {
-            title: 'Basic Animation',
-            content: `
+  title: 'Animation Overview - JavaScript',
+  description: 'Learn about the animation capabilities in Lovable UI with JavaScript',
+  sections: [
+    {
+      title: 'Basic Animation',
+      content: `
 ## Basic Animation
 
 Lovable UI provides a simple yet powerful API for creating animations in JavaScript. 
 
 The core function is \`animate()\`, which lets you create smooth animations with a variety of options.
       `,
-            code: `
+      code: `
 import { animate } from 'lovable-ui';
 
 // Animate an element
@@ -96,11 +99,12 @@ animate('#my-element', {
   duration: 0.5,
   easing: 'ease-out'
 });
-      `
-        },
-        {
-            title: 'Animation Properties',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Properties',
+      content: `
 ## Animation Properties
 
 Lovable UI supports a wide range of properties to animate:
@@ -111,7 +115,7 @@ Lovable UI supports a wide range of properties to animate:
 
 You can animate multiple properties at once, and each property can have a different timing.
       `,
-            code: `
+      code: `
 // Animate multiple properties with different timings
 animate('.button', {
   scale: [1, 1.1],
@@ -120,25 +124,26 @@ animate('.button', {
   duration: { scale: 0.2, backgroundColor: 0.5 },
   easing: { scale: 'ease-out', backgroundColor: 'linear' }
 });
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 };
 
 // Components Motion content
 export const componentsMotion: DocContent = {
-    title: 'Using Motion - JavaScript',
-    description: 'Learn how to use the motion component in Lovable UI with JavaScript',
-    sections: [
-        {
-            title: 'Basic Usage',
-            content: `
+  title: 'Using Motion - JavaScript',
+  description: 'Learn how to use the motion component in Lovable UI with JavaScript',
+  sections: [
+    {
+      title: 'Basic Usage',
+      content: `
 ## Basic Usage
 
 In JavaScript, you can create motion elements using the \`createMotionElement\` function:
 
       `,
-            code: `
+      code: `
 import { createMotionElement } from 'lovable-ui';
 
 // Create a motion div
@@ -150,17 +155,18 @@ const motionDiv = createMotionElement('div', {
 
 // Append to the DOM
 document.body.appendChild(motionDiv);
-      `
-        },
-        {
-            title: 'Animation Controls',
-            content: `
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Animation Controls',
+      content: `
 ## Animation Controls
 
 You can control animations with the \`controls\` API:
 
       `,
-            code: `
+      code: `
 import { createMotionElement, animationControls } from 'lovable-ui';
 
 // Create controls
@@ -179,7 +185,8 @@ controls.start({ opacity: 1, scale: 1.2 });
 controls.stop();
 // or
 controls.start({ opacity: 0, scale: 1 });
-      `
-        }
-    ]
+      `,
+      isLiveDemo: false,
+    }
+  ]
 }; 
