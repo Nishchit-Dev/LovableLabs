@@ -8,8 +8,6 @@ export const getStarted: DocContent = {
     {
       title: 'Installation',
       content: `
-## Installation
-
 You can install Lovable UI for JavaScript using npm or yarn:
 
 \`\`\`bash
@@ -36,8 +34,6 @@ import { animate, scroll } from 'lovable-ui';
     {
       title: 'Basic Usage',
       content: `
-## Basic Usage
-
 Lovable UI provides a simple API for creating animations. Here's a basic example:
       `,
       code: `
@@ -58,8 +54,6 @@ animate(element, {
     {
       title: 'Next Steps',
       content: `
-## Next Steps
-
 Now that you have Lovable UI set up, explore the different animation capabilities:
 
 - **Gesture animations**: Create hover, tap, and drag interactions
@@ -81,8 +75,6 @@ export const animationOverview: DocContent = {
     {
       title: 'Basic Animation',
       content: `
-## Basic Animation
-
 Lovable UI provides a simple yet powerful API for creating animations in JavaScript. 
 
 The core function is \`animate()\`, which lets you create smooth animations with a variety of options.
@@ -105,8 +97,6 @@ animate('#my-element', {
     {
       title: 'Animation Properties',
       content: `
-## Animation Properties
-
 Lovable UI supports a wide range of properties to animate:
 
 - **Transform properties**: x, y, z, rotate, scale, etc.
@@ -138,8 +128,6 @@ export const componentsMotion: DocContent = {
     {
       title: 'Basic Usage',
       content: `
-## Basic Usage
-
 In JavaScript, you can create motion elements using the \`createMotionElement\` function:
 
       `,
@@ -161,8 +149,6 @@ document.body.appendChild(motionDiv);
     {
       title: 'Animation Controls',
       content: `
-## Animation Controls
-
 You can control animations with the \`controls\` API:
 
       `,

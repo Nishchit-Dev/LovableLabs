@@ -1,0 +1,295 @@
+/* Markdown Content Styles */
+.markdown-content {
+  color: var(--font-white);
+  line-height: 1.7;
+}
+
+/* Headings */
+.markdown-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  color: var(--font-white);
+}
+
+.markdown-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 1.75rem 0 0.75rem;
+  color: var(--font-white);
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--font-white);
+}
+
+.markdown-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--font-white);
+}
+
+/* Paragraphs */
+.markdown-content p {
+  margin-bottom: 1.25rem;
+  color: var(--font-gray);
+}
+
+/* Lists */
+.markdown-content ul,
+.markdown-content ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+  color: var(--font-gray);
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.markdown-content li > ul,
+.markdown-content li > ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+.markdown-content blockquote {
+  border-left: 4px solid rgba(120, 170, 255, 0.7);
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: 1.5rem 0;
+  background-color: rgba(30, 30, 30, 0.5);
+  border-radius: 0 4px 4px 0;
+}
+
+.markdown-content blockquote p {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+/* Inline code */
+.markdown-content code {
+  font-family: var(--font-jetbrains), monospace;
+  background-color: rgba(30, 30, 30, 0.7);
+  border-radius: 3px;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9em;
+  color: var(--font-blue);
+}
+
+/* Links */
+.markdown-content a {
+  color: var(--font-blue);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px dotted rgba(120, 170, 255, 0.4);
+}
+
+.markdown-content a:hover {
+  border-bottom: 1px solid var(--font-blue);
+}
+
+/* Tables */
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+.markdown-content table thead {
+  background-color: rgba(30, 30, 30, 0.7);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content table th,
+.markdown-content table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content table th {
+  font-weight: 600;
+  color: var(--font-white);
+}
+
+/* Horizontal Rule */
+.markdown-content hr {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  margin: 2rem 0;
+}
+
+/* Images */
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+/* Code blocks styling - complement the existing CodeBlock component */
+.markdown-content pre {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: #1e1e1e;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.9em;
+}
+
+/* Add emphasis for key points */
+.markdown-content strong {
+  color: var(--font-white);
+  font-weight: 600;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+/* Add highlighting for important notes */
+.markdown-content .note {
+  background-color: rgba(30, 30, 30, 0.7);
+  border-left: 4px solid var(--font-blue);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Improve readability for definition lists */
+.markdown-content dl {
+  margin: 1.5rem 0;
+}
+
+.markdown-content dt {
+  font-weight: 600;
+  color: var(--font-white);
+  margin-top: 1rem;
+}
+
+.markdown-content dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--font-gray);
+}
+
+/* Responsive design for different screen sizes */
+@media (max-width: 768px) {
+  .markdown-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .markdown-content h4 {
+    font-size: 1.15rem;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin-left: 1rem;
+  }
+
+  .markdown-content table {
+    font-size: 0.9rem;
+  }
+
+  .markdown-content code {
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 480px) {
+  .markdown-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.15rem;
+  }
+
+  .markdown-content h4 {
+    font-size: 1rem;
+  }
+
+  .markdown-content blockquote {
+    padding: 0.5rem;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin-left: 0.75rem;
+  }
+
+  .markdown-content pre {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark mode specific adjustments */
+@media (prefers-color-scheme: dark) {
+  .markdown-content blockquote {
+    background-color: rgba(20, 20, 20, 0.6);
+  }
+
+  .markdown-content code {
+    background-color: rgba(20, 20, 20, 0.7);
+  }
+
+  .markdown-content .note {
+    background-color: rgba(20, 20, 20, 0.6);
+  }
+}
+
+/* Special styling for animation documentation */
+.markdown-content .animation-example {
+  border: 1px solid rgba(120, 170, 255, 0.3);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background-color: rgba(30, 30, 30, 0.4);
+}
+
+/* Property list styling for animation docs */
+.markdown-content .property-list dt {
+  color: var(--font-blue);
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.9em;
+  margin-top: 1rem;
+}
+
+.markdown-content .property-list dd {
+  border-left: 2px solid rgba(120, 170, 255, 0.3);
+  padding-left: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}

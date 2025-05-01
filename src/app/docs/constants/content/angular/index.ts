@@ -8,8 +8,6 @@ export const getStarted: DocContent = {
     {
       title: 'Installation',
       content: `
-## Installation
-
 You can install Lovable UI for Angular using npm or yarn:
 
 \`\`\`bash
@@ -43,8 +41,6 @@ export class AppModule {}
     {
       title: 'Basic Usage',
       content: `
-## Basic Usage
-
 Lovable UI provides Angular directives for creating animations. Here's a basic example:
       `,
       code: `
@@ -70,8 +66,6 @@ export class AppComponent {}
     {
       title: 'Next Steps',
       content: `
-## Next Steps
-
 Now that you have Lovable UI set up, explore the different animation capabilities:
 
 - **Gesture animations**: Create hover, tap, and drag interactions
@@ -93,8 +87,6 @@ export const animationOverview: DocContent = {
     {
       title: 'Basic Animation',
       content: `
-## Basic Animation
-
 Lovable UI provides directives for creating animations in Angular. 
 
 The core directive is \`lovable-motion\`, which lets you create smooth animations with a variety of options.
@@ -122,8 +114,6 @@ export class AppComponent {}
     {
       title: 'Animation Properties',
       content: `
-## Animation Properties
-
 Lovable UI supports a wide range of properties to animate:
 
 - **Transform properties**: x, y, z, rotate, scale, etc.
@@ -172,8 +162,6 @@ export const componentsMotion: DocContent = {
     {
       title: 'Basic Usage',
       content: `
-## Basic Usage
-
 The \`lovable-motion\` directive is the primary way to create animations in Angular:
 
       `,
@@ -201,8 +189,6 @@ export class AppComponent {}
     {
       title: 'Animation Controls',
       content: `
-## Animation Controls
-
 You can control animations with the \`AnimationController\` service:
 
       `,

@@ -8,8 +8,6 @@ export const animationGestures: DocContent = {
     {
       title: 'Hover Animations',
       content: `
-## Hover Animations
-
 Create smooth hover animations with the \`lovable-hover\` directive or with \`lovable-motion\` and the \`[whileHover]\` property:
       `,
       code: `
@@ -32,8 +30,6 @@ Create smooth hover animations with the \`lovable-hover\` directive or with \`lo
     {
       title: 'Drag Gestures',
       content: `
-## Drag Gestures
-
 Enable drag interactions with the \`lovable-drag\` directive:
       `,
       code: `
@@ -67,8 +63,6 @@ export class AppComponent {
     {
       title: 'Tap Gestures',
       content: `
-## Tap Gestures
-
 Create tap animations with the \`lovable-tap\` directive or with \`lovable-motion\` and the \`[whileTap]\` property:
       `,
       code: `

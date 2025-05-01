@@ -8,8 +8,6 @@ export const animationGestures: DocContent = {
     {
       title: 'Hover Animations',
       content: `
-## Hover Animations
-
 Create smooth hover animations with the \`whileHover\` prop:
       `,
       code: `
@@ -34,8 +32,6 @@ function HoverButton() {
     {
       title: 'Drag Gestures',
       content: `
-## Drag Gestures
-
 Enable drag interactions with the \`drag\` prop:
       `,
       code: `
@@ -62,8 +58,6 @@ function DraggableBox() {
     {
       title: 'Tap Gestures',
       content: `
-## Tap Gestures
-
 Create tap animations with the \`whileTap\` prop:
       `,
       code: `

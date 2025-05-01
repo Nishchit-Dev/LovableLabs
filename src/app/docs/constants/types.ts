@@ -39,6 +39,7 @@ export type TableOfContentsItem = {
 // Content section type for documentation pages
 export type ContentSection = {
     title: string;
+    description?: string;
     content: string;
     code?: string;
     isLiveDemo: boolean;
@@ -47,7 +48,6 @@ export type ContentSection = {
 // Full document content type
 export type DocContent = {
     title: string;
-
     description: string;
     sections: ContentSection[];
 }; 
