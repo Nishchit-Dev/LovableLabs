@@ -2,15 +2,12 @@ import { NavItem, Category, Framework } from './types';
 
 // Define the available frameworks
 export const frameworks: Framework[] = [
-    { id: 'js', name: 'JavaScript', color: '#f7df1e', textColor: '#000000' },
     { id: 'react', name: 'React', color: '#61dafb', textColor: '#000000' },
-    { id: 'angular', name: 'Angular', color: '#dd0031', textColor: '#ffffff' },
 ];
 
 // Getting Started items - shared across frameworks
 export const gettingStartedItems: NavItem[] = [
     { icon: "🚀", label: "Get started", path: "/docs/get-started" },
-    { icon: "⭕", label: "Examples", path: "/docs/examples" },
 ];
 
 // Documentation categories with their items - framework specific
@@ -18,69 +15,40 @@ export const getDocCategories = (framework: string): Category[] => {
     // Base content structure is the same, but we can have framework-specific content
     const categories: Category[] = [
         {
+            title: "Text Animation",
+            slug: "text-animation",
+            items: [
+                { label: "Blur Text", path: `/docs/text-animation-blur?framework=${framework}` },
+                { label: "Split Text", path: `/docs/text-animation-split?framework=${framework}` },
+                { label: "Circular Text", path: `/docs/text-animation-circular?framework=${framework}` },
+            ],
+        },
+        {
             title: "Animation",
             slug: "animation",
             items: [
-                { label: "Overview", path: `/docs/animation-overview?framework=${framework}` },
-                { label: "Gestures", path: `/docs/animation-gestures?framework=${framework}` },
-                { label: "Scroll", path: `/docs/animation-scroll?framework=${framework}` },
+                { label: "Fade In Content", path: `/docs/animation-fadein?framework=${framework}` },
+                { label: "Click Spark", path: `/docs/animation-clickspark?framework=${framework}` },
+                { label: "Magnet Content", path: `/docs/animation-magnet?framework=${framework}` },
+                { label: "Noise", path: `/docs/animation-noise?framework=${framework}` },
+            ],
+        },
+        {
+            title: "Backgrounds",
+            slug: "backgrounds",
+            items: [
+                { label: "Square Grid", path: `/docs/backgrounds-squaregrid?framework=${framework}` },
+                { label: "Dotted Grid", path: `/docs/backgrounds-dottedgrid?framework=${framework}` },
             ],
         },
         {
             title: "Components",
             slug: "components",
             items: [
-                { label: "Motion", path: `/docs/components-motion?framework=${framework}` },
-                { label: "AnimatePresence", path: `/docs/components-animatepresence?framework=${framework}` },
-                {
-                    label: "AnimateNumber",
-                    path: `/docs/components-animatenumber?framework=${framework}`,
-                    badge: {
-                        text: "Prem+",
-                        color: "var(--font-blue)",
-                        bgColor: "var(--bg-dark)",
-                    },
-                },
-            ],
-        },
-        {
-            title: "Utilities",
-            slug: "utilities",
-            items: [
-                { label: "Values", path: `/docs/utilities-values?framework=${framework}` },
-                { label: "Templates", path: `/docs/utilities-templates?framework=${framework}` },
-                { label: "Hooks", path: `/docs/utilities-hooks?framework=${framework}` },
+                { label: "Staggered Layout", path: `/docs/components-staggeredlayout?framework=${framework}` },
             ],
         },
     ];
-
-    // Framework-specific adjustments
-    if (framework === 'js') {
-        // JavaScript has no hooks
-        const utilitiesCategory = categories.find(c => c.slug === 'utilities');
-        if (utilitiesCategory) {
-            utilitiesCategory.items = utilitiesCategory.items.filter(item => !item.path.includes('hooks'));
-        }
-    } else if (framework === 'angular') {
-        // Angular has services instead of hooks
-        const utilitiesCategory = categories.find(c => c.slug === 'utilities');
-        if (utilitiesCategory) {
-            const hooksItem = utilitiesCategory.items.find(item => item.path.includes('hooks'));
-            if (hooksItem) {
-                hooksItem.label = 'Services';
-                hooksItem.path = `/docs/utilities-services?framework=${framework}`;
-            }
-        }
-
-        // Angular specific components
-        const componentsCategory = categories.find(c => c.slug === 'components');
-        if (componentsCategory) {
-            componentsCategory.items.push({
-                label: "Directives",
-                path: `/docs/components-directives?framework=${framework}`
-            });
-        }
-    }
 
     return categories;
 };

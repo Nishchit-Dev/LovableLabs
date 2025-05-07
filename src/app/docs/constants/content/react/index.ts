@@ -64,63 +64,50 @@ import { motion, AnimatePresence } from 'lovable-ui/react';
   ]
 };
 
-// Animation Overview content
-export const animationOverview: DocContent = {
-  title: 'Animation Overview - React',
-  description: 'Learn about the animation capabilities in Lovable UI with React',
+
+
+export const backgroundsSquareGrid: DocContent = {
+  title: 'Square Grid Background',
+  description: 'Create elegant square grid backgrounds with Lovable UI',
   sections: [
     {
-      title: 'Basic Animation',
+      title: 'Basic Usage',
       content: `
-Lovable UI provides a simple yet powerful API for creating animations in React. 
-
-The core component is \`motion\`, which lets you create smooth animations with a variety of options.
+Learn how to implement square grid backgrounds in your React project:
       `,
       code: `
-import { motion } from 'lovable-ui/react';
+import { SquareGrid } from 'lovable-ui/react';
 
 function MyComponent() {
   return (
-    <motion.div
-      initial={{ x: -100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      I'll animate in from the left!
-    </motion.div>
+    <SquareGrid>
+      <div>Content with square grid background</div>
+    </SquareGrid>
   );
 }
       `,
       isLiveDemo: false,
     },
     {
-      title: 'Animation Properties',
+      title: 'Configuration',
       content: `
-Lovable UI supports a wide range of properties to animate:
-
-- **Transform properties**: x, y, z, rotate, scale, etc.
-- **CSS properties**: opacity, backgroundColor, width, etc.
-- **SVG properties**: For animating SVG elements
-
-You can animate multiple properties at once with different timings.
+Customize your square grid background with various properties:
       `,
       code: `
-import { motion } from 'lovable-ui/react';
+import { SquareGrid } from 'lovable-ui/react';
 
-function AnimatedButton() {
+function CustomSquareGrid() {
   return (
-    <motion.button
-      whileHover={{
-        scale: 1.1,
-        backgroundColor: '#666'
-      }}
-      transition={{
-        scale: { duration: 0.2, ease: 'easeOut' },
-        backgroundColor: { duration: 0.5, ease: 'linear' }
-      }}
+    <SquareGrid 
+      gridSize={50}
+      lineColor="#333333"
+      lineWidth={1}
+      animated={true}
+      animationSpeed={10}
+      backgroundColor="#121212"
     >
-      Hover me!
-    </motion.button>
+      <div>Customized square grid background</div>
+    </SquareGrid>
   );
 }
       `,
@@ -129,74 +116,133 @@ function AnimatedButton() {
   ]
 };
 
-// Components Motion content
-export const componentsMotion: DocContent = {
-  title: 'Motion Component - React',
-  description: 'Learn how to use the motion component in Lovable UI with React',
+
+export const backgroundsDottedGrid: DocContent = {
+  title: 'Dotted Grid Background',
+  description: 'Create stylish dotted grid backgrounds with Lovable UI',
   sections: [
     {
       title: 'Basic Usage',
       content: `
-The \`motion\` component is the primary way to create animations in React:
-
+Learn how to implement dotted grid backgrounds in your React project:
       `,
       code: `
-import { motion } from 'lovable-ui/react';
+import { DottedGrid } from 'lovable-ui/react';
 
-function App() {
+function MyComponent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      Hello world!
-    </motion.div>
+    <DottedGrid>
+      <div>Content with dotted grid background</div>
+    </DottedGrid>
   );
 }
       `,
       isLiveDemo: false,
     },
     {
-      title: 'Animation Controls',
+      title: 'Configuration',
       content: `
-You can control animations with the \`useAnimation\` hook:
-
+Customize your dotted grid background with various properties:
       `,
       code: `
-import { motion, useAnimation } from 'lovable-ui/react';
-import { useEffect } from 'react';
+import { DottedGrid } from 'lovable-ui/react';
 
-function ControlledAnimation() {
-  const controls = useAnimation();
-  
-  useEffect(() => {
-    controls.start({
-      x: 100,
-      transition: { duration: 2 }
-    });
-    
-    // You can sequence animations too
-    const sequence = async () => {
-      await controls.start({ scale: 1.5 });
-      await controls.start({ rotate: 180 });
-      return await controls.start({ scale: 1 });
-    };
-    
-    sequence();
-  }, [controls]);
-  
+function CustomDottedGrid() {
   return (
-    <motion.div
-      animate={controls}
-      initial={{ x: 0, scale: 1, rotate: 0 }}
-      style={{ width: 150, height: 150, background: 'red' }}
-    />
+    <DottedGrid 
+      spacing={30}
+      dotSize={3}
+      dotColor="#444444"
+      animated={true}
+      animationSpeed={5}
+      backgroundColor="#0f0f0f"
+    >
+      <div>Customized dotted grid background</div>
+    </DottedGrid>
   );
 }
       `,
       isLiveDemo: false,
     }
   ]
+};
+
+export const componentsStaggeredLayout: DocContent = {
+  title: 'Staggered Layout Component',
+  description: 'Create visually appealing staggered layouts with Lovable UI',
+  sections: [
+    {
+      title: 'Basic Usage',
+      content: `
+Learn how to implement staggered layouts in your React project:
+      `,
+      code: `
+import { StaggeredLayout } from 'lovable-ui/react';
+
+function MyComponent() {
+  return (
+    <StaggeredLayout>
+      <div>Item 1</div>
+      <div>Item 2</div>
+      <div>Item 3</div>
+      <div>Item 4</div>
+    </StaggeredLayout>
+  );
+}
+      `,
+      isLiveDemo: false,
+    },
+    {
+      title: 'Configuration',
+      content: `
+Customize your staggered layout with various properties:
+      `,
+      code: `
+import { StaggeredLayout } from 'lovable-ui/react';
+
+function CustomStaggeredLayout() {
+  return (
+    <StaggeredLayout 
+      staggerDelay={0.1}
+      columns={3}
+      gap={16}
+      animationSettings={{
+        initial: { opacity: 0, y: 50 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.8 }
+      }}
+    >
+      <div>Item 1</div>
+      <div>Item 2</div>
+      <div>Item 3</div>
+      <div>Item 4</div>
+      <div>Item 5</div>
+      <div>Item 6</div>
+    </StaggeredLayout>
+  );
+}
+      `,
+      isLiveDemo: false,
+    }
+  ]
+};
+
+// Importing other modules directly
+import { textAnimationBlur } from './text-animation-blur';
+import { textAnimationSplit } from './text-animation-split';
+import { textAnimationCircular } from './text-animation-circular';
+import { animationFadeIn } from './animation-fadein';
+import { animationClickSpark } from './animation-clickspark';
+import { animationMagnet } from './animation-magnet';
+import { animationNoise } from './animation-noise';
+
+// Re-export all imported modules
+export {
+  textAnimationBlur,
+  textAnimationSplit,
+  textAnimationCircular,
+  animationFadeIn,
+  animationClickSpark,
+  animationMagnet,
+  animationNoise
 }; 
