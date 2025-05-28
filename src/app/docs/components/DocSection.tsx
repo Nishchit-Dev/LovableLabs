@@ -95,7 +95,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                     <div className="w-[0.5px] bg-white/20 self-stretch mr-10 ">
                         <div className="w-[5px] h-[25px] rounded-r-2xl bg-purple-500 "></div>
                     </div>
-                    <div className="mb-16 max-w-[820px]">
+                    <div className="mb-16 min-w-[820px] max-w-[820px]">
                         {section.title && (
                             <div className="mb-6">
                                 <h2
