@@ -42,6 +42,7 @@ export type ContentSection = {
     description?: string;
     content: string;
     code?: string;
+    codeSrc?:string;
     isLiveDemo: boolean;
 };
 
