@@ -64,163 +64,6 @@ import { motion, AnimatePresence } from 'lovable-ui/react';
     ],
 }
 
-export const backgroundsSquareGrid: DocContent = {
-    title: 'Square Grid Background',
-    description: 'Create elegant square grid backgrounds with Lovable UI',
-    sections: [
-        {
-            title: 'Code',
-            content:
-                'Here is the code for createing a square grid background in React/Next.js',
-            code: `import React from 'react'
-import { cn } from '../utils/cn'
-
-interface GridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  full?: boolean // fills the screen
-  centered?: boolean // centers children
-}
-export const GridBackground: React.FC<GridBackgroundProps & { boxSize?: number }> = ({
-  children,
-  className,
-  full = false,
-  centered = false,
-  boxSize = 24,
-  ...props
-}) => {
-  return (
-    <div
-      className={cn(
-        'relative overflow-hidden rounded-md',
-        full && 'min-h-screen w-full',
-        centered && 'flex items-center justify-center',
-        className
-      )}
-      {...props}
-    >
-      <div
-        className="absolute inset-0 h-full w-full bg-white z-0 pointer-events-none"
-        style={{
-          backgroundImage: \`linear-gradient(to right,#80808012 1px,transparent 1px),linear-gradient(to bottom,#80808012 1px,transparent 1px)\`,
-          backgroundSize: \`\${boxSize}px \${boxSize}px\`,
-        }}
-      />
-      <div className="relative z-10">{children}</div>
-    </div>
-  )
-}`,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Dependencies',
-            description:
-                'we gonna use tailwindcss for styling the grid background',
-            content:
-                'Make sure to install the required dependencies for the grid background component:',
-            code: ``,
-            isLiveDemo: false,
-        },
-        {
-            title: 'installing Tailwind CSS',
-            description:
-                'we gonna use tailwindcss for styling the grid background',
-            content:
-                'Make sure to install the required dependencies for the grid background component:',
-            code: `npm install tailwindcss @tailwindcss/cli`,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Import Tailwind in your CSS',
-            description:
-                'Add the @import "tailwindcss"; import to your main CSS file.',
-            content:
-                'Make sure to install the required dependencies for the grid background component:',
-            code: `@import "tailwindcss";`,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Start the Tailwind CLI build process',
-            description:
-                'Add the @import "tailwindcss"; import to your main CSS file.',
-            content:
-                'Make sure to install the required dependencies for the grid background component:',
-            code: `npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch`,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Start using Tailwind in your HTML',
-            description:
-                'Add your compiled CSS file to the <head> and start using Tailwind’s utility classes to style your content.',
-            content:
-                'Make sure to install the required dependencies for the grid background component:',
-            code: `<!doctype html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
-</head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</body>
-</html>`,
-            isLiveDemo: false,
-        },
-    ],
-}
-
-export const backgroundsDottedGrid: DocContent = {
-    title: 'Dotted Grid Background',
-    description: 'Create stylish dotted grid backgrounds with Lovable UI',
-    sections: [
-        {
-            title: 'Basic Usage',
-            content: `
-Learn how to implement dotted grid backgrounds in your React project:
-      `,
-      codeSrc:"src/app.js",
-            code: `
-import { DottedGrid } from 'lovable-ui/react';
-
-function MyComponent() {
-  return (
-    <DottedGrid>
-      <div>Content with dotted grid background</div>
-    </DottedGrid>
-  );
-}
-      `,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Configuration',
-            content: `
-Customize your dotted grid background with various properties:
-      `,
-            code: `
-import { DottedGrid } from 'lovable-ui/react';
-
-function CustomDottedGrid() {
-  return (
-    <DottedGrid 
-      spacing={30}
-      dotSize={3}
-      dotColor="#444444"
-      animated={true}
-      animationSpeed={5}
-      backgroundColor="#0f0f0f"
-    >
-      <div>Customized dotted grid background</div>
-    </DottedGrid>
-  );
-}
-      `,
-            isLiveDemo: false,
-        },
-    ],
-}
 
 export const componentsStaggeredLayout: DocContent = {
     title: 'Staggered Layout Component',
@@ -284,6 +127,9 @@ function CustomStaggeredLayout() {
 
 // Importing other modules directly
 import { textAnimationBlur } from './text-animation-blur'
+import { InstallTailwindCss } from './install-css'
+import { backgroundsSquareGrid } from './backgroundsSquareGrid'
+import { backgroundsDottedGrid } from './backgroundDottedGrid'
 import { textAnimationSplit } from './text-animation-split'
 import { textAnimationCircular } from './text-animation-circular'
 import { animationFadeIn } from './animation-fadein'
@@ -300,4 +146,7 @@ export {
     animationClickSpark,
     animationMagnet,
     animationNoise,
+    InstallTailwindCss,
+    backgroundsSquareGrid,
+    backgroundsDottedGrid
 }

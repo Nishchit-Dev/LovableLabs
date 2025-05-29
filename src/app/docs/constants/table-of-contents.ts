@@ -1,3 +1,4 @@
+
 import { TableOfContentsItem } from './types';
 
 // Table of contents for get-started page
@@ -45,13 +46,15 @@ export const animationNoiseTableOfContents: TableOfContentsItem[] = [
 
 // Table of contents for backgrounds pages
 export const backgroundsSquareGridTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
+    { label: "Install Depsendencies", anchor: "#install depsendencies" },
+    { label: "Add util file", anchor: "#add util file" },
+    { label: "Copy source code", anchor: "#copy source code" },
 ];
 
 export const backgroundsDottedGridTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
+    { label: "Install Depsendencies", anchor: "#install depsendencies" },
+    { label: "Add util file", anchor: "#add util file" },
+    { label: "Copy source code", anchor: "#copy source code" },
 ];
 
 // Table of contents for components pages
