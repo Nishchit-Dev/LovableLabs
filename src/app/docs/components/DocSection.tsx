@@ -5,6 +5,7 @@ import { themes, Highlight } from 'prism-react-renderer'
 // import { motion } from 'framer-motion'
 import './markdown.css'
 import { Copy } from 'lucide-react'
+import { DottedBackground, GridBackground } from '@/app/playground/page'
 
 type DocSectionProps = {
     content: DocContent
@@ -22,19 +23,30 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <>
                     {codeSrc ? (
-                        <div className='flex flex-row '>
+                        <div className="flex flex-row ">
                             {' '}
                             <p className=" px-5 py-3 w-full bg-black/70 text-sm">
                                 {codeSrc}
                             </p>
-                            <div className="w-full flex justify-end items-center px-5 py-3 bg-black/70 text-sm">
-                                <Copy size={18} />
+                            <div
+                                className="w-full flex justify-end items-center px-5 py-3 bg-black/70 text-sm "
+                                onClick={() => {
+                                    navigator.clipboard.writeText(code)
+                                }}
+                            >
+                                <Copy size={16} className="cursor-pointer" />
                             </div>
                         </div>
                     ) : (
                         <>
                             <div className="w-full flex justify-end items-center px-5 py-3 bg-black/70 text-sm">
-                                <Copy size={18} />
+                                <Copy
+                                    size={18}
+                                    className="cursor-pointer"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(code)
+                                    }}
+                                />
                             </div>
                         </>
                     )}
@@ -46,6 +58,8 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                             borderRadius: '4px',
                             overflow: 'auto',
                             backgroundColor: '#1e1e1e',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: 'oklch(60.6% 0.25 292.717) #000',
                         }}
                     >
                         {tokens.map((line, i) => {
@@ -82,20 +96,69 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
     )
 }
 
+export const BuildPrivewSqaureGridSection = () => {
+    // Example: Render the first section's code as a live preview if available
+    // You may want to enhance this logic to support more complex previews
+    // For now, this will render a static preview box
+
+    // Placeholder preview: Replace with actual preview logic as needed
+    return (
+        <div className="mb-10">
+            <p className="text-2xl font-bold mb-3">Preview</p>
+            <div className=" rounded-xl p-6 flex items-center justify-center max-h-[420px] h-full overflow-hidden   border border-[#333] ">
+                {/* Replace below with actual component preview */}
+                <GridBackground
+                    className=" rounded-lg bg-white w-full min-h-[250px]"
+                    centered
+                >
+                    <div className="h-min w-min px-3 py-2 cursor-pointer bg-blue-500 hover:shadow-2xl transition-all duration-600 ease-in-out shadow-blue-400 rounded-lg flex justify-center items-center">
+                        <p className="text-center text-white">Preview</p>
+                    </div>
+                </GridBackground>
+            </div>
+        </div>
+    )
+}
+export const BuildPrivewDottedGridSection = () => {
+    // Example: Render the first section's code as a live preview if available
+    // You may want to enhance this logic to support more complex previews
+    // For now, this will render a static preview box
+
+    // Placeholder preview: Replace with actual preview logic as needed
+    return (
+        <div className="mb-10">
+            <p className="text-2xl font-bold mb-3">Preview</p>
+            <div className=" rounded-xl p-6 flex items-center justify-center max-h-[420px]  border border-[#333] ">
+                {/* Replace below with actual component preview */}
+
+                <DottedBackground
+                    className=" w-full min-h-[250px] rounded-lg bg-white"
+                    centered
+                >
+                    <div className="h-min w-min px-3 py-2 cursor-pointer bg-blue-500 hover:shadow-2xl transition-all duration-600 ease-in-out shadow-blue-400 rounded-lg flex justify-center items-center">
+                        <p className="text-center text-white">Preview</p>
+                    </div>
+                </DottedBackground>
+            </div>
+        </div>
+    )
+}
+
 const DocSection = ({ content }: DocSectionProps) => {
     return (
         <div className="text-[var(--font-white)]">
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
-            <p className="text-[var(--font-gray)] mb-10">
+            <p className="text-[var(--font-gray)] mb-10 ">
                 {content.description}
             </p>
 
+            {content.preview}
             {content.sections.map((section, index) => (
                 <div key={index} className="flex flex-row">
                     <div className="w-[0.5px] bg-white/20 self-stretch mr-10 ">
-                        <div className="w-[5px] h-[25px] rounded-r-2xl bg-purple-500 "></div>
+                        <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500 "></div>
                     </div>
-                    <div className="mb-16 min-w-[820px] max-w-[820px]">
+                    <div className="mb-16 w-full ">
                         {section.title && (
                             <div className="mb-6">
                                 <h2
@@ -107,7 +170,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                                     {section.title}
                                 </h2>
                                 {section.description && (
-                                    <p className="text-[var(--font-gray)] text-lg font-light">
+                                    <p className="text-[var(--font-gray)] text-md font-light ">
                                         {section.description}
                                     </p>
                                 )}
@@ -120,7 +183,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                             </div>
                         )}
 
-                        <div className="markdown-content text-[var(--font-white)]">
+                        <div className="markdown-content text-[var(--font-white)] text-sm">
                             <ReactMarkdown>{section.content}</ReactMarkdown>
                         </div>
 
