@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 // Framework type for different documentation versions
 export type Framework = {
     id: string;
@@ -40,7 +42,7 @@ export type TableOfContentsItem = {
 export type ContentSection = {
     title: string;
     description?: string;
-    content: string;
+    content?: string;
     code?: string;
     codeSrc?:string;
     isLiveDemo: boolean;
@@ -50,5 +52,6 @@ export type ContentSection = {
 export type DocContent = {
     title: string;
     description: string;
+    preview?:JSX.Element
     sections: ContentSection[];
 }; 
