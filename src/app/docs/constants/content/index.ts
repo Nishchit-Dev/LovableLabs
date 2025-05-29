@@ -1,3 +1,4 @@
+
 import { DocContent } from '../types'
 
 // Framework-specific content imports
@@ -12,25 +13,13 @@ const frameworkContent = {
 const slugToContentKey: Record<string, string> = {
     'get-started': 'getStarted',
 
-    // Text Animation
-    'text-animation-blur': 'textAnimationBlur',
-    'text-animation-split': 'textAnimationSplit',
-    'text-animation-circular': 'textAnimationCircular',
-
     'install-tailwindcss': 'InstallTailwindCss',
-
-    // Animation
-    'animation-fadein': 'animationFadeIn',
-    'animation-clickspark': 'animationClickSpark',
-    'animation-magnet': 'animationMagnet',
-    'animation-noise': 'animationNoise',
 
     // Backgrounds
     'backgrounds-squaregrid': 'backgroundsSquareGrid',
     'backgrounds-dottedgrid': 'backgroundsDottedGrid',
 
-    // Components
-    'components-staggeredlayout': 'componentsStaggeredLayout',
+
 }
 
 // Helper function to get content by slug
