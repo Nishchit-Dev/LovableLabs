@@ -2,12 +2,12 @@ import { DocContent } from '../../types'
 
 // React Get Started content
 export const getStarted: DocContent = {
-    title: 'Getting Started with React',
-    description: 'Learn how to use Lovable UI with React',
-    sections: [
-        {
-            title: 'Installation',
-            content: `
+  title: 'Getting Started with React',
+  description: 'Learn how to use Lovable UI with React',
+  sections: [
+    {
+      title: 'Installation',
+      content: `
 You can install Lovable UI for React using npm or yarn:
 
 \`\`\`bash
@@ -16,18 +16,18 @@ npm install lovable-ui
 yarn add lovable-ui
 \`\`\`
       `,
-            code: `
+      code: `
 // Import Lovable components in your React file
 import { motion, AnimatePresence } from 'lovable-ui/react';
       `,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Basic Usage',
-            content: `
+      isLiveDemo: false,
+    },
+    {
+      title: 'Basic Usage',
+      content: `
 Lovable UI provides a \`motion\` component that you can use to create animations. Here's a basic example:
       `,
-            code: `
+      code: `
 import { motion } from 'lovable-ui/react';
 
 function MyComponent() {
@@ -42,11 +42,11 @@ function MyComponent() {
   );
 }
       `,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Next Steps',
-            content: `
+      isLiveDemo: false,
+    },
+    {
+      title: 'Next Steps',
+      content: `
 Now that you have Lovable UI set up, explore the different animation capabilities:
 
 - **Gesture animations**: Create hover, tap, and drag interactions
@@ -55,26 +55,26 @@ Now that you have Lovable UI set up, explore the different animation capabilitie
 
 Check out the Animation section for more details.
       `,
-            code: `
+      code: `
 // Import Lovable components in your React file
 import { motion, AnimatePresence } from 'lovable-ui/react';
       `,
-            isLiveDemo: false,
-        },
-    ],
+      isLiveDemo: false,
+    },
+  ],
 }
 
 
 export const componentsStaggeredLayout: DocContent = {
-    title: 'Staggered Layout Component',
-    description: 'Create visually appealing staggered layouts with Lovable UI',
-    sections: [
-        {
-            title: 'Basic Usage',
-            content: `
+  title: 'Staggered Layout Component',
+  description: 'Create visually appealing staggered layouts with Lovable UI',
+  sections: [
+    {
+      title: 'Basic Usage',
+      content: `
 Learn how to implement staggered layouts in your React project:
       `,
-            code: `
+      code: `
 import { StaggeredLayout } from 'lovable-ui/react';
 
 function MyComponent() {
@@ -88,14 +88,14 @@ function MyComponent() {
   );
 }
       `,
-            isLiveDemo: false,
-        },
-        {
-            title: 'Configuration',
-            content: `
+      isLiveDemo: false,
+    },
+    {
+      title: 'Configuration',
+      content: `
 Customize your staggered layout with various properties:
       `,
-            code: `
+      code: `
 import { StaggeredLayout } from 'lovable-ui/react';
 
 function CustomStaggeredLayout() {
@@ -120,33 +120,21 @@ function CustomStaggeredLayout() {
   );
 }
       `,
-            isLiveDemo: false,
-        },
-    ],
+      isLiveDemo: false,
+    },
+  ],
 }
 
 // Importing other modules directly
-import { textAnimationBlur } from './text-animation-blur'
+
 import { InstallTailwindCss } from './install-css'
 import { backgroundsSquareGrid } from './backgroundsSquareGrid'
 import { backgroundsDottedGrid } from './backgroundDottedGrid'
-import { textAnimationSplit } from './text-animation-split'
-import { textAnimationCircular } from './text-animation-circular'
-import { animationFadeIn } from './animation-fadein'
-import { animationClickSpark } from './animation-clickspark'
-import { animationMagnet } from './animation-magnet'
-import { animationNoise } from './animation-noise'
+
 
 // Re-export all imported modules
 export {
-    textAnimationBlur,
-    textAnimationSplit,
-    textAnimationCircular,
-    animationFadeIn,
-    animationClickSpark,
-    animationMagnet,
-    animationNoise,
-    InstallTailwindCss,
-    backgroundsSquareGrid,
-    backgroundsDottedGrid
+  InstallTailwindCss,
+  backgroundsSquareGrid,
+  backgroundsDottedGrid
 }

@@ -7,42 +7,6 @@ export const getStartedTableOfContents: TableOfContentsItem[] = [
     { label: "Basic Usage", anchor: "#basic-usage" },
 ];
 
-// Table of contents for text animation pages
-export const textAnimationBlurTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-export const textAnimationSplitTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-export const textAnimationCircularTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-// Table of contents for animation pages
-export const animationFadeInTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-export const animationClickSparkTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-export const animationMagnetTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
-
-export const animationNoiseTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
 
 // Table of contents for backgrounds pages
 export const backgroundsSquareGridTableOfContents: TableOfContentsItem[] = [
@@ -57,33 +21,17 @@ export const backgroundsDottedGridTableOfContents: TableOfContentsItem[] = [
     { label: "Copy source code", anchor: "#copy source code" },
 ];
 
-// Table of contents for components pages
-export const componentsStaggeredLayoutTableOfContents: TableOfContentsItem[] = [
-    { label: "Basic Usage", anchor: "#basic-usage" },
-    { label: "Configuration", anchor: "#configuration" },
-];
 
 // Map of page slugs to their table of contents
 export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
     "get-started": getStartedTableOfContents,
 
-    // Text Animation pages
-    "text-animation-blur": textAnimationBlurTableOfContents,
-    "text-animation-split": textAnimationSplitTableOfContents,
-    "text-animation-circular": textAnimationCircularTableOfContents,
-
-    // Animation pages
-    "animation-fadein": animationFadeInTableOfContents,
-    "animation-clickspark": animationClickSparkTableOfContents,
-    "animation-magnet": animationMagnetTableOfContents,
-    "animation-noise": animationNoiseTableOfContents,
 
     // Backgrounds pages
     "backgrounds-squaregrid": backgroundsSquareGridTableOfContents,
     "backgrounds-dottedgrid": backgroundsDottedGridTableOfContents,
 
-    // Components pages
-    "components-staggeredlayout": componentsStaggeredLayoutTableOfContents,
+
 };
 
 // Helper function to get table of contents for a specific page
