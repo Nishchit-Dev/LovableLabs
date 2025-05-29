@@ -29,7 +29,7 @@ export default function Navbar() {
                     {/* Nav links */}
                     <div className="flex gap-6">
                         {links.map((link, index) => (
-                            <>
+                            <div key={index}>
                                 <motion.div
                                     key={index}
                                     className="relative group"
@@ -71,7 +71,7 @@ export default function Navbar() {
                                         />
                                     </Link>
                                 </motion.div>
-                            </>
+                            </div>
                         ))}
                     </div>
                 </div>
