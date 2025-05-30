@@ -118,7 +118,7 @@ export default function Navbar() {
             }}
           >
             {links.map((link, index) => {
-              const isActive = pathname === link.path;
+              const isActive = pathname.startsWith(link.path);
               const hasWhiteBackground =
                 hoveredIndex !== null ? hoveredIndex === index : isActive;
 
