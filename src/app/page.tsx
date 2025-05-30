@@ -1,5 +1,7 @@
 'use client'
 
+import { motion } from 'framer-motion'
+
 export default function Home() {
     return (
         <div className="h-full">
@@ -12,41 +14,71 @@ export default function Home() {
                     }}
                 ></div>{' '} */}
                 <div className="w-full absolute h-full xl:h-full lg:h-[80%] md:h-[60%] bottom-0">
-                    <div
+                    <motion.div
+                        animate={{ scale: [1, 1.08, 0.8,1] }}
+                        transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
                         className="w-full h-full absolute  "
                         style={{
                             background:
                                 'radial-gradient(ellipse 100% 100% at bottom, #000000 100%)',
                         }}
-                    ></div>
-                    <div
+                    ></motion.div>
+                    <motion.div
+                        animate={{ scale: [1, 1.1,1] }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
                         className="w-full h-full absolute"
                         style={{
                             background:
                                 'radial-gradient(ellipse 50% 70% at bottom,#32247A 95%, transparent 140%,transparent 60%,transparent 80%)',
                         }}
-                    ></div>{' '}
-                    <div
+                    ></motion.div>{' '}
+                    <motion.div
+                        animate={{ scale: [1, 1.14, 1],opacity:[1,0.7,1] }}
+                        transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
                         className="w-full h-full absolute"
                         style={{
                             background:
                                 'radial-gradient(ellipse 40% 80% at bottom, #2B1C83 70%, transparent 125%)',
                         }}
-                    ></div>{' '}
-                    <div
+                    ></motion.div>{' '}
+                    <motion.div
+                        animate={{ scale: [1, 1.03,1],opacity:[1,0.8,1] }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
                         className="w-full h-full absolute"
                         style={{
                             background:
                                 'radial-gradient(ellipse 30% 60% at bottom, #8C80DB 80%, transparent 135%)',
                         }}
-                    ></div>
-                    <div
+                    ></motion.div>
+                    <motion.div
+                        animate={{ scale: [1, 1.02,1],opacity:[1,0.75,1]  }}
+                        transition={{
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
                         className="w-full h-full absolute"
                         style={{
                             background:
                                 'radial-gradient(ellipse 20% 40% at bottom, #F9F9FB 50%,transparent 120%)',
                         }}
-                    ></div>{' '}
+                    ></motion.div>{' '}
                 </div>
 
                 <p className="text-center z-10 text-5xl font-extrabold text-white">
