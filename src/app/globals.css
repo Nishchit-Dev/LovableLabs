@@ -1,10 +1,19 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --font-blue: rgb(120, 170, 255);
   --font-gray: rgba(230, 230, 230, 0.8);
   --font-white: rgba(255, 255, 255, 0.85);
   --bg-blue: rgb(0, 85, 255);
+  --bg-gray: rgb(43, 43, 43);
+  --bg-dark: rgb(17, 17, 17);
+  --bg-offwhite: rgba(255, 255, 255, 0.9);
+} */
+:root {
+  --font-blue: #8b5dff;
+  --font-gray: rgba(230, 230, 230, 0.8);
+  --font-white: rgba(255, 255, 255, 0.85);
+  --bg-blue: #6a42c2;
   --bg-gray: rgb(43, 43, 43);
   --bg-dark: rgb(17, 17, 17);
   --bg-offwhite: rgba(255, 255, 255, 0.9);

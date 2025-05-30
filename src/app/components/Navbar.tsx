@@ -32,8 +32,9 @@ interface TabCursorProps {
 export default function Navbar() {
   const links = [
     { label: "Docs", path: "/docs" },
-    { label: "Examples", path: "/examples" },
+
     { label: "playground", path: "/playground" },
+    // { label: "Examples", path: "/examples" },
   ];
 
   const [position, setPosition] = useState<TabPosition>({
