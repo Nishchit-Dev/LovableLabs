@@ -13,7 +13,7 @@ export default function Home() {
                             'radial-gradient(ellipse 100% 30% at bottom, #F9F9FB 100%,transparent 100%)',
                     }}
                 ></div>{' '} */}
-                <div className="w-full absolute h-full xl:h-full lg:h-[80%] md:h-[60%] bottom-0">
+                <div className="w-full absolute xl:h-[80%] lg:h-[80%] md:h-[60%] bottom-0">
                     <motion.div
                         animate={{ scale: [1, 1.08, 0.8,1] }}
                         transition={{
