@@ -1,5 +1,6 @@
-import { BuildPrivewDottedGridSection } from '@/app/docs/components/DocSection'
+
 import { DocContent } from '../../types'
+import { BuildPrivewDottedGridSection } from '../Builds/BuildPrivewDottedGridBg'
 
 export const backgroundsDottedGrid: DocContent = {
     title: 'Square Grid Background',

@@ -1,25 +1,25 @@
 import { DocContent } from '../../types'
 
-// Blur Text Animation content for React
+// Tailwind CSS Setup Guide for React Projects
 export const InstallTailwindCss: DocContent = {
-    title: 'Get started with Tailwind CSS',
-    description: `Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file. It's fast, flexible, and reliable — with zero-runtime.`,
+    title: 'Setting Up Tailwind CSS in Your Project',
+    description: `Tailwind CSS generates utility-first styles by scanning your source files for class names and compiling them into a single CSS file. It’s efficient, highly customizable, and doesn’t require any runtime code.`,
     sections: [
         {
-            title: 'Install Tailwind CSS',
-            description: 'Install tailwindcss and @tailwindcss/vite via npm.',
+            title: 'Install the Required Packages',
+            description: 'Use npm to add Tailwind CSS and the Vite plugin for Tailwind.',
             content: '',
             code: `npm install tailwindcss @tailwindcss/vite`,
             codeSrc: 'Terminal',
             isLiveDemo: false,
         },
         {
-            title: 'Configure the Vite plugin',
-            description:
-                'Add the @tailwindcss/vite plugin to your Vite configuration.',
+            title: 'Set Up the Vite Plugin',
+            description: `Include the Tailwind plugin in your Vite configuration to enable automatic style generation.`,
             content: '',
             code: `import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
+
 export default defineConfig({
   plugins: [
     tailwindcss(),
@@ -29,27 +29,24 @@ export default defineConfig({
             isLiveDemo: false,
         },
         {
-            title: 'Import Tailwind CSS',
-            description:
-                'Add an @import to your CSS file that imports Tailwind CSS.',
+            title: 'Link Tailwind in Your CSS',
+            description: `Import Tailwind's base styles in your project's main stylesheet to activate the utility classes.`,
             content: '',
             code: `@import "tailwindcss";`,
             codeSrc: 'CSS',
             isLiveDemo: false,
         },
         {
-            title: 'Start your build process',
-            description:
-                'Run your build process with npm run dev or whatever command is configured in your package.json file.',
+            title: 'Launch the Dev Server',
+            description: `Start your development environment using the standard npm script to see Tailwind in action.`,
             content: '',
             code: `npm run dev`,
             codeSrc: 'Terminal',
             isLiveDemo: false,
         },
         {
-            title: 'Start using Tailwind in your HTML',
-            description:
-                'Make sure your compiled CSS is included in the <head> (your framework might handle this for you), then start using Tailwind’s utility classes to style your content.',
+            title: 'Apply Tailwind Classes in in your CODE',
+            description: `Ensure the compiled CSS is loaded on your page. Once set up, you can begin using Tailwind utility classes directly in your markup.`,
             content: '',
             code: `<!doctype html>
 <html>

@@ -40,7 +40,7 @@ export const getDocCategories = (framework: string): Category[] => {
             slug: 'install-tailwindcss',
             items: [
                 {
-                    label: 'install',
+                    label: 'tailwindcss',
                     path: `/docs/install-tailwindcss?framework=${framework}`,
                 },
             ],

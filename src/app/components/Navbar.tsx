@@ -32,8 +32,9 @@ interface TabCursorProps {
 export default function Navbar() {
   const links = [
     { label: "Docs", path: "/docs" },
-    { label: "Examples", path: "/examples" },
+
     { label: "playground", path: "/playground" },
+    // { label: "Examples", path: "/examples" },
   ];
 
   const [position, setPosition] = useState<TabPosition>({
@@ -47,13 +48,30 @@ export default function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const activeTab = navRef.current?.querySelector(`[data-active="true"]`);
-    if (activeTab) {
-      const { offsetLeft, offsetWidth } = activeTab as HTMLElement;
+    // Only try to highlight an active tab if we're not on the root route
+    if (pathname !== "/") {
+      const activeTab = navRef.current?.querySelector(`[data-active="true"]`);
+      if (activeTab) {
+        const { offsetLeft, offsetWidth } = activeTab as HTMLElement;
+        setPosition({
+          left: offsetLeft,
+          width: offsetWidth,
+          opacity: 1,
+        });
+      } else {
+        // Reset position if no active tab
+        setPosition({
+          left: 0,
+          width: 0,
+          opacity: 0,
+        });
+      }
+    } else {
+      // Reset position on home page
       setPosition({
-        left: offsetLeft,
-        width: offsetWidth,
-        opacity: 1,
+        left: 0,
+        width: 0,
+        opacity: 0,
       });
     }
   }, [pathname]);
@@ -80,20 +98,28 @@ export default function Navbar() {
             onMouseLeave={() => {
               setHoveredIndex(null);
 
-              const activeTab =
-                navRef.current?.querySelector(`[data-active="true"]`);
-              if (activeTab) {
-                const { offsetLeft, offsetWidth } = activeTab as HTMLElement;
+              if (pathname !== "/") {
+                const activeTab =
+                  navRef.current?.querySelector(`[data-active="true"]`);
+                if (activeTab) {
+                  const { offsetLeft, offsetWidth } = activeTab as HTMLElement;
+                  setPosition({
+                    left: offsetLeft,
+                    width: offsetWidth,
+                    opacity: 1,
+                  });
+                }
+              } else {
                 setPosition({
-                  left: offsetLeft,
-                  width: offsetWidth,
-                  opacity: 1,
+                  left: 0,
+                  width: 0,
+                  opacity: 0,
                 });
               }
             }}
           >
             {links.map((link, index) => {
-              const isActive = pathname === link.path;
+              const isActive = pathname.startsWith(link.path);
               const hasWhiteBackground =
                 hoveredIndex !== null ? hoveredIndex === index : isActive;
 

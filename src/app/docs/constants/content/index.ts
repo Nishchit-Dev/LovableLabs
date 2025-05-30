@@ -11,7 +11,7 @@ const frameworkContent = {
 
 // Map of slug to content key in each framework module
 const slugToContentKey: Record<string, string> = {
-    'get-started': 'getStarted',
+    // 'get-started': 'getStarted',
 
     'install-tailwindcss': 'InstallTailwindCss',
 

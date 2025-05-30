@@ -1,5 +1,6 @@
 import { DocContent } from '../../types'
-import { BuildPrivewSqaureGridSection } from '@/app/docs/components/DocSection'
+import { BuildPrivewSqaureGridSection } from '../Builds/BuildPrivewSqaureGridBg'
+
 
 export const backgroundsSquareGrid: DocContent = {
     title: 'Square Grid Background',
