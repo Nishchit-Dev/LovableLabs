@@ -24,7 +24,7 @@ export const backgroundsDottedGridTableOfContents: TableOfContentsItem[] = [
 
 // Map of page slugs to their table of contents
 export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
-    "get-started": getStartedTableOfContents,
+    // "get-started": getStartedTableOfContents,
 
 
     // Backgrounds pages
