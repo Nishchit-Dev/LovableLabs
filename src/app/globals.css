@@ -131,7 +131,7 @@ body {
 }
 
 .btn-animated > div {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 1);
   border-radius: 9999px;
   position: relative;
   z-index: 1;
