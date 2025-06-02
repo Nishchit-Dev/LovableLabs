@@ -91,12 +91,12 @@ export default function Home() {
                         projects.
                     </p>
                     <div className="flex flex-row gap-4 pt-2">
-                        <div className="bg-black/70 px-4 py-2 rounded-full cursor-pointer">
+                        <div className="bg-black/70 px-4 py-2 rounded-full cursor-pointer border-1 border-violet-200/70">
                             <p className="z-10 text-white font-regular text-lg">
                                 Get Started 🚀
                             </p>
                         </div>
-                        <div className="bg-black/70 bg-opacity-75 px-4 py-2 rounded-full cursor-pointer">
+                        <div className="bg-black/70 bg-opacity-75 px-4 py-2 rounded-full cursor-pointer border-1 border-violet-200/70">
                             <p className="z-10 text-white font-regular text-lg">
                                 docs 📄
                             </p>
