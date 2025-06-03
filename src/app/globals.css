@@ -91,3 +91,59 @@ body {
     mix-blend-mode: soft-light;
   }
 }
+
+/* Button border animation with violet variant */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.btn-animated {
+  position: relative;
+  z-index: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.btn-animated::before,
+.btn-animated::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background-image: conic-gradient(
+    from var(--angle),
+    #8c80db,
+    #6a42c2,
+    #32247a,
+    #2b1c83,
+    #8b5dff,
+    #8c80db
+  );
+  border-radius: 9999px;
+  z-index: -1;
+  animation: rotate-border 3s linear infinite;
+}
+
+.btn-animated::after {
+  filter: blur(10px);
+  opacity: 0.9;
+}
+
+.btn-animated > div {
+  background: rgba(0, 0, 0, 1);
+  border-radius: 9999px;
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  margin: 2px;
+}
+
+@keyframes rotate-border {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}
