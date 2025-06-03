@@ -9,7 +9,7 @@ interface GridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const GridBackground: React.FC<
-    GridBackgroundProps & { boxSize?: number }
+    GridBackgroundProps & { boxSize?: number } & { dark?: false | true }
 > = ({
     children,
     className,
@@ -17,15 +17,25 @@ export const GridBackground: React.FC<
     centered = false,
     overlay = false,
     boxSize = 24,
+
+    dark = false,
     ...props
 }) => {
+    // Set default dotColor and overlay gradient based on theme
+
+    const resolvedDotColor = dark
+        ? 'rgba(255,255,255,0.04)'
+        : 'var(--color-gray-200)'
+    const overlayGradient = dark
+        ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
+        : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)'
     return (
         <div
             className={cn(
                 'relative overflow-hidden rounded-md',
                 full && 'min-h-screen w-full',
                 centered && 'flex items-center justify-center',
-                'bg-white',
+                dark ? 'bg-black' : 'bg-white',
                 className
             )}
             {...props}
@@ -33,7 +43,7 @@ export const GridBackground: React.FC<
             <div
                 className="absolute inset-0 h-full w-full z-0 pointer-events-none"
                 style={{
-                    backgroundImage: `linear-gradient(to right,#80808016 1px,transparent 1px),linear-gradient(to bottom,#80808016 1px,transparent 1px)`,
+                    backgroundImage: `linear-gradient(to right,${resolvedDotColor} 1px,transparent 1px),linear-gradient(to bottom,${resolvedDotColor} 1px,transparent 1px)`,
                     backgroundSize: `${boxSize}px ${boxSize}px`,
                 }}
             >
@@ -41,8 +51,7 @@ export const GridBackground: React.FC<
                     <div
                         className="flex flex-1 w-full h-full"
                         style={{
-                            background:
-                                'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)',
+                            background: overlayGradient,
                         }}
                     />
                 )}
