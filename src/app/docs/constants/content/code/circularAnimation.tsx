@@ -7,24 +7,24 @@ export const CircularAnimation = () => {
     return (
         <>
             <div className="">
-                <div className="relative flex  justify-center items-center h-[220px] w-[220px] mx-auto bg-[linear-gradient(135deg,_#fff9c4,_#f8bbd0,_#e1bee7,_#d1c4e9,_#bbdefb)] rounded-full scale-75">
+                <div className="relative flex justify-center items-center h-[220px] w-[220px] mx-auto bg-[linear-gradient(135deg,_#fff9c4,_#f8bbd0,_#e1bee7,_#d1c4e9,_#bbdefb)] rounded-full scale-75 shadow-[0_16px_48px_0_rgba(225,190,231,0.35)]">
                     <CircularText
-                        text="5x faster, beautiful, design, better "
+                        text="5x faster, beautiful, design, better"
                         className="absolute rounded-full opacity-70 "
                         size="210px"
                         direction
                     />
                     <CircularText
-                        text="Lovable UI make ui good "
+                        text="Lovable makes UI beautiful "
                         className="absolute  rounded-full opacity-80"
                         size="150px"
                     />
                     <Image
                         className={'absolute'}
                         alt=""
-                        width={100}
-                        height={100}
-                        src={'/assets/memoji/memoji_black.png'}
+                        width={40}
+                        height={40}
+                        src={'/assets/memoji/logo.png'}
                     />
                 </div>
             </div>
@@ -83,67 +83,7 @@ const CircularText: React.FC<CircularTextProps> = ({
         })
     }, [spinDuration, controls, onHover, text])
 
-    const handleHoverStart = () => {
-        if (!onHover) return
-        switch (onHover) {
-            case 'slowDown':
-                controls.start({
-                    rotate: direction
-                        ? currentRotation - 360
-                        : currentRotation + 360,
-                    scale: 1,
-                    transition: getTransition(
-                        spinDuration * 2,
-                        currentRotation
-                    ),
-                })
-                break
-            case 'speedUp':
-                controls.start({
-                    rotate: direction
-                        ? currentRotation - 360
-                        : currentRotation + 360,
-                    scale: 1,
-                    transition: getTransition(
-                        spinDuration / 4,
-                        currentRotation
-                    ),
-                })
-                break
-            case 'pause':
-                controls.start({
-                    rotate: currentRotation,
-                    scale: 1,
-                    transition: {
-                        rotate: { type: 'spring', damping: 20, stiffness: 300 },
-                        scale: { type: 'spring', damping: 20, stiffness: 300 },
-                    },
-                })
-                break
-            case 'goBonkers':
-                controls.start({
-                    rotate: direction
-                        ? currentRotation - 360
-                        : currentRotation + 360,
-                    scale: 0.8,
-                    transition: getTransition(
-                        spinDuration / 20,
-                        currentRotation
-                    ),
-                })
-                break
-            default:
-                break
-        }
-    }
-
-    const handleHoverEnd = () => {
-        controls.start({
-            rotate: direction ? currentRotation - 360 : currentRotation + 360,
-            scale: 1,
-            transition: getTransition(spinDuration, currentRotation),
-        })
-    }
+  
 
     return (
         <motion.div
@@ -152,8 +92,8 @@ const CircularText: React.FC<CircularTextProps> = ({
             style={{ width: size, height: size }}
             animate={controls}
             onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
-            onMouseEnter={handleHoverStart}
-            onMouseLeave={handleHoverEnd}
+            // onMouseEnter={handleHoverStart}
+            // onMouseLeave={handleHoverEnd}
         >
             {letters.map((letter, i) => {
                 const rotation = (360 / letters.length) * i
