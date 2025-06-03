@@ -10,8 +10,7 @@ interface DottedBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     dotColor?: string // dot color (e.g., rgba(0,0,0,0.1))
     overlay?: boolean
 }
-
-export const DottedBackground: React.FC<DottedBackgroundProps> = ({
+export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light' | 'dark' }> = ({
     children,
     className,
     full = false,
@@ -19,15 +18,26 @@ export const DottedBackground: React.FC<DottedBackgroundProps> = ({
     centered = false,
     boxSize = 32,
     dotSize = 1.2,
-    dotColor = 'var(--color-gray-300)',
+    dotColor,
+    theme = 'light',
     ...props
 }) => {
+    // Set default dotColor and overlay gradient based on theme
+    const resolvedDotColor =
+        dotColor ||
+        (theme === 'dark' ? 'rgba(255,255,255,0.16)' : 'var(--color-gray-300)');
+    const overlayGradient =
+        theme === 'dark'
+            ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
+            : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)';
+
     return (
         <div
             className={cn(
                 'relative overflow-hidden rounded-md',
                 full && 'min-h-screen w-full',
                 centered && 'flex items-center justify-center',
+                theme === 'dark' ? 'bg-black' : 'bg-white',
                 className
             )}
             {...props}
@@ -35,7 +45,7 @@ export const DottedBackground: React.FC<DottedBackgroundProps> = ({
             <div
                 className="absolute inset-0 h-full w-full z-0 pointer-events-none"
                 style={{
-                    backgroundImage: `radial-gradient(${dotColor} ${dotSize}px, transparent ${dotSize}px)`,
+                    backgroundImage: `radial-gradient(${resolvedDotColor} ${dotSize}px, transparent ${dotSize}px)`,
                     backgroundSize: `${boxSize}px ${boxSize}px`,
                 }}
             >
@@ -43,13 +53,12 @@ export const DottedBackground: React.FC<DottedBackgroundProps> = ({
                     <div
                         className="flex flex-1 w-full h-full"
                         style={{
-                            background:
-                                'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)',
+                            background: overlayGradient,
                         }}
                     />
                 )}
             </div>
             <div className="relative z-10">{children}</div>
         </div>
-    )
-}
+    );
+};
