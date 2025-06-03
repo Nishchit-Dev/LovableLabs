@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -14,11 +14,8 @@ import { motion } from "framer-motion";
 
 import "./docLayout.css";
 
-export default function DocLayoutClient({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+// Component that uses searchParams
+function DocLayoutInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -382,5 +379,22 @@ export default function DocLayoutClient({
         </div>
       )}
     </div>
+  );
+}
+
+// Main component with Suspense boundary
+export default function DocLayoutClient({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[var(--bg-dark)]">Loading...</div>
+      }
+    >
+      <DocLayoutInner>{children}</DocLayoutInner>
+    </Suspense>
   );
 }
