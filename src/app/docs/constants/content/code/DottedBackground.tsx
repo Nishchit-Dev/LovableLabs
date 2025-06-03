@@ -10,7 +10,9 @@ interface DottedBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     dotColor?: string // dot color (e.g., rgba(0,0,0,0.1))
     overlay?: boolean
 }
-export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light' | 'dark' }> = ({
+export const DottedBackground: React.FC<
+    DottedBackgroundProps & { dark?: false | true }
+> = ({
     children,
     className,
     full = false,
@@ -19,17 +21,15 @@ export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light
     boxSize = 32,
     dotSize = 1.2,
     dotColor,
-    theme = 'light',
+    dark = false,
     ...props
 }) => {
     // Set default dotColor and overlay gradient based on theme
     const resolvedDotColor =
-        dotColor ||
-        (theme === 'dark' ? 'rgba(255,255,255,0.16)' : 'var(--color-gray-300)');
-    const overlayGradient =
-        theme === 'dark'
-            ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
-            : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)';
+        dotColor || (dark ? 'rgba(255,255,255,0.16)' : 'var(--color-gray-300)')
+    const overlayGradient = dark
+        ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
+        : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)'
 
     return (
         <div
@@ -37,7 +37,7 @@ export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light
                 'relative overflow-hidden rounded-md',
                 full && 'min-h-screen w-full',
                 centered && 'flex items-center justify-center',
-                theme === 'dark' ? 'bg-black' : 'bg-white',
+                dark ? 'bg-black' : 'bg-white',
                 className
             )}
             {...props}
@@ -60,5 +60,5 @@ export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light
             </div>
             <div className="relative z-10">{children}</div>
         </div>
-    );
-};
+    )
+}

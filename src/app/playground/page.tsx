@@ -3,7 +3,7 @@ import { DottedBackground } from '../docs/constants/content/code/DottedBackgroun
 
 const DevTools = () => (
     <div className="w-full h-screen flex justify-center items-center ">
-        <DottedBackground full overlay centered  >
+        <DottedBackground full overlay centered dark>
             <CircularAnimation />
         </DottedBackground>
     </div>
