@@ -6,14 +6,14 @@ import { DocContent } from '../constants'
 
 // Create a DocContent object for the getting started page
 const getStartedContent: DocContent = {
-    title: 'Getting Started with Lovable UI',
+    title: 'Getting Started with Lovablelabs UI',
     description:
-        'Welcome to Lovable UI - a beautiful and flexible UI component library for React. This guide will help you get started with installation and basic usage.',
+        'Welcome to Lovablelabs UI - a beautiful and flexible UI component library for React. This guide will help you get started with installation and basic usage.',
     //   sections: [
     //     {
     //       title: "Installation",
     //       content: `
-    // To get started with Lovable UI, install it via npm or yarn:
+    // To get started with Lovablelabs UI, install it via npm or yarn:
 
     // \`\`\`bash
     // # With npm
@@ -28,7 +28,7 @@ const getStartedContent: DocContent = {
     //     {
     //       title: "Basic Usage",
     //       content: `
-    // Import components from Lovable UI:
+    // Import components from Lovablelabs UI:
     //       `,
     //       code: `
     // import { Button, Card } from 'lovable-ui';
@@ -37,7 +37,7 @@ const getStartedContent: DocContent = {
     //   return (
     //     <div>
     //       <Card>
-    //         <h2>Welcome to Lovable UI</h2>
+    //         <h2>Welcome to Lovablelabs UI</h2>
     //         <p>This is a beautiful card component</p>
     //         <Button>Click me</Button>
     //       </Card>
@@ -49,7 +49,7 @@ const getStartedContent: DocContent = {
     //     {
     //       title: "Customization",
     //       content: `
-    // Lovable UI components are highly customizable. You can override styles, extend functionality, and create your own themes:
+    // Lovablelabs UI components are highly customizable. You can override styles, extend functionality, and create your own themes:
     //       `,
     //       code: `
     // import { ThemeProvider, Button } from 'lovable-ui';

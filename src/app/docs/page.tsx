@@ -242,7 +242,7 @@ export default function DocPage(): JSX.Element {
           className="text-[var(--font-gray)] text-xl mb-12"
           {...fadeInUp}
         >
-          Lovable UI is available for JavaScript, React and Angular.
+          LovableLabs UI is available for JavaScript, React and Angular.
         </motion.p>
 
         <motion.div

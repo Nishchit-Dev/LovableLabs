@@ -3,7 +3,7 @@ import { BuildPrivewSqaureGridSection } from '../Builds/BuildPrivewSqaureGridBg'
 
 export const backgroundsSquareGridContent: DocContent = {
     title: 'Square Grid Background',
-    description: 'Create elegant square grid backgrounds with Lovable UI',
+    description: 'Create elegant square grid backgrounds with lovablelabs UI',
     preview: BuildPrivewSqaureGridSection(),
     sections: [
         {

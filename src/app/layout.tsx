@@ -31,8 +31,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-    title: 'Lovable UI',
-    description: 'UI Components for Lovable Devs',
+    title: 'LovableLabs UI',
+    description: 'UI Components for Lovablelabs Devs',
 }
 
 export default async function RootLayout({

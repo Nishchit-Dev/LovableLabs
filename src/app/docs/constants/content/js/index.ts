@@ -3,38 +3,38 @@ import { DocContent } from '../../types';
 // JS Get Started content
 export const getStarted: DocContent = {
   title: 'Getting Started with JavaScript',
-  description: 'Learn how to use Lovable UI with vanilla JavaScript',
+  description: 'Learn how to use lovablelabs UI with vanilla JavaScript',
   sections: [
     {
       title: 'Installation',
       content: `
-You can install Lovable UI for JavaScript using npm or yarn:
+You can install lovablelabs UI for JavaScript using npm or yarn:
 
 \`\`\`bash
-npm install lovable-ui
+npm install lovablelabs-ui
 # or
-yarn add lovable-ui
+yarn add lovablelabs-ui
 \`\`\`
 
 Or include it directly in your HTML:
 
 \`\`\`html
-<script src="https://unpkg.com/lovable-ui@latest/dist/lovable.min.js"></script>
+<script src="https://unpkg.com/lovablelabs-ui@latest/dist/lovablelabs.min.js"></script>
 \`\`\`
       `,
       code: `
-// Import Lovable in your JavaScript file
-import { animate, scroll } from 'lovable-ui';
+// Import lovablelabs in your JavaScript file
+import { animate, scroll } from 'lovablelabs-ui';
 
 // Or access it globally if using the script tag
-// const { animate, scroll } = window.Lovable;
+// const { animate, scroll } = window.lovablelabs;
       `,
       isLiveDemo: false,
     },
     {
       title: 'Basic Usage',
       content: `
-Lovable UI provides a simple API for creating animations. Here's a basic example:
+lovablelabs UI provides a simple API for creating animations. Here's a basic example:
       `,
       code: `
 // Get an element to animate
@@ -54,7 +54,7 @@ animate(element, {
     {
       title: 'Next Steps',
       content: `
-Now that you have Lovable UI set up, explore the different animation capabilities:
+Now that you have lovablelabs UI set up, explore the different animation capabilities:
 
 - **Gesture animations**: Create hover, tap, and drag interactions
 - **Scroll animations**: Trigger animations based on scroll position
@@ -70,17 +70,17 @@ Check out the Animation section for more details.
 // Animation Overview content
 export const animationOverview: DocContent = {
   title: 'Animation Overview - JavaScript',
-  description: 'Learn about the animation capabilities in Lovable UI with JavaScript',
+  description: 'Learn about the animation capabilities in lovablelabs UI with JavaScript',
   sections: [
     {
       title: 'Basic Animation',
       content: `
-Lovable UI provides a simple yet powerful API for creating animations in JavaScript. 
+lovablelabs UI provides a simple yet powerful API for creating animations in JavaScript. 
 
 The core function is \`animate()\`, which lets you create smooth animations with a variety of options.
       `,
       code: `
-import { animate } from 'lovable-ui';
+import { animate } from 'lovablelabs-ui';
 
 // Animate an element
 animate('#my-element', {
@@ -97,7 +97,7 @@ animate('#my-element', {
     {
       title: 'Animation Properties',
       content: `
-Lovable UI supports a wide range of properties to animate:
+lovablelabs UI supports a wide range of properties to animate:
 
 - **Transform properties**: x, y, z, rotate, scale, etc.
 - **CSS properties**: opacity, backgroundColor, width, etc.
@@ -123,7 +123,7 @@ animate('.button', {
 // Components Motion content
 export const componentsMotion: DocContent = {
   title: 'Using Motion - JavaScript',
-  description: 'Learn how to use the motion component in Lovable UI with JavaScript',
+  description: 'Learn how to use the motion component in lovablelabs UI with JavaScript',
   sections: [
     {
       title: 'Basic Usage',
@@ -132,7 +132,7 @@ In JavaScript, you can create motion elements using the \`createMotionElement\` 
 
       `,
       code: `
-import { createMotionElement } from 'lovable-ui';
+import { createMotionElement } from 'lovablelabs-ui';
 
 // Create a motion div
 const motionDiv = createMotionElement('div', {
@@ -153,7 +153,7 @@ You can control animations with the \`controls\` API:
 
       `,
       code: `
-import { createMotionElement, animationControls } from 'lovable-ui';
+import { createMotionElement, animationControls } from 'lovablelabs-ui';
 
 // Create controls
 const controls = animationControls();

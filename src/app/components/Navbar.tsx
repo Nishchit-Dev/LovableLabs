@@ -91,10 +91,10 @@ export default function Navbar() {
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
                             <Image
-                                alt="Lovable Logo"
+                                alt="LovableLabs Logo"
                                 width={20}
                                 height={20}
-                                src={'/assets/memoji/lovable.png'}
+                                src={'/assets/memoji/lovableLabs.png'}
                             />
                         </motion.div>
                     </Link>
