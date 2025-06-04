@@ -127,14 +127,14 @@ function CustomStaggeredLayout() {
 // Importing other modules directly
 
 import { InstallTailwindCss } from './install-css'
-import { backgroundsSquareGrid } from './backgroundsSquareGrid'
-import { backgroundsDottedGrid } from './backgroundDottedGrid'
-import { CircularAnimation } from './circularAnimation'
+import { backgroundsSquareGridContent } from './backgroundsSquareGrid'
+import { backgroundsDottedGridContent } from './backgroundDottedGrid'
+import { loopBadgeAnimationContent } from './loopBadgeAnimation'
 
 // Re-export all imported modules
 export {
     InstallTailwindCss,
-    backgroundsSquareGrid,
-    backgroundsDottedGrid,
-    CircularAnimation,
+    backgroundsSquareGridContent ,
+    backgroundsDottedGridContent ,
+    loopBadgeAnimationContent ,
 }

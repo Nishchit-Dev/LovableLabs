@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google'
 import Footer from './components/Footer'
-import { CircularAnimation } from './docs/constants/content/code/CircularAnimation'
+import { LoopBadge } from './docs/constants/content/code/LoopBagdeAnimation'
 
 
 
@@ -48,7 +48,7 @@ export default async function RootLayout({
                 <Navbar />
                 {children}
                 <div className="fixed bottom-5 right-10 z-[100] flex items-end justify-end">
-                    <CircularAnimation imageSrc="/assets/memoji/logo.png" />
+                    <LoopBadge imageSrc="/assets/memoji/logo.png" />
                 </div>
                 <Footer />
             </body>

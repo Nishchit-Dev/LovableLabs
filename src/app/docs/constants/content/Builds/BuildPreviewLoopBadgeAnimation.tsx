@@ -1,8 +1,8 @@
 import React from 'react'
-import { CircularAnimation } from '../code/CircularAnimation'
+import { LoopBadge } from '../code/LoopBagdeAnimation'
 import { GridBackground } from '../code/GridBackground'
 
-export const BuildPreviewCircularAnimationSection = () => {
+export const BuildPreviewLoopBadgeAnimationSection = () => {
     // Example: Render the first section's code as a live preview if available
     // You may want to enhance this logic to support more complex previews
     // For now, this will render a static preview box
@@ -15,7 +15,7 @@ export const BuildPreviewCircularAnimationSection = () => {
                 {/* Replace below with actual component preview */}
 
                 <GridBackground full overlay centered boxSize={36} >
-                    <CircularAnimation />
+                    <LoopBadge />
                 </GridBackground>
             </div>
         </div>

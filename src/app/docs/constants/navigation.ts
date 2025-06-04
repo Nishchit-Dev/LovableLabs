@@ -60,11 +60,11 @@ export const getDocCategories = (framework: string): Category[] => {
         },
         {
             title: 'Animations',
-            slug: 'Circular Animation',
+            slug: 'LoopBadge Animation',
             items: [
                 {
-                    label: 'Circular Animations',
-                    path: `/docs/circular-animation?framework=${framework}`,
+                    label: 'LoopBadge Animation Animations',
+                    path: `/docs/loopbadge-animation?framework=${framework}`,
                 },
             ],
         },
