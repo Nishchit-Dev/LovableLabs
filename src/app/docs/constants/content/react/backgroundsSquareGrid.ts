@@ -1,7 +1,6 @@
 import { DocContent } from '../../types'
 import { BuildPrivewSqaureGridSection } from '../Builds/BuildPrivewSqaureGridBg'
 
-
 export const backgroundsSquareGrid: DocContent = {
     title: 'Square Grid Background',
     description: 'Create elegant square grid backgrounds with Lovable UI',
@@ -10,7 +9,7 @@ export const backgroundsSquareGrid: DocContent = {
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
-            code: `npm i motion clsx tailwind-merge`,
+            code: `npm i clsx tailwind-merge`,
             isLiveDemo: false,
         },
         {
@@ -28,42 +27,68 @@ export function cn(...inputs: ClassValue[]) {
             title: 'Square Grid Background',
             codeSrc: 'components/GridSquareBackground.tsx',
             code: `import React from 'react'
-import { cn } from '../utils/cn'
+import { cn } from '@/app/utils/cn'
 
 interface GridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  full?: boolean // fills the screen
-  centered?: boolean // centers children
+    children: React.ReactNode
+    full?: boolean // fills the screen
+    centered?: boolean // centers children
+    overlay?: boolean // show radial overlay
 }
-export const GridBackground: React.FC<GridBackgroundProps & { boxSize?: number }> = ({
-  children,
-  className,
-  full = false,
-  centered = false,
-  boxSize = 24,
-  ...props
+
+export const GridBackground: React.FC<
+    GridBackgroundProps & { boxSize?: number } & { dark?: false | true }
+> = ({
+    children,
+    className,
+    full = false,
+    centered = false,
+    overlay = false,
+    boxSize = 24,
+    dark = false,
+    ...props
 }) => {
-  return (
-    <div
-      className={cn(
-        'relative overflow-hidden rounded-md',
-        full && 'min-h-screen w-full',
-        centered && 'flex items-center justify-center',
-        className
-      )}
-      {...props}
-    >
-      <div
-        className="absolute inset-0 h-full w-full bg-white z-0 pointer-events-none"
-        style={{
-          backgroundImage: \`linear-gradient(to right,#80808012 1px,transparent 1px),linear-gradient(to bottom,#80808012 1px,transparent 1px)\`,
-          backgroundSize: \`\${boxSize}px \${boxSize}px\`,
-        }}
-      />
-      <div className="relative z-10">{children}</div>
-    </div>
-  )
-}`,
+    // Set default dotColor and overlay gradient based on theme
+
+    const resolvedDotColor = dark
+        ? 'rgba(255,255,255,0.04)'
+        : 'var(--color-gray-200)'
+    const overlayGradient = dark
+        ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
+        : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)'
+    return (
+        <div
+            className={cn(
+                'relative overflow-hidden rounded-md',
+                full && 'min-h-screen w-full',
+                centered && 'flex items-center justify-center',
+                dark ? 'bg-black' : 'bg-white',
+                className
+            )}
+            {...props}
+        >
+            <div
+                className="absolute inset-0 h-full w-full z-0 pointer-events-none"
+                style={{
+                    backgroundImage: \`linear-gradient(to right,\${resolvedDotColor} 1px,transparent 1px),linear-gradient(to bottom,\${resolvedDotColor} 1px,transparent 1px)\`,
+                    backgroundSize: \`\${boxSize}px \${boxSize}px\`,
+                }}
+            >
+                {overlay && (
+                    <div
+                        className="flex flex-1 w-full h-full"
+                        style={{
+                            background: overlayGradient,
+                        }}
+                    />
+                )}
+            </div>
+            <div className="relative z-10">{children}</div>
+        </div>
+    )
+}
+            
+`,
             isLiveDemo: false,
         },
     ],
