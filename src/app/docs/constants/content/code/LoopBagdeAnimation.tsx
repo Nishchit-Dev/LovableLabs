@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export const LoopBadge = ({
     text1 = "5x faster · beautiful · design · better · ",
-    text2 = "LovableLabs makes UI beautiful · ",
+    text2 = "LovableLabs · LovableLabs · ",
     ring1Size = "210px",
     ring2Size = "150px",
     imageSrc = "/assets/memoji/logo.png",
