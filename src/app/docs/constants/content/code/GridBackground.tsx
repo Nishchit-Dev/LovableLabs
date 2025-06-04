@@ -6,6 +6,7 @@ interface GridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     full?: boolean // fills the screen
     centered?: boolean // centers children
     overlay?: boolean // show radial overlay
+    fullscreen?: boolean // full screen
 }
 
 export const GridBackground: React.FC<
@@ -17,8 +18,8 @@ export const GridBackground: React.FC<
     centered = false,
     overlay = false,
     boxSize = 24,
-
     dark = false,
+    fullscreen= false,
     ...props
 }) => {
     // Set default dotColor and overlay gradient based on theme
@@ -33,7 +34,8 @@ export const GridBackground: React.FC<
         <div
             className={cn(
                 'relative overflow-hidden rounded-md',
-                full && 'min-h-screen w-full',
+                full && 'h-full w-full',
+                fullscreen && 'min-h-screen w-screen',
                 centered && 'flex items-center justify-center',
                 dark ? 'bg-black' : 'bg-white',
                 className

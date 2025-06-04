@@ -9,6 +9,7 @@ interface DottedBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     dotSize?: number // size of each dot
     dotColor?: string // dot color (e.g., rgba(0,0,0,0.1))
     overlay?: boolean
+    fullscreen?: false // full screen
 }
 export const DottedBackground: React.FC<
     DottedBackgroundProps & { dark?: false | true }
@@ -22,6 +23,7 @@ export const DottedBackground: React.FC<
     dotSize = 1.2,
     dotColor,
     dark = false,
+    fullscreen,
     ...props
 }) => {
     // Set default dotColor and overlay gradient based on theme
@@ -35,7 +37,8 @@ export const DottedBackground: React.FC<
         <div
             className={cn(
                 'relative overflow-hidden rounded-md',
-                full && 'min-h-screen w-full',
+                full && 'h-full w-full',
+                fullscreen && 'min-h-screen w-screen',
                 centered && 'flex items-center justify-center',
                 dark ? 'bg-black' : 'bg-white',
                 className
