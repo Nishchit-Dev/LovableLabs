@@ -15,11 +15,11 @@ const slugToContentKey: Record<string, string> = {
     'install-tailwindcss': 'InstallTailwindCss',
 
     // Backgrounds
-    'backgrounds-squaregrid': 'backgroundsSquareGrid',
-    'backgrounds-dottedgrid': 'backgroundsDottedGrid',
+    'backgrounds-squaregrid': 'backgroundsSquareGridContent',
+    'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
 
     // animations
-    'loopbadge-animation': 'LoopBadgeAnimation',
+    'loopbadge-animation': 'loopBadgeAnimationContent',
 }
 
 // Helper function to get content by slug
