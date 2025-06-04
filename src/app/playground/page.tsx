@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { CircularAnimation } from '../docs/constants/content/code/circularAnimation'
+import { CircularAnimation } from '../docs/constants/content/code/CircularAnimation'
 import { DottedBackground } from '../docs/constants/content/code/DottedBackground'
 import { GridBackground } from '../docs/constants/content/code/GridBackground'
 
