@@ -1,7 +1,7 @@
 import { DocContent } from '../../types'
 import { BuildPrivewSqaureGridSection } from '../Builds/BuildPrivewSqaureGridBg'
 
-export const backgroundsSquareGrid: DocContent = {
+export const backgroundsSquareGridContent: DocContent = {
     title: 'Square Grid Background',
     description: 'Create elegant square grid backgrounds with Lovable UI',
     preview: BuildPrivewSqaureGridSection(),

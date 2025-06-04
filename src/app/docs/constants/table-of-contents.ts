@@ -26,7 +26,7 @@ export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
     // Backgrounds pages
     'backgrounds-squaregrid': backgroundsSquareGridTableOfContents,
     'backgrounds-dottedgrid': backgroundsDottedGridTableOfContents,
-    'circular-animation': backgroundsDottedGridTableOfContents,
+    'loopbadge-animation': backgroundsDottedGridTableOfContents,
 }
 
 // Helper function to get table of contents for a specific page

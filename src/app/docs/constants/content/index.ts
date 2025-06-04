@@ -19,7 +19,7 @@ const slugToContentKey: Record<string, string> = {
     'backgrounds-dottedgrid': 'backgroundsDottedGrid',
 
     // animations
-    'circular-animation': 'CircularAnimation',
+    'loopbadge-animation': 'LoopBadgeAnimation',
 }
 
 // Helper function to get content by slug
