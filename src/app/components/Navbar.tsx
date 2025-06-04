@@ -94,7 +94,7 @@ export default function Navbar() {
                                 alt="LovableLabs Logo"
                                 width={20}
                                 height={20}
-                                src={'/assets/memoji/lovableLabs.png'}
+                                src={'/assets/memoji/lovablelabs.png'}
                             />
                         </motion.div>
                     </Link>
