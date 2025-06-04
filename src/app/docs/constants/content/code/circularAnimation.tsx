@@ -3,28 +3,42 @@ import React, { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import Image from 'next/image'
 
-export const CircularAnimation = () => {
+export const CircularAnimation = ({
+    text1 = "5x faster · beautiful · design · better · ",
+    text2 = "Lovable makes UI beautiful · ",
+    ring1Size = "210px",
+    ring2Size = "150px",
+    imageSrc = "/assets/memoji/logo.png",
+    imageSize = 40,
+}: {
+    text1?: string
+    text2?: string
+    ring1Size?: string
+    ring2Size?: string
+    imageSrc?: string
+    imageSize?: number
+}) => {
     return (
         <>
-            <div className="">
+            <div className="text-black">
                 <div className="relative flex justify-center items-center h-[220px] w-[220px] mx-auto bg-[linear-gradient(135deg,_#fff9c4,_#f8bbd0,_#e1bee7,_#d1c4e9,_#bbdefb)] rounded-full scale-75 shadow-[0_16px_48px_0_rgba(225,190,231,0.35)]">
                     <CircularText
-                        text="5x faster, beautiful, design, better"
+                        text={text1}
                         className="absolute rounded-full opacity-70 "
-                        size="210px"
+                        size={ring1Size}
                         direction
                     />
                     <CircularText
-                        text="Lovable makes UI beautiful "
+                        text={text2}
                         className="absolute  rounded-full opacity-80"
-                        size="150px"
+                        size={ring2Size}
                     />
                     <Image
                         className={'absolute'}
                         alt=""
-                        width={40}
-                        height={40}
-                        src={'/assets/memoji/logo.png'}
+                        width={imageSize}
+                        height={imageSize}
+                        src={imageSrc}
                     />
                 </div>
             </div>
@@ -82,8 +96,6 @@ const CircularText: React.FC<CircularTextProps> = ({
             transition: getTransition(spinDuration, currentRotation),
         })
     }, [spinDuration, controls, onHover, text])
-
-  
 
     return (
         <motion.div

@@ -1,6 +1,4 @@
-
 import { NavItem, Category, Framework } from './types'
-
 
 // Define the available frameworks
 export const frameworks: Framework[] = [
@@ -57,6 +55,16 @@ export const getDocCategories = (framework: string): Category[] => {
                 {
                     label: 'Dotted Grid',
                     path: `/docs/backgrounds-dottedgrid?framework=${framework}`,
+                },
+            ],
+        },
+        {
+            title: 'Animations',
+            slug: 'Circular Animation',
+            items: [
+                {
+                    label: 'Circular Animations',
+                    path: `/docs/circular-animation?framework=${framework}`,
                 },
             ],
         },

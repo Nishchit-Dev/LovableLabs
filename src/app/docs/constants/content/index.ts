@@ -1,4 +1,3 @@
-
 import { DocContent } from '../types'
 
 // Framework-specific content imports
@@ -19,7 +18,8 @@ const slugToContentKey: Record<string, string> = {
     'backgrounds-squaregrid': 'backgroundsSquareGrid',
     'backgrounds-dottedgrid': 'backgroundsDottedGrid',
 
-
+    // animations
+    'circular-animation': 'CircularAnimation',
 }
 
 // Helper function to get content by slug

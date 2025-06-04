@@ -9,8 +9,11 @@ interface DottedBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     dotSize?: number // size of each dot
     dotColor?: string // dot color (e.g., rgba(0,0,0,0.1))
     overlay?: boolean
+    fullscreen?: false // full screen
 }
-export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light' | 'dark' }> = ({
+export const DottedBackground: React.FC<
+    DottedBackgroundProps & { dark?: false | true }
+> = ({
     children,
     className,
     full = false,
@@ -19,25 +22,25 @@ export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light
     boxSize = 32,
     dotSize = 1.2,
     dotColor,
-    theme = 'light',
+    dark = false,
+    fullscreen,
     ...props
 }) => {
     // Set default dotColor and overlay gradient based on theme
     const resolvedDotColor =
-        dotColor ||
-        (theme === 'dark' ? 'rgba(255,255,255,0.16)' : 'var(--color-gray-300)');
-    const overlayGradient =
-        theme === 'dark'
-            ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
-            : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)';
+        dotColor || (dark ? 'rgba(255,255,255,0.16)' : 'var(--color-gray-300)')
+    const overlayGradient = dark
+        ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
+        : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)'
 
     return (
         <div
             className={cn(
                 'relative overflow-hidden rounded-md',
-                full && 'min-h-screen w-full',
+                full && 'h-full w-full',
+                fullscreen && 'min-h-screen w-screen',
                 centered && 'flex items-center justify-center',
-                theme === 'dark' ? 'bg-black' : 'bg-white',
+                dark ? 'bg-black' : 'bg-white',
                 className
             )}
             {...props}
@@ -60,5 +63,5 @@ export const DottedBackground: React.FC<DottedBackgroundProps & { theme?: 'light
             </div>
             <div className="relative z-10">{children}</div>
         </div>
-    );
-};
+    )
+}
