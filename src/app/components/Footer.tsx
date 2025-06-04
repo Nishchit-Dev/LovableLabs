@@ -41,9 +41,9 @@ const Footer: React.FC = () => {
     {
       title: "SOCIAL",
       links: [
-        { label: "Discord", url: "https://discord.gg/lovableui" },
-        { label: "GitHub", url: "https://github.com/lovable-ui" },
-        { label: "X/Twitter", url: "https://twitter.com/lovableui" },
+        { label: "Discord", url: "https://discord.gg/lovablelabs-ui" },
+        { label: "GitHub", url: "https://github.com/lovablelabs-ui" },
+        { label: "X/Twitter", url: "https://twitter.com/lovablelabs-ui" },
       ],
     },
   ];
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
               LU
             </div>
             <p className="text-[var(--font-gray)] text-xs mt-4">
-              ©{currentYear} Lovable UI. All rights reserved.
+              ©{currentYear} LovableLabs UI. All rights reserved.
             </p>
           </motion.div>
 

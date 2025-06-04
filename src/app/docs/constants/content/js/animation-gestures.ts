@@ -3,7 +3,7 @@ import { DocContent } from '../../types';
 // Animation Gestures content for JavaScript
 export const animationGestures: DocContent = {
   title: 'Gesture Animations - JavaScript',
-  description: 'Learn how to create gesture-based animations with Lovable UI in JavaScript',
+  description: 'Learn how to create gesture-based animations with LovableLabs UI in JavaScript',
   sections: [
     {
       title: 'Hover Animations',
@@ -11,7 +11,7 @@ export const animationGestures: DocContent = {
 Create smooth hover animations with the \`hover\` helper:
       `,
       code: `
-import { hover } from 'lovable-ui';
+import { hover } from 'lovablelabs-ui';
 
 // Get an element to animate
 const button = document.querySelector('.button');
@@ -32,7 +32,7 @@ hover(button, {
 Enable drag interactions with the \`draggable\` helper:
       `,
       code: `
-import { draggable } from 'lovable-ui';
+import { draggable } from 'lovablelabs-ui';
 
 // Get an element to make draggable
 const box = document.querySelector('.draggable-box');
@@ -52,7 +52,7 @@ draggable(box, {
 Create tap animations with the \`tap\` helper:
       `,
       code: `
-import { tap } from 'lovable-ui';
+import { tap } from 'lovablelabs-ui';
 
 // Get an element to animate
 const button = document.querySelector('.button');

@@ -2,18 +2,18 @@ import { DocContent } from '../../types';
 
 // Get Started content for React
 export const getStarted: DocContent = {
-    title: 'Get Started with Lovable UI',
-    description: 'Learn how to set up and use Lovable UI with React',
+    title: 'Get Started with lovablelabs UI',
+    description: 'Learn how to set up and use lovablelabs UI with React',
     sections: [
         {
             title: 'Installation',
             content: `
-Install Lovable UI using npm or yarn:
+Install lovablelabs UI using npm or yarn:
 
 \`\`\`bash
-npm install lovable-ui
+npm install lovablelabs-ui
 # or
-yarn add lovable-ui
+yarn add lovablelabs-ui
 \`\`\`
       `,
             isLiveDemo: false,
@@ -21,10 +21,10 @@ yarn add lovable-ui
         {
             title: 'Basic Usage',
             content: `
-Import components from Lovable UI in your React project:
+Import components from lovablelabs UI in your React project:
       `,
             code: `
-import { Component } from 'lovable-ui/react';
+import { Component } from 'lovablelabs-ui/react';
 
 function MyApp() {
   return (

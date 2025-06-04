@@ -3,7 +3,7 @@ import { BuildPreviewLoopBadgeAnimationSection } from '../Builds/BuildPreviewLoo
 
 export const loopBadgeAnimationContent: DocContent = {
     title: 'LoopBadge Animation',
-    description: 'Create elegant square grid backgrounds with Lovable UI',
+    description: 'Create elegant square grid backgrounds with Lovablelabs UI',
     preview: BuildPreviewLoopBadgeAnimationSection(),
     sections: [
         {
@@ -34,7 +34,7 @@ import Image from 'next/image'
 
 export const LoopBadge = ({
     text1 = "5x faster · beautiful · design · better · ",
-    text2 = "Lovable makes UI beautiful · ",
+    text2 = "Lovablelabs makes UI beautiful · ",
     ring1Size = "210px",
     ring2Size = "150px",
     imageSrc = "/assets/memoji/logo.png",

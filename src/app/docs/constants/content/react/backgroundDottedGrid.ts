@@ -3,7 +3,7 @@ import { BuildPrivewDottedGridSection } from '../Builds/BuildPrivewDottedGridBg'
 
 export const backgroundsDottedGridContent: DocContent = {
     title: 'Square Grid Background',
-    description: 'Create elegant square grid backgrounds with Lovable UI',
+    description: 'Create elegant square grid backgrounds with lovablelabs UI',
     preview: BuildPrivewDottedGridSection(),
     sections: [
         {

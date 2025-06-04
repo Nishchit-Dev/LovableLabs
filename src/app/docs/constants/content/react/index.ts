@@ -3,12 +3,12 @@ import { DocContent } from '../../types'
 // React Get Started content
 export const getStarted: DocContent = {
     title: 'Getting Started with React',
-    description: 'Learn how to use Lovable UI with React',
+    description: 'Learn how to use Lovablelabs UI with React',
     sections: [
         {
             title: 'Installation',
             content: `
-You can install Lovable UI for React using npm or yarn:
+You can install Lovablelabs UI for React using npm or yarn:
 
 \`\`\`bash
 npm install lovable-ui
@@ -17,7 +17,7 @@ yarn add lovable-ui
 \`\`\`
       `,
             code: `
-// Import Lovable components in your React file
+// Import Lovablelabs components in your React file
 import { motion, AnimatePresence } from 'lovable-ui/react';
       `,
             isLiveDemo: false,
@@ -25,7 +25,7 @@ import { motion, AnimatePresence } from 'lovable-ui/react';
         {
             title: 'Basic Usage',
             content: `
-Lovable UI provides a \`motion\` component that you can use to create animations. Here's a basic example:
+Lovablelabs UI provides a \`motion\` component that you can use to create animations. Here's a basic example:
       `,
             code: `
 import { motion } from 'lovable-ui/react';
@@ -47,7 +47,7 @@ function MyComponent() {
         {
             title: 'Next Steps',
             content: `
-Now that you have Lovable UI set up, explore the different animation capabilities:
+Now that you have Lovablelabs UI set up, explore the different animation capabilities:
 
 - **Gesture animations**: Create hover, tap, and drag interactions
 - **Scroll animations**: Trigger animations based on scroll position
@@ -56,7 +56,7 @@ Now that you have Lovable UI set up, explore the different animation capabilitie
 Check out the Animation section for more details.
       `,
             code: `
-// Import Lovable components in your React file
+// Import Lovablelabs components in your React file
 import { motion, AnimatePresence } from 'lovable-ui/react';
       `,
             isLiveDemo: false,
@@ -66,7 +66,7 @@ import { motion, AnimatePresence } from 'lovable-ui/react';
 
 export const componentsStaggeredLayout: DocContent = {
     title: 'Staggered Layout Component',
-    description: 'Create visually appealing staggered layouts with Lovable UI',
+    description: 'Create visually appealing staggered layouts with Lovablelabs UI',
     sections: [
         {
             title: 'Basic Usage',
