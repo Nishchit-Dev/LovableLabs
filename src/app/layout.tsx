@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google'
 import Footer from './components/Footer'
-import { LoopBadge } from './docs/constants/content/code/LoopBagdeAnimation'
+import { LoopBadge } from './docs/constants/content/code/LoopBadge'
 
 
 
