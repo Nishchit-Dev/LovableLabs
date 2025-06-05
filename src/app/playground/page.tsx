@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { LoopBadge } from '../docs/constants/content/code/LoopBagdeAnimation'
+import { LoopBadge } from '../docs/constants/content/code/LoopBadge'
 import { DottedBackground } from '../docs/constants/content/code/DottedBackground'
 import { GridBackground } from '../docs/constants/content/code/GridBackground'
 import React from 'react'
