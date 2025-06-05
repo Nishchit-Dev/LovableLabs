@@ -7,6 +7,12 @@ export const draggableContainerContent: DocContent = {
     preview: BuildPreivewDraggableContainer(),
     sections: [
         {
+            title: 'Install DragableContainer',
+            codeSrc: 'Terminal',
+            code: `npx lovablelabs add DragableContainer`,
+            isLiveDemo: false,
+        },
+        {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,

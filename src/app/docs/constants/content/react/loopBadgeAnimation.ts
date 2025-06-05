@@ -7,6 +7,12 @@ export const loopBadgeAnimationContent: DocContent = {
     preview: BuildPreviewLoopBadgeAnimationSection(),
     sections: [
         {
+            title: 'Install LoopBagde',
+            codeSrc: 'Terminal',
+            code: `npx lovablelabs add LoopBadge`,
+            isLiveDemo: false,
+        },
+        {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i framer-motion clsx tailwind-merge`,

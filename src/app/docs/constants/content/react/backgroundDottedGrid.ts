@@ -7,6 +7,12 @@ export const backgroundsDottedGridContent: DocContent = {
     preview: BuildPrivewDottedGridSection(),
     sections: [
         {
+            title: 'Install DottedGridContent',
+            codeSrc: 'Terminal',
+            code: `npx lovablelabs add DottedBackground`,
+            isLiveDemo: false,
+        },
+        {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
