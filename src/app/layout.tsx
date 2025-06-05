@@ -6,8 +6,6 @@ import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google'
 import Footer from './components/Footer'
 import { LoopBadge } from './docs/constants/content/code/LoopBadge'
 
-
-
 const jetBrainsMono = JetBrains_Mono({
     subsets: ['latin'],
     preload: true,
@@ -42,6 +40,22 @@ export default async function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                <script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-DLN1WJBL8B"
+                ></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-DLN1WJBL8B');
+                        `,
+                    }}
+                />
+            </head>
             <body
                 className={`  ${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
             >
