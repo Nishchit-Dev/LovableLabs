@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
     return (
@@ -113,15 +114,21 @@ export default function Home() {
                     <div className="flex flex-row gap-4 pt-2">
                         <div className="btn-animated">
                             <div>
-                                <p className="z-10 text-white font-regular text-lg">
+                                <Link
+                                    href="/docs/get-started?framework=react"
+                                    className="z-10 text-white font-regular text-lg"
+                                >
                                     Get Started 🚀
-                                </p>
+                                </Link>
                             </div>
                         </div>
                         <div className="bg-black/70 group bg-opacity-75 px-4 py-2 rounded-full cursor-pointer border-1 border-violet-200/70">
-                            <p className="z-10 group-hover:text-white text-white/70 transition duration-300 ease-in-out font-regular text-lg">
+                            <Link
+                                href="/docs"
+                                className="z-10 group-hover:text-white text-white/70 transition duration-300 ease-in-out font-regular text-lg"
+                            >
                                 docs 📄
-                            </p>
+                            </Link>
                         </div>
                     </div>
                 </div>
