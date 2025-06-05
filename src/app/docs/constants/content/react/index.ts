@@ -130,6 +130,7 @@ import { InstallTailwindCss } from './install-css'
 import { backgroundsSquareGridContent } from './backgroundsSquareGrid'
 import { backgroundsDottedGridContent } from './backgroundDottedGrid'
 import { loopBadgeAnimationContent } from './loopBadgeAnimation'
+import { draggableContainerContent } from './draggableContainer'
 
 // Re-export all imported modules
 export {
@@ -137,4 +138,5 @@ export {
     backgroundsSquareGridContent ,
     backgroundsDottedGridContent ,
     loopBadgeAnimationContent ,
+    draggableContainerContent
 }
