@@ -7,6 +7,12 @@ export const backgroundsSquareGridContent: DocContent = {
     preview: BuildPrivewSqaureGridSection(),
     sections: [
         {
+            title: 'Install GridBackground',
+            codeSrc: 'Terminal',
+            code: `npx lovablelabs add GridBackground`,
+            isLiveDemo: false,
+        },
+        {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
