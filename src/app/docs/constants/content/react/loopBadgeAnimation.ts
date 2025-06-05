@@ -2,7 +2,7 @@ import { DocContent } from '../../types'
 import { BuildPreviewLoopBadgeAnimationSection } from '../Builds/BuildPreviewLoopBadgeAnimation'
 
 export const loopBadgeAnimationContent: DocContent = {
-    title: 'LoopBadge Animation',
+    title: 'LoopBadge',
     description: 'Create elegant square grid backgrounds with Lovablelabs UI',
     preview: BuildPreviewLoopBadgeAnimationSection(),
     sections: [
