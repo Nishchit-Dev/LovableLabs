@@ -1,5 +1,5 @@
 import React from 'react'
-import { LoopBadge } from '../code/LoopBagdeAnimation'
+import { LoopBadge } from '../code/LoopBadge'
 import { GridBackground } from '../code/GridBackground'
 
 export const BuildPreviewLoopBadgeAnimationSection = () => {
