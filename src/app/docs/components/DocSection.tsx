@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown'
 import { themes, Highlight } from 'prism-react-renderer'
 // import { motion } from 'framer-motion'
 import './markdown.css'
-import { Copy } from 'lucide-react'
+import { Copy, Lock } from 'lucide-react'
+import Countdown from '@/app/utils/countdown'
 
 type DocSectionProps = {
     content: DocContent
@@ -95,62 +96,78 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
     )
 }
 
-
 const DocSection = ({ content }: DocSectionProps) => {
     return (
-        <div className="text-[var(--font-white)]">
+        <div className="text-[var(--font-white)] overflow-hidden">
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
             <p className="text-[var(--font-gray)] mb-10 ">
                 {content.description}
             </p>
 
             {content.preview}
-            {content.sections.map((section, index) => (
-                <div key={index} className="flex flex-row">
-                    <div className="w-[0.5px] bg-white/20 self-stretch mr-10 ">
-                        <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500 "></div>
-                    </div>
-                    <div className="mb-16 w-full ">
-                        {section.title && (
-                            <div className="mb-6">
-                                <h2
-                                    id={section.title
-                                        .toLowerCase()
-                                        .replace(/\s+/g, '-')}
-                                    className="text-2xl font-bold text-[var(--font-white)] mb-2 flex items-center"
-                                >
-                                    {section.title}
-                                </h2>
-                                {section.description && (
-                                    <p className="text-[var(--font-gray)] text-md font-light ">
-                                        {section.description}
-                                    </p>
-                                )}
-                                {/* <motion.div
-                                initial={{ width: 0 }}
-                                animate={{ width: '7rem' }}
-                                transition={{ duration: 0.8, ease: 'easeOut' }}
-                                className="h-1 bg-gradient-to-r from-[var(--font-blue)] to-transparent mt-2 rounded-full"
-                            ></motion.div> */}
-                            </div>
-                        )}
 
-                        <div className="markdown-content text-[var(--font-white)] text-sm">
-                            <ReactMarkdown>{section.content}</ReactMarkdown>
+            {new Date(content.releaseDate || '').getTime() > Date.now() ? (
+                <div>
+                    <div className="flex flex-col justify-center items-center gap-5">
+                        <>
+                            <Lock size={32} />
+                            <p className="text-lg">
+                                {' '}
+                                Hold tight! This component will go live on.
+                            </p>
+                        </>
+
+                        <div className="flex">
+                            {content.releaseDate ? (
+                                <Countdown targetDate={content.releaseDate} />
+                            ) : (
+                                <></>
+                            )}
                         </div>
-
-                        {section.code && (
-                            <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-x-auto">
-                                <CodeBlock
-                                    code={section.code}
-                                    codeSrc={section.codeSrc}
-                                    language={'jsx'}
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
-            ))}
+            ) : (
+                content.sections.map((section, index) => (
+                    <div key={index} className="flex flex-row">
+                        <div className="w-[0.5px] bg-white/20 self-stretch mr-10 ">
+                            <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500 "></div>
+                        </div>
+                        <div className="mb-16 w-full ">
+                            {section.title && (
+                                <div className="mb-6">
+                                    <h2
+                                        id={section.title
+                                            .toLowerCase()
+                                            .replace(/\s+/g, '-')}
+                                        className="text-2xl font-bold text-[var(--font-white)] mb-2 flex items-center"
+                                    >
+                                        {section.title}
+                                    </h2>
+                                    {section.description && (
+                                        <p className="text-[var(--font-gray)] text-md font-light ">
+                                            {section.description}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
+
+                            <div className="markdown-content text-[var(--font-white)] text-sm">
+                                <ReactMarkdown>{section.content}</ReactMarkdown>
+                            </div>
+
+                            {section.code && (
+                                <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-x-auto">
+                                    <CodeBlock
+                                        code={section.code}
+                                        codeSrc={section.codeSrc}
+                                        language={'jsx'}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                ))
+            )}
         </div>
     )
 }
