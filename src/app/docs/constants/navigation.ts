@@ -1,3 +1,4 @@
+import { releaseDate } from './releaseDate/releaseDate'
 import { NavItem, Category, Framework } from './types'
 
 // Define the available frameworks
@@ -75,6 +76,18 @@ export const getDocCategories = (framework: string): Category[] => {
                 {
                     label: 'Draggable Container',
                     path: `/docs/draggable-container?framework=${framework}`,
+                },
+            ],
+        },
+        {
+            title: 'Cursor',
+            slug: 'Cursor Container',
+            items: [
+                {
+                    label: 'Cursor Container',
+                    path: `/docs/cursor-container?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.cursorFollow,
                 },
             ],
         },

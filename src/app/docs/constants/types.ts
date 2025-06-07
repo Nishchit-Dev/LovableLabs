@@ -18,6 +18,8 @@ export type NavItem = {
         color: string
         bgColor: string
     }
+    isLock?: boolean
+    releaseDate?: string
 }
 
 // Category type for grouping navigation items
@@ -53,5 +55,7 @@ export type DocContent = {
     title: string
     description: string
     preview?: JSX.Element
+    isLock?: boolean
+    releaseDate?: string
     sections: ContentSection[]
 }

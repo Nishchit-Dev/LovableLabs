@@ -83,6 +83,10 @@ export default function Home() {
                         }}
                     ></motion.div>{' '}
                 </div>
+                <div
+                    style={{ opacity: 0.04 }}
+                    className="fixed w-full h-screen  bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px]  rounded-none"
+                ></div>
                 <div className="z-[1000] flex flex-row justify-center items-center -space-x-3">
                     <div className="bg-violet-100 rounded-full border-1  border-violet-300">
                         <Image

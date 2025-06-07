@@ -21,6 +21,7 @@ const slugToContentKey: Record<string, string> = {
     // animations
     'loopbadge-animation': 'loopBadgeAnimationContent',
     'draggable-container': 'draggableContainerContent',
+    'cursor-container': 'cursorContainerContent',
 }
 
 // Helper function to get content by slug
