@@ -67,6 +67,11 @@ export const getDocCategories = (framework: string): Category[] => {
                     label: 'LoopBadge',
                     path: `/docs/loopbadge-animation?framework=${framework}`,
                 },
+                {
+                    label: 'Radiating Dot',
+                    path: `/docs/radiating-dot?framework=${framework}`,
+                    releaseDate: releaseDate.radiatingDot,
+                },
             ],
         },
         {

@@ -133,6 +133,7 @@ import { backgroundsDottedGridContent } from './backgroundDottedGrid'
 import { loopBadgeAnimationContent } from './loopBadgeAnimation'
 import { draggableContainerContent } from './draggableContainer'
 import { cursorContainerContent } from './cursorContainer'
+import { radiatingDotContent } from './radiatingDot'
 
 // Re-export all imported modules
 export {
@@ -142,4 +143,5 @@ export {
     loopBadgeAnimationContent,
     draggableContainerContent,
     cursorContainerContent,
+    radiatingDotContent,
 }

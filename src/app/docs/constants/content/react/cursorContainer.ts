@@ -12,7 +12,7 @@ export const cursorContainerContent: DocContent = {
     releaseDate: releaseDate.cursorFollow,
     sections: [
         {
-            title: 'Install DragableContainer',
+            title: 'Install Cursor Follow Container',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add CursorFollow`,
             isLiveDemo: false,
@@ -35,7 +35,7 @@ export function cn(...inputs: ClassValue[]) {
             isLiveDemo: false,
         },
         {
-            title: 'Cursor Container',
+            title: 'Cursor Follow Container',
             codeSrc: 'components/CursorContainer.tsx',
             code: `
 'use client'

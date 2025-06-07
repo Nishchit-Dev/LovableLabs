@@ -8,22 +8,6 @@ const frameworkContent = {
     react: reactContent,
 }
 
-// Map of slug to content key in each framework module
-const slugToContentKey: Record<string, string> = {
-    // 'get-started': 'getStarted',
-
-    'install-tailwindcss': 'InstallTailwindCss',
-
-    // Backgrounds
-    'backgrounds-squaregrid': 'backgroundsSquareGridContent',
-    'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
-
-    // animations
-    'loopbadge-animation': 'loopBadgeAnimationContent',
-    'draggable-container': 'draggableContainerContent',
-    'cursor-container': 'cursorContainerContent',
-}
-
 // Helper function to get content by slug
 export const getContentBySlug = (slug: string): DocContent | null => {
     // Only react framework is supported
@@ -49,6 +33,22 @@ export const getContentBySlug = (slug: string): DocContent | null => {
     return null
 }
 
+// Map of slug to content key in each framework module
+const slugToContentKey: Record<string, string> = {
+    // 'get-started': 'getStarted',
+
+    'install-tailwindcss': 'InstallTailwindCss',
+
+    // Backgrounds
+    'backgrounds-squaregrid': 'backgroundsSquareGridContent',
+    'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
+
+    // animations
+    'loopbadge-animation': 'loopBadgeAnimationContent',
+    'draggable-container': 'draggableContainerContent',
+    'cursor-container': 'cursorContainerContent',
+    'radiating-dot': 'radiatingDotContent',
+}
 // Export all content
 export default {
     getContentBySlug,
