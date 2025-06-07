@@ -301,9 +301,14 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                 : ''
                                                         }`}
                                                         style={{
-                                                            opacity: item.isLock
-                                                                ? 0.7
-                                                                : 1,
+                                                            opacity:
+                                                                new Date(
+                                                                    item.releaseDate ||
+                                                                        ''
+                                                                ).getTime() >
+                                                                Date.now()
+                                                                    ? 0.7
+                                                                    : 1,
                                                         }}
                                                     >
                                                         <div className="flex flex-row gap-2 items-center">
