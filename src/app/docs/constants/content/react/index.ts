@@ -66,7 +66,8 @@ import { motion, AnimatePresence } from 'lovable-ui/react';
 
 export const componentsStaggeredLayout: DocContent = {
     title: 'Staggered Layout Component',
-    description: 'Create visually appealing staggered layouts with Lovablelabs UI',
+    description:
+        'Create visually appealing staggered layouts with Lovablelabs UI',
     sections: [
         {
             title: 'Basic Usage',
@@ -131,12 +132,14 @@ import { backgroundsSquareGridContent } from './backgroundsSquareGrid'
 import { backgroundsDottedGridContent } from './backgroundDottedGrid'
 import { loopBadgeAnimationContent } from './loopBadgeAnimation'
 import { draggableContainerContent } from './draggableContainer'
+import { cursorContainerContent } from './cursorContainer'
 
 // Re-export all imported modules
 export {
     InstallTailwindCss,
-    backgroundsSquareGridContent ,
-    backgroundsDottedGridContent ,
-    loopBadgeAnimationContent ,
-    draggableContainerContent
+    backgroundsSquareGridContent,
+    backgroundsDottedGridContent,
+    loopBadgeAnimationContent,
+    draggableContainerContent,
+    cursorContainerContent,
 }
