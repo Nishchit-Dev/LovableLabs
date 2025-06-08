@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React, { useState, useEffect } from 'react'
 
 interface CountdownTimerProps {
@@ -10,6 +11,7 @@ interface CountdownTimerProps {
     showMilliseconds?: boolean
     autoStart?: boolean
     control?: boolean
+    dark?: boolean
 }
 
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({
@@ -21,6 +23,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     backgroundColor = '#000000',
     autoStart = true,
     control = false,
+    dark = false,
 }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime)
     const [isRunning, setIsRunning] = useState(autoStart)
@@ -112,7 +115,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
             [0, 1, 1, 1, 0],
             [1, 0, 0, 0, 1],
             [1, 0, 0, 0, 1],
-            [0, 1, 1, 1, 0],
+            [0, 1, 1, 1, 1],
             [0, 0, 0, 0, 1],
             [1, 0, 0, 0, 1],
             [0, 1, 1, 1, 0],
@@ -177,8 +180,12 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
                                     width: `${pixelSize}px`,
                                     height: `${pixelSize}px`,
                                     backgroundColor: pixel
-                                        ? activeColor
-                                        : inactiveColor,
+                                        ? dark
+                                            ? activeColor
+                                            : inactiveColor
+                                        : dark
+                                        ? inactiveColor
+                                        : '#D7D7D7',
                                     borderRadius: '1px',
                                 }}
                             />
@@ -207,8 +214,16 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
         <div className="flex flex-col items-center space-y-6 p-8">
             {/* Timer Display */}
             <div
-                className="flex items-center justify-center px-8 py-6 rounded-3xl shadow-2xl"
-                style={{ backgroundColor }}
+                className={clsx(
+                    "flex items-center justify-center px-8 py-6 rounded-3xl ",
+                )}
+                style={{
+                    backgroundColor: dark ? backgroundColor : activeColor,
+                    color: dark ? activeColor : inactiveColor,
+                    boxShadow: dark
+                        ? '0 10px 70px -30px rgba(255,255,255,0.25)'
+                        : '0 25px 50px -12px rgba(0,0,0,0.25)',
+                }}
             >
                 <div className="flex items-center">
                     {digits.map((digit, index) => renderDigit(digit, index))}
