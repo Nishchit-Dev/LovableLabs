@@ -217,7 +217,25 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24 lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
             {/* Left Sidebar */}
-            <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden">
+            <motion.div
+                initial={{
+                    opacity: 0,
+                    y: 200,
+                    backdropFilter: 'blur(100px)',
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                    backdropFilter: 'blur(0px)',
+                }}
+                transition={{
+                    type: 'tween', // "tween" is smoother than "spring"
+                    ease: 'easeInOut',
+                    delay: 0.5,
+                    duration: 1,
+                }}
+                className="w-[auto] flex-shrink-0 h-screen overflow-hidden"
+            >
                 <div
                     ref={leftSidebarRef}
                     className="h-full modern-scrollbar fade-edges"
@@ -363,7 +381,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Main content */}
             <div className="flex-1 h-screen overflow-hidden">
@@ -400,7 +418,29 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
 
             {/* Right Sidebar  */}
             {tableOfContents.length > 0 && (
-                <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block">
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                        y: 200,
+                        backdropFilter: 'blur(100px)',
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0,
+                        backdropFilter: 'blur(0px)',
+                    }}
+                    transition={{
+                        type: 'tween', // "tween" is smoother than "spring"
+                        ease: 'easeInOut',
+                        delay: 0.5,
+                        duration: 1.5,
+                    }}
+                    style={{
+                        transition:
+                            'backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1), -webkit-backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1)',
+                    }}
+                    className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block"
+                >
                     <div
                         ref={rightSidebarRef}
                         className="h-full modern-scrollbar fade-edges"
@@ -442,7 +482,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
         </div>
     )
