@@ -49,6 +49,8 @@ const slugToContentKey: Record<string, string> = {
     'cursor-container': 'cursorContainerContent',
     'radiating-dot': 'radiatingDotContent',
     'animated-border': 'animatedBorderContent',
+    'dot-martix-countdown': 'dotMatrixCountdownContent',
+
 }
 // Export all content
 export default {
