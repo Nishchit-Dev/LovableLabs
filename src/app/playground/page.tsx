@@ -17,7 +17,7 @@ import { BuildPreivewDraggableContainer } from '../docs/constants/content/Builds
 import { RadiatingDot } from '../docs/constants/content/code/RadiatingDot'
 import AnimatedBorder from '../docs/constants/content/code/AnimatedBorder'
 import { BuildPreviewAnimatedBorder } from '../docs/constants/content/Builds/BuildPreviewAnimatedBorder'
-import { CountdownTimer } from '../docs/constants/content/code/CountDown'
+import { CountdownTimer } from '../docs/constants/content/code/DotMatrixCountdownTimer'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
