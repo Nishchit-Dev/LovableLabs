@@ -44,6 +44,7 @@
     --foreground: #ededed;
   }
 } */
+ 
 ::selection {
   background-color: rgb(126,114,206); 
   color: #000;            
