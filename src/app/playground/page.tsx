@@ -372,6 +372,7 @@ const CountDownDevMode = () => {
                 initialTime={450000}
                 pixelSize={6}
                 onComplete={() => console.log('Timer completed!')}
+                dark
             />
         </>
     )
@@ -550,7 +551,7 @@ const ContentSlider = () => {
 
 const DevTools = () => {
     return (
-        <DottedBackground fullscreen>
+        <DottedBackground fullscreen dark  overlay>
             <div className="w-full h-screen flex flex-1 justify-center items-center  ">
                 <ContentSlider />
             </div>
