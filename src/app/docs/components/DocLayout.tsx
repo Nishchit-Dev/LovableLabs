@@ -217,7 +217,24 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24 lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
             {/* Left Sidebar */}
-            <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden">
+            <motion.div
+              layout="size"
+            initial={{
+                opacity: 0,
+                y: 40,
+            }}
+            animate={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                type: 'tween',
+                ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
+                delay: 0.2,
+                duration: 0.8,
+            }}
+                className="w-[auto] flex-shrink-0 h-screen overflow-hidden"
+            >
                 <div
                     ref={leftSidebarRef}
                     className="h-full modern-scrollbar fade-edges"
@@ -363,10 +380,10 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Main content */}
-            <div className="flex-1 h-screen overflow-hidden">
+            <div className="flex-1 h-screen  ">
                 <div ref={mainContentRef} className="h-full fade-edges">
                     <div className="max-w-4xl mx-auto px-8 py-12">
                         {children}
@@ -400,7 +417,29 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
 
             {/* Right Sidebar  */}
             {tableOfContents.length > 0 && (
-                <div className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block">
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                        y: 200,
+                        backdropFilter: 'blur(100px)',
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0,
+                        backdropFilter: 'blur(0px)',
+                    }}
+                    transition={{
+                        type: 'tween', // "tween" is smoother than "spring"
+                        ease: 'easeInOut',
+                        delay: 0.5,
+                        duration: 1.5,
+                    }}
+                    style={{
+                        transition:
+                            'backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1), -webkit-backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1)',
+                    }}
+                    className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block"
+                >
                     <div
                         ref={rightSidebarRef}
                         className="h-full modern-scrollbar fade-edges"
@@ -442,7 +481,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             )}
         </div>
     )
@@ -457,8 +496,14 @@ export default function DocLayoutClient({
     return (
         <Suspense
             fallback={
-                <div className="min-h-screen bg-[var(--bg-dark)]">
-                    Loading...
+                <div className="min-h-screen bg-[var(--bg-dark)] flex justify-center items-center">
+                    <div className="flex flex-col items-center">
+                        <div className="relative w-16 h-16">
+                            <div className="absolute inset-0 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border-t-4 border-blue-300 border-solid rounded-full opacity-40 animate-ping"></div>
+                        </div>
+                        <div className="mt-4 text-[var(--font-gray)]">Loading documentation...</div>
+                    </div>
                 </div>
             }
         >

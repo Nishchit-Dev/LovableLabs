@@ -134,7 +134,8 @@ import { loopBadgeAnimationContent } from './loopBadgeAnimation'
 import { draggableContainerContent } from './draggableContainer'
 import { cursorContainerContent } from './cursorContainer'
 import { radiatingDotContent } from './radiatingDot'
-
+import { animatedBorderContent } from './animatedBorder'
+import { dotMatrixCountdownContent } from './countdown'
 // Re-export all imported modules
 export {
     InstallTailwindCss,
@@ -144,4 +145,6 @@ export {
     draggableContainerContent,
     cursorContainerContent,
     radiatingDotContent,
+    animatedBorderContent,
+    dotMatrixCountdownContent,
 }

@@ -30,7 +30,62 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: 'LovableLabs UI',
-    description: 'UI Components for Lovablelabs Devs',
+    description: 'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks. Enhance your projects with LovableLabs UI.',
+    keywords: [
+        'UI Components',
+        'React Components',
+        'Accessible Components',
+        'Design System',
+        'Component Library',
+        'Open Source',
+        'Frontend',
+        'Web Development',
+        'LovableLabs',
+        'Next.js',
+        'TypeScript',
+        'Reusable Components',
+        'SEO Friendly',
+        'Code Distribution',
+    ],
+    authors: [{ name: 'LovableLabs', url: 'https://lovablelabs.dev' }],
+    creator: 'LovableLabs',
+    publisher: 'LovableLabs',
+    openGraph: {
+        title: 'LovableLabs UI',
+        description: 'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks.',
+        url: 'https://lovablelabs.dev',
+        siteName: 'LovableLabs UI',
+        images: [
+            {
+                url: 'https://lovablelabs.dev/og-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'LovableLabs UI - Beautifully-designed, accessible components',
+            },
+        ],
+        locale: 'en_US',
+        type: 'website',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'LovableLabs UI',
+        description: 'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks.',
+        images: ['https://lovablelabs.dev/og-image.png'],
+        creator: '@lovablelabs',
+    },
+    metadataBase: new URL('https://lovablelabs.dev'),
+    robots: {
+        index: true,
+        follow: true,
+        nocache: false,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
 }
 
 export default async function RootLayout({

@@ -29,6 +29,8 @@
   --color-bg-offwhite: var(--bg-offwhite);
 }
 
+
+
 /* @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -42,6 +44,11 @@
     --foreground: #ededed;
   }
 } */
+ 
+::selection {
+  background-color: rgb(126,114,206); 
+  color: #000;            
+}
 
 body {
   font-family: var(--font-jetbrains);
@@ -147,3 +154,4 @@ body {
     --angle: 360deg;
   }
 }
+

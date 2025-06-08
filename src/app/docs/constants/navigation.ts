@@ -72,6 +72,12 @@ export const getDocCategories = (framework: string): Category[] => {
                     path: `/docs/radiating-dot?framework=${framework}`,
                     releaseDate: releaseDate.radiatingDot,
                 },
+                {
+                    label: 'Animated Border',
+                    path: `/docs/animated-border?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.animatedBorder,
+                },
             ],
         },
         {
@@ -93,6 +99,19 @@ export const getDocCategories = (framework: string): Category[] => {
                     path: `/docs/cursor-container?framework=${framework}`,
                     isLock: true,
                     releaseDate: releaseDate.cursorFollow,
+                },
+            ],
+        },
+        {
+            title: 'CountDown',
+            slug: 'Dot Matrix CountDown Timer',
+            
+            items: [
+                {
+                    label: 'Dot-Matrix CountDown',
+                    path: `/docs/dot-martix-countdown?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
                 },
             ],
         },
