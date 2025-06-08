@@ -215,14 +215,11 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
             {/* Timer Display */}
             <div
                 className={clsx(
-                    "flex items-center justify-center px-8 py-6 rounded-3xl ",
+                    "flex items-center justify-center px-8 py-6 rounded-3xl shadow-2xl",
                 )}
                 style={{
                     backgroundColor: dark ? backgroundColor : activeColor,
                     color: dark ? activeColor : inactiveColor,
-                    boxShadow: dark
-                        ? '0 10px 70px -30px rgba(255,255,255,0.25)'
-                        : '0 25px 50px -12px rgba(0,0,0,0.25)',
                 }}
             >
                 <div className="flex items-center">
