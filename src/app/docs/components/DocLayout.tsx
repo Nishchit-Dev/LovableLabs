@@ -218,22 +218,21 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
         <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24 lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
             {/* Left Sidebar */}
             <motion.div
-                initial={{
-                    opacity: 0,
-                    y: 200,
-                    backdropFilter: 'blur(100px)',
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    backdropFilter: 'blur(0px)',
-                }}
-                transition={{
-                    type: 'tween', // "tween" is smoother than "spring"
-                    ease: 'easeInOut',
-                    delay: 0.5,
-                    duration: 1,
-                }}
+              layout="size"
+            initial={{
+                opacity: 0,
+                y: 40,
+            }}
+            animate={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                type: 'tween',
+                ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
+                delay: 0.2,
+                duration: 0.8,
+            }}
                 className="w-[auto] flex-shrink-0 h-screen overflow-hidden"
             >
                 <div
@@ -384,7 +383,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             </motion.div>
 
             {/* Main content */}
-            <div className="flex-1 h-screen overflow-hidden">
+            <div className="flex-1 h-screen  ">
                 <div ref={mainContentRef} className="h-full fade-edges">
                     <div className="max-w-4xl mx-auto px-8 py-12">
                         {children}
@@ -497,7 +496,7 @@ export default function DocLayoutClient({
     return (
         <Suspense
             fallback={
-                <div className="min-h-screen bg-[var(--bg-dark)]">
+                <div className="min-h-screen bg-[var(--bg-dark)] text-white/70 flex justify-center items-center">
                     Loading...
                 </div>
             }
