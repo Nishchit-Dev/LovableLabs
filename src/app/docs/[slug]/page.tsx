@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { getContentBySlug } from "../constants";
 import { DocContent } from "../constants/types";
 import DocSection from "../components/DocSection";
+import Link from "next/link";
 
 export default function DocPage() {
   const params = useParams();
@@ -44,14 +45,14 @@ export default function DocPage() {
           Documentation not found
         </h1>
         <p className="text-[var(--font-gray)] mb-6">
-          We couldn't find documentation for "{slug}"
+          We couldn&apos;t find documentation for &quot;{slug}&quot;
         </p>
-        <a 
+        <Link
           href="/docs" 
           className="px-4 py-2 bg-[var(--bg-blue)] text-white rounded-md hover:bg-opacity-90 transition-colors"
         >
           Return to Docs
-        </a>
+        </Link>
       </div>
     );
   }

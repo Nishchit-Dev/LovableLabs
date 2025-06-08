@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "lucide-react";
 import Image from "next/image";
 
 const Footer: React.FC = () => {
