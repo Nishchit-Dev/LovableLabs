@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "lucide-react";
+import Image from "next/image";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -56,7 +58,7 @@ const Footer: React.FC = () => {
       animate="visible"
     >
       <div className="max-w-screen-xl mx-auto">
-        <div className="pt-4 border-t  mb-10">
+        <div className="pt-4   mb-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div>
               <h3 className="text-[var(--font-white)] font-medium">
@@ -87,9 +89,20 @@ const Footer: React.FC = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-between">
           <motion.div variants={itemVariants} className="mb-8 md:mb-0">
-            <div className="w-8 h-8 bg-[var(--bg-blue)] rounded flex items-center justify-center text-black font-bold mb-4">
-              LU
-            </div>
+          <div   className="flex items-center">
+                        <div
+                        onClick={() => window.location.href = '/'}
+                            className="w-6 h-6 rounded flex items-center justify-center cursor-pointer"
+                        >
+                            <Image
+                                alt="LovableLabs Logo"
+                                width={20}
+                                height={20}
+                                src={'/assets/memoji/lovablelabs.png'}
+                            />
+                        </div>
+                    </div>
+
             <p className="text-[var(--font-gray)] text-xs mt-4">
               ©{currentYear} LovableLabs UI. All rights reserved.
             </p>
