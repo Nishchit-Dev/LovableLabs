@@ -102,6 +102,19 @@ export const getDocCategories = (framework: string): Category[] => {
                 },
             ],
         },
+        {
+            title: 'CountDown',
+            slug: 'Dot Matrix CountDown Timer',
+            
+            items: [
+                {
+                    label: 'Dot-Matrix CountDown',
+                    path: `/docs/dot-martix-countdown?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+            ],
+        },
         // {
         //     title: "Components",
         //     slug: "components",
