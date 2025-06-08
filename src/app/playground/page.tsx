@@ -15,6 +15,8 @@ import {
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { BuildPreivewDraggableContainer } from '../docs/constants/content/Builds/BuildPreviewDragableContainer'
 import { RadiatingDot } from '../docs/constants/content/code/RadiatingDot'
+import AnimatedBorder from '../docs/constants/content/code/AnimatedBorder'
+import { BuildPreviewAnimatedBorder } from '../docs/constants/content/Builds/BuildPreviewAnimatedBorder'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -180,6 +182,131 @@ const OnlineStatusDevMode = () => {
     )
 }
 
+const AnimatedBorderDevMode = () => {
+    return (
+        <div className="bg-gradient-to-br p-8">
+            <div className="max-w-6xl mx-auto">
+                <h2 className="text-2xl font-semibold mb-8 text-center">AnimatedBorder Components</h2>
+                
+                <div className="flex flex-row gap-8 justify-between">
+                  
+                    <div className="w-1/2">
+                        <h3 className="text-xl font-semibold mb-6">Card Example</h3>
+                        <div className="flex justify-center">
+                            <AnimatedBorder
+                               width={350}
+                               height={350}
+                               borderWidth={3}
+                               contentBg="rgba(0, 0, 0, 1)"
+                               containerClassName="mt-2"
+                               contentClassName="flex flex-col justify-between"
+                               borderRadius={32}
+                               contentPadding={6}
+                               colors={['#ec4899', '#d946ef', '#a855f7', '#8b5cf6', '#6366f1']}
+                               enableShadow={true}
+                               shadowDirection='all'
+                               shadowVariant="subtle"
+                               hoverScale={1.03}
+                               blurIntensity={10}
+                               blurOpacity={0.7}
+                            >
+                                <div>
+                                    <h3 className="text-white text-xl font-bold mb-4">Featured Content</h3>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                                        <p className="text-gray-300 text-sm">High-quality animated & customizable components</p>
+                                    </div>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <div className="w-2 h-2 rounded-full bg-pink-400"></div>
+                                        <p className="text-gray-300 text-sm">Fully customizable border effects</p>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                                        <p className="text-gray-300 text-sm">Smooth animations & transitions with hover & shadow effects</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end items-center mt-4">
+                                    
+                                    <button onClick={() => window.location.href = "/docs/animated-border?framework=react"} className=" cursor-pointer px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:from-purple-700 hover:to-pink-700 transition-colors">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </AnimatedBorder>
+                        </div>
+                    </div>
+
+                
+                    <div className="w-1/2">
+                     
+                        <h3 className="text-xl font-semibold mb-6">Interactive Demo</h3>
+                        <div className="flex justify-center mb-8">
+                            <AnimatedBorder
+                                width={240}
+                                enableHover
+                                height={60}
+                                contentBg="rgba(0, 0, 0, 1)"
+                                contentClassName="flex items-center justify-center"
+                                enableShadow={true}
+                                hoverBrighten={1.2}
+                                colors={['#8c80db', '#6a42c2', '#32247a', '#2b1c83', '#8b5dff']}
+                            >
+                                <span className="text-white font-medium">Animated Border</span>
+                            </AnimatedBorder>
+                        </div>
+
+                   
+                        <h3 className="text-xl font-semibold mb-6">Style Variants</h3>
+                        <div className="flex flex-col gap-6 items-center">
+                            <AnimatedBorder
+                                width={240}
+                                height={55}
+                                contentBg="rgba(0, 0, 0, 1)"
+                                contentClassName="flex items-center justify-center"
+                                enableShadow={true}
+                                enableHover
+                                hoverBlurIncrease={10}
+                                shadowVariant="subtle"
+                                colors={['#3b82f6', '#1d4ed8', '#1e40af', '#1e3a8a', '#3b82f6']}
+                            >
+                                <span className="text-white font-medium">Subtle Shadow </span>
+                            </AnimatedBorder>
+                            
+                            <AnimatedBorder
+                                width={240}
+                                height={55}
+                                contentBg="rgba(0, 0, 0, 1)"
+                                contentClassName="flex items-center justify-center"
+                                enableShadow={true}
+                                enableHover
+                                shadowVariant="intense"
+                                hoverSpeedMultiplier={2.5}
+                                colors={['#f97316', '#ea580c', '#c2410c', '#9a3412', '#f97316']}
+                            >
+                                <span className="text-white font-medium">Intense Shadow</span>
+                            </AnimatedBorder>
+                            
+                            <AnimatedBorder
+                                width={240}
+                                height={55}
+                                contentBg="rgba(0, 0, 0, 1)"
+                                contentClassName="flex items-center justify-center"
+                                enableShadow={true}
+                                shadowVariant="glow"
+                                hoverScale={1.05}
+                                hoverSpeedMultiplier={2.5}
+                                hoverBrighten={1.5}
+                                colors={['#10b981', '#059669', '#047857', '#065f46', '#10b981']}
+                            >
+                                <span className="text-white font-medium">Glow Effect</span>
+                            </AnimatedBorder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 const ContentSlider = () => {
     const slides = [
         
@@ -210,6 +337,16 @@ const ContentSlider = () => {
             Component: (
                 <div className="w-full h-full flex justify-center items-center ">
                     <OnlineStatusDevMode />
+                </div>
+            ),
+        },
+        {
+            title: 'Animated Border',
+            description:
+                'This component creates an animated border effect with customizable colors and shadows.',
+            Component: (
+                <div className="w-full h-full flex justify-center items-center">
+                    <AnimatedBorderDevMode />
                 </div>
             ),
         },
