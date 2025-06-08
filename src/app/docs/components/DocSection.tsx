@@ -48,7 +48,13 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
     return (
         <div className="relative">
             <Highlight theme={themes.nightOwl} code={code} language={language}>
-                {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                {({
+                    className,
+                    style,
+                    tokens,
+                    getLineProps,
+                    getTokenProps,
+                }) => (
                     <>
                         {codeSrc ? (
                             <div className="flex flex-row">
@@ -62,10 +68,15 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     {copySuccess ? (
                                         <div className="flex items-center gap-2 text-green-400">
                                             <Check size={16} />
-                                            <span className="text-xs">Copied!</span>
+                                            <span className="text-xs">
+                                                Copied!
+                                            </span>
                                         </div>
                                     ) : (
-                                        <Copy size={16} className="cursor-pointer" />
+                                        <Copy
+                                            size={16}
+                                            className="cursor-pointer"
+                                        />
                                     )}
                                 </div>
                             </div>
@@ -78,7 +89,9 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     {copySuccess ? (
                                         <div className="flex items-center gap-2 text-green-400">
                                             <Check size={18} />
-                                            <span className="text-xs">Copied!</span>
+                                            <span className="text-xs">
+                                                Copied!
+                                            </span>
                                         </div>
                                     ) : (
                                         <Copy size={18} />
@@ -86,7 +99,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                 </div>
                             </div>
                         )}
-                        
+
                         <div className="relative">
                             <pre
                                 ref={codeRef}
@@ -98,22 +111,30 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     overflow: 'auto',
                                     backgroundColor: '#1e1e1e',
                                     scrollbarWidth: 'thin',
-                                    scrollbarColor: 'oklch(60.6% 0.25 292.717) #000',
-                                    maxHeight: showExpandButton && !isExpanded ? '200px' : 'none',
+                                    scrollbarColor:
+                                        'oklch(60.6% 0.25 292.717) #000',
+                                    maxHeight:
+                                        showExpandButton && !isExpanded
+                                            ? '200px'
+                                            : 'none',
                                     position: 'relative',
                                 }}
                             >
                                 {tokens.map((line, i) => {
-                                    const lineProps = getLineProps({ line, key: i })
+                                    const lineProps = getLineProps({
+                                        line,
+                                        key: i,
+                                    })
                                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
                                     const { key, ...restLineProps } = lineProps
                                     return (
                                         <div key={i} {...restLineProps}>
                                             {line.map((token, key) => {
-                                                const tokenProps = getTokenProps({
-                                                    token,
-                                                    key,
-                                                })
+                                                const tokenProps =
+                                                    getTokenProps({
+                                                        token,
+                                                        key,
+                                                    })
                                                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                                                 const {
                                                     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -131,15 +152,12 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     )
                                 })}
                             </pre>
-                            
+
                             {/* Gradient mask when code is collapsed */}
                             {showExpandButton && !isExpanded && (
-                                <div 
-                                    className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 via-gray-black/40 to-transparent"
-        
-                                />
+                                <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 via-gray-black/40 to-transparent" />
                             )}
-                            
+
                             {/* Show/Hide button */}
                             {showExpandButton && (
                                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 right-0 flex justify-center">
@@ -150,24 +168,34 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                         className="text-white flex flex-row gap-2 items-center justify-center px-4 py-2 bg-black/50 rounded-full hover:bg-black/70"
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <motion.div
-                                            className="relative w-5 h-5 flex items-center justify-center"
-                                        >
+                                        <motion.div className="relative w-5 h-5 flex items-center justify-center">
                                             <motion.div
                                                 initial={{ opacity: 1 }}
-                                                animate={{ opacity: isHovered ? 0 : 1 }}
+                                                animate={{
+                                                    opacity: isHovered ? 0 : 1,
+                                                }}
                                                 transition={{ duration: 0.2 }}
                                                 style={{ position: 'absolute' }}
                                             >
-                                                {!isExpanded ? <EyeClosed size={20} /> : <Eye size={20} />}
+                                                {!isExpanded ? (
+                                                    <EyeClosed size={20} />
+                                                ) : (
+                                                    <Eye size={20} />
+                                                )}
                                             </motion.div>
                                             <motion.div
                                                 initial={{ opacity: 0 }}
-                                                animate={{ opacity: isHovered ? 1 : 0 }}
+                                                animate={{
+                                                    opacity: isHovered ? 1 : 0,
+                                                }}
                                                 transition={{ duration: 0.2 }}
                                                 style={{ position: 'absolute' }}
                                             >
-                                                {!isExpanded ? <Eye size={20} /> : <EyeClosed size={20} />}
+                                                {!isExpanded ? (
+                                                    <Eye size={20} />
+                                                ) : (
+                                                    <EyeClosed size={20} />
+                                                )}
                                             </motion.div>
                                         </motion.div>
                                         {isExpanded ? 'Hide Code' : 'Show Code'}
@@ -184,7 +212,24 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
 
 const DocSection = ({ content }: DocSectionProps) => {
     return (
-        <div className="text-[var(--font-white)] overflow-hidden">
+        <motion.div
+            layout="size"
+            initial={{
+                opacity: 0,
+                y: 40,
+            }}
+            animate={{
+                opacity: 1,
+                y: 0,
+            }}
+            transition={{
+                type: 'tween',
+                ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
+                delay: 0.6,
+                duration: 0.8,
+            }}
+            className="text-[var(--font-white)] overflow-hidden"
+        >
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
             <p className="text-[var(--font-gray)] mb-10 ">
                 {content.description}
@@ -254,7 +299,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                     </div>
                 ))
             )}
-        </div>
+        </motion.div>
     )
 }
 
