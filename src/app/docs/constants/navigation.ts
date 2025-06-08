@@ -72,6 +72,12 @@ export const getDocCategories = (framework: string): Category[] => {
                     path: `/docs/radiating-dot?framework=${framework}`,
                     releaseDate: releaseDate.radiatingDot,
                 },
+                {
+                    label: 'Animated Border',
+                    path: `/docs/animated-border?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.animatedBorder,
+                },
             ],
         },
         {

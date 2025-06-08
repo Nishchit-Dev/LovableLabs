@@ -134,6 +134,7 @@ import { loopBadgeAnimationContent } from './loopBadgeAnimation'
 import { draggableContainerContent } from './draggableContainer'
 import { cursorContainerContent } from './cursorContainer'
 import { radiatingDotContent } from './radiatingDot'
+import { animatedBorderContent } from './animatedBorder'
 
 // Re-export all imported modules
 export {
@@ -144,4 +145,5 @@ export {
     draggableContainerContent,
     cursorContainerContent,
     radiatingDotContent,
+    animatedBorderContent,
 }
