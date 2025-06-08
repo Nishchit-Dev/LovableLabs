@@ -6,7 +6,7 @@ export const BuildPreviewDotMatrixCountDown = () => {
     return (
         <div className="mb-10">
             <p className="text-2xl font-bold mb-3">Preview</p>
-            <div className="rounded-xl p-6 flex items-center justify-center max-h-[420px] h-full border border-[#333]">
+            <div className="rounded-xl p-6 flex items-center justify-center  h-full border border-[#333]">
                 <GridBackground
                     full
                     overlay
@@ -19,6 +19,13 @@ export const BuildPreviewDotMatrixCountDown = () => {
                         pixelSize={6}
                         onComplete={() => console.log('Timer completed!')}
                     />
+                     <CountdownTimer
+                        initialTime={100520}
+                        pixelSize={6}
+                        dark
+                        onComplete={() => console.log('Timer completed!')}
+                    />
+                    <p className='text-black/70 text-center'>Day  :  Hour  :  Second </p>
                 </GridBackground>
             </div>
         </div>
