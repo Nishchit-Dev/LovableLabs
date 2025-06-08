@@ -44,6 +44,10 @@
     --foreground: #ededed;
   }
 } */
+::selection {
+  background-color: rgb(126,114,206); 
+  color: #000;            
+}
 
 body {
   font-family: var(--font-jetbrains);

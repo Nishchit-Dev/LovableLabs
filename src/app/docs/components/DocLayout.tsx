@@ -496,8 +496,14 @@ export default function DocLayoutClient({
     return (
         <Suspense
             fallback={
-                <div className="min-h-screen bg-[var(--bg-dark)] text-white/70 flex justify-center items-center">
-                    Loading...
+                <div className="min-h-screen bg-[var(--bg-dark)] flex justify-center items-center">
+                    <div className="flex flex-col items-center">
+                        <div className="relative w-16 h-16">
+                            <div className="absolute inset-0 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border-t-4 border-blue-300 border-solid rounded-full opacity-40 animate-ping"></div>
+                        </div>
+                        <div className="mt-4 text-[var(--font-gray)]">Loading documentation...</div>
+                    </div>
                 </div>
             }
         >
