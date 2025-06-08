@@ -56,7 +56,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     {codeSrc}
                                 </p>
                                 <div
-                                    className="w-full flex justify-end items-center px-5 py-3 bg-black/70 text-sm cursor-pointer hover:bg-black/80 transition-colors"
+                                    className=" flex justify-end items-center px-5 py-3 bg-black/70 text-sm cursor-pointer hover:bg-black/80 transition-colors"
                                     onClick={handleCopy}
                                 >
                                     {copySuccess ? (
