@@ -551,7 +551,7 @@ const ContentSlider = () => {
 
 const DevTools = () => {
     return (
-        <DottedBackground fullscreen dark  overlay>
+        <DottedBackground fullscreen  overlay>
             <div className="w-full h-screen flex flex-1 justify-center items-center  ">
                 <ContentSlider />
             </div>
