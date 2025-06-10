@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 // Simple cn utility for className merging
 const cn = (...classes: (string | boolean | undefined)[]) => classes.filter(Boolean).join(' ')
 
-interface ParallexGridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ParallaxGridBackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode
     full?: boolean // fills the screen
     centered?: boolean // centers children
@@ -13,7 +13,7 @@ interface ParallexGridBackgroundProps extends React.HTMLAttributes<HTMLDivElemen
 }
 
 export const ParallaxGridBackground: React.FC<
-    ParallexGridBackgroundProps & {
+    ParallaxGridBackgroundProps & {
         boxSize?: number
         dark?: false | true
         parallaxStrength?: number // Controls how much the grid moves (0-1)
@@ -43,8 +43,8 @@ export const ParallaxGridBackground: React.FC<
         ? 'rgba(255,255,255,0.08)'
         : 'rgba(0,0,0,0.15)'
     const overlayGradient = dark
-        ? 'radial-gradient(ellipse, transparent 40%, #000 90%, #000 95%)'
-        : 'radial-gradient(ellipse, transparent 40%, white 90%, white 95%)'
+        ? 'radial-gradient(ellipse, transparent 10%, #000 90%, #000 95%)'
+        : 'radial-gradient(ellipse, transparent 10%, white 90%, white 95%)'
 
     // Animation loop for smooth movement
     const animate = () => {

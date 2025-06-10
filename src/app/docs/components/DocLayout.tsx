@@ -383,9 +383,9 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             </motion.div>
 
             {/* Main content */}
-            <div className="flex-1 h-screen  ">
+            <div className="flex-1 h-screen ">
                 <div ref={mainContentRef} className="h-full fade-edges">
-                    <div className="max-w-4xl mx-auto px-8 py-12">
+                    <div className="max-w-4xl mx-auto px-8 py-12 ">
                         {children}
                         {/* Page navigation */}
                         {(navigation.previous || navigation.next) && (

@@ -214,7 +214,7 @@ export default function DocPage(): JSX.Element {
       </motion.div>
 
       <motion.div
-        className="w-full max-w-4xl mx-auto text-center z-[10]"
+        className="w-full max-w-4xl mx-auto text-center mt-20 md:mt-0 z-[10]"
         initial="initial"
         animate="animate"
         transition={{ staggerChildren: 0.1 }}
@@ -242,7 +242,7 @@ export default function DocPage(): JSX.Element {
           className="text-[var(--font-gray)] text-xl mb-12"
           {...fadeInUp}
         >
-          LovableLabs UI is available for JavaScript, React and Angular.
+          LovableLabs UI is available for React.
         </motion.p>
 
         <motion.div

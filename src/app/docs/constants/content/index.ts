@@ -50,6 +50,8 @@ const slugToContentKey: Record<string, string> = {
     'backgrounds-squaregrid': 'backgroundsSquareGridContent',
     'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
     'backgrounds-parallaxgrid':'backgroundParallaxGridContent',
+    'backgrounds-parallaxdot':'backgroundParallaxDotContent',
+
 
     // animations
     'loopbadge-animation': 'loopBadgeAnimationContent',
@@ -58,6 +60,7 @@ const slugToContentKey: Record<string, string> = {
     'radiating-dot': 'radiatingDotContent',
     'animated-border': 'animatedBorderContent',
     'dot-martix-countdown': 'dotMatrixCountdownContent',
+    
 
 }
 // Export all content

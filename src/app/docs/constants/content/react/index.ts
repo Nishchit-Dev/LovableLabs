@@ -137,6 +137,7 @@ import { radiatingDotContent } from './radiatingDot'
 import { animatedBorderContent } from './animatedBorder'
 import { dotMatrixCountdownContent } from './countdown'
 import { backgroundParallaxGridContent } from './parallexGridBackground'
+import { backgroundParallaxDotContent } from './parallexDotBackground'
 
 // Re-export all imported modules
 export {
@@ -150,4 +151,5 @@ export {
     animatedBorderContent,
     dotMatrixCountdownContent,
     backgroundParallaxGridContent,
+    backgroundParallaxDotContent,
 }
