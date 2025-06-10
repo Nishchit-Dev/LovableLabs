@@ -121,7 +121,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                         line,
                                         key: i,
                                     })
-                                    const { key, ...restLineProps } = lineProps
+                                    const { ...restLineProps } = lineProps
                                     return (
                                         <div key={i} {...restLineProps}>
                                             {line.map((token, key) => {
@@ -129,14 +129,10 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                                     token,
                                                     key,
                                                 })
-                                                const {
-                                                    key: tokenKey,
-                                                    ...restTokenProps
-                                                } = tokenProps
                                                 return (
                                                     <span
                                                         key={key}
-                                                        {...restTokenProps}
+                                                        {...tokenProps}
                                                     />
                                                 )
                                             })}
