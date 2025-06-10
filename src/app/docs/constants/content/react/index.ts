@@ -136,6 +136,8 @@ import { cursorContainerContent } from './cursorContainer'
 import { radiatingDotContent } from './radiatingDot'
 import { animatedBorderContent } from './animatedBorder'
 import { dotMatrixCountdownContent } from './countdown'
+import { backgroundParallaxGridContent } from './parallexGridBackground'
+
 // Re-export all imported modules
 export {
     InstallTailwindCss,
@@ -147,4 +149,5 @@ export {
     radiatingDotContent,
     animatedBorderContent,
     dotMatrixCountdownContent,
+    backgroundParallaxGridContent,
 }

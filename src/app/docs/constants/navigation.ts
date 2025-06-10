@@ -57,6 +57,11 @@ export const getDocCategories = (framework: string): Category[] => {
                     label: 'Dotted Grid',
                     path: `/docs/backgrounds-dottedgrid?framework=${framework}`,
                 },
+                {
+                    label: 'Parallax Grid',
+                    path: `/docs/backgrounds-parallaxgrid?framework=${framework}`,
+                    releaseDate: releaseDate.parallaxGrid,
+                },
             ],
         },
         {
@@ -105,7 +110,7 @@ export const getDocCategories = (framework: string): Category[] => {
         {
             title: 'CountDown',
             slug: 'Dot Matrix CountDown Timer',
-            
+
             items: [
                 {
                     label: 'Dot-Matrix CountDown',
