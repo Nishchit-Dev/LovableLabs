@@ -58,9 +58,14 @@ export const getDocCategories = (framework: string): Category[] => {
                     path: `/docs/backgrounds-dottedgrid?framework=${framework}`,
                 },
                 {
-                    label: 'Parallax Grid',
+                    label: 'Parallax Grid Background',
                     path: `/docs/backgrounds-parallaxgrid?framework=${framework}`,
                     releaseDate: releaseDate.parallaxGrid,
+                },
+                 {
+                    label: 'Parallax Dot Background',
+                    path: `/docs/backgrounds-parallaxdot?framework=${framework}`,
+                    releaseDate: releaseDate.parallaxDot,
                 },
             ],
         },
@@ -118,6 +123,7 @@ export const getDocCategories = (framework: string): Category[] => {
                     isLock: true,
                     releaseDate: releaseDate.dotmatrixCountdown,
                 },
+                
             ],
         },
         // {
