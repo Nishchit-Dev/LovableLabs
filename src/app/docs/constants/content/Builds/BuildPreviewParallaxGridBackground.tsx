@@ -1,5 +1,5 @@
 import React from 'react'
-import { ParallaxGridBackground } from '../code/ParallexGridBackground'
+import { ParallaxGridBackground } from '../code/ParallaxGridBackground'
 
 export const BuildPreviewParallaxGridBackground = () => {
     // Example: Render the first section's code as a live preview if available
@@ -14,12 +14,13 @@ export const BuildPreviewParallaxGridBackground = () => {
                 {/* Replace below with actual component preview */}
 
                 <ParallaxGridBackground
-                    className=" w-full min-h-[250px] rounded-lg bg-white"
+                    className=" w-full min-h-[350px] rounded-lg bg-white"
                     centered
                     overlay
+                    boxSize={42}
                 >
                     <div className="realative top-1/4 left-1/4 text-center">
-                        <p className="text-4xl font-semibold text-black/80">
+                        <p className="text-4xl font-bold text-black/80">
                             Explore the Parallax Grid Background!
                         </p>
                         <p className="mt-2 text-lg text-black/60">
