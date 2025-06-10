@@ -49,6 +49,7 @@ const slugToContentKey: Record<string, string> = {
     // Backgrounds
     'backgrounds-squaregrid': 'backgroundsSquareGridContent',
     'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
+    'backgrounds-parallaxgrid':'backgroundParallaxGridContent',
 
     // animations
     'loopbadge-animation': 'loopBadgeAnimationContent',
