@@ -116,7 +116,7 @@ export default function Home() {
                         <motion.span>Better</motion.span>. Ship{' '}
                         <motion.span>Sooner</motion.span>.
                     </p>
-                    <p className="z-10 text-white font-regular text-sm sm:text-md md:text-lg">
+                    <p className="z-10 text-white font-regular text-sm sm:text-md md:text-lg text-center">
                         A modern, accessible UI component library for React
                         projects.
                     </p>

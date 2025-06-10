@@ -58,11 +58,11 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                     <>
                         {codeSrc ? (
                             <div className="flex flex-row">
-                                <p className="px-5 py-3 w-full bg-black/70 text-sm">
+                                <p className="px-5 py-3 flex-1 bg-black/70 text-sm">
                                     {codeSrc}
                                 </p>
                                 <div
-                                    className=" flex justify-end items-center px-5 py-3 bg-black/70 text-sm cursor-pointer hover:bg-black/80 transition-colors"
+                                    className="flex justify-end items-center px-5 py-3 bg-black/70 text-sm cursor-pointer hover:bg-black/80 transition-colors flex-shrink-0"
                                     onClick={handleCopy}
                                 >
                                     {copySuccess ? (
@@ -111,12 +111,8 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                     overflow: 'auto',
                                     backgroundColor: '#1e1e1e',
                                     scrollbarWidth: 'thin',
-                                    scrollbarColor:
-                                        'oklch(60.6% 0.25 292.717) #000',
-                                    maxHeight:
-                                        showExpandButton && !isExpanded
-                                            ? '200px'
-                                            : 'none',
+                                    scrollbarColor: 'oklch(60.6% 0.25 292.717) #000',
+                                    maxHeight: showExpandButton && !isExpanded ? '200px' : 'none',
                                     position: 'relative',
                                 }}
                             >
@@ -125,26 +121,18 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                         line,
                                         key: i,
                                     })
-                                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                    const { key, ...restLineProps } = lineProps
+                                    const { ...restLineProps } = lineProps
                                     return (
                                         <div key={i} {...restLineProps}>
                                             {line.map((token, key) => {
-                                                const tokenProps =
-                                                    getTokenProps({
-                                                        token,
-                                                        key,
-                                                    })
-                                                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                                const {
-                                                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                                    key: tokenKey,
-                                                    ...restTokenProps
-                                                } = tokenProps
+                                                const tokenProps = getTokenProps({
+                                                    token,
+                                                    key,
+                                                })
                                                 return (
                                                     <span
                                                         key={key}
-                                                        {...restTokenProps}
+                                                        {...tokenProps}
                                                     />
                                                 )
                                             })}
@@ -224,14 +212,14 @@ const DocSection = ({ content }: DocSectionProps) => {
             }}
             transition={{
                 type: 'tween',
-                ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
+                ease: [0.4, 0, 0.2, 1],
                 delay: 0.6,
                 duration: 0.8,
             }}
-            className="text-[var(--font-white)] overflow-hidden "
+            className="text-[var(--font-white)] overflow-hidden"
         >
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
-            <p className="text-[var(--font-gray)] mb-10 ">
+            <p className="text-[var(--font-gray)] mb-10">
                 {content.description}
             </p>
 
@@ -243,7 +231,6 @@ const DocSection = ({ content }: DocSectionProps) => {
                         <>
                             <Lock size={32} />
                             <p className="text-lg">
-                                {' '}
                                 Hold tight! This component will go live on.
                             </p>
                         </>
@@ -260,10 +247,10 @@ const DocSection = ({ content }: DocSectionProps) => {
             ) : (
                 content.sections.map((section, index) => (
                     <div key={index} className="flex flex-row">
-                        <div className="w-[0.5px] bg-white/20 self-stretch mr-10 ">
-                            <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500 "></div>
+                        <div className="w-[0.5px] bg-white/20 self-stretch mr-10">
+                            <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500"></div>
                         </div>
-                        <div className="mb-16 w-full ">
+                        <div className="mb-16 w-full min-w-0">
                             {section.title && (
                                 <div className="mb-6">
                                     <h2
@@ -275,7 +262,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                                         {section.title}
                                     </h2>
                                     {section.description && (
-                                        <p className="text-[var(--font-gray)] text-md font-light ">
+                                        <p className="text-[var(--font-gray)] text-md font-light">
                                             {section.description}
                                         </p>
                                     )}
@@ -287,7 +274,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                             </div>
 
                             {section.code && (
-                                <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-hidden ">
+                                <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-x-auto">
                                     <CodeBlock
                                         code={section.code}
                                         codeSrc={section.codeSrc}
