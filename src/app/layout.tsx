@@ -116,8 +116,8 @@ export default async function RootLayout({
             >
                 <Navbar />
                 {children}
-                <div className="fixed bottom-5 right-10 z-[100] flex items-end justify-end">
-                    <LoopBadge imageSrc="/assets/memoji/logo.png" />
+                <div className="fixed bottom-5 right-10 z-[100] items-end justify-end hidden md:flex lg:flex">
+                    <LoopBadge  imageSrc="/assets/memoji/logo.png" />
                 </div>
                 <Footer />
             </body>

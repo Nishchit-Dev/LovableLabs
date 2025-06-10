@@ -165,7 +165,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                         onClick={toggleExpanded}
                                         onMouseEnter={() => setIsHovered(true)}
                                         onMouseLeave={() => setIsHovered(false)}
-                                        className="text-white flex flex-row gap-2 items-center justify-center px-4 py-2 bg-black/50 rounded-full hover:bg-black/70"
+                                        className="text-white flex flex-row gap-2 items-center cursor-pointer justify-center px-4 py-2 bg-black/50 rounded-full hover:bg-black/70"
                                         transition={{ duration: 0.2 }}
                                     >
                                         <motion.div className="relative w-5 h-5 flex items-center justify-center">
@@ -228,7 +228,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                 delay: 0.6,
                 duration: 0.8,
             }}
-            className="text-[var(--font-white)] overflow-hidden"
+            className="text-[var(--font-white)] overflow-hidden "
         >
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
             <p className="text-[var(--font-gray)] mb-10 ">
@@ -287,7 +287,7 @@ const DocSection = ({ content }: DocSectionProps) => {
                             </div>
 
                             {section.code && (
-                                <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-hidden">
+                                <div className="mt-6 bg-[#1E1E1E] rounded-md overflow-hidden ">
                                     <CodeBlock
                                         code={section.code}
                                         codeSrc={section.codeSrc}
