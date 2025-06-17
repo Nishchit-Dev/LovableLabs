@@ -13,7 +13,7 @@ import {
 import { motion } from 'framer-motion'
 
 import './docLayout.css'
-import { ChevronLeft, Lock, Menu, X } from 'lucide-react'
+import { ChevronLeft, Lock, Menu,} from 'lucide-react'
 import ActiveLink from './ActiveLink'
 
 // Component that uses searchParams

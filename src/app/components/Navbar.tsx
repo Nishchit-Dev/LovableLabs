@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import { Menu } from 'lucide-react'
 
 interface LinkItem {
     label: string
