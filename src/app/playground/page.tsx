@@ -18,6 +18,9 @@ import { RadiatingDot } from '../docs/constants/content/code/RadiatingDot'
 import AnimatedBorder from '../docs/constants/content/code/AnimatedBorder'
 import { BuildPreviewAnimatedBorder } from '../docs/constants/content/Builds/BuildPreviewAnimatedBorder'
 import { CountdownTimer } from '../docs/constants/content/code/DotMatrixCountdownTimer'
+import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxGridBackground'
+import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
+import FramerTextAnimation from '../docs/constants/content/code/FramerTextAnimation'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -551,11 +554,20 @@ const ContentSlider = () => {
 
 const DevTools = () => {
     return (
-        <DottedBackground fullscreen  overlay>
-            <div className="w-full h-screen flex flex-1 justify-center items-center  ">
-                <ContentSlider />
-            </div>
-        </DottedBackground>
+        // <DottedBackground fullscreen  overlay>
+        //     <div className="w-full h-screen flex flex-1 justify-center items-center  ">
+        //         <ContentSlider />
+        //     </div>
+        // </DottedBackground>
+        // <ParallaxDotBackground boxSize={42} dark fullscreen overlay centered>
+        //     <div className="text-center flex-col  flex flex-1 justify-center items-center ">
+        //         <h2 className={`text-4xl font-bold mb-4 text-white `}>
+        //             Large Grid
+        //         </h2>
+        //         <p className={`text-lg text-white`}>Different theme & size</p>
+        //     </div>
+        // </ParallaxDotBackground>
+        <FramerTextAnimation />
     )
 }
 
