@@ -6,9 +6,14 @@ import Link from 'next/link'
 
 export default function Home() {
     return (
-        <div className="h-full">
+        <div className="h-full relative">
+            <div
+                style={{ opacity: 0.04 }}
+                className="absolute z-10 w-screen h-screen  bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px]  rounded-none"
+            ></div>
             <div className="min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden relative px-3 sm:px-4">
                 {/* Soft gradient overlay for mobile */}
+
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-[5] pointer-events-none md:hidden"></div>
 
                 {/* <div
@@ -86,10 +91,7 @@ export default function Home() {
                         }}
                     ></motion.div>{' '}
                 </div>
-                <div
-                    style={{ opacity: 0.04 }}
-                    className="fixed w-full h-screen  bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px]  rounded-none"
-                ></div>
+
                 <div className="z-[1000] flex flex-row justify-center items-center -space-x-2 sm:-space-x-3 pt-20 md:pt-0">
                     <div className="bg-violet-100 rounded-full border-1  border-violet-300">
                         <Image
