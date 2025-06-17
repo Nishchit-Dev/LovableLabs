@@ -135,10 +135,10 @@ export default function Home() {
                         </div>
                         <div className="bg-black/70 flex items-center justify-center group bg-opacity-75 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full cursor-pointer border-1 border-violet-200/70">
                             <Link
-                                href="/docs"
-                                className="z-10 flex items-center justify-center group-hover:text-white text-white/70 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
+                                href="/playground"
+                                className="z-10 flex items-center justify-center group-hover:text-white text-white/80 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
                             >
-                                docs 📄
+                                Playground 🛝
                             </Link>
                         </div>
                     </div>
