@@ -15,7 +15,7 @@ const getStartedContent: DocContent = {
             content: 'Begin by installing Lovablelabs UI using npm:',
             isLiveDemo: false,
             code: `# With npm
-npm install lovable-ui`,
+npm install lovablelabs`,
             codeSrc: 'Terminal',
         },
         {
