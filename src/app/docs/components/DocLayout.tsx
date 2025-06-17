@@ -499,8 +499,8 @@ export default function DocLayoutClient({
                 <div className="min-h-screen bg-[var(--bg-dark)] flex justify-center items-center">
                     <div className="flex flex-col items-center">
                         <div className="relative w-16 h-16">
-                            <div className="absolute inset-0 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-                            <div className="absolute inset-0 border-t-4 border-blue-300 border-solid rounded-full opacity-40 animate-ping"></div>
+                            <div className="absolute inset-0 border-t-4 border-[rgb(106,66,194)] border-solid rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 border-t-4 border-[rgb(70,50,119)] border-solid rounded-full opacity-40 animate-ping"></div>
                         </div>
                         <div className="mt-4 text-[var(--font-gray)]">Loading documentation...</div>
                     </div>
