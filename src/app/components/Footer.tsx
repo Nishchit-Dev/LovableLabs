@@ -147,7 +147,22 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
             </motion.footer>
-            <div className="flex justify-center items-center flex-1 w-full">
+            <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                    hidden: { y: 100, opacity: 0 },
+                    visible: {
+                        y: 0,
+                        opacity: 1,
+                        transition: {
+                            type: 'spring',
+                            duration: 5,
+                        },
+                    },
+                }}
+                className="flex justify-center items-center flex-1 w-full"
+            >
                 <Image
                     src={'/assets/footer/branding_Logo.svg'}
                     alt=""
@@ -155,7 +170,7 @@ const Footer: React.FC = () => {
                     width={0}
                     className="h-full w-max"
                 />
-            </div>
+            </motion.div>
         </div>
     )
 }
