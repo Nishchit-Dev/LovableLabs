@@ -20,7 +20,7 @@ import { BuildPreviewAnimatedBorder } from '../docs/constants/content/Builds/Bui
 import { CountdownTimer } from '../docs/constants/content/code/DotMatrixCountdownTimer'
 import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxGridBackground'
 import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
-import FramerTextAnimation from '../docs/constants/content/code/FramerTextAnimation'
+import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -482,6 +482,20 @@ const ContentSlider = () => {
                 </div>
             ),
         },
+        {
+            title: 'Motion Text Animation',
+            description:
+                'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            Component: (
+                <div className="">
+                    <MotionTextAnimation
+                        enableScale={false}
+                        dark
+                        textClassName="text-5xl font-bold"
+                    />
+                </div>
+            ),
+        },
     ]
 
     const [current, setCurrent] = useState(0)
@@ -554,20 +568,11 @@ const ContentSlider = () => {
 
 const DevTools = () => {
     return (
-        // <DottedBackground fullscreen  overlay>
-        //     <div className="w-full h-screen flex flex-1 justify-center items-center  ">
-        //         <ContentSlider />
-        //     </div>
-        // </DottedBackground>
-        // <ParallaxDotBackground boxSize={42} dark fullscreen overlay centered>
-        //     <div className="text-center flex-col  flex flex-1 justify-center items-center ">
-        //         <h2 className={`text-4xl font-bold mb-4 text-white `}>
-        //             Large Grid
-        //         </h2>
-        //         <p className={`text-lg text-white`}>Different theme & size</p>
-        //     </div>
-        // </ParallaxDotBackground>
-        <FramerTextAnimation />
+        <ParallaxDotBackground boxSize={42} overlay>
+            <div className="w-full h-screen flex flex-1 justify-center items-center  ">
+                <ContentSlider />
+            </div>
+        </ParallaxDotBackground>
     )
 }
 
