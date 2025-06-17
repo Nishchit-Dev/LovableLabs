@@ -57,5 +57,7 @@ export type DocContent = {
     preview?: JSX.Element
     isLock?: boolean
     releaseDate?: string
+    SEOTitle?: string
+    SEODescription?: string
     sections: ContentSection[]
 }
