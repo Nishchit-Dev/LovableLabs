@@ -44,28 +44,15 @@ export const getDocCategories = (framework: string): Category[] => {
                 },
             ],
         },
-
         {
-            title: 'Backgrounds',
-            slug: 'backgrounds',
+            title: 'Text Animations',
+            slug: 'Animations components with in-built framer',
             items: [
                 {
-                    label: 'Square Grid',
-                    path: `/docs/backgrounds-squaregrid?framework=${framework}`,
-                },
-                {
-                    label: 'Dotted Grid',
-                    path: `/docs/backgrounds-dottedgrid?framework=${framework}`,
-                },
-                {
-                    label: 'Parallax Grid Background',
-                    path: `/docs/backgrounds-parallaxgrid?framework=${framework}`,
-                    releaseDate: releaseDate.parallaxGrid,
-                },
-                 {
-                    label: 'Parallax Dot Background',
-                    path: `/docs/backgrounds-parallaxdot?framework=${framework}`,
-                    releaseDate: releaseDate.parallaxDot,
+                    label: 'Motion Text Reveal',
+                    path: `/docs/motion-text-reveal?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.motionTextReveal,
                 },
             ],
         },
@@ -91,6 +78,31 @@ export const getDocCategories = (framework: string): Category[] => {
             ],
         },
         {
+            title: 'Backgrounds',
+            slug: 'backgrounds',
+            items: [
+                {
+                    label: 'Square Grid',
+                    path: `/docs/backgrounds-squaregrid?framework=${framework}`,
+                },
+                {
+                    label: 'Dotted Grid',
+                    path: `/docs/backgrounds-dottedgrid?framework=${framework}`,
+                },
+                {
+                    label: 'Parallax Grid Background',
+                    path: `/docs/backgrounds-parallaxgrid?framework=${framework}`,
+                    releaseDate: releaseDate.parallaxGrid,
+                },
+                {
+                    label: 'Parallax Dot Background',
+                    path: `/docs/backgrounds-parallaxdot?framework=${framework}`,
+                    releaseDate: releaseDate.parallaxDot,
+                },
+            ],
+        },
+
+        {
             title: 'Container',
             slug: 'Container',
             items: [
@@ -98,20 +110,16 @@ export const getDocCategories = (framework: string): Category[] => {
                     label: 'Draggable Container',
                     path: `/docs/draggable-container?framework=${framework}`,
                 },
-            ],
-        },
-        {
-            title: 'Cursor',
-            slug: 'Cursor Container',
-            items: [
-                {
+                  {
                     label: 'Cursor Container',
                     path: `/docs/cursor-container?framework=${framework}`,
                     isLock: true,
                     releaseDate: releaseDate.cursorFollow,
                 },
+                
             ],
         },
+        
         {
             title: 'CountDown',
             slug: 'Dot Matrix CountDown Timer',
@@ -123,9 +131,9 @@ export const getDocCategories = (framework: string): Category[] => {
                     isLock: true,
                     releaseDate: releaseDate.dotmatrixCountdown,
                 },
-                
             ],
         },
+
         // {
         //     title: "Components",
         //     slug: "components",

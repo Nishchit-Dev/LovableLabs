@@ -32,7 +32,9 @@ export const getContentBySlug = (slug: string): DocContent | null => {
         }
 
         // Return null if content doesn't exist
-        console.log(`Content not found for slug: ${slug} and key: ${contentKey}`)
+        console.log(
+            `Content not found for slug: ${slug} and key: ${contentKey}`
+        )
         return null
     } catch (error) {
         console.error(`Error fetching content for slug: ${slug}`, error)
@@ -49,9 +51,8 @@ const slugToContentKey: Record<string, string> = {
     // Backgrounds
     'backgrounds-squaregrid': 'backgroundsSquareGridContent',
     'backgrounds-dottedgrid': 'backgroundsDottedGridContent',
-    'backgrounds-parallaxgrid':'backgroundParallaxGridContent',
-    'backgrounds-parallaxdot':'backgroundParallaxDotContent',
-
+    'backgrounds-parallaxgrid': 'backgroundParallaxGridContent',
+    'backgrounds-parallaxdot': 'backgroundParallaxDotContent',
 
     // animations
     'loopbadge-animation': 'loopBadgeAnimationContent',
@@ -60,8 +61,10 @@ const slugToContentKey: Record<string, string> = {
     'radiating-dot': 'radiatingDotContent',
     'animated-border': 'animatedBorderContent',
     'dot-martix-countdown': 'dotMatrixCountdownContent',
-    
 
+    // text animation
+
+    'motion-text-reveal': 'motionTextRevealContent',
 }
 // Export all content
 export default {
