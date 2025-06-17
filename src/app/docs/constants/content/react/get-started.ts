@@ -11,9 +11,9 @@ export const getStarted: DocContent = {
 Install lovablelabs UI using npm or yarn:
 
 \`\`\`bash
-npm install lovablelabs-ui
+npm install lovablelabs
 # or
-yarn add lovablelabs-ui
+yarn add lovablelabs
 \`\`\`
       `,
             isLiveDemo: false,

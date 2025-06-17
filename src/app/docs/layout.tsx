@@ -8,5 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <DocLayoutClient>{children}</DocLayoutClient>;
+  return <>
+ 
+    <DocLayoutClient>{children}</DocLayoutClient>
+  </>;
 }

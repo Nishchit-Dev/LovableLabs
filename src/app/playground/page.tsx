@@ -18,6 +18,9 @@ import { RadiatingDot } from '../docs/constants/content/code/RadiatingDot'
 import AnimatedBorder from '../docs/constants/content/code/AnimatedBorder'
 import { BuildPreviewAnimatedBorder } from '../docs/constants/content/Builds/BuildPreviewAnimatedBorder'
 import { CountdownTimer } from '../docs/constants/content/code/DotMatrixCountdownTimer'
+import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxGridBackground'
+import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
+import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -479,6 +482,20 @@ const ContentSlider = () => {
                 </div>
             ),
         },
+        {
+            title: 'Motion Text Animation',
+            description:
+                'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            Component: (
+                <div className="">
+                    <MotionTextAnimation
+                        enableScale={false}
+                        dark
+                        textClassName="text-5xl font-bold"
+                    />
+                </div>
+            ),
+        },
     ]
 
     const [current, setCurrent] = useState(0)
@@ -551,11 +568,11 @@ const ContentSlider = () => {
 
 const DevTools = () => {
     return (
-        <DottedBackground fullscreen  overlay>
+        <ParallaxDotBackground boxSize={42} overlay>
             <div className="w-full h-screen flex flex-1 justify-center items-center  ">
                 <ContentSlider />
             </div>
-        </DottedBackground>
+        </ParallaxDotBackground>
     )
 }
 

@@ -47,17 +47,17 @@ export const metadata: Metadata = {
         'SEO Friendly',
         'Code Distribution',
     ],
-    authors: [{ name: 'LovableLabs', url: 'https://lovablelabs.dev' }],
+    authors: [{ name: 'LovableLabs', url: 'https://lovablelabs.xyz' }],
     creator: 'LovableLabs',
     publisher: 'LovableLabs',
     openGraph: {
         title: 'LovableLabs UI',
         description: 'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks.',
-        url: 'https://lovablelabs.dev',
+        url: 'https://lovablelabs.xyz',
         siteName: 'LovableLabs UI',
         images: [
             {
-                url: 'https://lovablelabs.dev/og-image.png',
+                url: 'https://lovablelabs.xyz/og-image.png',
                 width: 1200,
                 height: 630,
                 alt: 'LovableLabs UI - Beautifully-designed, accessible components',
@@ -70,10 +70,10 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'LovableLabs UI',
         description: 'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks.',
-        images: ['https://lovablelabs.dev/og-image.png'],
+        images: ['https://lovablelabs.xyz/og-image.png'],
         creator: '@lovablelabs',
     },
-    metadataBase: new URL('https://lovablelabs.dev'),
+    metadataBase: new URL('https://lovablelabs.xyz'),
     robots: {
         index: true,
         follow: true,

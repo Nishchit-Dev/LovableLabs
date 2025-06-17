@@ -25,7 +25,7 @@ export const BuildPreviewDotMatrixCountDown = () => {
                         dark
                         onComplete={() => console.log('Timer completed!')}
                     />
-                    <p className='text-black/70 text-center'>Day  :  Hour  :  Second </p>
+                    <p className='text-black/70 text-center'>Hour  :  Minute  :  Second </p>
                 </GridBackground>
             </div>
         </div>
