@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import { Menu } from 'lucide-react'
 
 interface LinkItem {
     label: string
@@ -80,12 +81,12 @@ export default function Navbar() {
 
     return (
         <nav className="  text-white fixed top-5 z-[99] w-[65%] left-1/2 -translate-x-1/2 rounded-full">
-            <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-                <div className="flex items-center space-x-6">
+            <div className="max-w-screen-xl mx-auto flex justify-between items-center px-2 md:px-0">
+                <div className="flex items-center space-x-4 md:space-x-6">
                     {/* Logo */}
                     <Link href="/" className="flex items-center">
                         <motion.div
-                            className="w-6 h-6  rounded flex items-center justify-center text-black text-[16px] font-bold"
+                            className="md:w-6 md:h-6 w-[18px] h-[18px] flex items-center justify-center "
                             initial={{ y: -10, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}

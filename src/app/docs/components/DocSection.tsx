@@ -247,7 +247,7 @@ const DocSection = ({ content }: DocSectionProps) => {
             ) : (
                 content.sections.map((section, index) => (
                     <div key={index} className="flex flex-row">
-                        <div className="w-[0.5px] bg-white/20 self-stretch mr-10">
+                        <div className="w-[0.5px] bg-white/20 self-stretch lg:mr-10 mr-4">
                             <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500"></div>
                         </div>
                         <div className="mb-16 w-full min-w-0">

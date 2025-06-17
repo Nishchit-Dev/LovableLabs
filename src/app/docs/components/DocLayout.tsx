@@ -13,7 +13,8 @@ import {
 import { motion } from 'framer-motion'
 
 import './docLayout.css'
-import { Lock } from 'lucide-react'
+import { ChevronLeft, Lock, Menu, X } from 'lucide-react'
+import ActiveLink from './ActiveLink'
 
 // Component that uses searchParams
 function DocLayoutInner({ children }: { children: React.ReactNode }) {
@@ -28,11 +29,13 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
         previous: { label: string; path: string } | null
         next: { label: string; path: string } | null
     }>({ previous: null, next: null })
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     // References to scrollable elements
     const leftSidebarRef = useRef<HTMLDivElement>(null)
     const mainContentRef = useRef<HTMLDivElement>(null)
     const rightSidebarRef = useRef<HTMLDivElement>(null)
+    const mobileSidebarRef = useRef<HTMLDivElement>(null)
 
     // Check if we're on the main docs page
     const isMainDocsPage = pathname === '/docs'
@@ -85,6 +88,29 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
         }
     }
 
+    // Close mobile menu when pathname changes
+    useEffect(() => {
+        setMobileMenuOpen(false)
+    }, [pathname])
+
+    // Close mobile menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                mobileMenuOpen &&
+                mobileSidebarRef.current &&
+                !mobileSidebarRef.current.contains(event.target as Node)
+            ) {
+                setMobileMenuOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [mobileMenuOpen])
+
     // Set up scroll event handlers
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
@@ -112,6 +138,28 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                 rightSidebarRef.current &&
                 (rightSidebarRef.current.contains(targetElement) ||
                     rightSidebarRef.current === targetElement)
+
+            // Determine if cursor is over mobile sidebar
+            const isOverMobileSidebar =
+                mobileSidebarRef.current &&
+                (mobileSidebarRef.current.contains(targetElement) ||
+                    mobileSidebarRef.current === targetElement)
+
+            // If scrolling over mobile sidebar
+            if (isOverMobileSidebar && mobileSidebarRef.current) {
+                const { scrollTop, scrollHeight, clientHeight } =
+                    mobileSidebarRef.current
+
+                // If scrolling, let sidebar scroll
+                if (
+                    (deltaY > 0 && scrollTop < scrollHeight - clientHeight) ||
+                    (deltaY < 0 && scrollTop > 0)
+                ) {
+                    e.preventDefault()
+                    mobileSidebarRef.current.scrollTop += deltaY
+                    return
+                }
+            }
 
             // If scrolling over left sidebar
             if (isOverLeftSidebar && leftSidebarRef.current) {
@@ -214,178 +262,240 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
         )
     }
 
+    // Render left sidebar content function to avoid duplication
+    const renderSidebarContent = () => (
+        <>
+            <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)]">
+                {frameworks.map((framework) => (
+                    <button
+                        key={framework.id}
+                        className={`px-4 py-2 ${selectedFramework === framework.id
+                            ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
+                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                            }`}
+                        onClick={() =>
+                            handleFrameworkChange(framework.id)
+                        }
+                    >
+                        {framework.id === 'js'
+                            ? 'JS'
+                            : framework.id === 'react'
+                                ? 'React'
+                                : 'Angular'}
+                    </button>
+                ))}
+            </div>
+
+            <div className="md:space-y-6 space-y-5">
+                {navItems.gettingStarted.map((item, index) => (
+                    <div key={index}>
+                        <Link
+                            onClick={() => {
+                                if (mobileMenuOpen) {
+                                    setMobileMenuOpen(false)
+                                }
+                            }}
+                            href={item.path}
+                            className={`flex items-center transition-colors duration-200 ${pathname === item.path.split('?')[0]
+                                ? 'text-[var(--font-white)]'
+                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                                }`}
+                        >
+                            <span className="mr-2">
+                                {item.icon}
+                            </span>{' '}
+                            {item.label}
+                        </Link>
+                    </div>
+                ))}
+
+                {navItems.categories.map((category, catIndex) => (
+                    <div className="space-y-2" key={catIndex}>
+                        <h3 className="text-[var(--font-white)] font-medium mb-2">
+                            {category.title}
+                        </h3>
+                        <ul className="space-y-2 pl-2 border-l border-white/35 border-dashed">
+                            {category.items.map(
+                                (item, itemIndex) => (
+                                    <li
+                                        key={itemIndex}
+                                        className="flex items-center flex-row group relative overflow-hidden"
+                                    >
+                                        <motion.span
+                                            className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${pathname ===
+                                                item.path.split(
+                                                    '?'
+                                                )[0]
+                                                ? 'bg-white w-1.5'
+                                                : 'bg-transparent group-hover:bg-white/50'
+                                                } transition-all duration-200 ease-in-out absolute left-0`}
+                                        />
+                                        <Link
+                                            onClick={() => {
+                                                if (mobileMenuOpen) {
+                                                    setMobileMenuOpen(false)
+                                                }
+                                            }}
+                                            href={item.path}
+                                            className={`${pathname ===
+                                                item.path.split(
+                                                    '?'
+                                                )[0]
+                                                ? 'text-[var(--font-white)] pl-3'
+                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
+                                                } text-sm transition-all duration-200 ${item.badge
+                                                    ? 'flex items-center'
+                                                    : ''
+                                                }`}
+                                            style={{
+                                                opacity:
+                                                    new Date(
+                                                        item.releaseDate ||
+                                                        ''
+                                                    ).getTime() >
+                                                        Date.now()
+                                                        ? 0.7
+                                                        : 1,
+                                            }}
+                                        >
+                                            <div className="flex flex-row gap-2 items-center">
+                                                {new Date(
+                                                    item.releaseDate ||
+                                                    ''
+                                                ).getTime() >
+                                                    Date.now() ? (
+                                                    <span>
+                                                        <Lock
+                                                            size={
+                                                                16
+                                                            }
+                                                        />
+                                                    </span>
+                                                ) : (
+                                                    <></>
+                                                )}
+                                                {item.label}
+                                                {item.badge && (
+                                                    <span
+                                                        className="ml-2 text-xs"
+                                                        style={{
+                                                            backgroundColor:
+                                                                item
+                                                                    .badge
+                                                                    .bgColor,
+                                                            color: item
+                                                                .badge
+                                                                .color,
+                                                            padding:
+                                                                '0.125rem 0.5rem',
+                                                            borderRadius:
+                                                                '0.25rem',
+                                                        }}
+                                                    >
+                                                        {
+                                                            item
+                                                                .badge
+                                                                .text
+                                                        }
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </Link>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </>
+    )
+
     return (
-        <div className="flex min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-24 lg:px-48 px-12 overflow-y-auto overflow-x-hidden">
-            {/* Left Sidebar */}
+        <div className="flex flex-col md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:px-48 md:px-12 px-4 overflow-y-auto overflow-x-hidden">
+            {/* Left Sidebar - desktop */}
             <motion.div
-              layout="size"
-            initial={{
-                opacity: 0,
-                y: 40,
-            }}
-            animate={{
-                opacity: 1,
-                y: 0,
-            }}
-            transition={{
-                type: 'tween',
-                ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
-                delay: 0.2,
-                duration: 0.8,
-            }}
-                className="w-[auto] flex-shrink-0 h-screen overflow-hidden"
+                layout="size"
+                initial={{
+                    opacity: 0,
+                    y: 40,
+                }}
+                animate={{
+                    opacity: 1,
+                    y: 0,
+                }}
+                transition={{
+                    type: 'tween',
+                    ease: [0.4, 0, 0.2, 1], // cubic-bezier for smoother ease
+                    delay: 0.2,
+                    duration: 0.8,
+                }}
+                className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block"
             >
                 <div
                     ref={leftSidebarRef}
                     className="h-full modern-scrollbar fade-edges"
                 >
                     <div className="px-4 py-6">
-                        <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)]">
-                            {frameworks.map((framework) => (
-                                <button
-                                    key={framework.id}
-                                    className={`px-4 py-2 ${
-                                        selectedFramework === framework.id
-                                            ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
-                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                    }`}
-                                    onClick={() =>
-                                        handleFrameworkChange(framework.id)
-                                    }
-                                >
-                                    {framework.id === 'js'
-                                        ? 'JS'
-                                        : framework.id === 'react'
-                                        ? 'React'
-                                        : 'Angular'}
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="space-y-6">
-                            {navItems.gettingStarted.map((item, index) => (
-                                <div key={index}>
-                                    <Link
-                                        href={item.path}
-                                        className={`flex items-center transition-colors duration-200 ${
-                                            pathname === item.path.split('?')[0]
-                                                ? 'text-[var(--font-white)]'
-                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                        }`}
-                                    >
-                                        <span className="mr-2">
-                                            {item.icon}
-                                        </span>{' '}
-                                        {item.label}
-                                    </Link>
-                                </div>
-                            ))}
-
-                            {navItems.categories.map((category, catIndex) => (
-                                <div className="space-y-2" key={catIndex}>
-                                    <h3 className="text-[var(--font-white)] font-medium mb-2">
-                                        {category.title}
-                                    </h3>
-                                    <ul className="space-y-2 pl-2 border-l border-white/35 border-dashed">
-                                        {category.items.map(
-                                            (item, itemIndex) => (
-                                                <li
-                                                    key={itemIndex}
-                                                    className="flex items-center flex-row group relative overflow-hidden"
-                                                >
-                                                    <motion.span
-                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
-                                                            pathname ===
-                                                            item.path.split(
-                                                                '?'
-                                                            )[0]
-                                                                ? 'bg-white w-1.5'
-                                                                : 'bg-transparent group-hover:bg-white/50'
-                                                        } transition-all duration-200 ease-in-out absolute left-0`}
-                                                    />
-                                                    <Link
-                                                        href={item.path}
-                                                        className={`${
-                                                            pathname ===
-                                                            item.path.split(
-                                                                '?'
-                                                            )[0]
-                                                                ? 'text-[var(--font-white)] pl-3'
-                                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
-                                                        } text-sm transition-all duration-200 ${
-                                                            item.badge
-                                                                ? 'flex items-center'
-                                                                : ''
-                                                        }`}
-                                                        style={{
-                                                            opacity:
-                                                                new Date(
-                                                                    item.releaseDate ||
-                                                                        ''
-                                                                ).getTime() >
-                                                                Date.now()
-                                                                    ? 0.7
-                                                                    : 1,
-                                                        }}
-                                                    >
-                                                        <div className="flex flex-row gap-2 items-center">
-                                                            {new Date(
-                                                                item.releaseDate ||
-                                                                    ''
-                                                            ).getTime() >
-                                                            Date.now() ? (
-                                                                <span>
-                                                                    <Lock
-                                                                        size={
-                                                                            16
-                                                                        }
-                                                                    />
-                                                                </span>
-                                                            ) : (
-                                                                <></>
-                                                            )}
-                                                            {item.label}
-                                                            {item.badge && (
-                                                                <span
-                                                                    className="ml-2 text-xs"
-                                                                    style={{
-                                                                        backgroundColor:
-                                                                            item
-                                                                                .badge
-                                                                                .bgColor,
-                                                                        color: item
-                                                                            .badge
-                                                                            .color,
-                                                                        padding:
-                                                                            '0.125rem 0.5rem',
-                                                                        borderRadius:
-                                                                            '0.25rem',
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        item
-                                                                            .badge
-                                                                            .text
-                                                                    }
-                                                                </span>
-                                                            )}
-                                                        </div>
-                                                    </Link>
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
+                        {renderSidebarContent()}
                     </div>
                 </div>
             </motion.div>
 
+            {/* Mobile menu button */}
+            <motion.div
+                animate={{
+                    x: mobileMenuOpen ? "calc(100vw - 70px)" : 0,
+                }}
+                transition={{ type: 'tween', duration: 0.3 }}
+                className="md:hidden fixed top-5 left-4 z-50"
+            >
+                <button
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    className="bg-[var(--bg-blue)] rounded-xl p-[10px] hover:bg-[var(--bg-blue)]/80 transition-all duration-200"
+                    aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                >
+                    {mobileMenuOpen ? (
+                        <ChevronLeft size={24} color="white" />
+                    ) : (
+                        <Menu size={24} color="white" />
+                    )}
+                </button>
+            </motion.div>
+
+            {/* Mobile sidebar */}
+            <motion.div
+                ref={mobileSidebarRef}
+                className="md:hidden fixed top-0 left-0 h-full w-[80%] max-w-xs z-50 bg-[var(--bg-dark)] shadow-lg"
+                initial={{ x: '-100%' }}
+                animate={{ x: mobileMenuOpen ? 0 : '-100%' }}
+                transition={{ type: 'tween', duration: 0.3 }}
+            >
+                <div className="h-full overflow-y-auto modern-scrollbar fade-edges">
+
+                    <div className="px-4 pt-20 pb-4 overflow-y-auto">
+                        {renderSidebarContent()}
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Mobile overlay backdrop */}
+            {mobileMenuOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
+
             {/* Main content */}
-            <div className="flex-1 h-screen ">
+            <div className="md:flex-1 w-[100%] h-screen">
+                <ActiveLink />
                 <div ref={mainContentRef} className="h-full fade-edges">
-                    <div className="max-w-4xl mx-auto px-8 py-12 ">
+                    <div className="max-w-4xl mx-auto md:px-8 md:py-12 py-8">
                         {children}
                         {/* Page navigation */}
                         {(navigation.previous || navigation.next) && (
@@ -438,7 +548,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         transition:
                             'backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1), -webkit-backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1)',
                     }}
-                    className="w-[auto] flex-shrink-0 h-screen overflow-hidden hidden md:block"
+                    className="w-[auto]  flex-shrink-0 h-screen overflow-hidden hidden md:block"
                 >
                     <div
                         ref={rightSidebarRef}
@@ -455,11 +565,10 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                         <li>
                                             <a
                                                 href={item.anchor}
-                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${
-                                                    item.isHeading
-                                                        ? 'font-medium'
-                                                        : ''
-                                                }`}
+                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${item.isHeading
+                                                    ? 'font-medium'
+                                                    : ''
+                                                    }`}
                                             >
                                                 {item.label}
                                             </a>
