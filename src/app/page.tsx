@@ -3,12 +3,18 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { MotionTextAnimation } from './docs/constants/content/code/MotionTextReveal'
 
 export default function Home() {
     return (
-        <div className="h-full">
+        <div className="h-full relative">
+            <div
+                style={{ opacity: 0.04 }}
+                className="absolute z-10 w-screen h-screen  bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px]  rounded-none"
+            ></div>
             <div className="min-h-screen bg-black flex flex-col items-center justify-center overflow-hidden relative px-3 sm:px-4">
                 {/* Soft gradient overlay for mobile */}
+
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent z-[5] pointer-events-none md:hidden"></div>
 
                 {/* <div
@@ -86,12 +92,27 @@ export default function Home() {
                         }}
                     ></motion.div>{' '}
                 </div>
-                <div
-                    style={{ opacity: 0.04 }}
-                    className="fixed w-full h-screen  bg-[url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png')] bg-repeat bg-[length:128px]  rounded-none"
-                ></div>
+
                 <div className="z-[1000] flex flex-row justify-center items-center -space-x-2 sm:-space-x-3 pt-20 md:pt-0">
-                    <div className="bg-violet-100 rounded-full border-1  border-violet-300">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { x: -30, y: -30, opacity: 0 },
+                            visible: {
+                                x: 0,
+                                y: 0,
+                                opacity: 1,
+                                transition: {
+                                    delay: 1,
+
+                                    type: 'spring',
+                                    duration: 3,
+                                },
+                            },
+                        }}
+                        className="bg-violet-100 rounded-full border-1  border-violet-300"
+                    >
                         <Image
                             src={'/assets/memoji/memoji_black.png'}
                             width={45}
@@ -99,8 +120,25 @@ export default function Home() {
                             className="w-[45px] h-[45px] sm:w-[60px] sm:h-[60px]"
                             alt=""
                         />
-                    </div>
-                    <div className="bg-violet-100  rounded-full border-1 border-violet-300">
+                    </motion.div>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { x: 20, y: 30, opacity: 0 },
+                            visible: {
+                                y: 0,
+                                x: 0,
+                                opacity: 1,
+                                transition: {
+                                    delay: 1,
+                                    type: 'spring',
+                                    duration: 3,
+                                },
+                            },
+                        }}
+                        className="bg-violet-100  rounded-full border-1 border-violet-300"
+                    >
                         <Image
                             src={'/assets/memoji/memoji_yellow.png'}
                             width={45}
@@ -108,20 +146,46 @@ export default function Home() {
                             className="w-[45px] h-[45px] sm:w-[60px] sm:h-[60px]"
                             alt=""
                         />
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="pt-5 px-4 sm:px-6 flex flex-col gap-2 opacity-75 justify-center items-center z-[10]">
-                    <p className="text-center z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white ">
-                        Build <motion.span>5x Faster</motion.span>. Design{' '}
-                        <motion.span>Better</motion.span>. Ship{' '}
-                        <motion.span>Sooner</motion.span>.
-                    </p>
-                    <p className="z-10 text-white font-regular text-sm sm:text-md md:text-lg text-center">
-                        A modern, accessible UI component library for React
-                        projects.
-                    </p>
+                    <MotionTextAnimation
+                        lines={[
+                            'Build  5x  Faster. Design Better. Ship Sooner.',
+                        ]}
+                        enableFloat={false}
+                        enableScale={false}
+                        textClassName="text-center z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white "
+                    />
+
+                    <MotionTextAnimation
+                        lines={[
+                            'A modern, accessible UI component library for React projects.',
+                        ]}
+                        enableScale={false}
+                        floatIntensity={0}
+                        textClassName="z-10 text-white font-regular text-sm sm:text-md md:text-lg text-center"
+                    />
+
                     <div className="flex flex-row gap-3 sm:gap-4 pt-4 sm:pt-5">
-                        <div className="btn-animated ">
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            className="btn-animated"
+                            variants={{
+                                hidden: { y: 20, opacity: 0 },
+                                visible: {
+                                    y: 0,
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 2,
+
+                                        type: 'spring',
+                                        duration: 3,
+                                    },
+                                },
+                            }}
+                        >
                             <div>
                                 <Link
                                     href="/docs/get-started?framework=react"
@@ -130,15 +194,32 @@ export default function Home() {
                                     Get Started 🚀
                                 </Link>
                             </div>
-                        </div>
-                        <div className="bg-black/70 flex items-center justify-center group bg-opacity-75 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full cursor-pointer border-1 border-violet-200/70">
+                        </motion.div>
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                hidden: { y: 20, opacity: 0 },
+                                visible: {
+                                    y: 0,
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 2,
+
+                                        type: 'spring',
+                                        duration: 5,
+                                    },
+                                },
+                            }}
+                            className="bg-black/70 flex items-center justify-center group bg-opacity-75 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full cursor-pointer border-1 border-violet-200/70"
+                        >
                             <Link
-                                href="/docs"
-                                className="z-10 flex items-center justify-center group-hover:text-white text-white/70 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
+                                href="/playground"
+                                className="z-10 flex items-center justify-center group-hover:text-white text-white/80 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
                             >
-                                docs 📄
+                                Playground 🛝
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
