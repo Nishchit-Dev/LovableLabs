@@ -46,6 +46,7 @@ export default function Navbar() {
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
     const pathname = usePathname()
+    
     const navRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -131,7 +132,7 @@ export default function Navbar() {
                             }}
                         >
                             {links.map((link, index) => {
-                                const isActive = pathname.startsWith(link.path)
+                                const isActive = link.path.includes(pathname)
                                 const hasWhiteBackground =
                                     hoveredIndex !== null
                                         ? hoveredIndex === index
