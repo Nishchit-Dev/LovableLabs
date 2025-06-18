@@ -148,8 +148,9 @@ const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
                                                         key={key}
                                                         className={tokenProps.className}
                                                         style={tokenProps.style}
-                                                        children={tokenProps.children}
-                                                    />
+                                                    >
+                                                        {tokenProps.children}
+                                                    </span>
                                                 )
                                             })}
                                         </div>
@@ -283,7 +284,7 @@ const PreviewTab = ({ content }: DocSectionProps) => {
     )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const VariantsTab = ({ content }: DocSectionProps) => {
     return (
         <div className="w-full">

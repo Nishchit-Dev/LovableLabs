@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MotionTextAnimation } from './docs/constants/content/code/MotionTextReveal'
-import { event, trackNavigation } from './lib/gtag'
+import { trackNavigation } from './lib/gtag'
 import { useEffect } from 'react'
 
 export default function Home() {
-    // Add to your component temporarily
+    // Check GA availability
 useEffect(() => {
     console.log('GA_TRACKING_ID:', process.env.NEXT_PUBLIC_GA_TRACKING_ID);
     console.log('gtag available:', typeof window !== 'undefined' && window.gtag);
