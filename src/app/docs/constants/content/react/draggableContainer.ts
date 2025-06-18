@@ -10,12 +10,14 @@ export const draggableContainerContent: DocContent = {
             title: 'Install DragableContainer',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add DragableContainer`,
+            copy_event: 'Install DragableContainer',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies',
             isLiveDemo: false,
         },
         {
@@ -27,6 +29,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - DraggableContainer',
             isLiveDemo: false,
         },
         {
@@ -260,6 +263,7 @@ export const DragableItem: React.FC<DragableItemProps> = ({
 
 
 `,
+            copy_event: 'Draggable Container',
             isLiveDemo: false,
         },
     ],

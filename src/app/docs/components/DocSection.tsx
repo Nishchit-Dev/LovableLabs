@@ -12,6 +12,7 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/app/components/mirco-components/tabs'
+import { trackCodeCopy } from '@/app/lib/gtag'
 
 type DocSectionProps = {
     content: DocContent
@@ -21,9 +22,10 @@ type CodeBlockProps = {
     code: string
     language: string
     codeSrc?: string
+    copy_event: string
 }
 
-const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
+const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [showExpandButton, setShowExpandButton] = useState(false)
     const [copySuccess, setCopySuccess] = useState(false)
@@ -37,10 +39,12 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
         }
     }, [code])
 
-    const handleCopy = async () => {
+    const handleCopy = async (copy_event: string) => {
         try {
             await navigator.clipboard.writeText(code)
             setCopySuccess(true)
+            console.log("Tracked copy_event: ", copy_event)
+            trackCodeCopy(copy_event)
             setTimeout(() => setCopySuccess(false), 2000)
         } catch (err) {
             console.error('Failed to copy code:', err)
@@ -69,7 +73,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                 </p>
                                 <div
                                     className="flex justify-end items-center px-5 py-3 bg-black/70 text-sm cursor-pointer hover:bg-black/80 transition-colors flex-shrink-0"
-                                    onClick={handleCopy}
+                                    onClick={() => handleCopy(copy_event)}
                                 >
                                     {copySuccess ? (
                                         <div className="flex items-center gap-2 text-green-400">
@@ -90,7 +94,7 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                             <div className="w-full flex justify-end items-center px-5 py-3 bg-black/70 text-sm">
                                 <div
                                     className="cursor-pointer hover:bg-black/50 p-1 rounded transition-colors"
-                                    onClick={handleCopy}
+                                    onClick={() => handleCopy(copy_event)}
                                 >
                                     {copySuccess ? (
                                         <div className="flex items-center gap-2 text-green-400">
@@ -131,9 +135,8 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                         line,
                                         key: i,
                                     })
-                                    const { ...restLineProps } = lineProps
                                     return (
-                                        <div key={i} {...restLineProps}>
+                                        <div key={i} className={lineProps.className} style={lineProps.style}>
                                             {line.map((token, key) => {
                                                 const tokenProps =
                                                     getTokenProps({
@@ -143,7 +146,9 @@ const CodeBlock = ({ code, language, codeSrc }: CodeBlockProps) => {
                                                 return (
                                                     <span
                                                         key={key}
-                                                        {...tokenProps}
+                                                        className={tokenProps.className}
+                                                        style={tokenProps.style}
+                                                        children={tokenProps.children}
                                                     />
                                                 )
                                             })}
@@ -266,6 +271,7 @@ const PreviewTab = ({ content }: DocSectionProps) => {
                                         code={section.code}
                                         codeSrc={section.codeSrc}
                                         language={'jsx'}
+                                        copy_event={section.copy_event || ''}
                                     />
                                 </div>
                             )}
@@ -335,6 +341,7 @@ const VariantsTab = ({ content }: DocSectionProps) => {
                                         code={section.code}
                                         codeSrc={section.codeSrc}
                                         language={'jsx'}
+                                        copy_event={section.copy_event || ''}
                                     />
                                 </div>
                             )}

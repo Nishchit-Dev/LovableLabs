@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/Navbar'
-
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google'
 import Footer from './components/Footer'
 import { LoopBadge } from './docs/constants/content/code/LoopBadge'
+import GoogleAnalytics from './components/Google-analytics'
+import AnalyticsProvider from './components/Analytics-provider'
+
 
 const jetBrainsMono = JetBrains_Mono({
     subsets: ['latin'],
@@ -13,14 +15,12 @@ const jetBrainsMono = JetBrains_Mono({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
     display: 'swap',
 })
-
 const geistSans = Geist({
     variable: '--font-geist-sans',
     subsets: ['latin'],
     display: 'swap',
     preload: false,
 })
-
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
     subsets: ['latin'],
@@ -88,6 +88,8 @@ export const metadata: Metadata = {
     },
 }
 
+
+
 export default async function RootLayout({
     children,
 }: Readonly<{
@@ -95,29 +97,15 @@ export default async function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <head>
-                <script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-DLN1WJBL8B"
-                ></script>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', 'G-DLN1WJBL8B');
-                        `,
-                    }}
-                />
-            </head>
             <body
-                className={`  ${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
             >
+                <GoogleAnalytics />
+                <AnalyticsProvider />
                 <Navbar />
                 {children}
                 <div className="fixed bottom-5 right-10 z-[100] items-end justify-end hidden md:flex lg:flex">
-                    <LoopBadge  imageSrc="/assets/memoji/logo.png" />
+                    <LoopBadge imageSrc="/assets/memoji/logo.png" />
                 </div>
                 <Footer />
             </body>

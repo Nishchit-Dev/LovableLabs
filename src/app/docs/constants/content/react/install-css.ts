@@ -3,7 +3,7 @@ import { DocContent } from '../../types'
 // Tailwind CSS Setup Guide for React Projects
 export const InstallTailwindCss: DocContent = {
     title: 'Setting Up Tailwind CSS in Your Project',
-    description: `Tailwind CSS generates utility-first styles by scanning your source files for class names and compiling them into a single CSS file. It’s efficient, highly customizable, and doesn’t require any runtime code.`,
+    description: `Tailwind CSS generates utility-first styles by scanning your source files for class names and compiling them into a single CSS file. It's efficient, highly customizable, and doesn't require any runtime code.`,
     sections: [
         {
             title: 'Install the Required Packages',
@@ -11,6 +11,7 @@ export const InstallTailwindCss: DocContent = {
             content: '',
             code: `npm install tailwindcss @tailwindcss/vite`,
             codeSrc: 'Terminal',
+            copy_event: 'Install the Required Packages - Tailwind CSS',
             isLiveDemo: false,
         },
         {
@@ -26,6 +27,7 @@ export default defineConfig({
   ],
 })`,
             codeSrc: 'vite.config.js',
+            copy_event: 'Set Up the Vite Plugin - Tailwind CSS',
             isLiveDemo: false,
         },
         {
@@ -34,6 +36,7 @@ export default defineConfig({
             content: '',
             code: `@import "tailwindcss";`,
             codeSrc: 'CSS',
+            copy_event: 'Link Tailwind in Your CSS ',
             isLiveDemo: false,
         },
         {
@@ -42,6 +45,7 @@ export default defineConfig({
             content: '',
             code: `npm run dev`,
             codeSrc: 'Terminal',
+            copy_event: 'Launch the Dev Server - Tailwind CSS',
             isLiveDemo: false,
         },
         {
@@ -62,6 +66,7 @@ export default defineConfig({
 </body>
 </html>`,
             codeSrc: 'Html',
+            copy_event: 'Apply Tailwind Classes in in your CODE',
             isLiveDemo: false,
         },
     ],

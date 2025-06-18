@@ -47,6 +47,7 @@ export type ContentSection = {
     content?: string
     code?: string
     codeSrc?: string
+    copy_event?: string
     isLiveDemo: boolean
 }
 

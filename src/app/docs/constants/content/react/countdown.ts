@@ -15,12 +15,14 @@ export const dotMatrixCountdownContent: DocContent = {
             title: 'Install CountdownTimer',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add DotMatrixCountdownTimer`,
+            copy_event: 'Install CountdownTimer',
             isLiveDemo: false,
         },
         {
             title: 'Install Dependencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
+            copy_event: 'Install Dependencies',
             isLiveDemo: false,
         },
         {
@@ -32,6 +34,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add Utility File - DotMatrixCountdownTimer',
             isLiveDemo: false,
         },
         {
@@ -467,6 +470,7 @@ export function cn(...inputs: ClassValue[]) {
             export default CountdownTimerDemo
             
 `,
+            copy_event: 'Dot Matrix Countdown Timer',
             isLiveDemo: false,
         },
     ],
