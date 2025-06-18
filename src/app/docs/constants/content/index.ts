@@ -67,6 +67,8 @@ const slugToContentKey: Record<string, string> = {
     'motion-text-reveal': 'motionTextRevealContent',
 }
 // Export all content
-export default {
+const contentExports = {
     getContentBySlug,
 }
+
+export default contentExports
