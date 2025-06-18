@@ -3,7 +3,7 @@
 import Script from 'next/script';
 
 const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? '';
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+// const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const IS_DEVELOPMENT = process.env.NODE_ENV === 'development';
 const GA_DEBUG = true;
 
