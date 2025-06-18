@@ -17,6 +17,7 @@ const getStartedContent: DocContent = {
             code: `# With npm
 npm install lovablelabs`,
             codeSrc: 'Terminal',
+            copy_event: 'Install via NPM - Get Started',
         },
         {
             title: 'Install Specific Components',
@@ -26,6 +27,7 @@ npm install lovablelabs`,
             code: `# With npm
 npx lovablelabs add --component`,
             codeSrc: 'Terminal',
+            copy_event: 'Install Specific Components - Get Started',
         },
         {
             title: 'Try a Component Example',
@@ -35,6 +37,7 @@ npx lovablelabs add --component`,
             code: `# With npm
 npx lovablelabs add GridBackground`,
             codeSrc: 'Terminal',
+            copy_event: 'Try a Component Example - Get Started',
         },
         {
             title: 'Explore Further',

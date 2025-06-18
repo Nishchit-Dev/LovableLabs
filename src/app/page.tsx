@@ -4,8 +4,16 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MotionTextAnimation } from './docs/constants/content/code/MotionTextReveal'
+import { event, trackNavigation } from './lib/gtag'
+import { useEffect } from 'react'
 
 export default function Home() {
+    // Add to your component temporarily
+useEffect(() => {
+    console.log('GA_TRACKING_ID:', process.env.NEXT_PUBLIC_GA_TRACKING_ID);
+    console.log('gtag available:', typeof window !== 'undefined' && window.gtag);
+  }, []);
+  
     return (
         <div className="h-full relative">
             <div
@@ -188,6 +196,7 @@ export default function Home() {
                         >
                             <div>
                                 <Link
+                                    onClick={() => trackNavigation( 'Get Started')}
                                     href="/docs/get-started?framework=react"
                                     className="z-10 text-white font-regular text-base sm:text-lg"
                                 >
@@ -214,6 +223,7 @@ export default function Home() {
                             className="bg-black/70 flex items-center justify-center group bg-opacity-75 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full cursor-pointer border-1 border-violet-200/70"
                         >
                             <Link
+                                onClick={() => trackNavigation( 'Playground')}
                                 href="/playground"
                                 className="z-10 flex items-center justify-center group-hover:text-white text-white/80 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
                             >

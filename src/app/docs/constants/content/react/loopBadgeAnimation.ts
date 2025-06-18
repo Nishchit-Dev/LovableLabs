@@ -10,12 +10,14 @@ export const loopBadgeAnimationContent: DocContent = {
             title: 'Install LoopBagde',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add LoopBadge`,
+            copy_event: 'Install LoopBagde',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i framer-motion clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies',
             isLiveDemo: false,
         },
         {
@@ -27,6 +29,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - LoopBadge',
             isLiveDemo: false,
         },
         {
@@ -165,6 +168,7 @@ const LoopText: React.FC<LoopTextProps> = ({
 
 export default LoopText
 `,
+            copy_event: 'LoopBadge Animation',
             isLiveDemo: false,
         },
     ],
