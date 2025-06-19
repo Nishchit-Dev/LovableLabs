@@ -1,4 +1,4 @@
-import LiquidGlass from '@/app/playground/test/liquidglass'
+import DraggableLiquidGlass from '../code/DraggableLiquidGlass'
 
 export const BuildPrivewDraggableLiquidGlassEffect = () => {
     return (
@@ -12,9 +12,8 @@ export const BuildPrivewDraggableLiquidGlassEffect = () => {
                     className="w-screen h-[120vh] rounded-lg border-none"
                     sandbox="allow-scripts allow-same-origin allow-popups"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
-                </iframe>
-                    <LiquidGlass /> 
+                ></iframe>
+                <DraggableLiquidGlass />
             </div>
         </div>
     )

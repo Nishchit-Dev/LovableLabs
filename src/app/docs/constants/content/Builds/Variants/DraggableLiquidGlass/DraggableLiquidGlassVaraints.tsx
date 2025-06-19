@@ -1,4 +1,4 @@
-import LiquidGlass from '@/app/playground/test/liquidglass'
+import DraggableLiquidGlass from '../../../code/DraggableLiquidGlass'
 
 export const DraggableLiquidGlassEffectDefault = () => {
     return (
@@ -14,7 +14,7 @@ export const DraggableLiquidGlassEffectDefault = () => {
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 ></iframe>
 
-                <LiquidGlass />
+                <DraggableLiquidGlass />
             </div>
         </div>
     )
@@ -34,7 +34,7 @@ export const DraggableLiquidGlassEffectSm = () => {
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 ></iframe>
 
-                <LiquidGlass width={500} height={500} />
+                <DraggableLiquidGlass width={500} height={500} />
             </div>
         </div>
     )

@@ -361,7 +361,7 @@ export default DraggableLiquidGlass
             title: 'Usage',
             codeSrc: 'Example',
             code: `<div className=" rounded-xl  flex items-center justify-center  h-full overflow-hidden   border border-[#333] ">
-     <LiquidGlass width={500} height={500} />
+     <DraggableLiquidGlass width={500} height={500} />
 </div>`,
             copy_event: 'Install Draggable Liquid Glass',
             isLiveDemo: false,

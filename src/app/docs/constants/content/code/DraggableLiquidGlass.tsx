@@ -25,7 +25,7 @@ interface LiquidGlassProps {
     initialPosition?: { x: number; y: number }
 }
 
-const DraggableLiquidGlass: React.FC<LiquidGlassProps> = ({
+export const DraggableLiquidGlass: React.FC<LiquidGlassProps> = ({
     width = 300,
     height = 200,
     className = '',
