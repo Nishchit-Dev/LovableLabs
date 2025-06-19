@@ -15,12 +15,14 @@ export const backgroundParallaxGridContent: DocContent = {
             title: 'Install Parallax Grid',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add ParallaxGrid`,
+            copy_event: 'Install Parallax Grid',
             isLiveDemo: false,
         },
         {
             title: 'Install Dependencies',
             codeSrc: 'Terminal',
             code: `npm i framer-motion clsx tailwind-merge`,
+            copy_event: 'Install Dependencies - ParallaxGridBackground',
             isLiveDemo: false,
         },
         {
@@ -32,12 +34,14 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add Utility File - ParallaxGridBackground',
             isLiveDemo: false,
         },
         {
             title: 'Parallax Grid Background',
             codeSrc: 'components/ParallaxGridBackground.tsx',
             code: ``,
+            copy_event: 'Parallax Grid Background',
             isLiveDemo: false,
         },
     ],

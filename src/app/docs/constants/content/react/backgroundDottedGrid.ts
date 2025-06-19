@@ -11,12 +11,14 @@ export const backgroundsDottedGridContent: DocContent = {
             title: 'Install DottedGridContent',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add DottedBackground`,
+            copy_event: 'Install DottedGridContent',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies - DottedBackground',
             isLiveDemo: false,
         },
         {
@@ -28,6 +30,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - DottedBackground',
             isLiveDemo: false,
         },
         {
@@ -98,6 +101,7 @@ export const DottedBackground: React.FC<
     )
 }
 `,
+            copy_event: 'Dotted Background',
             isLiveDemo: false,
         },
     ],

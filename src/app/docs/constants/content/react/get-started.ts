@@ -34,6 +34,7 @@ function MyApp() {
   );
 }
       `,
+            copy_event: 'Basic Usage',
             isLiveDemo: false,
         }
     ]

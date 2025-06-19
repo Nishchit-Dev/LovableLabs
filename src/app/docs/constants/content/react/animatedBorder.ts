@@ -14,12 +14,14 @@ export const animatedBorderContent: DocContent = {
             title: 'Install Animated Border',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add AnimatedBorder`,
+            copy_event: 'Install Animated Border',
             isLiveDemo: false,
         },
         {
             title: 'Install Dependencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
+            copy_event: 'Install Dependencies - AnimatedBorder',
             isLiveDemo: false,
         },
         {
@@ -31,6 +33,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - AnimatedBorder',
             isLiveDemo: false,
         },
         {
@@ -336,6 +339,7 @@ const AnimatedBorder: React.FC<AnimatedBorderProps> = ({
 };
 
 export default AnimatedBorder;`,
+            copy_event: 'AnimatedBorder Component',
             isLiveDemo: false,
         },
         {
@@ -352,6 +356,7 @@ export default function Page() {
     </div>
   );
 }`,
+            copy_event: 'Basic Usage - AnimatedBorder',
             isLiveDemo: true,
         },
         {
@@ -372,6 +377,7 @@ export default function Page() {
     </div>
   );
 }`,
+            copy_event: 'Custom Colors - AnimatedBorder',
             isLiveDemo: true,
         },
         {
@@ -393,6 +399,7 @@ export default function Page() {
     </div>
   );
 }`,
+            copy_event: 'With Shadow Effect - AnimatedBorder',
             isLiveDemo: true,
         },
         {
@@ -422,6 +429,7 @@ export default function Page() {
     </div>
   );
 }`,
+            copy_event: 'Card Layout - AnimatedBorder',
             isLiveDemo: true,
         },
         {
@@ -461,6 +469,7 @@ export default function Page() {
     </div>
   );
 }`,
+            copy_event: 'Button Variant - AnimatedBorder',
             isLiveDemo: true,
         }
     ]

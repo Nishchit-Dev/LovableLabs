@@ -21,12 +21,14 @@ export const cursorContainerContent: DocContent = {
             title: 'Install Cursor Follow Container',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add CursorFollow`,
+            copy_event: 'Install Cursor Follow Container',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i framer-motion clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies',
             isLiveDemo: false,
         },
         {
@@ -38,6 +40,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - CursorFollow',
             isLiveDemo: false,
         },
         {
@@ -505,6 +508,7 @@ export const cursorPresets = {
 
 
 `,
+            copy_event: 'Cursor Follow Container',
             isLiveDemo: false,
         },
     ],

@@ -14,12 +14,14 @@ export const backgroundsSquareGridContent: DocContent = {
             title: 'Install GridBackground',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add GridBackground`,
+            copy_event: 'Install GridBackground',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies - GridBackground',
             isLiveDemo: false,
         },
         {
@@ -31,6 +33,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - GridBackground',
             isLiveDemo: false,
         },
         {
@@ -99,6 +102,7 @@ export const GridBackground: React.FC<
 }
             
 `,
+            copy_event: 'Square Grid Background',
             isLiveDemo: false,
         },
     ],

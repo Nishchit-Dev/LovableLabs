@@ -24,12 +24,14 @@ export const radiatingDotContent: DocContent = {
             title: 'Install RadiatingDot',
             codeSrc: 'Terminal',
             code: `npx lovablelabs add RadiatingDot`,
+            copy_event: 'Install RadiatingDot',
             isLiveDemo: false,
         },
         {
             title: 'Install Depsendencies',
             codeSrc: 'Terminal',
             code: `npm i framer-motion clsx tailwind-merge`,
+            copy_event: 'Install Depsendencies - RadiatingDot',
             isLiveDemo: false,
         },
         {
@@ -41,6 +43,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - RadiatingDot',
             isLiveDemo: false,
         },
         {
@@ -275,6 +278,7 @@ export const RadiatingDot: React.FC<RadiatingDotProps> = ({
 
 
 `,
+            copy_event: 'Radiating Dot',
             isLiveDemo: false,
         },
     ],

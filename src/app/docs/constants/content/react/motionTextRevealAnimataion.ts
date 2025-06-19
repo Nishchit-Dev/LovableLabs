@@ -14,12 +14,14 @@ export const motionTextRevealContent: DocContent = {
             title: 'Install Framer Text Reveal',
             codeSrc: 'Terminal',
             code: `npx install lovablelabs add MotionTextReveal`,
+            copy_event: 'Install Framer Text Reveal',
             isLiveDemo: false,
         },
         {
             title: 'Install Dependencies',
             codeSrc: 'Terminal',
             code: `npm i clsx tailwind-merge framer-motion`,
+            copy_event: 'Install Dependencies - MotionTextReveal',
             isLiveDemo: false,
         },
         {
@@ -31,6 +33,7 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }`,
+            copy_event: 'Add util file - MotionTextReveal',
             isLiveDemo: false,
         },
         {
@@ -116,7 +119,7 @@ export interface AnimationConfig {
 
 export const MotionTextAnimation: React.FC<SmoothTextAnimationProps> = ({
     // Text configuration
-    lines = ['We Don’t Just Design.', 'We Design with Soul.'],
+    lines = ['We Don't Just Design.', 'We Design with Soul.'],
     splitBy = 'word', // 'word', 'char', or 'line'
 
     // Animation timing
@@ -324,6 +327,7 @@ export const MotionTextAnimation: React.FC<SmoothTextAnimationProps> = ({
 }
 
 `,
+            copy_event: 'Motion Text Reveal',
             isLiveDemo: false,
         },
     ],
