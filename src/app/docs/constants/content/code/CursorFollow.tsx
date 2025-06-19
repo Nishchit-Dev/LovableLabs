@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, ReactNode, useMemo } from 'react'
+import React, { useState, useEffect, ReactNode, useMemo, useRef } from 'react'
 import {
     motion,
     useSpring,
@@ -113,6 +113,7 @@ const defaultVariants: CursorVariant[] = [
  * SpringCursor Component
  *
  * A smooth, physics-based cursor component with spring animations and velocity effects.
+ * The cursor is contained within the component boundaries and hides when mouse leaves.
  *
  * @example
  * ```tsx
@@ -135,7 +136,7 @@ const defaultVariants: CursorVariant[] = [
  */
 export const SpringCursor: React.FC<SpringCursorProps> = ({
     enabled = true,
-    variants,
+    variants = defaultVariants,
     velocityScale = true,
     maxScale = 1.8,
     velocityRotation = true,
@@ -145,13 +146,13 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
     zIndex = 9999,
 }) => {
     const [isVisible, setIsVisible] = useState(false)
+    const containerRef = useRef<HTMLDivElement>(null)
 
     // Motion values for smooth tracking
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
 
     // Create spring motion values for each variant using fixed hooks
-    // We need to create a fixed number of springs to avoid hooks violations
     const spring1X = useSpring(
         mouseX,
         variants[0]?.springConfig || defaultVariants[0].springConfig
@@ -215,7 +216,7 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
     const cursorXVelocity = useVelocity(mainSpring.x)
     const cursorYVelocity = useVelocity(mainSpring.y)
 
-    // Transform velocity to scale - fix the useTransform syntax
+    // Transform velocity to scale
     const cursorScale = useTransform(
         useMotionTemplate`${cursorXVelocity} ${cursorYVelocity}`,
         (latest) => {
@@ -226,10 +227,6 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
         }
     )
 
-    useEffect(() => {
-        console.log('change of variant')
-    }, [variants])
-
     // For cursorRotate
     const cursorRotate = useTransform(
         useMotionTemplate`${cursorXVelocity} ${cursorYVelocity}`,
@@ -239,12 +236,42 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
             return Math.atan2(y, x) * (180 / Math.PI)
         }
     )
+
     useEffect(() => {
-        if (!enabled) return
+        if (!enabled || !containerRef.current) return
+
+        const container = containerRef.current
 
         const updateMousePosition = (e: MouseEvent) => {
-            mouseX.set(e.clientX)
-            mouseY.set(e.clientY)
+            if (!container) return
+            
+            const rect = container.getBoundingClientRect()
+            const relativeX = e.clientX - rect.left
+            const relativeY = e.clientY - rect.top
+            
+            // Check if mouse is within container bounds
+            if (
+                relativeX >= 0 && 
+                relativeX <= rect.width && 
+                relativeY >= 0 && 
+                relativeY <= rect.height
+            ) {
+                mouseX.set(relativeX)
+                mouseY.set(relativeY)
+                setIsVisible(true)
+            } else {
+                setIsVisible(false)
+            }
+        }
+
+        const handleMouseEnter = (e: MouseEvent) => {
+            if (!container) return
+            const rect = container.getBoundingClientRect()
+            const relativeX = e.clientX - rect.left
+            const relativeY = e.clientY - rect.top
+            
+            mouseX.set(relativeX)
+            mouseY.set(relativeY)
             setIsVisible(true)
         }
 
@@ -252,18 +279,15 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
             setIsVisible(false)
         }
 
-        const handleMouseEnter = () => {
-            setIsVisible(true)
-        }
-
-        window.addEventListener('mousemove', updateMousePosition)
-        document.addEventListener('mouseleave', handleMouseLeave)
-        document.addEventListener('mouseenter', handleMouseEnter)
+        // Add event listeners to the container instead of window/document
+        container.addEventListener('mousemove', updateMousePosition)
+        container.addEventListener('mouseenter', handleMouseEnter)
+        container.addEventListener('mouseleave', handleMouseLeave)
 
         return () => {
-            window.removeEventListener('mousemove', updateMousePosition)
-            document.removeEventListener('mouseleave', handleMouseLeave)
-            document.removeEventListener('mouseenter', handleMouseEnter)
+            container.removeEventListener('mousemove', updateMousePosition)
+            container.removeEventListener('mouseenter', handleMouseEnter)
+            container.removeEventListener('mouseleave', handleMouseLeave)
         }
     }, [enabled, mouseX, mouseY])
 
@@ -272,7 +296,11 @@ export const SpringCursor: React.FC<SpringCursorProps> = ({
     }
 
     return (
-        <div className={`relative ${className}`}>
+        <div 
+            ref={containerRef}
+            className={`relative overflow-hidden ${className} w-full h-full`}
+            style={{ cursor: 'none' }} // Hide default cursor within container
+        >
             {children}
 
             {/* Render cursor variants */}
@@ -332,7 +360,7 @@ const CursorElement: React.FC<CursorElementProps> = ({
 
     return (
         <motion.div
-            className="fixed top-0 left-0 pointer-events-none"
+            className="absolute top-0 left-0 pointer-events-none"
             style={{
                 x: springX,
                 y: springY,
@@ -376,7 +404,7 @@ const TrailEffect: React.FC<TrailEffectProps> = ({
 }) => {
     return (
         <motion.div
-            className="fixed top-0 left-0 pointer-events-none"
+            className="absolute top-0 left-0 pointer-events-none"
             style={{
                 x: springX,
                 y: springY,
