@@ -6,4 +6,5 @@ export const releaseDate = {
     parallaxGrid: '2025-06-11T23:59:59',
     parallaxDot: '2025-06-12T23:59:59',
     motionTextReveal: '2025-06-20T23:59:59',
+    template: '2200-06-20T23:59:59',
 }
