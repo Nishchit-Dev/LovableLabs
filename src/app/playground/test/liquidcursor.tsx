@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useCallback, useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface MousePosition {
     x: number
@@ -22,14 +23,12 @@ interface LiquidGlassProps {
     width?: number
     height?: number
     className?: string
-    initialPosition?: { x: number; y: number }
 }
 
-const LiquidGlass: React.FC<LiquidGlassProps> = ({
+const LiquidCursor: React.FC<LiquidGlassProps> = ({
     width = 300,
     height = 200,
     className = '',
-    initialPosition = { x: 50, y: 50 }, // percentage from left/top
 }) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
@@ -37,14 +36,12 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
     const feImageRef = useRef<SVGFEImageElement>(null)
     const feDisplacementMapRef = useRef<SVGFEDisplacementMapElement>(null)
 
-    const [isDragging, setIsDragging] = useState(false)
-    const [position, setPosition] = useState(initialPosition)
+    const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
     const mouseRef = useRef<MousePosition>({ x: 0, y: 0 })
     const mouseUsedRef = useRef(false)
     const animationFrameRef = useRef<number>(0)
 
     const canvasDPI = 1
-    const offset = 10
     const id = useRef(`liquid-glass-${Math.random().toString(36).substr(2, 9)}`)
 
     // Utility functions
@@ -82,24 +79,6 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
     const texture = useCallback((x: number, y: number): TextureResult => {
         return { type: 't', x, y }
     }, [])
-
-    const constrainPosition = useCallback(
-        (x: number, y: number) => {
-            const viewportWidth = window.innerWidth
-            const viewportHeight = window.innerHeight
-
-            const minX = offset
-            const maxX = viewportWidth - width - offset
-            const minY = offset
-            const maxY = viewportHeight - height - offset
-
-            const constrainedX = Math.max(minX, Math.min(maxX, x))
-            const constrainedY = Math.max(minY, Math.min(maxY, y))
-
-            return { x: constrainedX, y: constrainedY }
-        },
-        [width, height, offset]
-    )
 
     const fragmentShader = useCallback(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -174,88 +153,52 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
         )
     }, [width, height, canvasDPI, fragmentShader])
 
-    // Convert percentage position to pixel position
-    const getPixelPosition = useCallback(() => {
-        if (typeof window === 'undefined') return { x: 0, y: 0 }
-
-        const x = (position.x / 100) * window.innerWidth - width / 2
-        const y = (position.y / 100) * window.innerHeight - height / 2
-
-        return constrainPosition(x, y)
-    }, [position, width, height, constrainPosition])
-
-    // Mouse event handlers
-    const handleMouseDown = useCallback((e: React.MouseEvent) => {
-        setIsDragging(true)
-        e.preventDefault()
-    }, [])
-
+    // Mouse tracking for cursor following
     const handleMouseMove = useCallback(
         (e: MouseEvent) => {
+            // Update cursor position for following
+            setCursorPosition({
+                x: e.clientX - width / 2,
+                y: e.clientY - height / 2,
+            })
+
+            // Update internal mouse ref for shader effects
             const container = containerRef.current
-            if (!container) return
-
-            const rect = container.getBoundingClientRect()
-            mouseRef.current = {
-                x: (e.clientX - rect.left) / rect.width,
-                y: (e.clientY - rect.top) / rect.height,
-            }
-
-            if (isDragging) {
-                const newX = e.clientX - width / 2
-                const newY = e.clientY - height / 2
-                const constrained = constrainPosition(newX, newY)
-
-                // Convert back to percentage
-                const percentX =
-                    ((constrained.x + width / 2) / window.innerWidth) * 100
-                const percentY =
-                    ((constrained.y + height / 2) / window.innerHeight) * 100
-
-                setPosition({ x: percentX, y: percentY })
-            }
-
-            if (mouseUsedRef.current) {
-                if (animationFrameRef.current) {
-                    cancelAnimationFrame(animationFrameRef.current)
+            if (container) {
+                const rect = container.getBoundingClientRect()
+                mouseRef.current = {
+                    x: (e.clientX - rect.left) / rect.width,
+                    y: (e.clientY - rect.top) / rect.height,
                 }
-                animationFrameRef.current = requestAnimationFrame(updateShader)
+
+                if (mouseUsedRef.current) {
+                    if (animationFrameRef.current) {
+                        cancelAnimationFrame(animationFrameRef.current)
+                    }
+                    animationFrameRef.current =
+                        requestAnimationFrame(updateShader)
+                }
             }
         },
-        [isDragging, width, height, constrainPosition, updateShader]
+        [width, height, updateShader]
     )
-
-    const handleMouseUp = useCallback(() => {
-        setIsDragging(false)
-    }, [])
-
-    const handleResize = useCallback(() => {
-        // Maintain relative position on resize
-        setPosition((prev) => prev)
-    }, [])
 
     // Setup event listeners
     useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove)
-        document.addEventListener('mouseup', handleMouseUp)
-        window.addEventListener('resize', handleResize)
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove)
-            document.removeEventListener('mouseup', handleMouseUp)
-            window.removeEventListener('resize', handleResize)
             if (animationFrameRef.current) {
                 cancelAnimationFrame(animationFrameRef.current)
             }
         }
-    }, [handleMouseMove, handleMouseUp, handleResize])
+    }, [handleMouseMove])
 
     // Initialize shader
     useEffect(() => {
         updateShader()
     }, [updateShader])
-
-    const pixelPosition = getPixelPosition()
 
     return (
         <>
@@ -303,15 +246,11 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
                 </defs>
             </svg>
 
-            {/* Liquid Glass Container */}
-            <div
+            {/* Liquid Glass Container - Now follows cursor smoothly */}
+            <motion.div
                 ref={containerRef}
-                className={`fixed rounded-full shadow-lg ${
-                    isDragging ? 'cursor-grabbing' : 'cursor-grab'
-                } pointer-events-auto ${className}`}
+                className={`fixed rounded-full shadow-lg pointer-events-none ${className}`}
                 style={{
-                    left: `${pixelPosition.x}px`,
-                    top: `${pixelPosition.y}px`,
                     width: `${width}px`,
                     height: `${height}px`,
                     backdropFilter: `url(#${id.current}_filter) blur(0.25px) contrast(1.2) brightness(1.05) saturate(1.1)`,
@@ -320,10 +259,19 @@ const LiquidGlass: React.FC<LiquidGlassProps> = ({
                     borderRadius: '150px',
                     zIndex: 9999,
                 }}
-                onMouseDown={handleMouseDown}
+                animate={{
+                    x: cursorPosition.x,
+                    y: cursorPosition.y,
+                }}
+                transition={{
+                    type: 'spring',
+                    damping: 25,
+                    stiffness: 200,
+                    mass: 0.8,
+                }}
             />
         </>
     )
 }
 
-export default LiquidGlass
+export default LiquidCursor
