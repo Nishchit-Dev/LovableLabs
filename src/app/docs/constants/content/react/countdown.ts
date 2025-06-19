@@ -2,7 +2,10 @@ import React from 'react'
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildPreviewDotMatrixCountDown } from '../Builds/BuildPreviewDotMatrixCountdown'
-
+import {
+    DotMatrixCountdownDark,
+    DotMatrixCountdownLight,
+} from '../Builds/Variants/DotMatrixCountDown/DotMatrixCountDown'
 
 export const dotMatrixCountdownContent: DocContent = {
     title: 'Dot Matrix Countdown Timer',
@@ -471,6 +474,30 @@ export function cn(...inputs: ClassValue[]) {
             
 `,
             copy_event: 'Dot Matrix Countdown Timer',
+            isLiveDemo: false,
+        },
+    ],
+    variantTab: [
+        {
+            preview: React.createElement(DotMatrixCountdownLight),
+            title: 'Light CountdownTimer',
+            codeSrc: 'Terminal',
+            code: `<CountdownTimer
+initialTime={450000}
+pixelSize={6}
+onComplete={() => console.log('Timer completed!')} />`,
+            copy_event: 'Install CountdownTimer',
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(DotMatrixCountdownDark),
+            title: 'Dark CountdownTimer',
+            codeSrc: 'Terminal',
+            code: ` <CountdownTimer
+initialTime={100520}
+pixelSize={6}
+onComplete={() => console.log('Timer completed!')} />`,
+            copy_event: 'Install CountdownTimer',
             isLiveDemo: false,
         },
     ],

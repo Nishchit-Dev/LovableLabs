@@ -1,5 +1,6 @@
 import { DocContent } from '../../types'
 import { BuildPrivewDottedGridSection } from '../Builds/BuildPrivewDottedGridBg'
+import { DottedBgVaraint, DottedBgVaraintOverLay } from '../Builds/Variants/DottedBackground/DottedBackground'
 
 export const backgroundsDottedGridContent: DocContent = {
     title: 'Square Grid Background',
@@ -104,4 +105,30 @@ export const DottedBackground: React.FC<
             isLiveDemo: false,
         },
     ],
+
+     variantTab: [
+            {
+                preview: DottedBgVaraint(),
+                title: 'Dark Varaint',
+                codeSrc: 'Example',
+                code: `<DottedBackground dark centered boxSize={36} full>
+    <p className="text-white">
+    Centered Text with Dark Bg
+    </p>
+</DottedBackground>`,
+                isLiveDemo: false,
+            },
+            {
+                preview: DottedBgVaraintOverLay(),
+                title: 'Dark Varaint with Overlay',
+                codeSrc: 'Example',
+                code: `<DottedBackground dark centered boxSize={46} full overlay>
+    <p className="text-white">
+    Centered Text with Overlay Dark Bg and Box size 46
+    </p>
+</DottedBackground>`,
+                isLiveDemo: false,
+            },
+        ],
+    
 }

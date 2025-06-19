@@ -110,16 +110,21 @@ export const getDocCategories = (framework: string): Category[] => {
                     label: 'Draggable Container',
                     path: `/docs/draggable-container?framework=${framework}`,
                 },
-                  {
+                {
                     label: 'Cursor Container',
                     path: `/docs/cursor-container?framework=${framework}`,
                     isLock: true,
                     releaseDate: releaseDate.cursorFollow,
                 },
-                
+                {
+                    label: 'Draggable Liquid Glass',
+                    path: `/docs/draggable-liquid-glass?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.cursorFollow,
+                },
             ],
         },
-        
+
         {
             title: 'CountDown',
             slug: 'Dot Matrix CountDown Timer',

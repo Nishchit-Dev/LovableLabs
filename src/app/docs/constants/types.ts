@@ -49,6 +49,7 @@ export type ContentSection = {
     codeSrc?: string
     copy_event?: string
     isLiveDemo: boolean
+    preview?: JSX.Element
 }
 
 // Full document content type
@@ -61,4 +62,5 @@ export type DocContent = {
     SEOTitle?: string
     SEODescription?: string
     sections: ContentSection[]
+    variantTab?: ContentSection[]
 }

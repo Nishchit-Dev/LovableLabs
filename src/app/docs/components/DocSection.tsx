@@ -25,7 +25,7 @@ type CodeBlockProps = {
     copy_event: string
 }
 
-const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
+const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockProps) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [showExpandButton, setShowExpandButton] = useState(false)
     const [copySuccess, setCopySuccess] = useState(false)
@@ -57,7 +57,7 @@ const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
 
     return (
         <div className="relative">
-            <Highlight theme={themes.nightOwl} code={code} language={language}>
+            <Highlight theme={themes.vsDark} code={code} language={language}>
                 {({
                     className,
                     style,
@@ -136,7 +136,20 @@ const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
                                         key: i,
                                     })
                                     return (
-                                        <div key={i} className={lineProps.className} style={lineProps.style}>
+                                        <div key={i} className={`${lineProps.className} flex items-center justify-start `} style={lineProps.style}>
+                                            {
+                                                <span
+                                                    style={{
+                                                        userSelect: 'none',
+                                                        MozUserSelect: 'none',
+                                                        WebkitUserSelect:
+                                                            'none',
+                                                    }}
+                                                    className="pr-5 text-gray-400 font-thin"
+                                                >
+                                                    {i + 1}
+                                                </span>
+                                            }
                                             {line.map((token, key) => {
                                                 const tokenProps =
                                                     getTokenProps({
@@ -218,6 +231,7 @@ const CodeBlock = ({ code, language, codeSrc, copy_event }: CodeBlockProps) => {
 const PreviewTab = ({ content }: DocSectionProps) => {
     return (
         <div className="w-full">
+            {content.preview}
             {new Date(content.releaseDate || '').getTime() > Date.now() ? (
                 <div>
                     <div className="flex flex-col ww-full justify-center items-center gap-5">
@@ -286,6 +300,9 @@ const PreviewTab = ({ content }: DocSectionProps) => {
 
 
 const VariantsTab = ({ content }: DocSectionProps) => {
+    if (!content?.variantTab) {
+        return <></>
+    }
     return (
         <div className="w-full">
             {new Date(content.releaseDate || '').getTime() > Date.now() ? (
@@ -308,14 +325,15 @@ const VariantsTab = ({ content }: DocSectionProps) => {
                     </div>
                 </div>
             ) : (
-                content.sections.map((section, index) => (
-                    <div key={index} className="flex flex-row">
+                content.variantTab.map((section, index) => (
+                    <div key={index + section.title} className="flex flex-row">
                         <div className="w-[0.5px] bg-white/20 self-stretch lg:mr-10 mr-4">
                             <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500"></div>
                         </div>
-                        <div className="mb-16 w-full min-w-0">
+
+                        <div className="mb-16 w-full min-w-0 ">
                             {section.title && (
-                                <div className="mb-6">
+                                <div className="mb-6 mt-2">
                                     <h2
                                         id={section.title
                                             .toLowerCase()
@@ -330,6 +348,11 @@ const VariantsTab = ({ content }: DocSectionProps) => {
                                         </p>
                                     )}
                                 </div>
+                            )}
+                            {content.variantTab ? (
+                                content.variantTab[index]?.preview
+                            ) : (
+                                <></>
                             )}
 
                             <div className="markdown-content text-[var(--font-white)] text-sm">
@@ -365,12 +388,14 @@ const TabsMerger = ({ content }: DocSectionProps) => {
                     >
                         Preview
                     </TabsTrigger>
-                    <TabsTrigger
-                        value="Variants"
-                        className="cursor-pointer opacity-75 hover:opacity-100 active:opacity-100"
-                    >
-                        Variants
-                    </TabsTrigger>
+                    {content.variantTab && (
+                        <TabsTrigger
+                            value="Variants"
+                            className="cursor-pointer opacity-75 hover:opacity-100 active:opacity-100"
+                        >
+                            Variants
+                        </TabsTrigger>
+                    )}
                 </TabsList>
 
                 <TabsContent value="Preview" className="">
@@ -408,8 +433,6 @@ const DocSection = ({ content }: DocSectionProps) => {
             <p className="text-[var(--font-gray)] mb-10">
                 {content.description}
             </p>
-
-            {content.preview}
 
             <TabsMerger content={content} />
         </motion.div>

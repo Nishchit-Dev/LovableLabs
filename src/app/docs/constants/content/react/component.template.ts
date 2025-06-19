@@ -1,27 +1,27 @@
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
-import { BuildPreviewParallaxGridBackground } from '../Builds/BuildPreviewParallaxGridBackground'
-import { ParallaxSquareGridVaraint, ParallaxSquareGridVaraintOverLay } from '../Builds/Variants/ParallaxGridBackground/ParallaxGridBackground'
+import TemplateBuildPreview from '../Builds/BuildComponent.template copy'
+
 
 export const backgroundParallaxGridContent: DocContent = {
-    title: 'Parallax Grid Background',
+    title: 'name of component',
     description:
         'Create stunning parallax grid backgrounds with Lovablelabs UI for a dynamic visual effect.',
-    preview: BuildPreviewParallaxGridBackground(),
-    releaseDate: releaseDate.parallaxGrid,
+    preview: TemplateBuildPreview(),
+    releaseDate: releaseDate.template,
 
     sections: [
         {
-            title: 'Install Parallax Grid',
+            title: 'Install --name',
             codeSrc: 'Terminal',
-            code: `npx lovablelabs add ParallaxGrid`,
-            copy_event: 'Install Parallax Grid',
+            code: `npx lovablelabs add --component`,
+            copy_event: 'Install --name',
             isLiveDemo: false,
         },
         {
             title: 'Install Dependencies',
             codeSrc: 'Terminal',
-            code: `npm i framer-motion clsx tailwind-merge`,
+            code: `npm i --dependencies`,
             copy_event: 'Install Dependencies - ParallaxGridBackground',
             isLiveDemo: false,
         },
@@ -38,8 +38,8 @@ export function cn(...inputs: ClassValue[]) {
             isLiveDemo: false,
         },
         {
-            title: 'Parallax Grid Background',
-            codeSrc: 'components/ParallaxGridBackground.tsx',
+            title: '--name of component',
+            codeSrc: 'components/--componentFile.tsx',
             code: ``,
             copy_event: 'Parallax Grid Background',
             isLiveDemo: false,
@@ -47,25 +47,17 @@ export function cn(...inputs: ClassValue[]) {
     ],
     variantTab: [
         {
-            preview: ParallaxSquareGridVaraint(),
-            title: 'Dark Varaint',
+            preview: TemplateBuildPreview(),
+            title: '--varaint 1',
             codeSrc: 'Example',
-            code: `<ParallaxGridBackground dark centered boxSize={36} full>
-        <p className="text-white">
-        Centered Text with Dark Bg
-        </p>
-</ParallaxGridBackground>`,
+            code: `--varaint code 1`,
             isLiveDemo: false,
         },
         {
-            preview: ParallaxSquareGridVaraintOverLay(),
-            title: 'Dark Varaint with Overlay',
+            preview: TemplateBuildPreview(),
+            title: '--varaint 2',
             codeSrc: 'Example',
-            code: `<ParallaxGridBackground dark centered boxSize={46} full overlay>
-        <p className="text-white">
-        Centered Text with Overlay Dark Bg and Box size 46
-        </p>
-</ParallaxGridBackground>`,
+            code: `--varaint code 2`,
             isLiveDemo: false,
         },
     ],

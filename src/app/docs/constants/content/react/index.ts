@@ -12,6 +12,7 @@ import { dotMatrixCountdownContent } from './countdown'
 import { backgroundParallaxGridContent } from './parallexGridBackground'
 import { backgroundParallaxDotContent } from './parallexDotBackground'
 import { motionTextRevealContent } from './motionTextRevealAnimataion'
+import { liquidGlassDraggableContent } from './draggableLiquidGlass'
 
 // Re-export all imported modules
 export {
@@ -27,4 +28,5 @@ export {
     backgroundParallaxGridContent,
     backgroundParallaxDotContent,
     motionTextRevealContent,
+    liquidGlassDraggableContent,
 }

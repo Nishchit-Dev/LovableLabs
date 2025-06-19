@@ -8,17 +8,16 @@ export const BuildSpringCursorContainer = () => {
     // Use a key to force remount when config changes
     return (
         <div className="mb-10">
-            <p className="text-2xl font-bold mb-3 ">Preview</p>
             <div className=" rounded-xl p-6 flex items-center justify-center max-h-[420px] h-[420px] border border-[#333] overflow-hidden">
-                <DottedBackground full overlay centered boxSize={36}>
-                    <SpringCursor
-                        key={JSON.stringify(config)}
-                        variants={config}
-                        velocityScale={true}
-                        maxScale={2}
-                        showTrail={true}
-                        className="bg-none cursor-none"
-                    >
+                <SpringCursor
+                    key={JSON.stringify(config)}
+                    variants={config}
+                    velocityScale={true}
+                    maxScale={2}
+                    showTrail={true}
+                    className="bg-none cursor-none h-full w-full"
+                >
+                    <DottedBackground full  overlay centered boxSize={36}>
                         <div className="flex justify-center items-center flex-col gap-10">
                             {/* <LoopBadge /> */}
                             <div className="realative top-1/4 left-1/4 text-center">
@@ -79,8 +78,8 @@ export const BuildSpringCursorContainer = () => {
                                 </div>
                             </div>
                         </div>
-                    </SpringCursor>
-                </DottedBackground>
+                    </DottedBackground>
+                </SpringCursor>
             </div>
         </div>
     )

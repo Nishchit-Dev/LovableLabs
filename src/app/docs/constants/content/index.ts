@@ -61,7 +61,7 @@ const slugToContentKey: Record<string, string> = {
     'radiating-dot': 'radiatingDotContent',
     'animated-border': 'animatedBorderContent',
     'dot-martix-countdown': 'dotMatrixCountdownContent',
-
+    'draggable-liquid-glass': 'liquidGlassDraggableContent',
     // text animation
 
     'motion-text-reveal': 'motionTextRevealContent',

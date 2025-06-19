@@ -2,6 +2,15 @@ import React from 'react'
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildPreviewRadiatingDotAnimation } from '../Builds/BuildPreviewRadiatingDot'
+import {
+    RadiatingDotVariationDefault,
+    RadiatingDotVariationAway,
+    RadiatingDotVariationBusy,
+    RadiatingDotVariationCustomBlue,
+    RadiatingDotVariationCustomOrange,
+    RadiatingDotVariationCustomPurple,
+    RadiatingDotVariationOffline,
+} from '../Builds/Variants/RadiatingDot/RadiatingDot'
 
 export const radiatingDotContent: DocContent = {
     title: 'Radiating Dot',
@@ -270,6 +279,75 @@ export const RadiatingDot: React.FC<RadiatingDotProps> = ({
 
 `,
             copy_event: 'Radiating Dot',
+            isLiveDemo: false,
+        },
+    ],
+    variantTab: [
+        {
+            preview: React.createElement(RadiatingDotVariationOffline),
+            title: 'Offline Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot text="Offline" isOnline={false} />`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationDefault),
+            title: 'Default Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot text="Online" isOnline={true} />`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationAway),
+            title: 'Away Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot text="Away" isOnline={true} dotColor="bg-yellow-400" />`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationBusy),
+            title: 'Busy Radiating Dot',
+            codeSrc: 'Example',
+            code: ` <RadiatingDot text="Busy" isOnline={true} dotColor="bg-red-400" />`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationCustomBlue),
+            title: 'Custom-Blue Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot
+text="Custom Blue"
+dotColor="bg-blue-400"
+backgroundColor="bg-blue-50"
+textColor="text-blue-900"
+borderColor="border-blue-200"
+/>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationCustomPurple),
+            title: 'Custom-Purple Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot
+text="Custom Purple"
+dotColor="bg-purple-400"
+backgroundColor="bg-purple-50"
+textColor="text-purple-900"
+borderColor="border-purple-200"
+/>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(RadiatingDotVariationCustomOrange),
+            title: 'Custom-Orange Radiating Dot',
+            codeSrc: 'Example',
+            code: `<RadiatingDot
+text="Custom Orange"
+dotColor="bg-orange-400"
+backgroundColor="bg-orange-50"
+textColor="text-orange-900"
+borderColor="border-orange-200"
+/>`,
             isLiveDemo: false,
         },
     ],

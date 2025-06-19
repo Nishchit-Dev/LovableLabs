@@ -1,5 +1,9 @@
 import { DocContent } from '../../types'
 import { BuildPrivewSqaureGridSection } from '../Builds/BuildPrivewSqaureGridBg'
+import {
+    SquareGridVaraint,
+    SquareGridVaraintOverLay,
+} from '../Builds/Variants/SquareGrid/SquareGrid'
 
 export const backgroundsSquareGridContent: DocContent = {
     title: 'Square Grid Background',
@@ -99,6 +103,30 @@ export const GridBackground: React.FC<
             
 `,
             copy_event: 'Square Grid Background',
+            isLiveDemo: false,
+        },
+    ],
+    variantTab: [
+        {
+            preview: SquareGridVaraint(),
+            title: 'Dark Varaint',
+            codeSrc: 'Example',
+            code: `<GridBackground dark centered boxSize={36} full>
+    <p className="text-white">
+    Centered Text with Dark Bg
+    </p>
+</GridBackground>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: SquareGridVaraintOverLay(),
+            title: 'Dark Varaint with Overlay',
+            codeSrc: 'Example',
+            code: `<GridBackground dark centered boxSize={46} full overlay>
+    <p className="text-white">
+    Centered Text with Overlay Dark Bg and Box size 46
+    </p>
+</GridBackground>`,
             isLiveDemo: false,
         },
     ],

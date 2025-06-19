@@ -21,6 +21,7 @@ import { CountdownTimer } from '../docs/constants/content/code/DotMatrixCountdow
 import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxGridBackground'
 import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
 import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
+import DraggableLiquidGlass from '../docs/constants/content/code/DraggableLiquidGlass'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -572,6 +573,11 @@ const DevTools = () => {
             <div className="w-full h-screen flex flex-1 justify-center items-center  ">
                 <ContentSlider />
             </div>
+            <DraggableLiquidGlass
+                width={400}
+                height={250}
+                className="border-2 border-white/20"
+            />
         </ParallaxDotBackground>
     )
 }

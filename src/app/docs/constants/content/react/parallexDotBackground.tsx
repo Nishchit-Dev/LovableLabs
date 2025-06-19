@@ -1,6 +1,7 @@
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildPreviewParallaxDotBackground } from '../Builds/BuildPreviewParallaxDotBackground'
+import { ParallaxDottedGridVaraint, ParallaxDottedGridVaraintOverlay } from '../Builds/Variants/ParallaxDottedBackground/ParallaxDottedBackground'
 
 export const backgroundParallaxDotContent: DocContent = {
     title: 'Parallax Dot Background',
@@ -41,6 +42,31 @@ export function cn(...inputs: ClassValue[]) {
             codeSrc: 'components/ParallaxDotBackground.tsx',
             code: ``,
             copy_event: 'Parallax Grid Background',
+            isLiveDemo: false,
+        },
+    ],
+
+    variantTab: [
+        {
+            preview: ParallaxDottedGridVaraint(),
+            title: 'Dark Varaint',
+            codeSrc: 'Example',
+            code: `<ParallaxDotBackground dark centered boxSize={36} full>
+    <p className="text-white">
+        Centered Text with Dark Bg
+    </p>
+</ParallaxDotBackground>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: ParallaxDottedGridVaraintOverlay(),
+            title: 'Dark Varaint with Overlay',
+            codeSrc: 'Example',
+            code: `<ParallaxDotBackground dark centered boxSize={46} full overlay>
+    <p className="text-white">
+        Centered Text with Overlay Dark Bg and Box size 46
+    </p>
+</ParallaxDotBackground>`,
             isLiveDemo: false,
         },
     ],
