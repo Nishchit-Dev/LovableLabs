@@ -2,6 +2,12 @@ import React from 'react'
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildSpringCursorContainer } from '../Builds/BuildPreviewCursorContainer'
+import {
+    CursorDefault,
+    // CursorElegant,
+    // CursorMinimal,
+    // CursorNeon,
+} from '../Builds/Variants/CursorContainer/CursorContainer'
 
 export const cursorContainerContent: DocContent = {
     title: 'Cursor Container',
@@ -501,5 +507,35 @@ export const cursorPresets = {
 `,
             isLiveDemo: false,
         },
+    ],
+    variantTab: [
+        {
+            preview: React.createElement(CursorDefault),
+            title: 'Cursor Default',
+            codeSrc: 'Example',
+            code: `<RadiatingDot text="Offline" isOnline={false} />`,
+            isLiveDemo: false,
+        },
+        // {
+        //     preview: React.createElement(CursorMinimal),
+        //     title: 'Cursor Minimal',
+        //     codeSrc: 'Example',
+        //     code: `<RadiatingDot text="Offline" isOnline={false} />`,
+        //     isLiveDemo: false,
+        // },
+        // {
+        //     preview: React.createElement(CursorNeon),
+        //     title: 'Cursor Neon',
+        //     codeSrc: 'Example',
+        //     code: `<RadiatingDot text="Offline" isOnline={false} />`,
+        //     isLiveDemo: false,
+        // },
+        // {
+        //     preview: React.createElement(CursorElegant),
+        //     title: 'Cursor Elegant',
+        //     codeSrc: 'Example',
+        //     code: `<RadiatingDot text="Offline" isOnline={false} />`,
+        //     isLiveDemo: false,
+        // },
     ],
 }
