@@ -136,7 +136,7 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
                                         key: i,
                                     })
                                     return (
-                                        <div key={i} className={lineProps.className} style={lineProps.style} className='flex items-center justify-start'>
+                                        <div key={i} className={`${lineProps.className} flex items-center justify-start `} style={lineProps.style}>
                                             {
                                                 <span
                                                     style={{
