@@ -7,7 +7,7 @@ export const BuildPreviewMotionTextRevealAnimationSection = () => {
     const [showPreview, setShowPreview] = useState(true)
     return (
         <div className="mb-10">
-            <p className="text-2xl font-bold mb-3">Preview</p>
+           
             <div className=" rounded-xl p-6 flex items-center justify-center max-h-[420px] h-[420px] border border-[#333] ">
                 {/* Replace below with actual component preview */}
 
