@@ -8,7 +8,6 @@ export const BuildSpringCursorContainer = () => {
     // Use a key to force remount when config changes
     return (
         <div className="mb-10">
-            <p className="text-2xl font-bold mb-3 ">Preview</p>
             <div className=" rounded-xl p-6 flex items-center justify-center max-h-[420px] h-[420px] border border-[#333] overflow-hidden">
                 <SpringCursor
                     key={JSON.stringify(config)}
