@@ -1,132 +1,145 @@
-import React, { useEffect, useRef } from 'react'
+'use client'
 
-interface LiquidGlassCursorProps {
-    size?: number
-    strength?: number
-    blur?: number
-    brightness?: number
-    contrast?: number
-    border?: string
-    shadow?: string
+import React, { useRef, useEffect, useCallback, useState } from 'react'
+
+interface MousePosition {
+    x: number
+    y: number
+}
+
+interface ShaderUV {
+    x: number
+    y: number
+}
+
+interface TextureResult {
+    type: 't'
+    x: number
+    y: number
+}
+
+interface LiquidGlassProps {
+    width?: number
+    height?: number
     className?: string
-    style?: React.CSSProperties
+    initialPosition?: { x: number; y: number }
 }
 
-interface Position {
-    x: number
-    y: number
-}
-
-interface Texture {
-    type: string
-    x: number
-    y: number
-}
-
-const LiquidGlassCursor: React.FC<LiquidGlassCursorProps> = ({
-    size = 200,
-    strength = 20,
-    blur = 2,
-    brightness = 1.1,
-    contrast = 1.2,
-    border = '1px solid rgba(255, 255, 255, 0.2)',
-    shadow = '0 0 20px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.1)',
+const LiquidGlass: React.FC<LiquidGlassProps> = ({
+    width = 300,
+    height = 200,
     className = '',
-    style = {},
+    initialPosition = { x: 50, y: 50 }, // percentage from left/top
 }) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const svgRef = useRef<SVGSVGElement>(null)
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const animationRef = useRef<number>(0)
+    const feImageRef = useRef<SVGFEImageElement>(null)
+    const feDisplacementMapRef = useRef<SVGFEDisplacementMapElement>(null)
 
-    const positionRef = useRef<Position>({ x: 0, y: 0 })
-    const targetPositionRef = useRef<Position>({ x: 0, y: 0 })
-    const velocityRef = useRef<Position>({ x: 0, y: 0 })
-    const mouseRef = useRef<Position>({ x: 0.5, y: 0.5 })
+    const [isDragging, setIsDragging] = useState(false)
+    const [position, setPosition] = useState(initialPosition)
+    const mouseRef = useRef<MousePosition>({ x: 0, y: 0 })
     const mouseUsedRef = useRef(false)
-    const filterId = useRef(
-        `liquid-glass-${Math.random().toString(36).substr(2, 9)}`
-    )
+    const animationFrameRef = useRef<number>(0)
+
+    const canvasDPI = 1
+    const offset = 10
+    const id = useRef(`liquid-glass-${Math.random().toString(36).substr(2, 9)}`)
 
     // Utility functions
-    const smoothStep = (a: number, b: number, t: number): number => {
-        t = Math.max(0, Math.min(1, (t - a) / (b - a)))
-        return t * t * (3 - 2 * t)
-    }
+    const smoothStep = useCallback(
+        (a: number, b: number, t: number): number => {
+            t = Math.max(0, Math.min(1, (t - a) / (b - a)))
+            return t * t * (3 - 2 * t)
+        },
+        []
+    )
 
-    const length = (x: number, y: number): number => Math.sqrt(x * x + y * y)
+    const length = useCallback((x: number, y: number): number => {
+        return Math.sqrt(x * x + y * y)
+    }, [])
 
-    const roundedRectSDF = (
-        x: number,
-        y: number,
-        width: number,
-        height: number,
-        radius: number
-    ): number => {
-        const qx = Math.abs(x) - width + radius
-        const qy = Math.abs(y) - height + radius
-        return (
-            Math.min(Math.max(qx, qy), 0) +
-            length(Math.max(qx, 0), Math.max(qy, 0)) -
-            radius
-        )
-    }
+    const roundedRectSDF = useCallback(
+        (
+            x: number,
+            y: number,
+            width: number,
+            height: number,
+            radius: number
+        ): number => {
+            const qx = Math.abs(x) - width + radius
+            const qy = Math.abs(y) - height + radius
+            return (
+                Math.min(Math.max(qx, qy), 0) +
+                length(Math.max(qx, 0), Math.max(qy, 0)) -
+                radius
+            )
+        },
+        [length]
+    )
 
-    const texture = (x: number, y: number): Texture => ({ type: 't', x, y })
+    const texture = useCallback((x: number, y: number): TextureResult => {
+        return { type: 't', x, y }
+    }, [])
 
-    // Fragment shader - creates the liquid distortion effect
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const fragmentShader = (uv: Position, mouseProxy: Position): Texture => {
-        const ix = uv.x - 0.5
-        const iy = uv.y - 0.5
-      
-        // Create lens distortion effect
-        const distanceToEdge = roundedRectSDF(ix, iy, 0.35, 0.35, 0.35)
-        const displacement = smoothStep(0.1, -0.2, distanceToEdge)
+    const constrainPosition = useCallback(
+        (x: number, y: number) => {
+            const viewportWidth = window.innerWidth
+            const viewportHeight = window.innerHeight
 
-        // Add velocity-based stretching
-        const velocityMagnitude = length(
-            velocityRef.current.x,
-            velocityRef.current.y
-        )
-        const velocityFactor = Math.min(velocityMagnitude * 0.001, 0.1)
+            const minX = offset
+            const maxX = viewportWidth - width - offset
+            const minY = offset
+            const maxY = viewportHeight - height - offset
 
-        // Create stronger lens effect
-        const lensStrength = displacement * (1.0 + velocityFactor)
-        const scaled = smoothStep(0, 1, lensStrength)
+            const constrainedX = Math.max(minX, Math.min(maxX, x))
+            const constrainedY = Math.max(minY, Math.min(maxY, y))
 
-        // Apply magnification and distortion
-        return texture(
-            ix * (1 - scaled * 0.4) + 0.5,
-            iy * (1 - scaled * 0.4) + 0.5
-        )
-    }
+            return { x: constrainedX, y: constrainedY }
+        },
+        [width, height, offset]
+    )
 
-    // Update displacement map
-    const updateShader = (): void => {
+    const fragmentShader = useCallback(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        (uv: ShaderUV, mouse: MousePosition): TextureResult => {
+            const ix = uv.x - 0.5
+            const iy = uv.y - 0.5
+            const distanceToEdge = roundedRectSDF(ix, iy, 0.3, 0.2, 0.6)
+            const displacement = smoothStep(0.8, 0, distanceToEdge - 0.15)
+            const scaled = smoothStep(0, 1, displacement)
+            return texture(ix * scaled + 0.5, iy * scaled + 0.5)
+        },
+        [roundedRectSDF, smoothStep, texture]
+    )
+
+    const updateShader = useCallback(() => {
+        const canvas = canvasRef.current
+        const feImage = feImageRef.current
+        const feDisplacementMap = feDisplacementMapRef.current
+
+        if (!canvas || !feImage || !feDisplacementMap) return
+
+        const context = canvas.getContext('2d')
+        if (!context) return
+
         const mouseProxy = new Proxy(mouseRef.current, {
-            get: (target, prop: keyof Position) => {
+            get: (target, prop) => {
                 mouseUsedRef.current = true
-                return target[prop]
+                return target[prop as keyof MousePosition]
             },
         })
 
         mouseUsedRef.current = false
 
-        const canvas = canvasRef.current
-        if (!canvas) return
-
-        const context = canvas.getContext('2d')
-        if (!context) return
-
-        const w = size
-        const h = size
+        const w = width * canvasDPI
+        const h = height * canvasDPI
         const data = new Uint8ClampedArray(w * h * 4)
 
         let maxScale = 0
         const rawValues: number[] = []
 
-        // Generate displacement values
         for (let i = 0; i < data.length; i += 4) {
             const x = (i / 4) % w
             const y = Math.floor(i / 4 / w)
@@ -139,7 +152,6 @@ const LiquidGlassCursor: React.FC<LiquidGlassCursorProps> = ({
 
         maxScale *= 0.5
 
-        // Apply to image data
         let index = 0
         for (let i = 0; i < data.length; i += 4) {
             const r = rawValues[index++] / maxScale + 0.5
@@ -151,159 +163,167 @@ const LiquidGlassCursor: React.FC<LiquidGlassCursorProps> = ({
         }
 
         context.putImageData(new ImageData(data, w, h), 0, 0)
+        feImage.setAttributeNS(
+            'http://www.w3.org/1999/xlink',
+            'href',
+            canvas.toDataURL()
+        )
+        feDisplacementMap.setAttribute(
+            'scale',
+            (maxScale / canvasDPI).toString()
+        )
+    }, [width, height, canvasDPI, fragmentShader])
 
-        // Update SVG filter
-        const svg = svgRef.current
-        if (!svg) return
+    // Convert percentage position to pixel position
+    const getPixelPosition = useCallback(() => {
+        if (typeof window === 'undefined') return { x: 0, y: 0 }
 
-        const feImage = svg.querySelector('feImage')
-        const feDisplacementMap = svg.querySelector('feDisplacementMap')
+        const x = (position.x / 100) * window.innerWidth - width / 2
+        const y = (position.y / 100) * window.innerHeight - height / 2
 
-        if (feImage && feDisplacementMap) {
-            feImage.setAttributeNS(
-                'http://www.w3.org/1999/xlink',
-                'href',
-                canvas.toDataURL()
-            )
-            feDisplacementMap.setAttribute(
-                'scale',
-                ((maxScale * strength) / 10).toString()
-            )
-        }
-    }
-
-    // Animation loop
-    const animate = (): void => {
-        // Spring physics for smooth cursor movement
-        const spring = 0.2
-        const damping = 0.8
-
-        const dx = targetPositionRef.current.x - positionRef.current.x
-        const dy = targetPositionRef.current.y - positionRef.current.y
-
-        velocityRef.current.x += dx * spring
-        velocityRef.current.y += dy * spring
-        velocityRef.current.x *= damping
-        velocityRef.current.y *= damping
-
-        positionRef.current.x += velocityRef.current.x
-        positionRef.current.y += velocityRef.current.y
-
-        // Update visual position
-        const container = containerRef.current
-        if (container) {
-            container.style.transform = `translate(${
-                positionRef.current.x - size / 2
-            }px, ${positionRef.current.y - size / 2}px)`
-        }
-
-        // Update displacement map
-        updateShader()
-
-        animationRef.current = requestAnimationFrame(animate)
-    }
-
-    useEffect(() => {
-        // Initialize canvas
-        const canvas = canvasRef.current
-        if (!canvas) return
-
-        canvas.width = size
-        canvas.height = size
-
-        // Start animation
-        updateShader()
-        animationRef.current = requestAnimationFrame(animate)
-
-        return () => {
-            if (animationRef.current) {
-                cancelAnimationFrame(animationRef.current)
-            }
-        }
-    }, [size, strength])
+        return constrainPosition(x, y)
+    }, [position, width, height, constrainPosition])
 
     // Mouse event handlers
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent): void => {
-            targetPositionRef.current = {
-                x: e.clientX,
-                y: e.clientY,
-            }
+    const handleMouseDown = useCallback((e: React.MouseEvent) => {
+        setIsDragging(true)
+        e.preventDefault()
+    }, [])
 
-            // Update mouse position for shader
+    const handleMouseMove = useCallback(
+        (e: MouseEvent) => {
+            const container = containerRef.current
+            if (!container) return
+
+            const rect = container.getBoundingClientRect()
             mouseRef.current = {
-                x: (e.clientX - positionRef.current.x + size / 2) / size,
-                y: (e.clientY - positionRef.current.y + size / 2) / size,
+                x: (e.clientX - rect.left) / rect.width,
+                y: (e.clientY - rect.top) / rect.height,
             }
-        }
 
+            if (isDragging) {
+                const newX = e.clientX - width / 2
+                const newY = e.clientY - height / 2
+                const constrained = constrainPosition(newX, newY)
+
+                // Convert back to percentage
+                const percentX =
+                    ((constrained.x + width / 2) / window.innerWidth) * 100
+                const percentY =
+                    ((constrained.y + height / 2) / window.innerHeight) * 100
+
+                setPosition({ x: percentX, y: percentY })
+            }
+
+            if (mouseUsedRef.current) {
+                if (animationFrameRef.current) {
+                    cancelAnimationFrame(animationFrameRef.current)
+                }
+                animationFrameRef.current = requestAnimationFrame(updateShader)
+            }
+        },
+        [isDragging, width, height, constrainPosition, updateShader]
+    )
+
+    const handleMouseUp = useCallback(() => {
+        setIsDragging(false)
+    }, [])
+
+    const handleResize = useCallback(() => {
+        // Maintain relative position on resize
+        setPosition((prev) => prev)
+    }, [])
+
+    // Setup event listeners
+    useEffect(() => {
         document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseup', handleMouseUp)
+        window.addEventListener('resize', handleResize)
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove)
+            document.removeEventListener('mouseup', handleMouseUp)
+            window.removeEventListener('resize', handleResize)
+            if (animationFrameRef.current) {
+                cancelAnimationFrame(animationFrameRef.current)
+            }
         }
-    }, [size])
+    }, [handleMouseMove, handleMouseUp, handleResize])
+
+    // Initialize shader
+    useEffect(() => {
+        updateShader()
+    }, [updateShader])
+
+    const pixelPosition = getPixelPosition()
 
     return (
         <>
-            {/* SVG Filter for distortion effect */}
+            {/* Hidden canvas for displacement map */}
+            <canvas
+                ref={canvasRef}
+                width={width * canvasDPI}
+                height={height * canvasDPI}
+                className="hidden"
+            />
+
+            {/* SVG Filter */}
             <svg
                 ref={svgRef}
-                className="fixed top-0 left-0 pointer-events-none"
+                xmlns="http://www.w3.org/2000/svg"
                 width="0"
                 height="0"
-                style={{ zIndex: 999998 }}
+                className="fixed top-0 left-0 pointer-events-none"
+                style={{ zIndex: 9998 }}
             >
                 <defs>
                     <filter
-                        id={filterId.current}
+                        id={`${id.current}_filter`}
                         filterUnits="userSpaceOnUse"
                         colorInterpolationFilters="sRGB"
                         x="0"
                         y="0"
-                        width={size}
-                        height={size}
+                        width={width.toString()}
+                        height={height.toString()}
                     >
                         <feImage
-                            id={`${filterId.current}_map`}
-                            width={size}
-                            height={size}
+                            ref={feImageRef}
+                            id={`${id.current}_map`}
+                            width={width.toString()}
+                            height={height.toString()}
                         />
                         <feDisplacementMap
+                            ref={feDisplacementMapRef}
                             in="SourceGraphic"
-                            in2={`${filterId.current}_map`}
+                            in2={`${id.current}_map`}
                             xChannelSelector="R"
                             yChannelSelector="G"
-                            scale={strength}
                         />
                     </filter>
                 </defs>
             </svg>
 
-            {/* The glass cursor element with Tailwind classes */}
+            {/* Liquid Glass Container */}
             <div
                 ref={containerRef}
-                className={`fixed pointer-events-none rounded-full ${className}`}
+                className={`fixed rounded-full shadow-lg ${
+                    isDragging ? 'cursor-grabbing' : 'cursor-grab'
+                } pointer-events-auto ${className}`}
                 style={{
-                    width: `${size}px`,
-                    height: `${size}px`,
-                    backdropFilter: `url(#${filterId.current}) blur(${blur}px) contrast(${contrast}) brightness(${brightness})`,
-                    border,
-                    boxShadow: shadow,
-                    zIndex: 999999,
-                    ...style,
+                    left: `${pixelPosition.x}px`,
+                    top: `${pixelPosition.y}px`,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    backdropFilter: `url(#${id.current}_filter) blur(0.25px) contrast(1.2) brightness(1.05) saturate(1.1)`,
+                    boxShadow:
+                        '0 4px 8px rgba(0, 0, 0, 0.25), 0 -10px 25px inset rgba(0, 0, 0, 0.15)',
+                    borderRadius: '150px',
+                    zIndex: 9999,
                 }}
-            />
-
-            {/* Hidden canvas for displacement map */}
-            <canvas
-                ref={canvasRef}
-                className="hidden"
-                width={size}
-                height={size}
+                onMouseDown={handleMouseDown}
             />
         </>
     )
 }
 
-export default LiquidGlassCursor
+export default LiquidGlass
