@@ -95,14 +95,25 @@ export default async function RootLayout({
     children: React.ReactNode
 }>) {
 
-console.log(process.env.NEXT_PUBLIC_GA_TRACKING_ID ? "gtag id is set" : "gtag id is not set")
+const gaId = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+console.log('Google Analytics ID:', gaId ? gaId.substring(0, 4) + '...' : 'not set');
+console.log('Environment:', process.env.NODE_ENV);
 
     return (
         <html lang="en">
-            <GoogleAnalytics
-                gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''}
-                debugMode={process.env.NODE_ENV === 'development'}
-            />
+            {gaId ? (
+                <GoogleAnalytics
+                    gaId={gaId}
+                    debugMode={process.env.NODE_ENV === 'development'}
+                />
+            ) : process.env.NODE_ENV === 'production' ? (
+                // In production, log a warning if GA ID is missing
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `console.warn('Google Analytics ID not configured. Set NEXT_PUBLIC_GA_TRACKING_ID environment variable.');`,
+                    }}
+                />
+            ) : null}
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
             >
