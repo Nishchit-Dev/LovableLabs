@@ -10,8 +10,7 @@ import { sendGAEvent } from '@next/third-parties/google'
 export default function Home() {
     // Check GA availability
 useEffect(() => {
-    console.log('GA_TRACKING_ID:', process.env.NEXT_PUBLIC_GA_TRACKING_ID);
-    console.log('gtag available:', typeof window !== 'undefined' && window.gtag);
+    console.log(process.env.NEXT_PUBLIC_GA_TRACKING_ID ? "gtag id is set" : "gtag id is not set")
   }, []);
   
     return (
