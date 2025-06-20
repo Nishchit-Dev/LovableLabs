@@ -1,28 +1,23 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect, Suspense } from 'react';
-import { pageview } from '../lib/gtag';
+import { useEffect } from 'react';
 
-function AnalyticsTracker() {
+export default function AnalyticsProvider() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (pathname) {
-      // Combine pathname with search params for complete URL tracking
+  
+    if (window.gtag && pathname) {
       const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-      pageview(url);
+      
+      // Send pageview with path
+      window.gtag('event', 'page_view', {
+        page_path: url,
+      });
     }
   }, [pathname, searchParams]);
 
   return null;
-}
-
-export default function AnalyticsProvider() {
-  return (
-    <Suspense fallback={null}>
-      <AnalyticsTracker />
-    </Suspense>
-  );
 }

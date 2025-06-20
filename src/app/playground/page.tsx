@@ -3,7 +3,7 @@
 import { LoopBadge } from '../docs/constants/content/code/LoopBadge'
 import { DottedBackground } from '../docs/constants/content/code/DottedBackground'
 import { GridBackground } from '../docs/constants/content/code/GridBackground'
-import React, { useEffect, useState } from 'react'
+import React, {  useState, Suspense } from 'react'
 import { DragableItem } from '../docs/constants/content/code/DragableContainer'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -582,4 +582,10 @@ const DevTools = () => {
     )
 }
 
-export default DevTools
+export default function PlaygroundPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <DevTools />
+        </Suspense>
+    )
+}

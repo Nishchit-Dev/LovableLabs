@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { MotionTextAnimation } from './docs/constants/content/code/MotionTextReveal'
-import { trackNavigation } from './lib/gtag'
 import { useEffect } from 'react'
+import { sendGAEvent } from '@next/third-parties/google'
 
 export default function Home() {
     // Check GA availability
@@ -196,7 +196,13 @@ useEffect(() => {
                         >
                             <div>
                                 <Link
-                                    onClick={() => trackNavigation( 'Get Started')}
+                                    onClick={() => {
+                                        sendGAEvent('event', 'get_started', {
+                                            event_category: 'navigation',
+                                            event_label: 'Get Started',
+                                            value: 1,
+                                        })
+                                    }}
                                     href="/docs/get-started?framework=react"
                                     className="z-10 text-white font-regular text-base sm:text-lg"
                                 >
@@ -223,7 +229,6 @@ useEffect(() => {
                             className="bg-black/70 flex items-center justify-center group bg-opacity-75 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full cursor-pointer border-1 border-violet-200/70"
                         >
                             <Link
-                                onClick={() => trackNavigation( 'Playground')}
                                 href="/playground"
                                 className="z-10 flex items-center justify-center group-hover:text-white text-white/80 transition duration-300 ease-in-out font-regular text-base sm:text-lg"
                             >
