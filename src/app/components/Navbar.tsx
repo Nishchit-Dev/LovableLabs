@@ -132,12 +132,15 @@ export default function Navbar() {
                             }}
                         >
                             {links.map((link, index) => {
-                                const isActive = link.path.includes(pathname)
-                                const hasWhiteBackground =
-                                    hoveredIndex !== null
-                                        ? hoveredIndex === index
-                                        : isActive
-
+                                const isActive = link.path === '/docs/get-started?framework=react' ? 
+                                    pathname.includes("/docs") : 
+                                    link.path === '/' ? 
+                                    false : 
+                                    pathname.startsWith(link.path);
+                               
+                                // Only apply white background if hovering this tab OR if it's active and not hovering any tab
+                                const hasWhiteBackground = hoveredIndex === index || (isActive && hoveredIndex === null);
+                                console.log(link.path, pathname, isActive, hoveredIndex, "nabavar")
                                 return (
                                     <NavTab
                                         key={index}
