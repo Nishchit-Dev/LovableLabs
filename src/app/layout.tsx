@@ -95,11 +95,12 @@ export default async function RootLayout({
     children: React.ReactNode
 }>) {
 
+console.log(process.env.NEXT_PUBLIC_GA_TRACKING_ID ? "gtag id is set" : "gtag id is not set")
 
     return (
         <html lang="en">
             <GoogleAnalytics
-                gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? "G-DLN1WJBL8B" }
+                gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''}
                 debugMode={process.env.NODE_ENV === 'development'}
             />
             <body
