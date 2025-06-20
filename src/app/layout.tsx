@@ -100,7 +100,7 @@ export default async function RootLayout({
         <html lang="en">
             <GoogleAnalytics
                 gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''}
-                debugMode={process.env.NODE_ENV === 'development'}
+                // debugMode={process.env.NODE_ENV === 'development'}
             />
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
