@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import { LoopBadge } from './docs/constants/content/code/LoopBadge'
 import AnalyticsProvider from './components/Analytics-provider'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Suspense } from 'react'
 
 
 const jetBrainsMono = JetBrains_Mono({
@@ -104,7 +105,9 @@ export default async function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
             >
-                <AnalyticsProvider />
+                <Suspense fallback={null}>
+                    <AnalyticsProvider />
+                </Suspense>
                 <Navbar />
                 {children}
                 <div className="fixed bottom-5 right-10 z-[100] items-end justify-end hidden md:flex lg:flex">

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import DocSection from '../components/DocSection'
 import { DocContent } from '../constants'
 
@@ -32,7 +32,7 @@ npx lovablelabs add --component`,
         {
             title: 'Try a Component Example',
             content:
-                'Here’s how to quickly install and experiment with a component:',
+                'Here&apos;s how to quickly install and experiment with a component:',
             isLiveDemo: false,
             code: `# With npm
 npx lovablelabs add GridBackground`,
@@ -41,7 +41,7 @@ npx lovablelabs add GridBackground`,
         },
         {
             title: 'Explore Further',
-            content: `Now that you're set up, explore our examples for advanced usage, or browse the documentation for details on all components and their props.
+            content: `Now that you&apos;re set up, explore our examples for advanced usage, or browse the documentation for details on all components and their props.
 
 * [Animated Component](/docs/loopbadge-animation?framework=react) - Explore the core motion component
 * [Background Overview](/docs/backgrounds-squaregrid?framework=react) - Learn about background for your website.
@@ -52,6 +52,14 @@ npx lovablelabs add GridBackground`,
     ],
 }
 
-export default function GetStartedPage() {
+function GetStartedContent() {
     return <DocSection content={getStartedContent} />
+}
+
+export default function GetStartedPage() {
+    return (
+        <Suspense fallback={<div className="animate-pulse p-8">Loading...</div>}>
+            <GetStartedContent />
+        </Suspense>
+    )
 }

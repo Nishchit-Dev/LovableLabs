@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useParams } from "next/navigation";
 import { getContentBySlug } from "../constants";
 import { DocContent } from "../constants/types";
 import DocSection from "../components/DocSection";
 import Link from "next/link";
 
-export default function DocPage() {
+function DocPageContent() {
   const params = useParams();
   const slug = params.slug as string;
 
@@ -101,5 +101,13 @@ function DocSkeleton() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DocPage() {
+  return (
+    <Suspense fallback={<DocSkeleton />}>
+      <DocPageContent />
+    </Suspense>
   );
 }

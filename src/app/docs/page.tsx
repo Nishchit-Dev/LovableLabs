@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import React, { useRef, useEffect, JSX } from "react";
+import React, { useRef, useEffect, JSX, Suspense } from "react";
 import { frameworks } from "./constants";
 import { cn } from "../utils/cn";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -158,7 +158,7 @@ function ContinuousShineEffect(): JSX.Element {
   );
 }
 
-export default function DocPage(): JSX.Element {
+function DocPageContent(): JSX.Element {
   const fadeIn = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
@@ -292,5 +292,13 @@ export default function DocPage(): JSX.Element {
         </motion.div>
       </motion.div>
     </div>
+  );
+}
+
+export default function DocPage(): JSX.Element {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading docs...</div>}>
+      <DocPageContent />
+    </Suspense>
   );
 }
