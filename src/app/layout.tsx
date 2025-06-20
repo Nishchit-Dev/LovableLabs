@@ -4,8 +4,8 @@ import Navbar from './components/Navbar'
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google'
 import Footer from './components/Footer'
 import { LoopBadge } from './docs/constants/content/code/LoopBadge'
-import GoogleAnalytics from './components/Google-analytics'
 import AnalyticsProvider from './components/Analytics-provider'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 
 const jetBrainsMono = JetBrains_Mono({
@@ -97,10 +97,13 @@ export default async function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <GoogleAnalytics
+                gaId={process.env.NEXT_PUBLIC_GA_TRACKING_ID ?? ''}
+                debugMode={process.env.NODE_ENV === 'development'}
+            />
             <body
                 className={`${geistSans.variable} ${geistMono.variable} bg-[var(--bg-dark)] ${jetBrainsMono.variable} overflow-x-hidden grain-bg antialiased`}
             >
-                <GoogleAnalytics />
                 <AnalyticsProvider />
                 <Navbar />
                 {children}

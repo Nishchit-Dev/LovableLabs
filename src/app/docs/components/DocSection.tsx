@@ -12,7 +12,8 @@ import {
     TabsList,
     TabsTrigger,
 } from '@/app/components/mirco-components/tabs'
-import { trackCodeCopy } from '@/app/lib/gtag'
+import { sendGAEvent } from '@next/third-parties/google'
+
 
 type DocSectionProps = {
     content: DocContent
@@ -44,7 +45,11 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
             await navigator.clipboard.writeText(code)
             setCopySuccess(true)
             console.log("Tracked copy_event: ", copy_event)
-            trackCodeCopy(copy_event)
+            sendGAEvent('event', 'code_copy', {
+                event_category: 'code_copy',
+                event_label: copy_event,
+                value: 1,
+            })
             setTimeout(() => setCopySuccess(false), 2000)
         } catch (err) {
             console.error('Failed to copy code:', err)
