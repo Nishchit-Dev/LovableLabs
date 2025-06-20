@@ -89,13 +89,14 @@ export const metadata: Metadata = {
     },
 }
 
-
-
 export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode
 }>) {
+
+console.log(process.env.NEXT_PUBLIC_GA_TRACKING_ID ? "gtag id is set" : "gtag id is not set")
+
     return (
         <html lang="en">
             <GoogleAnalytics
