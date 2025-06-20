@@ -10,7 +10,9 @@ export default function GoogleAnalyticsWrapper() {
       console.warn('Google Analytics ID not configured. Set NEXT_PUBLIC_GA_TRACKING_ID')
     }
     return null
+  }else{
+    console.log('Google Analytics ID configured. Setting up Google Analytics.')
+    return <GoogleAnalytics gaId={gaId} debugMode={process.env.NODE_ENV === 'development'} />
   }
 
-  return <GoogleAnalytics gaId={gaId} debugMode={process.env.NODE_ENV === 'development'} />
 }
