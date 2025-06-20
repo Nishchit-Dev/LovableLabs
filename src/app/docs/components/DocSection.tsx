@@ -48,7 +48,7 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
             sendGAEvent('event', 'code_copy', {
                 event_category: 'code_copy',
                 event_label: copy_event,
-                value: 1,
+              
             })
             setTimeout(() => setCopySuccess(false), 2000)
         } catch (err) {
