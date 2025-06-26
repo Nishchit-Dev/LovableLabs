@@ -256,7 +256,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     className="h-full modern-scrollbar fade-edges relative"
                 >
                     <div className="sticky top-0 bg-[var(--bg-dark)] z-10 pt-6 px-4">
-                        <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)]">
+                        <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)] max-w-[300px]">
                             {frameworks.map((framework) => (
                                 <button
                                     key={framework.id}
