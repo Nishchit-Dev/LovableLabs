@@ -49,10 +49,21 @@ export const getDocCategories = (framework: string): Category[] => {
             slug: 'Animations components with in-built framer',
             items: [
                 {
+                    badge: {
+                        text: 'New',
+                        color: 'text-red-500',
+                        bgColor: 'bg-red-100',
+                    },
                     label: 'Motion Text Reveal',
                     path: `/docs/motion-text-reveal?framework=${framework}`,
                     isLock: true,
                     releaseDate: releaseDate.motionTextReveal,
+                },
+                {
+                    label: 'Framer Text Reveal',
+                    path: `/docs/framer-text-animation?framework=${framework}`,
+                    // isLock: false,
+                    // releaseDate: releaseDate.motionTextReveal,
                 },
             ],
         },
@@ -133,6 +144,66 @@ export const getDocCategories = (framework: string): Category[] => {
                 {
                     label: 'Dot-Matrix CountDown',
                     path: `/docs/dot-martix-countdown?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+            ],
+        },
+        {
+            title: 'Coming Soon',
+            slug: 'Coming Soon',
+
+            items: [
+                {
+                    isComingSoon: true,
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+                {
+                    isComingSoon: true,
+
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+                {
+                    isComingSoon: true,
+
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+            ],
+        },
+        {
+            title: 'Coming Soon',
+            slug: 'Coming Soon',
+            items: [
+                {
+                    isComingSoon: true,
+
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+                {
+                    isComingSoon: true,
+
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.dotmatrixCountdown,
+                },
+                {
+                    isComingSoon: true,
+
+                    label: 'Coming Soon',
+                    path: `/docs/coming-soon?framework=${framework}`,
                     isLock: true,
                     releaseDate: releaseDate.dotmatrixCountdown,
                 },
