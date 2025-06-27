@@ -231,7 +231,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:px-48 md:px-12 px-4 overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-col md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:px-20 md:px-12 px-4 overflow-y-auto overflow-x-hidden">
             {/* Left Sidebar - desktop */}
             <motion.div
                 layout="size"
@@ -249,7 +249,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     delay: 0.2,
                     duration: 0.8,
                 }}
-                className="w-[18%] flex-shrink-0 h-[calc(100vh-11rem)] overflow-hidden hidden md:block"
+                className="w-[18%] lg:w-min whitespace-nowrap flex-shrink-0 h-[calc(100vh-11rem)] overflow-hidden hidden md:block"
             >
                 <div
                     ref={leftSidebarRef}
