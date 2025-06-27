@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import {
     getNavItems,
-    getTableOfContents,
     getPageNavigation,
     frameworks,
     TableOfContentsItem,
@@ -15,6 +14,7 @@ import { motion } from 'framer-motion'
 import './docLayout.css'
 import { ChevronLeft, Lock, Menu } from 'lucide-react'
 import ActiveLink from './ActiveLink'
+import { useTableOfContents } from '../utils/useTableOfContents'
 
 // Component that uses searchParams
 function DocLayoutInner({ children }: { children: React.ReactNode }) {
@@ -22,9 +22,6 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     const router = useRouter()
     const searchParams = useSearchParams()
     const [selectedFramework, setSelectedFramework] = useState('react')
-    const [tableOfContents, setTableOfContents] = useState<
-        TableOfContentsItem[]
-    >([])
     const [navigation, setNavigation] = useState<{
         previous: { label: string; path: string } | null
         next: { label: string; path: string } | null
@@ -43,6 +40,19 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     // Get current navigation based on selected framework
     const navItems = getNavItems(selectedFramework)
 
+    // Get the slug from the pathname
+    const slug = pathname.split('/').pop() || ''
+    
+    // Use our custom hook for table of contents
+    const { 
+        tableOfContents, 
+        activeTab, 
+        handleTocItemClick,
+        activeSection,
+    } = useTableOfContents({ 
+        slug: isMainDocsPage ? '' : slug 
+    });
+
     // Update framework from URL or set default
     useEffect(() => {
         const framework = searchParams.get('framework')
@@ -58,17 +68,10 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         if (isMainDocsPage) {
-            // If on main docs page, reset navigation and TOC
-            setTableOfContents([])
+            // If on main docs page, reset navigation
             setNavigation({ previous: null, next: null })
             return
         }
-
-        // Extract slug from pathname (e.g., "/docs/animation-overview" -> "animation-overview")
-        const slug = pathname.split('/').pop() || ''
-
-        // Get table of contents for current page
-        setTableOfContents(getTableOfContents(slug))
 
         // Get navigation links with current framework
         setNavigation(getPageNavigation(pathname, selectedFramework))
@@ -728,7 +731,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     >
                         <div className="px-4 py-6">
                             <h3 className="text-[var(--font-white)] font-medium mb-4 border-b border-[rgba(255,255,255,0.2)] w-fit pb-2">
-                                On this page
+                                On this page ({activeTab})
                             </h3>
 
                             <ul className="space-y-2 pl-2 border-l border-white/35 border-dashed">
@@ -737,24 +740,55 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                         <li>
                                             <a
                                                 href={item.anchor}
-                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${item.isHeading
-                                                        ? 'font-medium'
-                                                        : ''
-                                                    }`}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    handleTocItemClick(item.anchor);
+                                                }}
+                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm relative ${
+                                                    item.isHeading ? 'font-medium' : ''
+                                                } ${
+                                                    activeSection === item.anchor ? 'text-[var(--font-white)] font-medium' : ''
+                                                }`}
                                             >
+                                                <motion.span
+                                                    initial={{ opacity: 0, scale: 0 }}
+                                                    animate={{ 
+                                                        opacity: activeSection === item.anchor ? 1 : 0,
+                                                        scale: activeSection === item.anchor ? 1 : 0
+                                                    }}
+                                                    transition={{ duration: 0.3 }}
+                                                    className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[var(--bg-blue)] rounded-full"
+                                                ></motion.span>
                                                 {item.label}
                                             </a>
                                         </li>
                                         {item.subItems?.map(
                                             (subItem, subIndex) => (
-                                                <li key={subIndex}>
-                                                    <a
-                                                        href={subItem.anchor}
-                                                        className="text-[var(--font-gray)] hover:text-[var(--font-white)] text-sm pl-2"
-                                                    >
-                                                        {subItem.label}
-                                                    </a>
-                                                </li>
+                                                (!subItem.tab || subItem.tab === activeTab) && (
+                                                    <li key={subIndex}>
+                                                        <a
+                                                            href={subItem.anchor}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                handleTocItemClick(subItem.anchor);
+                                                            }}
+                                                            className={`text-[var(--font-gray)] hover:text-[var(--font-white)] text-sm pl-2 relative ${
+                                                                activeSection === subItem.anchor ? 'text-[var(--font-white)] font-medium' : ''
+                                                            }`}
+                                                        >
+                                                            <motion.span
+                                                                initial={{ opacity: 0, scale: 0 }}
+                                                                animate={{ 
+                                                                    opacity: activeSection === subItem.anchor ? 1 : 0,
+                                                                    scale: activeSection === subItem.anchor ? 1 : 0
+                                                                }}
+                                                                transition={{ duration: 0.3 }}
+                                                                className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[var(--bg-blue)] rounded-full"
+                                                            ></motion.span>
+                                                            {subItem.label}
+                                                        </a>
+                                                    </li>
+                                                )
                                             )
                                         )}
                                     </React.Fragment>

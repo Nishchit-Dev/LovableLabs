@@ -36,9 +36,11 @@ export type TableOfContentsItem = {
     label: string
     anchor: string
     isHeading?: boolean
+    tab?: 'preview' | 'variants' // Specify which tab this item belongs to
     subItems?: {
         label: string
         anchor: string
+        tab?: 'preview' | 'variants' // Specify which tab this subitem belongs to
     }[]
 }
 
