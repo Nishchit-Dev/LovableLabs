@@ -13,7 +13,7 @@ import {
 import { motion } from 'framer-motion'
 
 import './docLayout.css'
-import { ChevronLeft, Lock, Menu,} from 'lucide-react'
+import { ChevronLeft, Lock, Menu } from 'lucide-react'
 import ActiveLink from './ActiveLink'
 
 // Component that uses searchParams
@@ -123,20 +123,27 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                 mobileSidebarRef.current &&
                 (mobileSidebarRef.current.contains(targetElement) ||
                     mobileSidebarRef.current === targetElement)
-            
+
             // If over mobile sidebar, handle its scrolling manually to prevent background scrolling
             if (isOverMobileSidebar && mobileSidebarRef.current) {
-                const innerScrollable = mobileSidebarRef.current.querySelector('.overflow-y-auto') as HTMLElement;
+                const innerScrollable = mobileSidebarRef.current.querySelector(
+                    '.overflow-y-auto'
+                ) as HTMLElement
                 if (innerScrollable) {
-                    const { scrollTop, scrollHeight, clientHeight } = innerScrollable;
-                    
+                    const { scrollTop, scrollHeight, clientHeight } =
+                        innerScrollable
+
                     // If the mobile sidebar can scroll in the direction of the wheel, let it
-                    if ((deltaY > 0 && scrollTop < scrollHeight - clientHeight) || (deltaY < 0 && scrollTop > 0)) {
-                        e.preventDefault();
-                        innerScrollable.scrollTop += deltaY;
+                    if (
+                        (deltaY > 0 &&
+                            scrollTop < scrollHeight - clientHeight) ||
+                        (deltaY < 0 && scrollTop > 0)
+                    ) {
+                        e.preventDefault()
+                        innerScrollable.scrollTop += deltaY
                     }
                 }
-                return;
+                return
             }
 
             // Determine if cursor is over left sidebar
@@ -156,13 +163,17 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                 rightSidebarRef.current &&
                 (rightSidebarRef.current.contains(targetElement) ||
                     rightSidebarRef.current === targetElement)
-            
+
             // Always prioritize main content unless hovering over sidebar
             if (isOverMainContent && mainContentRef.current) {
-                const { scrollTop, scrollHeight, clientHeight } = mainContentRef.current
+                const { scrollTop, scrollHeight, clientHeight } =
+                    mainContentRef.current
 
                 // If main content can scroll in the direction of the wheel, let it
-                if ((deltaY > 0 && scrollTop < scrollHeight - clientHeight) || (deltaY < 0 && scrollTop > 0)) {
+                if (
+                    (deltaY > 0 && scrollTop < scrollHeight - clientHeight) ||
+                    (deltaY < 0 && scrollTop > 0)
+                ) {
                     e.preventDefault()
                     mainContentRef.current.scrollTop += deltaY
                     return
@@ -171,10 +182,14 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             }
             // Only scroll left sidebar when directly hovering over it
             else if (isOverLeftSidebar && leftSidebarRef.current) {
-                const { scrollTop, scrollHeight, clientHeight } = leftSidebarRef.current
+                const { scrollTop, scrollHeight, clientHeight } =
+                    leftSidebarRef.current
 
                 // If left sidebar can scroll in the direction of the wheel, let it
-                if ((deltaY > 0 && scrollTop < scrollHeight - clientHeight) || (deltaY < 0 && scrollTop > 0)) {
+                if (
+                    (deltaY > 0 && scrollTop < scrollHeight - clientHeight) ||
+                    (deltaY < 0 && scrollTop > 0)
+                ) {
                     e.preventDefault()
                     leftSidebarRef.current.scrollTop += deltaY
                 }
@@ -182,10 +197,14 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             }
             // Only scroll right sidebar when directly hovering over it
             else if (isOverRightSidebar && rightSidebarRef.current) {
-                const { scrollTop, scrollHeight, clientHeight } = rightSidebarRef.current
+                const { scrollTop, scrollHeight, clientHeight } =
+                    rightSidebarRef.current
 
                 // If right sidebar can scroll in the direction of the wheel, let it
-                if ((deltaY > 0 && scrollTop < scrollHeight - clientHeight) || (deltaY < 0 && scrollTop > 0)) {
+                if (
+                    (deltaY > 0 && scrollTop < scrollHeight - clientHeight) ||
+                    (deltaY < 0 && scrollTop > 0)
+                ) {
                     e.preventDefault()
                     rightSidebarRef.current.scrollTop += deltaY
                 }
@@ -210,8 +229,6 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             <div className="min-h-screen bg-[var(--bg-dark)]">{children}</div>
         )
     }
-
-   
 
     return (
         <div className="flex flex-col md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:px-48 md:px-12 px-4 overflow-y-auto overflow-x-hidden">
@@ -239,14 +256,15 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     className="h-full modern-scrollbar fade-edges relative"
                 >
                     <div className="sticky top-0 bg-[var(--bg-dark)] z-10 pt-6 px-4">
-                        <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)]">
+                        <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)] max-w-[300px]">
                             {frameworks.map((framework) => (
                                 <button
                                     key={framework.id}
-                                    className={`px-4 py-2 ${selectedFramework === framework.id
-                                        ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
-                                        : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                        }`}
+                                    className={`px-4 py-2 ${
+                                        selectedFramework === framework.id
+                                            ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
+                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                                    }`}
                                     onClick={() =>
                                         handleFrameworkChange(framework.id)
                                     }
@@ -254,8 +272,8 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                     {framework.id === 'js'
                                         ? 'JS'
                                         : framework.id === 'react'
-                                            ? 'React'
-                                            : 'Angular'}
+                                        ? 'React'
+                                        : 'Angular'}
                                 </button>
                             ))}
                         </div>
@@ -271,10 +289,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                             }
                                         }}
                                         href={item.path}
-                                        className={`flex items-center transition-colors duration-200 ${pathname === item.path.split('?')[0]
-                                            ? 'text-[var(--font-white)]'
-                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                            }`}
+                                        className={`flex items-center transition-colors duration-200 ${
+                                            pathname === item.path.split('?')[0]
+                                                ? 'text-[var(--font-white)]'
+                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                                        }`}
                                     >
                                         <span className="mr-2">
                                             {item.icon}
@@ -297,48 +316,55 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                     className="flex items-center flex-row group relative overflow-hidden"
                                                 >
                                                     <motion.span
-                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${pathname ===
+                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
+                                                            pathname ===
                                                             item.path.split(
                                                                 '?'
                                                             )[0]
-                                                            ? 'bg-white w-1.5'
-                                                            : 'bg-transparent group-hover:bg-white/50'
-                                                            } transition-all duration-200 ease-in-out absolute left-0`}
+                                                                ? 'bg-white w-1.5'
+                                                                : 'bg-transparent group-hover:bg-white/50'
+                                                        } transition-all duration-200 ease-in-out absolute left-0`}
                                                     />
                                                     <Link
                                                         onClick={() => {
-                                                            if (mobileMenuOpen) {
-                                                                setMobileMenuOpen(false)
+                                                            if (
+                                                                mobileMenuOpen
+                                                            ) {
+                                                                setMobileMenuOpen(
+                                                                    false
+                                                                )
                                                             }
                                                         }}
                                                         href={item.path}
-                                                        className={`${pathname ===
+                                                        className={`${
+                                                            pathname ===
                                                             item.path.split(
                                                                 '?'
                                                             )[0]
-                                                            ? 'text-[var(--font-white)] pl-3'
-                                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
-                                                            } text-sm transition-all duration-200 ${item.badge
+                                                                ? 'text-[var(--font-white)] pl-3'
+                                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
+                                                        } text-sm transition-all duration-200 ${
+                                                            item.badge
                                                                 ? 'flex items-center'
                                                                 : ''
-                                                                }`}
+                                                        }`}
                                                         style={{
                                                             opacity:
                                                                 new Date(
                                                                     item.releaseDate ||
-                                                                    ''
+                                                                        ''
                                                                 ).getTime() >
-                                                                    Date.now()
+                                                                Date.now()
                                                                     ? 0.7
                                                                     : 1,
                                                         }}
                                                     >
-                                                        <div className="flex flex-row gap-2 items-center">
+                                                        <div className="flex flex-row gap-1 items-center">
                                                             {new Date(
                                                                 item.releaseDate ||
-                                                                ''
+                                                                    ''
                                                             ).getTime() >
-                                                                Date.now() ? (
+                                                            Date.now() ? (
                                                                 <span>
                                                                     <Lock
                                                                         size={
@@ -350,30 +376,64 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                 <></>
                                                             )}
                                                             {item.label}
-                                                            {item.badge && (
-                                                                <span
-                                                                    className="ml-2 text-xs"
-                                                                    style={{
-                                                                        backgroundColor:
-                                                                            item
-                                                                                .badge
-                                                                                .bgColor,
-                                                                        color: item
-                                                                            .badge
-                                                                            .color,
-                                                                        padding:
-                                                                            '0.125rem 0.5rem',
-                                                                        borderRadius:
-                                                                            '0.25rem',
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        item
-                                                                            .badge
-                                                                            .text
-                                                                    }
-                                                                </span>
-                                                            )}
+                                                            {(() => {
+                                                                if (
+                                                                    !item.releaseDate
+                                                                ) {
+                                                                    return null
+                                                                }
+                                                                const badgeDate =
+                                                                    new Date(
+                                                                        item.releaseDate ||
+                                                                            ''
+                                                                    )
+                                                                const now =
+                                                                    new Date()
+                                                                const diffDays =
+                                                                    (now.getTime() -
+                                                                        badgeDate.getTime()) /
+                                                                    (1000 *
+                                                                        60 *
+                                                                        60 *
+                                                                        24)
+                                                                if (
+                                                                    diffDays >
+                                                                    15
+                                                                )
+                                                                    return null
+                                                                return (
+                                                                    <span
+                                                                        className={`ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500 `}
+                                                                        style={{
+                                                                            padding:
+                                                                                '0.125rem 0.5rem',
+                                                                            borderRadius:
+                                                                                '15rem',
+                                                                        }}
+                                                                    >
+                                                                        New
+                                                                    </span>
+                                                                )
+                                                            })()}
+                                                            {(() => {
+                                                                if (
+                                                                    !item.varaints
+                                                                ) {
+                                                                    return null
+                                                                }
+                                                                return (
+                                                                    <span
+                                                                        className="text-xs border-green-900 border-1 text-green-50 bg-green-600 transition-all duration-200 ease-in-out"
+                                                                        style={{
+                                                                            padding: '0.125rem 0.5rem',
+                                                                            borderRadius: '15rem',
+                                                                        }}
+                                                                    >
+                                                                        <span className="transition-all duration-500 group-hover:hidden ease-in-out">v{item.varaints}+</span>
+                                                                        <span className="transition-all duration-500 hidden group-hover:inline ease-in-out">variants {item.varaints}+</span>
+                                                                    </span>
+                                                                )
+                                                            })()}
                                                         </div>
                                                     </Link>
                                                 </li>
@@ -390,7 +450,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             {/* Mobile menu button */}
             <motion.div
                 animate={{
-                    x: mobileMenuOpen ? "calc(100vw - 70px)" : 0,
+                    x: mobileMenuOpen ? 'calc(100vw - 70px)' : 0,
                 }}
                 transition={{ type: 'tween', duration: 0.3 }}
                 className="md:hidden fixed top-5 left-4 z-50"
@@ -398,7 +458,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     className="bg-[var(--bg-blue)] rounded-xl p-[10px] hover:bg-[var(--bg-blue)]/80 transition-all duration-200"
-                    aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                    aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 >
                     {mobileMenuOpen ? (
                         <ChevronLeft size={24} color="white" />
@@ -421,10 +481,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         {frameworks.map((framework) => (
                             <button
                                 key={framework.id}
-                                className={`px-4 py-2 ${selectedFramework === framework.id
-                                    ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
-                                    : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                    }`}
+                                className={`px-4 py-2 ${
+                                    selectedFramework === framework.id
+                                        ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
+                                        : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                                }`}
                                 onClick={() =>
                                     handleFrameworkChange(framework.id)
                                 }
@@ -432,8 +493,8 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                 {framework.id === 'js'
                                     ? 'JS'
                                     : framework.id === 'react'
-                                        ? 'React'
-                                        : 'Angular'}
+                                    ? 'React'
+                                    : 'Angular'}
                             </button>
                         ))}
                     </div>
@@ -450,10 +511,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                             }
                                         }}
                                         href={item.path}
-                                        className={`flex items-center transition-colors duration-200 ${pathname === item.path.split('?')[0]
-                                            ? 'text-[var(--font-white)]'
-                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                            }`}
+                                        className={`flex items-center transition-colors duration-200 ${
+                                            pathname === item.path.split('?')[0]
+                                                ? 'text-[var(--font-white)]'
+                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
+                                        }`}
                                     >
                                         <span className="mr-2">
                                             {item.icon}
@@ -476,38 +538,45 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                     className="flex items-center flex-row group relative overflow-hidden"
                                                 >
                                                     <motion.span
-                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${pathname ===
+                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
+                                                            pathname ===
                                                             item.path.split(
                                                                 '?'
                                                             )[0]
-                                                            ? 'bg-white w-1.5'
-                                                            : 'bg-transparent group-hover:bg-white/50'
-                                                            } transition-all duration-200 ease-in-out absolute left-0`}
+                                                                ? 'bg-white w-1.5'
+                                                                : 'bg-transparent group-hover:bg-white/50'
+                                                        } transition-all duration-200 ease-in-out absolute left-0`}
                                                     />
                                                     <Link
                                                         onClick={() => {
-                                                            if (mobileMenuOpen) {
-                                                                setMobileMenuOpen(false)
+                                                            if (
+                                                                mobileMenuOpen
+                                                            ) {
+                                                                setMobileMenuOpen(
+                                                                    false
+                                                                )
                                                             }
                                                         }}
                                                         href={item.path}
-                                                        className={`${pathname ===
+                                                        className={`${
+                                                            pathname ===
                                                             item.path.split(
                                                                 '?'
                                                             )[0]
-                                                            ? 'text-[var(--font-white)] pl-3'
-                                                            : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
-                                                            } text-sm transition-all duration-200 ${item.badge
+                                                                ? 'text-[var(--font-white)] pl-3'
+                                                                : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
+                                                        } text-sm transition-all duration-200 ${
+                                                            item.badge
                                                                 ? 'flex items-center'
                                                                 : ''
-                                                                }`}
+                                                        }`}
                                                         style={{
                                                             opacity:
                                                                 new Date(
                                                                     item.releaseDate ||
-                                                                    ''
+                                                                        ''
                                                                 ).getTime() >
-                                                                    Date.now()
+                                                                Date.now()
                                                                     ? 0.7
                                                                     : 1,
                                                         }}
@@ -515,9 +584,9 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                         <div className="flex flex-row gap-2 items-center">
                                                             {new Date(
                                                                 item.releaseDate ||
-                                                                ''
+                                                                    ''
                                                             ).getTime() >
-                                                                Date.now() ? (
+                                                            Date.now() ? (
                                                                 <span>
                                                                     <Lock
                                                                         size={
@@ -529,30 +598,56 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                 <></>
                                                             )}
                                                             {item.label}
-                                                            {item.badge && (
-                                                                <span
-                                                                    className="ml-2 text-xs"
-                                                                    style={{
-                                                                        backgroundColor:
-                                                                            item
-                                                                                .badge
-                                                                                .bgColor,
-                                                                        color: item
-                                                                            .badge
-                                                                            .color,
-                                                                        padding:
-                                                                            '0.125rem 0.5rem',
-                                                                        borderRadius:
-                                                                            '0.25rem',
-                                                                    }}
-                                                                >
-                                                                    {
-                                                                        item
-                                                                            .badge
-                                                                            .text
-                                                                    }
-                                                                </span>
-                                                            )}
+                                                            {item.badge &&
+                                                                (() => {
+                                                                    if (
+                                                                        !item.badge
+                                                                    )
+                                                                        return null
+                                                                    const badgeDate =
+                                                                        new Date(
+                                                                            item.releaseDate ||
+                                                                                ''
+                                                                        )
+                                                                    const now =
+                                                                        new Date()
+                                                                    const diffDays =
+                                                                        (now.getTime() -
+                                                                            badgeDate.getTime()) /
+                                                                        (1000 *
+                                                                            60 *
+                                                                            60 *
+                                                                            24)
+                                                                    if (
+                                                                        diffDays >
+                                                                        20
+                                                                    )
+                                                                        return null
+                                                                    return (
+                                                                        <span
+                                                                            className={`ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500 `}
+                                                                            style={{
+                                                                                backgroundColor:
+                                                                                    item
+                                                                                        .badge
+                                                                                        .bgColor,
+                                                                                color: item
+                                                                                    .badge
+                                                                                    .color,
+                                                                                padding:
+                                                                                    '0.125rem 0.5rem',
+                                                                                borderRadius:
+                                                                                    '15rem',
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                item
+                                                                                    .badge
+                                                                                    .text
+                                                                            }
+                                                                        </span>
+                                                                    )
+                                                                })()}
                                                         </div>
                                                     </Link>
                                                 </li>
@@ -652,10 +747,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                         <li>
                                             <a
                                                 href={item.anchor}
-                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${item.isHeading
-                                                    ? 'font-medium'
-                                                    : ''
-                                                    }`}
+                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${
+                                                    item.isHeading
+                                                        ? 'font-medium'
+                                                        : ''
+                                                }`}
                                             >
                                                 {item.label}
                                             </a>
@@ -698,7 +794,9 @@ export default function DocLayoutClient({
                             <div className="absolute inset-0 border-t-4 border-[rgb(106,66,194)] border-solid rounded-full animate-spin"></div>
                             <div className="absolute inset-0 border-t-4 border-[rgb(70,50,119)] border-solid rounded-full opacity-40 animate-ping"></div>
                         </div>
-                        <div className="mt-4 text-[var(--font-gray)]">Loading documentation...</div>
+                        <div className="mt-4 text-[var(--font-gray)]">
+                            Loading documentation...
+                        </div>
                     </div>
                 </div>
             }

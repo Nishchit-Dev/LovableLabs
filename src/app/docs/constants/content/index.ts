@@ -65,6 +65,8 @@ const slugToContentKey: Record<string, string> = {
     // text animation
 
     'motion-text-reveal': 'motionTextRevealContent',
+    'coming-soon': 'comingSoonContent',
+    'framer-text-animation': 'FramerTextAnimationContent',
 }
 // Export all content
 const contentExports = {

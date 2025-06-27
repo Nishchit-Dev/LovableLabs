@@ -14,7 +14,6 @@ import {
 } from '@/app/components/mirco-components/tabs'
 import { sendGAEvent } from '@next/third-parties/google'
 
-
 type DocSectionProps = {
     content: DocContent
 }
@@ -26,7 +25,12 @@ type CodeBlockProps = {
     copy_event: string
 }
 
-const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockProps) => {
+const CodeBlock = ({
+    code,
+    language = 'jsx',
+    codeSrc,
+    copy_event,
+}: CodeBlockProps) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [showExpandButton, setShowExpandButton] = useState(false)
     const [copySuccess, setCopySuccess] = useState(false)
@@ -44,11 +48,10 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
         try {
             await navigator.clipboard.writeText(code)
             setCopySuccess(true)
-            console.log("Tracked copy_event: ", copy_event)
+            console.log('Tracked copy_event: ', copy_event)
             sendGAEvent('event', 'code_copy', {
                 event_category: 'code_copy',
                 event_label: copy_event,
-              
             })
             setTimeout(() => setCopySuccess(false), 2000)
         } catch (err) {
@@ -141,7 +144,11 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
                                         key: i,
                                     })
                                     return (
-                                        <div key={i} className={`${lineProps.className} flex items-center justify-start `} style={lineProps.style}>
+                                        <div
+                                            key={i}
+                                            className={`${lineProps.className} flex items-center justify-start `}
+                                            style={lineProps.style}
+                                        >
                                             {
                                                 <span
                                                     style={{
@@ -164,7 +171,9 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
                                                 return (
                                                     <span
                                                         key={key}
-                                                        className={tokenProps.className}
+                                                        className={
+                                                            tokenProps.className
+                                                        }
                                                         style={tokenProps.style}
                                                     >
                                                         {tokenProps.children}
@@ -236,10 +245,22 @@ const CodeBlock = ({ code, language = 'jsx', codeSrc, copy_event }: CodeBlockPro
 const PreviewTab = ({ content }: DocSectionProps) => {
     return (
         <div className="w-full">
+            {content.isComingSoon && (
+                <div
+                    className="absolute inset-0 pointer-events-none z-100"
+                    style={{
+                        background:
+                            'linear-gradient(to bottom, transparent -70%, var(--bg-dark) 100%)',
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                    }}
+                ></div>
+            )}
             {content.preview}
+
             {new Date(content.releaseDate || '').getTime() > Date.now() ? (
                 <div>
-                    <div className="flex flex-col ww-full justify-center items-center gap-5">
+                    <div className="flex flex-col w-full justify-center items-center gap-5">
                         <>
                             <Lock size={32} />
                             <p className="text-lg">
@@ -258,7 +279,7 @@ const PreviewTab = ({ content }: DocSectionProps) => {
                 </div>
             ) : (
                 content.sections.map((section, index) => (
-                    <div key={index} className="flex flex-row">
+                    <div key={index} className="flex flex-row relative">
                         <div className="w-[0.5px] bg-white/20 self-stretch lg:mr-10 mr-4">
                             <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500"></div>
                         </div>
@@ -303,13 +324,27 @@ const PreviewTab = ({ content }: DocSectionProps) => {
     )
 }
 
-
 const VariantsTab = ({ content }: DocSectionProps) => {
     if (!content?.variantTab) {
         return <></>
     }
     return (
-        <div className="w-full">
+        <div
+            className={`w-full ${
+                content.isComingSoon ? 'overflow-y-hidden' : ''
+            }`}
+        >
+            {content.isComingSoon && (
+                <div
+                    className="absolute inset-0 pointer-events-none z-100"
+                    style={{
+                        background:
+                            'linear-gradient(to bottom, transparent -70%, var(--bg-dark) 100%)',
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                    }}
+                ></div>
+            )}
             {new Date(content.releaseDate || '').getTime() > Date.now() ? (
                 <div>
                     <div className="flex flex-col ww-full justify-center items-center gap-5">
@@ -338,7 +373,7 @@ const VariantsTab = ({ content }: DocSectionProps) => {
 
                         <div className="mb-16 w-full min-w-0 ">
                             {section.title && (
-                                <div className="mb-6 mt-2">
+                                <div className="mb-6 mt-2 relative z-10">
                                     <h2
                                         id={section.title
                                             .toLowerCase()
@@ -432,7 +467,9 @@ const DocSection = ({ content }: DocSectionProps) => {
                 delay: 0.6,
                 duration: 0.8,
             }}
-            className="text-[var(--font-white)] overflow-hidden"
+            className={`text-[var(--font-white)] overflow-hidden ${
+                content.isComingSoon ? 'overflow-y-hidden' : ''
+            }`}
         >
             <h1 className="text-3xl font-bold mb-3">{content.title}</h1>
             <p className="text-[var(--font-gray)] mb-10">

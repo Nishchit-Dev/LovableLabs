@@ -20,6 +20,8 @@ export type NavItem = {
     }
     isLock?: boolean
     releaseDate?: string
+    isComingSoon?: true
+    varaints?: number
 }
 
 // Category type for grouping navigation items
@@ -50,11 +52,13 @@ export type ContentSection = {
     copy_event?: string
     isLiveDemo: boolean
     preview?: JSX.Element
+    isComingSoon?: boolean
 }
 
 // Full document content type
 export type DocContent = {
     title: string
+    isComingSoon?: boolean
     description: string
     preview?: JSX.Element
     isLock?: boolean

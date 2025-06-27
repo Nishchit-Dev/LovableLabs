@@ -13,7 +13,8 @@ import { backgroundParallaxGridContent } from './parallexGridBackground'
 import { backgroundParallaxDotContent } from './parallexDotBackground'
 import { motionTextRevealContent } from './motionTextRevealAnimataion'
 import { liquidGlassDraggableContent } from './draggableLiquidGlass'
-
+import { comingSoonContent } from './comingSoon'
+import { FramerTextAnimationContent } from './framerTextAnimation'
 // Re-export all imported modules
 export {
     InstallTailwindCss,
@@ -29,4 +30,6 @@ export {
     backgroundParallaxDotContent,
     motionTextRevealContent,
     liquidGlassDraggableContent,
+    comingSoonContent,
+    FramerTextAnimationContent
 }
