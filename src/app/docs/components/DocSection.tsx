@@ -242,6 +242,11 @@ const CodeBlock = ({
     )
 }
 
+// Helper function to generate consistent IDs for sections
+const generateSectionId = (title: string): string => {
+    return title.toLowerCase().replace(/\s+/g, '-');
+}
+
 const PreviewTab = ({ content }: DocSectionProps) => {
     return (
         <div className="w-full">
@@ -287,9 +292,7 @@ const PreviewTab = ({ content }: DocSectionProps) => {
                             {section.title && (
                                 <div className="mb-6">
                                     <h2
-                                        id={section.title
-                                            .toLowerCase()
-                                            .replace(/\s+/g, '-')}
+                                        id={generateSectionId(section.title)}
                                         className="text-2xl font-bold text-[var(--font-white)] mb-2 flex items-center"
                                     >
                                         {section.title}
@@ -375,9 +378,7 @@ const VariantsTab = ({ content }: DocSectionProps) => {
                             {section.title && (
                                 <div className="mb-6 mt-2 relative z-10">
                                     <h2
-                                        id={section.title
-                                            .toLowerCase()
-                                            .replace(/\s+/g, '-')}
+                                        id={generateSectionId(section.title)}
                                         className="text-2xl font-bold text-[var(--font-white)] mb-2 flex items-center"
                                     >
                                         {section.title}
@@ -428,13 +429,23 @@ const TabsMerger = ({ content }: DocSectionProps) => {
     
     const handleTabChange = (value: string) => {
         setActiveTab(value);
-        // // Track tab change in analytics
-        // sendGAEvent('event', 'tab_change', {
-        //     event_category: 'navigation',
-        //     event_label: `${content.title} - ${value}`,
-        //     content_title: content.title,
-        //     tab_name: value
-        // });
+        
+        // Dispatch custom event for tab change
+        const tabChangeEvent = new CustomEvent('docTabChange', { 
+            detail: { 
+                tab: value.toLowerCase() as 'preview' | 'variants',
+                contentTitle: content.title 
+            } 
+        });
+        window.dispatchEvent(tabChangeEvent);
+        
+        // Track tab change in analytics
+        sendGAEvent('event', 'tab_change', {
+            event_category: 'navigation',
+            event_label: `${content.title} - ${value}`,
+            content_title: content.title,
+            tab_name: value
+        });
     };
     
     return (
@@ -461,11 +472,7 @@ const TabsMerger = ({ content }: DocSectionProps) => {
                             </TabsTrigger>
                         )}
                     </TabsList>
-                    
-                
                 </div>
-                
-               
 
                 <TabsContent value="Preview" className="">
                     <motion.div

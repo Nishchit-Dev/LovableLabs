@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 
 // Simple cn utility for className merging
 const cn = (...classes: (string | boolean | undefined)[]) => classes.filter(Boolean).join(' ')
@@ -47,7 +47,7 @@ export const ParallaxGridBackground: React.FC<
         : 'radial-gradient(ellipse, transparent 10%, white 90%, white 95%)'
 
     // Animation loop for smooth movement
-    const animate = () => {
+    const animate = useCallback(() => {
         if (!backgroundRef.current) return
 
         // Lerp towards target position
@@ -59,7 +59,7 @@ export const ParallaxGridBackground: React.FC<
 
         // Continue animation
         animationId.current = requestAnimationFrame(animate)
-    }
+    }, [mousePos, smoothness])
 
     useEffect(() => {
         // Start animation loop
@@ -70,7 +70,7 @@ export const ParallaxGridBackground: React.FC<
                 cancelAnimationFrame(animationId.current)
             }
         }
-    }, [mousePos, smoothness])
+    }, [animate])
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
