@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { themes, Highlight } from 'prism-react-renderer'
 import { motion } from 'framer-motion'
 import './markdown.css'
-import { Copy, Lock, Check, Eye, EyeClosed, CheckCircle2 } from 'lucide-react'
+import { Copy, Lock, Check, Eye, EyeClosed } from 'lucide-react'
 import Countdown from '@/app/utils/countdown'
 import {
     Tabs,
@@ -418,6 +418,7 @@ const VariantsTab = ({ content }: DocSectionProps) => {
 }
 
 const TabsMerger = ({ content }: DocSectionProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [activeTab, setActiveTab] = useState("Preview");
     
     const tabVariants = {
