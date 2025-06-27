@@ -260,10 +260,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                             {frameworks.map((framework) => (
                                 <button
                                     key={framework.id}
-                                    className={`px-4 py-2 ${selectedFramework === framework.id
+                                    className={`px-4 py-2 ${
+                                        selectedFramework === framework.id
                                             ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
                                             : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                        }`}
+                                    }`}
                                     onClick={() =>
                                         handleFrameworkChange(framework.id)
                                     }
@@ -271,8 +272,8 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                     {framework.id === 'js'
                                         ? 'JS'
                                         : framework.id === 'react'
-                                            ? 'React'
-                                            : 'Angular'}
+                                        ? 'React'
+                                        : 'Angular'}
                                 </button>
                             ))}
                         </div>
@@ -288,10 +289,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                             }
                                         }}
                                         href={item.path}
-                                        className={`flex items-center transition-colors duration-200 ${pathname === item.path.split('?')[0]
+                                        className={`flex items-center transition-colors duration-200 ${
+                                            pathname === item.path.split('?')[0]
                                                 ? 'text-[var(--font-white)]'
                                                 : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                            }`}
+                                        }`}
                                     >
                                         <span className="mr-2">
                                             {item.icon}
@@ -314,13 +316,14 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                     className="flex items-center flex-row group relative overflow-hidden"
                                                 >
                                                     <motion.span
-                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${pathname ===
-                                                                item.path.split(
-                                                                    '?'
-                                                                )[0]
+                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
+                                                            pathname ===
+                                                            item.path.split(
+                                                                '?'
+                                                            )[0]
                                                                 ? 'bg-white w-1.5'
                                                                 : 'bg-transparent group-hover:bg-white/50'
-                                                            } transition-all duration-200 ease-in-out absolute left-0`}
+                                                        } transition-all duration-200 ease-in-out absolute left-0`}
                                                     />
                                                     <Link
                                                         onClick={() => {
@@ -333,23 +336,25 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                             }
                                                         }}
                                                         href={item.path}
-                                                        className={`${pathname ===
-                                                                item.path.split(
-                                                                    '?'
-                                                                )[0]
+                                                        className={`${
+                                                            pathname ===
+                                                            item.path.split(
+                                                                '?'
+                                                            )[0]
                                                                 ? 'text-[var(--font-white)] pl-3'
                                                                 : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
-                                                            } text-sm transition-all duration-200 ${item.badge
+                                                        } text-sm transition-all duration-200 ${
+                                                            item.badge
                                                                 ? 'flex items-center'
                                                                 : ''
-                                                            }`}
+                                                        }`}
                                                         style={{
                                                             opacity:
                                                                 new Date(
                                                                     item.releaseDate ||
-                                                                    ''
+                                                                        ''
                                                                 ).getTime() >
-                                                                    Date.now()
+                                                                Date.now()
                                                                     ? 0.7
                                                                     : 1,
                                                         }}
@@ -357,9 +362,9 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                         <div className="flex flex-row gap-1 items-center">
                                                             {new Date(
                                                                 item.releaseDate ||
-                                                                ''
+                                                                    ''
                                                             ).getTime() >
-                                                                Date.now() ? (
+                                                            Date.now() ? (
                                                                 <span>
                                                                     <Lock
                                                                         size={
@@ -380,7 +385,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                 const badgeDate =
                                                                     new Date(
                                                                         item.releaseDate ||
-                                                                        ''
+                                                                            ''
                                                                     )
                                                                 const now =
                                                                     new Date()
@@ -420,12 +425,26 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                     <span
                                                                         className="text-xs border-green-900 border-1 text-green-50 bg-green-600 transition-all duration-200 ease-in-out"
                                                                         style={{
-                                                                            padding: '0.125rem 0.5rem',
-                                                                            borderRadius: '15rem',
+                                                                            padding:
+                                                                                '0.125rem 0.5rem',
+                                                                            borderRadius:
+                                                                                '15rem',
                                                                         }}
                                                                     >
-                                                                        <span className="transition-all duration-500 group-hover:hidden ease-in-out">v{item.varaints}+</span>
-                                                                        <span className="transition-all duration-500 hidden group-hover:inline ease-in-out">variants {item.varaints}+</span>
+                                                                        <span className="transition-all duration-500 group-hover:hidden ease-in-out realt">
+                                                                            v
+                                                                            {
+                                                                                item.varaints
+                                                                            }
+                                                                            +
+                                                                        </span>
+                                                                        <span className="transition-all duration-500 hidden group-hover:inline ease-in-out ">
+                                                                            variants{' '}
+                                                                            {
+                                                                                item.varaints
+                                                                            }
+                                                                            +
+                                                                        </span>
                                                                     </span>
                                                                 )
                                                             })()}
@@ -476,10 +495,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         {frameworks.map((framework) => (
                             <button
                                 key={framework.id}
-                                className={`px-4 py-2 ${selectedFramework === framework.id
+                                className={`px-4 py-2 ${
+                                    selectedFramework === framework.id
                                         ? 'text-[var(--font-blue)] border-b-2 border-[var(--bg-blue)]'
                                         : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                    }`}
+                                }`}
                                 onClick={() =>
                                     handleFrameworkChange(framework.id)
                                 }
@@ -487,8 +507,8 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                 {framework.id === 'js'
                                     ? 'JS'
                                     : framework.id === 'react'
-                                        ? 'React'
-                                        : 'Angular'}
+                                    ? 'React'
+                                    : 'Angular'}
                             </button>
                         ))}
                     </div>
@@ -505,10 +525,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                             }
                                         }}
                                         href={item.path}
-                                        className={`flex items-center transition-colors duration-200 ${pathname === item.path.split('?')[0]
+                                        className={`flex items-center transition-colors duration-200 ${
+                                            pathname === item.path.split('?')[0]
                                                 ? 'text-[var(--font-white)]'
                                                 : 'text-[var(--font-gray)] hover:text-[var(--font-white)]'
-                                            }`}
+                                        }`}
                                     >
                                         <span className="mr-2">
                                             {item.icon}
@@ -531,13 +552,14 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                     className="flex items-center flex-row group relative overflow-hidden"
                                                 >
                                                     <motion.span
-                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${pathname ===
-                                                                item.path.split(
-                                                                    '?'
-                                                                )[0]
+                                                        className={`h-2 w-0 group-hover:w-1.5 rounded-l-full mr-1 ${
+                                                            pathname ===
+                                                            item.path.split(
+                                                                '?'
+                                                            )[0]
                                                                 ? 'bg-white w-1.5'
                                                                 : 'bg-transparent group-hover:bg-white/50'
-                                                            } transition-all duration-200 ease-in-out absolute left-0`}
+                                                        } transition-all duration-200 ease-in-out absolute left-0`}
                                                     />
                                                     <Link
                                                         onClick={() => {
@@ -550,23 +572,25 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                             }
                                                         }}
                                                         href={item.path}
-                                                        className={`${pathname ===
-                                                                item.path.split(
-                                                                    '?'
-                                                                )[0]
+                                                        className={`${
+                                                            pathname ===
+                                                            item.path.split(
+                                                                '?'
+                                                            )[0]
                                                                 ? 'text-[var(--font-white)] pl-3'
                                                                 : 'text-[var(--font-gray)] hover:text-[var(--font-white)] group-hover:pl-3 pl-0'
-                                                            } text-sm transition-all duration-200 ${item.badge
+                                                        } text-sm transition-all duration-200 ${
+                                                            item.badge
                                                                 ? 'flex items-center'
                                                                 : ''
-                                                            }`}
+                                                        }`}
                                                         style={{
                                                             opacity:
                                                                 new Date(
                                                                     item.releaseDate ||
-                                                                    ''
+                                                                        ''
                                                                 ).getTime() >
-                                                                    Date.now()
+                                                                Date.now()
                                                                     ? 0.7
                                                                     : 1,
                                                         }}
@@ -574,9 +598,9 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                         <div className="flex flex-row gap-2 items-center">
                                                             {new Date(
                                                                 item.releaseDate ||
-                                                                ''
+                                                                    ''
                                                             ).getTime() >
-                                                                Date.now() ? (
+                                                            Date.now() ? (
                                                                 <span>
                                                                     <Lock
                                                                         size={
@@ -597,7 +621,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                     const badgeDate =
                                                                         new Date(
                                                                             item.releaseDate ||
-                                                                            ''
+                                                                                ''
                                                                         )
                                                                     const now =
                                                                         new Date()
@@ -638,6 +662,39 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                         </span>
                                                                     )
                                                                 })()}
+                                                            {(() => {
+                                                                if (
+                                                                    !item.varaints
+                                                                ) {
+                                                                    return null
+                                                                }
+                                                                return (
+                                                                    <span
+                                                                        className="text-xs border-green-900 border-1 text-green-50 bg-green-600 transition-all duration-200 ease-in-out"
+                                                                        style={{
+                                                                            padding:
+                                                                                '0.125rem 0.5rem',
+                                                                            borderRadius:
+                                                                                '15rem',
+                                                                        }}
+                                                                    >
+                                                                        <span className="transition-all duration-500 group-hover:hidden ease-in-out realt">
+                                                                            v
+                                                                            {
+                                                                                item.varaints
+                                                                            }
+                                                                            +
+                                                                        </span>
+                                                                        <span className="transition-all duration-500 hidden group-hover:inline ease-in-out ">
+                                                                            variants{' '}
+                                                                            {
+                                                                                item.varaints
+                                                                            }
+                                                                            +
+                                                                        </span>
+                                                                    </span>
+                                                                )
+                                                            })()}
                                                         </div>
                                                     </Link>
                                                 </li>
@@ -737,10 +794,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                         <li>
                                             <a
                                                 href={item.anchor}
-                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${item.isHeading
+                                                className={`text-[var(--font-gray)] hover:text-[var(--font-white)] transition-colors duration-200 text-sm ${
+                                                    item.isHeading
                                                         ? 'font-medium'
                                                         : ''
-                                                    }`}
+                                                }`}
                                             >
                                                 {item.label}
                                             </a>
