@@ -21,6 +21,7 @@ export type NavItem = {
     isLock?: boolean
     releaseDate?: string
     isComingSoon?: true
+    varaints?: number
 }
 
 // Category type for grouping navigation items
