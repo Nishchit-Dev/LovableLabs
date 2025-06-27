@@ -1,4 +1,4 @@
-// import { releaseDate } from '../../releaseDate/releaseDate'
+import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildPreviewFramerTextAnimation } from '../Builds/BuildPreviewFramerTextAnimation'
 import {
@@ -38,7 +38,7 @@ export const FramerTextAnimationContent: DocContent = {
     description:
         'Create Text Animation as you want with Lovablelabs UI for a dynamic visual effect.',
     preview: BuildPreviewFramerTextAnimation(),
-    // releaseDate: releaseDate.template,
+    releaseDate: releaseDate.framerTextAnimation,
 
     sections: [
         {
