@@ -359,7 +359,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                     : 1,
                                                         }}
                                                     >
-                                                        <div className="flex flex-row gap-2 items-center">
+                                                        <div className="flex flex-row gap-1 items-center">
                                                             {new Date(
                                                                 item.releaseDate ||
                                                                     ''
@@ -376,44 +376,64 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                 <></>
                                                             )}
                                                             {item.label}
-                                                            {
-                                                                (() => {
-                                                                    if(!item.releaseDate){
-                                                                        return null
-                                                                    }
-                                                                    const badgeDate =
-                                                                        new Date(
-                                                                            item.releaseDate ||
-                                                                                ''
-                                                                        )
-                                                                    const now =
-                                                                        new Date()
-                                                                    const diffDays =
-                                                                        (now.getTime() -
-                                                                            badgeDate.getTime()) /
-                                                                        (1000 *
-                                                                            60 *
-                                                                            60 *
-                                                                            24)
-                                                                    if (
-                                                                        diffDays >
-                                                                        15
+                                                            {(() => {
+                                                                if (
+                                                                    !item.releaseDate
+                                                                ) {
+                                                                    return null
+                                                                }
+                                                                const badgeDate =
+                                                                    new Date(
+                                                                        item.releaseDate ||
+                                                                            ''
                                                                     )
-                                                                        return null
-                                                                    return (
-                                                                        <span
-                                                                            className={`ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500 `}
-                                                                            style={{
-                                                                                padding:
-                                                                                    '0.125rem 0.5rem',
-                                                                                borderRadius:
-                                                                                    '15rem',
-                                                                            }}
-                                                                        >
-                                                                           New
-                                                                        </span>
-                                                                    )
-                                                                })()}
+                                                                const now =
+                                                                    new Date()
+                                                                const diffDays =
+                                                                    (now.getTime() -
+                                                                        badgeDate.getTime()) /
+                                                                    (1000 *
+                                                                        60 *
+                                                                        60 *
+                                                                        24)
+                                                                if (
+                                                                    diffDays >
+                                                                    15
+                                                                )
+                                                                    return null
+                                                                return (
+                                                                    <span
+                                                                        className={`ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500 `}
+                                                                        style={{
+                                                                            padding:
+                                                                                '0.125rem 0.5rem',
+                                                                            borderRadius:
+                                                                                '15rem',
+                                                                        }}
+                                                                    >
+                                                                        New
+                                                                    </span>
+                                                                )
+                                                            })()}
+                                                            {(() => {
+                                                                if (
+                                                                    !item.varaints
+                                                                ) {
+                                                                    return null
+                                                                }
+                                                                return (
+                                                                    <span
+                                                                        className="text-xs border-green-900 border-1 text-green-50 bg-green-600 transition-all duration-200 ease-in-out"
+                                                                        style={{
+                                                                            padding: '0.125rem 0.5rem',
+                                                                            borderRadius: '15rem',
+                                                                        }}
+                                                                    >
+                                                                        <span className="transition-all duration-500 group-hover:hidden ease-in-out">v{item.varaints}+</span>
+                                                                        <span className="transition-all duration-500 hidden group-hover:inline ease-in-out">variants {item.varaints}+</span>
+                                                                    </span>
+                                                                )
+                                                            })()}
                                                         </div>
                                                     </Link>
                                                 </li>
