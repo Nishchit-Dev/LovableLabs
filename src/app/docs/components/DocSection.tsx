@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { themes, Highlight } from 'prism-react-renderer'
 import { motion } from 'framer-motion'
 import './markdown.css'
-import { Copy, Lock, Check, Eye, EyeClosed } from 'lucide-react'
+import { Copy, Lock, Check, Eye, EyeClosed, CheckCircle2 } from 'lucide-react'
 import Countdown from '@/app/utils/countdown'
 import {
     Tabs,
@@ -418,31 +418,73 @@ const VariantsTab = ({ content }: DocSectionProps) => {
 }
 
 const TabsMerger = ({ content }: DocSectionProps) => {
+    const [activeTab, setActiveTab] = useState("Preview");
+    
+    const tabVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+    };
+    
+    const handleTabChange = (value: string) => {
+        setActiveTab(value);
+        // // Track tab change in analytics
+        // sendGAEvent('event', 'tab_change', {
+        //     event_category: 'navigation',
+        //     event_label: `${content.title} - ${value}`,
+        //     content_title: content.title,
+        //     tab_name: value
+        // });
+    };
+    
     return (
         <>
-            <Tabs defaultValue="Preview" className="">
-                <TabsList>
-                    <TabsTrigger
-                        value="Preview"
-                        className="cursor-pointer opacity-75 hover:opacity-100 active:opacity-100"
-                    >
-                        Preview
-                    </TabsTrigger>
-                    {content.variantTab && (
+            <Tabs 
+                defaultValue="Preview" 
+                className=""
+                onValueChange={handleTabChange}
+            >
+                <div className="flex justify-between items-center mb-2">
+                    <TabsList>
                         <TabsTrigger
-                            value="Variants"
-                            className="cursor-pointer opacity-75 hover:opacity-100 active:opacity-100"
+                            value="Preview"
+                            className="cursor-pointer"
                         >
-                            Variants
+                            Preview
                         </TabsTrigger>
-                    )}
-                </TabsList>
+                        {content.variantTab && (
+                            <TabsTrigger
+                                value="Variants"
+                                className="cursor-pointer"
+                            >
+                                Variants
+                            </TabsTrigger>
+                        )}
+                    </TabsList>
+                    
+                
+                </div>
+                
+               
 
                 <TabsContent value="Preview" className="">
-                    <PreviewTab content={content} />
+                    <motion.div
+                        key="preview-tab"
+                        initial="hidden"
+                        animate="visible"
+                        variants={tabVariants}
+                    >
+                        <PreviewTab content={content} />
+                    </motion.div>
                 </TabsContent>
                 <TabsContent value="Variants">
-                    <VariantsTab content={content} />
+                    <motion.div
+                        key="variants-tab"
+                        initial="hidden"
+                        animate="visible"
+                        variants={tabVariants}
+                    >
+                        <VariantsTab content={content} />
+                    </motion.div>
                 </TabsContent>
             </Tabs>
         </>
