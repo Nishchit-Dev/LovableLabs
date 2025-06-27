@@ -95,7 +95,7 @@ const LoopText: React.FC<LoopTextProps> = ({
             scale: 1,
             transition: getTransition(spinDuration, currentRotation),
         })
-    }, [spinDuration, controls, onHover, text])
+    }, [spinDuration, controls, onHover, text, currentRotation, direction])
 
     return (
         <motion.div

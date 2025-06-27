@@ -15,6 +15,14 @@ interface UseTableOfContentsReturn {
   handleTocItemClick: (anchor: string) => void;
 }
 
+// Define the custom event interface
+interface DocTabChangeEvent extends CustomEvent {
+  detail: {
+    tab: 'preview' | 'variants';
+    contentTitle: string;
+  };
+}
+
 /**
  * Custom hook for managing table of contents with tab-specific content
  */
@@ -35,17 +43,17 @@ export const useTableOfContents = ({
 
   // Listen for tab changes from DocSection component
   useEffect(() => {
-    const handleTabChangeEvent = (event: CustomEvent) => {
+    const handleTabChangeEvent = (event: DocTabChangeEvent) => {
       if (event.detail && (event.detail.tab === 'preview' || event.detail.tab === 'variants')) {
         setActiveTab(event.detail.tab);
       }
     };
     
     // Add event listener for custom tab change event
-    window.addEventListener('docTabChange' as any, handleTabChangeEvent as EventListener);
+    window.addEventListener('docTabChange', handleTabChangeEvent as EventListener);
     
     return () => {
-      window.removeEventListener('docTabChange' as any, handleTabChangeEvent as EventListener);
+      window.removeEventListener('docTabChange', handleTabChangeEvent as EventListener);
     };
   }, []);
 

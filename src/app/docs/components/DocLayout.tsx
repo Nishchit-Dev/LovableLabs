@@ -7,7 +7,6 @@ import {
     getNavItems,
     getPageNavigation,
     frameworks,
-    TableOfContentsItem,
 } from '../constants'
 import { motion } from 'framer-motion'
 
