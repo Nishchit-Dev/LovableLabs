@@ -22,8 +22,6 @@ import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxG
 import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
 import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
 import DraggableLiquidGlass from '../docs/constants/content/code/DraggableLiquidGlass'
-import CircularOrbitAnimation from './test/CircularOrbit'
-import { AnimatedText } from './test/FramerTextAnimation'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -396,22 +394,6 @@ const ContentSlider = () => {
                 'This badge demonstrates a looping animation. Useful for drawing attention to UI elements.',
             Component: (
                 <div className="flex flex-col items-center justify-center h-40">
-                    <AnimatedText
-                        splitType="chars"
-                        animation="fadeUp"
-                        className="text-3xl font-bold text-center"
-                    >
-                        Hey this is lovable labs
-                    </AnimatedText>
-                </div>
-            ),
-        },
-        {
-            title: 'LoopBadge',
-            description:
-                'This badge demonstrates a looping animation. Useful for drawing attention to UI elements.',
-            Component: (
-                <div className="flex flex-col items-center justify-center h-40">
                     <LoopBadge />
                 </div>
             ),
@@ -516,37 +498,6 @@ const ContentSlider = () => {
                         dark
                         textClassName="text-5xl font-bold"
                     />
-                </div>
-            ),
-        },
-        {
-            title: 'Circular Orbit Animation',
-            description:
-                'This component demonstrates a circular orbit animation, ideal for visually representing motion or relationships between elements.',
-            Component: (
-                <div className="relative flex justify-center items-center h-full w-full">
-                    {satellites.map((satellite, index) => (
-                        <CircularOrbitAnimation
-                            key={index}
-                            radius={80 * (index + 1)}
-                            duration={4}
-                            delay={satellite.delay}
-                            pathVisibility="visible"
-                            pathOpacity={0.1}
-                            useRelativePositioning={true}
-                            centerContainer={true}
-                            containerStyle={{
-                                position: 'absolute',
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(50%, 50%)',
-                            }}
-                        >
-                            <div
-                                className={`${satellite.size} ${satellite.color} rounded-full`}
-                            />
-                        </CircularOrbitAnimation>
-                    ))}
                 </div>
             ),
         },
