@@ -7,4 +7,5 @@ export const releaseDate = {
     parallaxDot: '2025-06-12T23:59:59',
     motionTextReveal: '2025-06-20T23:59:59',
     template: '2200-06-20T23:59:59',
+    framerTextAnimation:'2025-06-22T23:59:59',
 }
