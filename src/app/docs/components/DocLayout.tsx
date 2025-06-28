@@ -187,7 +187,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                 const { scrollTop, scrollHeight, clientHeight } =
                     leftSidebarRef.current
 
-                // If left sidebar can scroll in the direction of the wheel, let it
+            // If left sidebar can scroll in the direction of the wheel, let it
                 if (
                     (deltaY > 0 && scrollTop < scrollHeight - clientHeight) ||
                     (deltaY < 0 && scrollTop > 0)
@@ -233,7 +233,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:px-20 md:px-12 px-4 overflow-y-auto overflow-x-hidden">
+        <div className="flex flex-col justify-center items-start md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:pl-20 sm:px-12 px-4 overflow-y-auto">
             {/* Left Sidebar - desktop */}
             <motion.div
                 layout="size"
@@ -251,7 +251,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     delay: 0.2,
                     duration: 0.8,
                 }}
-                className="w-[18%] lg:w-min whitespace-nowrap flex-shrink-0 h-[calc(100vh-11rem)] overflow-hidden hidden md:block"
+                className="w-[25%] lg:w-[15%] whitespace-nowrap flex-shrink-0 h-[calc(100vh-11rem)] hidden md:block "
             >
                 <div
                     ref={leftSidebarRef}
@@ -723,7 +723,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             )}
 
             {/* Main content */}
-            <div className="md:flex-1 w-[100%] h-screen">
+            <div className="w-[50%] sm:w-full md:w-full xl:w-[70%] 2xl:w-[50%]  h-screen">
                 <ActiveLink />
                 <div ref={mainContentRef} className="h-full fade-edges">
                     <div className="max-w-4xl mx-auto md:px-8 md:py-12 py-8">
@@ -779,11 +779,11 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                         transition:
                             'backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1), -webkit-backdrop-filter 1.2s cubic-bezier(0.4,0,0.2,1)',
                     }}
-                    className="w-[auto]  flex-shrink-0 h-screen overflow-hidden hidden md:block"
+                    className="w-min whitespace-nowrap  flex-shrink-0 h-screen overflow-hidden hidden md:block lg:hidden xl:block"
                 >
                     <div
                         ref={rightSidebarRef}
-                        className="h-full modern-scrollbar fade-edges"
+                        className="h-full modern-scrollbar fade-edges "
                     >
                         <div className="px-4 py-6">
                             <h3 className="text-[var(--font-white)] font-medium mb-4 border-b border-[rgba(255,255,255,0.2)] w-fit pb-2">
@@ -814,7 +814,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                         scale: activeSection === item.anchor ? 1 : 0
                                                 }}
                                                     transition={{ duration: 0.3 }}
-                                                    className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[var(--bg-blue)] rounded-full"
+                                                    className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-1 h-4 bg-[var(--bg-blue)] rounded-full"
                                                 ></motion.span>
                                                 {item.label}
                                             </a>
@@ -840,7 +840,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                     scale: activeSection === subItem.anchor ? 1 : 0
                                                                 }}
                                                                 transition={{ duration: 0.3 }}
-                                                                className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-2 h-2 bg-[var(--bg-blue)] rounded-full"
+                                                                className="absolute -left-[18px] top-1/2 transform -translate-y-1/2 w-1 h-4 bg-[var(--bg-blue)] rounded-full"
                                                             ></motion.span>
                                                             {subItem.label}
                                                         </a>
