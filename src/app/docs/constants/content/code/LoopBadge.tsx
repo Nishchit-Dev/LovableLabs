@@ -95,7 +95,8 @@ const LoopText: React.FC<LoopTextProps> = ({
             scale: 1,
             transition: getTransition(spinDuration, currentRotation),
         })
-    }, [spinDuration, controls, onHover, text, currentRotation, direction])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [spinDuration, controls, onHover, text])
 
     return (
         <motion.div
