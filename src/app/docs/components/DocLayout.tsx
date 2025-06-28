@@ -379,43 +379,40 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                             )}
                                                             {item.label}
                                                             {(() => {
-                                                                if (
-                                                                    !item.releaseDate
-                                                                ) {
+                                                                if (!item.releaseDate) {
                                                                     return null
                                                                 }
-                                                                const badgeDate =
-                                                                    new Date(
-                                                                        item.releaseDate ||
-                                                                            ''
+                                                                const badgeDate = new Date(item.releaseDate)
+                                                                const now = new Date()
+                                                                const isFuture = badgeDate.getTime() > now.getTime()
+                                                                const diffDays = (now.getTime() - badgeDate.getTime()) / (1000 * 60 * 60 * 24)
+                                                                if (isFuture) {
+                                                                    return (
+                                                                        <span
+                                                                            className="ml-2 text-xs border-yellow-900 border-1 text-yellow-50 bg-yellow-600"
+                                                                            style={{
+                                                                                padding: '0.125rem 0.5rem',
+                                                                                borderRadius: '15rem',
+                                                                            }}
+                                                                        >
+                                                                            Soon
+                                                                        </span>
                                                                     )
-                                                                const now =
-                                                                    new Date()
-                                                                const diffDays =
-                                                                    (now.getTime() -
-                                                                        badgeDate.getTime()) /
-                                                                    (1000 *
-                                                                        60 *
-                                                                        60 *
-                                                                        24)
-                                                                if (
-                                                                    diffDays >
-                                                                    15
-                                                                )
-                                                                    return null
-                                                                return (
-                                                                    <span
-                                                                        className={`ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500 `}
-                                                                        style={{
-                                                                            padding:
-                                                                                '0.125rem 0.5rem',
-                                                                            borderRadius:
-                                                                                '15rem',
-                                                                        }}
-                                                                    >
-                                                                        New
-                                                                    </span>
-                                                                )
+                                                                }
+                                                                if (diffDays <= 1) {
+                                                                    return (
+                                                                        <span
+                                                                            className="ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500"
+                                                                            style={{
+                                                                                padding: '0.125rem 0.5rem',
+                                                                                borderRadius: '15rem',
+                                                                            }}
+                                                                        >
+                                                                            New
+                                                                        </span>
+                                                                    )
+                                                                }
+                                                                return null
                                                             })()}
                                                             {(() => {
                                                                 if (
