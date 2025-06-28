@@ -399,7 +399,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                                                                         </span>
                                                                     )
                                                                 }
-                                                                if (diffDays <= 1) {
+                                                                if (diffDays <= 18) {
                                                                     return (
                                                                         <span
                                                                             className="ml-2 text-xs border-purple-900 border-1 text-purple-50 bg-purple-500"
