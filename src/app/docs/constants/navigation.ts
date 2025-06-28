@@ -69,6 +69,19 @@ export const getDocCategories = (framework: string): Category[] => {
             ],
         },
         {
+            title: 'Scroll Animation',
+            slug: 'Scroll Animations components with in-built framer',
+            items: [
+                {
+                    label: 'Scroll Waves',
+                    path: `/docs/scroll-waves?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.scrollWave,
+                    varaints: 3,
+                },
+            ],
+        },
+        {
             title: 'Animations',
             slug: 'Animation',
             items: [

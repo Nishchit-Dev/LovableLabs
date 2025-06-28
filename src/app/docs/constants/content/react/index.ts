@@ -15,6 +15,8 @@ import { motionTextRevealContent } from './motionTextRevealAnimataion'
 import { liquidGlassDraggableContent } from './draggableLiquidGlass'
 import { comingSoonContent } from './comingSoon'
 import { FramerTextAnimationContent } from './framerTextAnimation'
+import { scrollWaveContent } from './scrollWave'
+
 // Re-export all imported modules
 export {
     InstallTailwindCss,
@@ -31,5 +33,6 @@ export {
     motionTextRevealContent,
     liquidGlassDraggableContent,
     comingSoonContent,
-    FramerTextAnimationContent
+    FramerTextAnimationContent,
+    scrollWaveContent
 }
