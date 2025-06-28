@@ -22,6 +22,7 @@ import { ParallaxGridBackground } from '../docs/constants/content/code/ParallaxG
 import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDotBackground'
 import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
 import DraggableLiquidGlass from '../docs/constants/content/code/DraggableLiquidGlass'
+import { ScrollWaveform } from '../docs/constants/content/code/ScrollWave'
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -388,6 +389,18 @@ const satellites = [
 ]
 const ContentSlider = () => {
     const slides = [
+        {
+            title: 'ScrollWave',
+            description:
+                'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            Component: (
+                <div className="">
+                    <ScrollWaveform 
+                        waveLength='none'
+                    />
+                </div>
+            ),
+        },
         {
             title: 'LoopBadge',
             description:
