@@ -130,4 +130,53 @@ export const GridBackground: React.FC<
             isLiveDemo: false,
         },
     ],
+    propsTab:[
+  {
+    "name": "children",
+    "type": "React.ReactNode",
+    "description": "The content to be displayed inside the grid background."
+  },
+  {
+    "name": "className",
+    "type": "string",
+    "description": "Additional CSS classes for the outer container."
+  },
+  {
+    "name": "full",
+    "type": "boolean",
+    "default": "false",
+    "description": "If true, the grid will fill the entire parent container."
+  },
+  {
+    "name": "fullscreen",
+    "type": "boolean",
+    "default": "false",
+    "description": "If true, the grid will fill the entire screen."
+  },
+  {
+    "name": "centered",
+    "type": "boolean",
+    "default": "false",
+    "description": "If true, the children will be centered inside the grid."
+  },
+  {
+    "name": "overlay",
+    "type": "boolean",
+    "default": "false",
+    "description": "If true, a radial gradient overlay will be applied on top of the grid."
+  },
+  {
+    "name": "boxSize",
+    "type": "number",
+    "default": "24",
+    "description": "The size of each box in the grid background."
+  },
+  {
+    "name": "dark",
+    "type": "boolean",
+    "default": "false",
+    "description": "Enables dark mode styling for the grid background."
+  }
+]
+
 }

@@ -896,7 +896,7 @@ export default ScrollWaveformDemo
             }`,
             isLiveDemo: false,
         },
-        
+
         {
             preview: ThickBarsWaveformVariant(),
             title: 'Thick Bars Wave form Variant',
@@ -1007,6 +1007,128 @@ export default ScrollWaveformDemo
                 )
             }`,
             isLiveDemo: false,
+        },
+    ],
+    propsTab: [
+        {
+            name: 'barCount',
+            type: 'number',
+            default: '45',
+            description: 'Number of bars in the waveform',
+        },
+        {
+            name: 'smallBarHeight',
+            type: 'number',
+            default: '20',
+            description: 'Fixed height for small bars in pixels',
+        },
+        {
+            name: 'bigBarHeight',
+            type: 'number',
+            default: '35',
+            description: 'Fixed height for big bars (every 5th) in pixels',
+        },
+        {
+            name: 'width',
+            type: 'number',
+            default: '400',
+            description: 'Total width of the waveform component',
+        },
+        {
+            name: 'height',
+            type: 'number',
+            default: '200',
+            description: 'Total height of the waveform component',
+        },
+        {
+            name: 'barColor',
+            type: 'string',
+            default: "'#6B7280'",
+            description: 'Color for small bars',
+        },
+        {
+            name: 'bigBarColor',
+            type: 'string',
+            default: "'#374151'",
+            description: 'Color for big bars (every 5th)',
+        },
+        {
+            name: 'indicatorColor',
+            type: 'string',
+            default: "'#F97316'",
+            description: 'Color for the scroll indicator',
+        },
+        {
+            name: 'backgroundColor',
+            type: 'string',
+            default: "''",
+            description: 'Background color of the waveform',
+        },
+        {
+            name: 'barWidth',
+            type: 'number',
+            default: '1',
+            description: 'Width of small bars in pixels',
+        },
+        {
+            name: 'bigBarWidth',
+            type: 'number',
+            default: '1.2',
+            description: 'Width of big bars in pixels',
+        },
+        {
+            name: 'barSpacing',
+            type: 'number',
+            default: '8',
+            description: 'Spacing between bars in pixels',
+        },
+        {
+            name: 'heightScale',
+            type: 'number',
+            default: '0.4',
+            description: 'Scale factor for height scaling effect (0-1)',
+        },
+        {
+            name: 'widthScale',
+            type: 'number',
+            default: '0.15',
+            description: 'Scale factor for width scaling effect (0-1)',
+        },
+        {
+            name: 'smoothing',
+            type: 'number',
+            default: '0.5',
+            description: 'Animation smoothing factor (0-1, lower = smoother)',
+        },
+        {
+            name: 'waveLength',
+            type: "WaveLength ('none' | 'short' | 'medium' | 'long' | 'custom')",
+            default: "'none'",
+            description: 'Wave pattern type for bar height variation',
+        },
+        {
+            name: 'customWaveCount',
+            type: 'number',
+            default: '2',
+            description: "Custom wave count when waveLength is 'custom'",
+        },
+        {
+            name: 'className',
+            type: 'string',
+            default: "''",
+            description: 'Additional CSS classes',
+        },
+        {
+            name: 'onBarClick',
+            type: '(barIndex: number, barData: BarData) => void',
+            default: 'undefined',
+            description: 'Callback fired when a bar is clicked',
+        },
+        {
+            name: 'onScrollChange',
+            type: '(position: number, velocity: number) => void',
+            default: 'undefined',
+            description: 'Callback fired when scroll position changes',
         },
     ],
 }

@@ -1,6 +1,9 @@
 import { DocContent } from '../../types'
 import { BuildPrivewDottedGridSection } from '../Builds/BuildPrivewDottedGridBg'
-import { DottedBgVaraint, DottedBgVaraintOverLay } from '../Builds/Variants/DottedBackground/DottedBackground'
+import {
+    DottedBgVaraint,
+    DottedBgVaraintOverLay,
+} from '../Builds/Variants/DottedBackground/DottedBackground'
 
 export const backgroundsDottedGridContent: DocContent = {
     title: 'Square Grid Background',
@@ -106,29 +109,94 @@ export const DottedBackground: React.FC<
         },
     ],
 
-     variantTab: [
-            {
-                preview: DottedBgVaraint(),
-                title: 'Dark Varaint',
-                codeSrc: 'Example',
-                code: `<DottedBackground dark centered boxSize={36} full>
+    variantTab: [
+        {
+            preview: DottedBgVaraint(),
+            title: 'Dark Varaint',
+            codeSrc: 'Example',
+            code: `<DottedBackground dark centered boxSize={36} full>
     <p className="text-white">
     Centered Text with Dark Bg
     </p>
 </DottedBackground>`,
-                isLiveDemo: false,
-            },
-            {
-                preview: DottedBgVaraintOverLay(),
-                title: 'Dark Varaint with Overlay',
-                codeSrc: 'Example',
-                code: `<DottedBackground dark centered boxSize={46} full overlay>
+            isLiveDemo: false,
+        },
+        {
+            preview: DottedBgVaraintOverLay(),
+            title: 'Dark Varaint with Overlay',
+            codeSrc: 'Example',
+            code: `<DottedBackground dark centered boxSize={46} full overlay>
     <p className="text-white">
     Centered Text with Overlay Dark Bg and Box size 46
     </p>
 </DottedBackground>`,
-                isLiveDemo: false,
-            },
-        ],
-    
+            isLiveDemo: false,
+        },
+    ],
+    propsTab: [
+        {
+            name: 'children',
+            type: 'React.ReactNode',
+            description:
+                'The content to be displayed inside the dotted background.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description: 'Additional CSS classes for the outer container.',
+        },
+        {
+            name: 'full',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the dotted background will fill the entire parent container.',
+        },
+        {
+            name: 'fullscreen',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the dotted background will fill the entire screen.',
+        },
+        {
+            name: 'centered',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the children will be centered inside the dotted background.',
+        },
+        {
+            name: 'boxSize',
+            type: 'number',
+            default: '32',
+            description:
+                'The distance between each dot in the dotted background grid.',
+        },
+        {
+            name: 'dotSize',
+            type: 'number',
+            default: '1.2',
+            description: 'The size (diameter) of each dot.',
+        },
+        {
+            name: 'dotColor',
+            type: 'string',
+            description:
+                'The color of the dots. Defaults to a light gray or white based on the theme if not provided.',
+        },
+        {
+            name: 'overlay',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, a radial gradient overlay will be applied on top of the dotted background.',
+        },
+        {
+            name: 'dark',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enables dark mode styling for the dotted background.',
+        },
+    ],
 }

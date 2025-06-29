@@ -1,7 +1,10 @@
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { DocContent } from '../../types'
 import { BuildPreviewParallaxDotBackground } from '../Builds/BuildPreviewParallaxDotBackground'
-import { ParallaxDottedGridVaraint, ParallaxDottedGridVaraintOverlay } from '../Builds/Variants/ParallaxDottedBackground/ParallaxDottedBackground'
+import {
+    ParallaxDottedGridVaraint,
+    ParallaxDottedGridVaraintOverlay,
+} from '../Builds/Variants/ParallaxDottedBackground/ParallaxDottedBackground'
 
 export const backgroundParallaxDotContent: DocContent = {
     title: 'Parallax Dot Background',
@@ -225,6 +228,85 @@ export function cn(...inputs: ClassValue[]) {
     </p>
 </ParallaxDotBackground>`,
             isLiveDemo: false,
+        },
+    ],
+    propsTab: [
+        {
+            name: 'children',
+            type: 'React.ReactNode',
+            description:
+                'The content to be displayed inside the parallax dot background.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description: 'Additional CSS classes for the outer container.',
+        },
+        {
+            name: 'full',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the background will fill the entire parent container.',
+        },
+        {
+            name: 'fullscreen',
+            type: 'boolean',
+            default: 'false',
+            description: 'If true, the background will fill the entire screen.',
+        },
+        {
+            name: 'centered',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the children will be centered inside the background.',
+        },
+        {
+            name: 'overlay',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, a radial gradient overlay will be applied on top of the background.',
+        },
+        {
+            name: 'boxSize',
+            type: 'number',
+            default: '32',
+            description:
+                'The distance between the dots in the background grid.',
+        },
+        {
+            name: 'dotSize',
+            type: 'number',
+            default: '1.2',
+            description: 'The size of each individual dot in the background.',
+        },
+        {
+            name: 'dotColor',
+            type: 'string',
+            description:
+                'The color of the dots. Defaults to a light or dark color based on the theme.',
+        },
+        {
+            name: 'dark',
+            type: 'boolean',
+            default: 'false',
+            description: 'Enables dark mode styling for the background.',
+        },
+        {
+            name: 'parallaxStrength',
+            type: 'number',
+            default: '0.5',
+            description:
+                'Controls how much the dots move in response to mouse movement. Value between 0 and 1.',
+        },
+        {
+            name: 'smoothness',
+            type: 'number',
+            default: '0.15',
+            description:
+                'Controls the animation smoothness. Lower values create smoother, slower animations.',
         },
     ],
 }

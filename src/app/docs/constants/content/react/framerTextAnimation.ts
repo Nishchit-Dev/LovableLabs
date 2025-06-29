@@ -734,4 +734,58 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'children',
+            type: 'string',
+            default: 'Required',
+            description: 'The text content to be animated',
+        },
+        {
+            name: 'animation',
+            type: "keyof ANIMATION_PRESETS ('fadeUp' | 'fadeDown' | 'slideLeft' | 'slideRight' | 'scale' | 'zoom' | 'bounce' | 'flip' | 'flipY' | 'rotate' | 'wave' | 'skew' | 'spiral' | 'quick' | 'slow' | 'typewriter' | 'glitch')",
+            default: "'fadeUp'",
+            description: 'The animation preset to apply to the text',
+        },
+        {
+            name: 'splitType',
+            type: "'chars' | 'words'",
+            default: "'chars'",
+            description:
+                'How to split the text for animation - by characters or words',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            default: "''",
+            description: 'Additional CSS classes to apply to the container',
+        },
+        {
+            name: 'style',
+            type: 'React.CSSProperties',
+            default: '{}',
+            description: 'Inline styles to apply to the container',
+        },
+        {
+            name: 'speed',
+            type: "'slow' | 'normal' | 'fast'",
+            default: "'normal'",
+            description:
+                'Speed modifier for the animation (affects duration and delay)',
+        },
+        {
+            name: 'triggerOnce',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'Whether the animation should only trigger once when in view',
+        },
+        {
+            name: 'delay',
+            type: 'number',
+            default: 'undefined',
+            description:
+                'Override the default delay between character/word animations (in milliseconds)',
+        },
+    ],
 }

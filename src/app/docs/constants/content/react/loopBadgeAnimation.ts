@@ -172,4 +172,43 @@ export default LoopText
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'text1',
+            type: 'string',
+            default: '5x faster · beautiful · design · better · ',
+            description: 'The text content for the outer rotating ring.',
+        },
+        {
+            name: 'text2',
+            type: 'string',
+            default: 'LovableLabs · LovableLabs · ',
+            description: 'The text content for the inner rotating ring.',
+        },
+        {
+            name: 'ring1Size',
+            type: 'string',
+            default: '210px',
+            description: 'The size (diameter) of the outer rotating ring.',
+        },
+        {
+            name: 'ring2Size',
+            type: 'string',
+            default: '150px',
+            description: 'The size (diameter) of the inner rotating ring.',
+        },
+        {
+            name: 'imageSrc',
+            type: 'string',
+            default: '/assets/memoji/logo.png',
+            description: 'The source path for the center image.',
+        },
+        {
+            name: 'imageSize',
+            type: 'number',
+            default: '40',
+            description:
+                'The size (width and height) of the center image in pixels.',
+        },
+    ],
 }

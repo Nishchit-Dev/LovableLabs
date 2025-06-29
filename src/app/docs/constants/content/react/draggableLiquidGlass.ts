@@ -367,4 +367,30 @@ export default DraggableLiquidGlass
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'width',
+            type: 'number',
+            default: '300',
+            description: 'The width of the liquid glass element in pixels.',
+        },
+        {
+            name: 'height',
+            type: 'number',
+            default: '200',
+            description: 'The height of the liquid glass element in pixels.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description:
+                'Custom CSS class to apply to the liquid glass container.',
+        },
+        {
+            name: 'initialPosition',
+            type: 'object',
+            description:
+                'Initial position of the liquid glass element as a percentage of the viewport size. Default is {x: 50, y: 50} (centered).',
+        },
+    ],
 }

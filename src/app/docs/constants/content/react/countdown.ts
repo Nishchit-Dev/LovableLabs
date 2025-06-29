@@ -501,4 +501,71 @@ onComplete={() => console.log('Timer completed!')} />`,
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'initialTime',
+            type: 'number',
+            default: '300',
+            description:
+                'The initial countdown time in seconds (default is 300 seconds, i.e., 5 minutes).',
+        },
+        {
+            name: 'onComplete',
+            type: 'function',
+            description:
+                'Callback function that gets called when the timer reaches zero.',
+        },
+        {
+            name: 'pixelSize',
+            type: 'number',
+            default: '4',
+            description: 'The size of each pixel for the digital display.',
+        },
+        {
+            name: 'activeColor',
+            type: 'string',
+            default: '#ffffff',
+            description:
+                'The color of the active pixels (when the digit is on).',
+        },
+        {
+            name: 'inactiveColor',
+            type: 'string',
+            default: '#333333',
+            description:
+                'The color of the inactive pixels (when the digit is off).',
+        },
+        {
+            name: 'backgroundColor',
+            type: 'string',
+            default: '#000000',
+            description: 'The background color of the timer.',
+        },
+        {
+            name: 'showMilliseconds',
+            type: 'boolean',
+            description: 'If true, the timer will display milliseconds.',
+        },
+        {
+            name: 'autoStart',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'If true, the timer starts automatically when the component mounts.',
+        },
+        {
+            name: 'control',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, control buttons like start, pause, and reset will be displayed.',
+        },
+        {
+            name: 'dark',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, the timer will use dark mode styling (background and pixel colors).',
+        },
+    ],
 }
