@@ -244,7 +244,7 @@ const CodeBlock = ({
 
 // Helper function to generate consistent IDs for sections
 const generateSectionId = (title: string): string => {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title.toLowerCase().replace(/\s+/g, '-')
 }
 
 const PreviewTab = ({ content }: DocSectionProps) => {
@@ -350,6 +350,47 @@ const VariantsTab = ({ content }: DocSectionProps) => {
             )}
             {new Date(content.releaseDate || '').getTime() > Date.now() ? (
                 <div>
+                    {content.variantTab.map((section, index) => (
+                        <div
+                            key={index + section.title}
+                            className="flex flex-row"
+                        >
+                            <div className="w-[0.5px] bg-white/20 self-stretch lg:mr-10 mr-4">
+                                <div className="w-[5px] h-[35px] rounded-r-2xl bg-violet-500"></div>
+                            </div>
+
+                            <div className="mb-16 w-full min-w-0 ">
+                                {section.title && (
+                                    <div className="mb-6 mt-2 relative z-10">
+                                        <h2
+                                            id={generateSectionId(
+                                                section.title
+                                            )}
+                                            className="text-2xl font-bold text-[var(--font-white)] mb-2 flex items-center"
+                                        >
+                                            {section.title}
+                                        </h2>
+                                        {section.description && (
+                                            <p className="text-[var(--font-gray)] text-md font-light">
+                                                {section.description}
+                                            </p>
+                                        )}
+                                    </div>
+                                )}
+                                {content.variantTab ? (
+                                    content.variantTab[index]?.preview
+                                ) : (
+                                    <></>
+                                )}
+
+                                <div className="markdown-content text-[var(--font-white)] text-sm">
+                                    <ReactMarkdown>
+                                        {section.content}
+                                    </ReactMarkdown>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                     <div className="flex flex-col ww-full justify-center items-center gap-5">
                         <>
                             <Lock size={32} />
@@ -467,19 +508,42 @@ const PropsTab = ({ content }: DocSectionProps) => {
                         <table className="min-w-full text-sm text-left border-collapse">
                             <thead>
                                 <tr>
-                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Prop</th>
-                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Type</th>
-                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Default</th>
-                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Description</th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">
+                                        Prop
+                                    </th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">
+                                        Type
+                                    </th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">
+                                        Default
+                                    </th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">
+                                        Description
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {content.propsTab.map((prop, idx) => (
-                                    <tr key={prop.name || idx} className="border-b border-gray-800">
-                                        <td className="px-4 py-2 font-mono text-violet-400">{prop.name}</td>
-                                        <td className="px-4 py-2 font-mono text-blue-300">{prop.type}</td>
-                                        <td className="px-4 py-2 text-green-300">{prop.default ?? <span className="text-gray-500">-</span>}</td>
-                                        <td className="px-4 py-2 text-[var(--font-gray)]">{prop.description}</td>
+                                    <tr
+                                        key={prop.name || idx}
+                                        className="border-b border-gray-800"
+                                    >
+                                        <td className="px-4 py-2 font-mono text-violet-400">
+                                            {prop.name}
+                                        </td>
+                                        <td className="px-4 py-2 font-mono text-blue-300">
+                                            {prop.type}
+                                        </td>
+                                        <td className="px-4 py-2 text-green-300">
+                                            {prop.default ?? (
+                                                <span className="text-gray-500">
+                                                    -
+                                                </span>
+                                            )}
+                                        </td>
+                                        <td className="px-4 py-2 text-[var(--font-gray)]">
+                                            {prop.description}
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -493,47 +557,44 @@ const PropsTab = ({ content }: DocSectionProps) => {
 
 const TabsMerger = ({ content }: DocSectionProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [activeTab, setActiveTab] = useState("Preview");
-    
+    const [activeTab, setActiveTab] = useState('Preview')
+
     const tabVariants = {
         hidden: { opacity: 0, y: 10 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
-    };
-    
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+    }
+
     const handleTabChange = (value: string) => {
-        setActiveTab(value);
-        
+        setActiveTab(value)
+
         // Dispatch custom event for tab change
-        const tabChangeEvent = new CustomEvent('docTabChange', { 
-            detail: { 
+        const tabChangeEvent = new CustomEvent('docTabChange', {
+            detail: {
                 tab: value.toLowerCase() as 'preview' | 'variants' | 'props',
-                contentTitle: content.title 
-            } 
-        });
-        window.dispatchEvent(tabChangeEvent);
-        
+                contentTitle: content.title,
+            },
+        })
+        window.dispatchEvent(tabChangeEvent)
+
         // Track tab change in analytics
         sendGAEvent('event', 'tab_change', {
             event_category: 'navigation',
             event_label: `${content.title} - ${value}`,
             content_title: content.title,
-            tab_name: value
-        });
-    };
-    
+            tab_name: value,
+        })
+    }
+
     return (
         <>
-            <Tabs 
-                defaultValue="Preview" 
+            <Tabs
+                defaultValue="Preview"
                 className=""
                 onValueChange={handleTabChange}
             >
                 <div className="flex justify-between items-center mb-2">
                     <TabsList>
-                        <TabsTrigger
-                            value="Preview"
-                            className="cursor-pointer"
-                        >
+                        <TabsTrigger value="Preview" className="cursor-pointer">
                             Preview
                         </TabsTrigger>
                         {content.variantTab && (
@@ -575,7 +636,7 @@ const TabsMerger = ({ content }: DocSectionProps) => {
                         <VariantsTab content={content} />
                     </motion.div>
                 </TabsContent>
-                 <TabsContent value="Props">
+                <TabsContent value="Props">
                     <motion.div
                         key="props-tab"
                         initial="hidden"
