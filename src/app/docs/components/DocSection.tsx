@@ -418,6 +418,79 @@ const VariantsTab = ({ content }: DocSectionProps) => {
     )
 }
 
+const PropsTab = ({ content }: DocSectionProps) => {
+    if (!content?.propsTab) {
+        return <></>
+    }
+    return (
+        <div
+            className={`w-full ${
+                content.isComingSoon ? 'overflow-y-hidden' : ''
+            }`}
+        >
+            {content.isComingSoon && (
+                <div
+                    className="absolute inset-0 pointer-events-none z-100"
+                    style={{
+                        background:
+                            'linear-gradient(to bottom, transparent -70%, var(--bg-dark) 100%)',
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                    }}
+                ></div>
+            )}
+            {new Date(content.releaseDate || '').getTime() > Date.now() ? (
+                <div>
+                    <div className="flex flex-col w-full justify-center items-center gap-5">
+                        <>
+                            <Lock size={32} />
+                            <p className="text-lg">
+                                Hold tight! This component will go live on.
+                            </p>
+                        </>
+
+                        <div className="flex">
+                            {content.releaseDate ? (
+                                <Countdown targetDate={content.releaseDate} />
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="mb-16 w-full min-w-0">
+                    <h2 className="text-2xl font-bold text-[var(--font-white)] mb-6 flex items-center">
+                        Props
+                    </h2>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-sm text-left border-collapse">
+                            <thead>
+                                <tr>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Prop</th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Type</th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Default</th>
+                                    <th className="px-4 py-2 border-b border-gray-700 text-[var(--font-white)] font-semibold">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {content.propsTab.map((prop, idx) => (
+                                    <tr key={prop.name || idx} className="border-b border-gray-800">
+                                        <td className="px-4 py-2 font-mono text-violet-400">{prop.name}</td>
+                                        <td className="px-4 py-2 font-mono text-blue-300">{prop.type}</td>
+                                        <td className="px-4 py-2 text-green-300">{prop.default ?? <span className="text-gray-500">-</span>}</td>
+                                        <td className="px-4 py-2 text-[var(--font-gray)]">{prop.description}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+}
+
 const TabsMerger = ({ content }: DocSectionProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [activeTab, setActiveTab] = useState("Preview");
@@ -433,7 +506,7 @@ const TabsMerger = ({ content }: DocSectionProps) => {
         // Dispatch custom event for tab change
         const tabChangeEvent = new CustomEvent('docTabChange', { 
             detail: { 
-                tab: value.toLowerCase() as 'preview' | 'variants',
+                tab: value.toLowerCase() as 'preview' | 'variants' | 'props',
                 contentTitle: content.title 
             } 
         });
@@ -471,6 +544,14 @@ const TabsMerger = ({ content }: DocSectionProps) => {
                                 Variants
                             </TabsTrigger>
                         )}
+                        {content.propsTab && (
+                            <TabsTrigger
+                                value="Props"
+                                className="cursor-pointer"
+                            >
+                                Props
+                            </TabsTrigger>
+                        )}
                     </TabsList>
                 </div>
 
@@ -492,6 +573,16 @@ const TabsMerger = ({ content }: DocSectionProps) => {
                         variants={tabVariants}
                     >
                         <VariantsTab content={content} />
+                    </motion.div>
+                </TabsContent>
+                 <TabsContent value="Props">
+                    <motion.div
+                        key="props-tab"
+                        initial="hidden"
+                        animate="visible"
+                        variants={tabVariants}
+                    >
+                        <PropsTab content={content} />
                     </motion.div>
                 </TabsContent>
             </Tabs>

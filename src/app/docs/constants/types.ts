@@ -56,7 +56,12 @@ export type ContentSection = {
     preview?: JSX.Element
     isComingSoon?: boolean
 }
-
+type PropsTabItem = {
+    name: string
+    type: string
+    default?: string
+    description?: string
+}
 // Full document content type
 export type DocContent = {
     title: string
@@ -69,4 +74,5 @@ export type DocContent = {
     SEODescription?: string
     sections: ContentSection[]
     variantTab?: ContentSection[]
+    propsTab?: PropsTabItem[]
 }
