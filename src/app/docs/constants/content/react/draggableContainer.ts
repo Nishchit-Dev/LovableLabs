@@ -267,4 +267,55 @@ export const DragableItem: React.FC<DragableItemProps> = ({
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'children',
+            type: 'ReactNode',
+            description:
+                'The content to be rendered inside the draggable item.',
+        },
+        {
+            name: 'initialPosition',
+            type: '{ x: number; y: number }',
+            default: '{ x: 0, y: 0 }',
+            description: 'The initial x and y position of the draggable item.',
+        },
+        {
+            name: 'style',
+            type: 'React.CSSProperties',
+            description: 'Inline styles for the draggable item container.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description:
+                'Additional CSS classes for styling the draggable item.',
+        },
+        {
+            name: 'bounds',
+            type: '{ left: number; top: number; right: number; bottom: number }',
+            description:
+                'Restricts the draggable item within the provided boundary box.',
+        },
+        {
+            name: 'friction',
+            type: 'number',
+            default: '0.0',
+            description:
+                'The friction applied during momentum animation. Controls how quickly the item slows down.',
+        },
+        {
+            name: 'bounciness',
+            type: 'number',
+            default: '0.7',
+            description:
+                'The bounce effect strength when the draggable item hits the boundary.',
+        },
+        {
+            name: 'snapToGrid',
+            type: 'number',
+            description:
+                'If provided, the draggable item will snap to the nearest grid interval after dragging or momentum ends.',
+        },
+    ],
 }

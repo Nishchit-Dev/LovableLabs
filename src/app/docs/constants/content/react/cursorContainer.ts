@@ -590,4 +590,65 @@ export const cursorPresets = {
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'enabled',
+            type: 'boolean',
+            default: 'true',
+            description: 'Enable or disable the custom cursor.',
+        },
+        {
+            name: 'variants',
+            type: 'CursorVariant[]',
+            default: 'defaultVariants',
+            description:
+                'An array of cursor variants defining size, color, spring animation, and optional glow.',
+        },
+        {
+            name: 'velocityScale',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'If true, scales the cursor based on movement velocity.',
+        },
+        {
+            name: 'maxScale',
+            type: 'number',
+            default: '1.8',
+            description:
+                'Maximum scaling factor when velocity scaling is enabled.',
+        },
+        {
+            name: 'velocityRotation',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'If true, the cursor rotates based on movement direction.',
+        },
+        {
+            name: 'showTrail',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'If true, displays a trailing particle effect behind the cursor.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description: 'Custom CSS class for the cursor container.',
+        },
+        {
+            name: 'children',
+            type: 'ReactNode',
+            description:
+                'Content to render inside the cursor-enabled container.',
+        },
+        {
+            name: 'zIndex',
+            type: 'number',
+            default: '9999',
+            description:
+                'Z-index applied to cursor layers to control stacking order.',
+        },
+    ],
 }

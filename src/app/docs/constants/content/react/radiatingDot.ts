@@ -351,4 +351,99 @@ borderColor="border-orange-200"
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'text',
+            type: 'string',
+            default: 'Online',
+            description: 'The text displayed next to the radiating dot.',
+        },
+        {
+            name: 'isOnline',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'Determines if the status is online (shows animation) or offline.',
+        },
+        {
+            name: 'size',
+            type: "'sm' | 'md' | 'lg'",
+            default: 'md',
+            description: 'The size of the dot and text container.',
+        },
+        {
+            name: 'variant',
+            type: "'subtle' | 'prominent' | 'minimal'",
+            default: 'subtle',
+            description: 'Defines the visual style of the component.',
+        },
+        {
+            name: 'dotColor',
+            type: 'string',
+            description: 'Custom color class for the dot.',
+        },
+        {
+            name: 'backgroundColor',
+            type: 'string',
+            description: 'Custom background color class for the container.',
+        },
+        {
+            name: 'textColor',
+            type: 'string',
+            description: 'Custom text color class.',
+        },
+        {
+            name: 'borderColor',
+            type: 'string',
+            description: 'Custom border color class.',
+        },
+        {
+            name: 'pulseIntensity',
+            type: 'number',
+            default: '2.5',
+            description: 'The scale intensity of the pulsing animation.',
+        },
+        {
+            name: 'pulseDuration',
+            type: 'number',
+            default: '2.5',
+            description:
+                'The duration of each pulse animation cycle in seconds.',
+        },
+        {
+            name: 'pulseDelay',
+            type: 'number',
+            default: '0',
+            description: 'The delay before the pulse animation starts.',
+        },
+        {
+            name: 'fadeInDuration',
+            type: 'number',
+            default: '0.6',
+            description:
+                'The fade-in animation duration for the entire component.',
+        },
+        {
+            name: 'dotPosition',
+            type: "'left' | 'right'",
+            default: 'left',
+            description: 'Position of the dot relative to the text.',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            description: 'Additional CSS classes to apply to the container.',
+        },
+        {
+            name: 'onClick',
+            type: '() => void',
+            description: 'Click handler for the component.',
+        },
+        {
+            name: 'disabled',
+            type: 'boolean',
+            default: 'false',
+            description: 'Disables interaction and reduces opacity.',
+        },
+    ],
 }

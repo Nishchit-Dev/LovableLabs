@@ -5,7 +5,8 @@ import { DocContent } from '../../types'
 
 export const animatedBorderContent: DocContent = {
     title: 'Animated Border',
-    description: 'A customizable React component with animated rotating gradient borders, blur effects, shadows, and hover interactions',
+    description:
+        'A customizable React component with animated rotating gradient borders, blur effects, shadows, and hover interactions',
     preview: React.createElement(BuildPreviewAnimatedBorder),
     isLock: true,
     releaseDate: releaseDate.animatedBorder,
@@ -471,6 +472,177 @@ export default function Page() {
 }`,
             copy_event: 'Button Variant - AnimatedBorder',
             isLiveDemo: true,
-        }
-    ]
+        },
+    ],
+    propsTab: [
+        {
+            name: 'children',
+            type: 'React.ReactNode',
+            description:
+                'The content to be wrapped inside the animated border.',
+        },
+        {
+            name: 'colors',
+            type: 'string[]',
+            default:
+                '["#8c80db", "#6a42c2", "#32247a", "#2b1c83", "#8b5dff", "#8c80db"]',
+            description:
+                'Array of colors used in the animated border gradient.',
+        },
+        {
+            name: 'duration',
+            type: 'number',
+            default: '3',
+            description:
+                'Duration of the border rotation animation in seconds.',
+        },
+        {
+            name: 'reverse',
+            type: 'boolean',
+            default: 'false',
+            description: 'If true, reverses the animation direction.',
+        },
+        {
+            name: 'width',
+            type: 'string | number',
+            default: '200',
+            description: 'Width of the animated border container.',
+        },
+        {
+            name: 'height',
+            type: 'string | number',
+            default: '60',
+            description: 'Height of the animated border container.',
+        },
+        {
+            name: 'borderWidth',
+            type: 'number',
+            default: '4',
+            description: 'Thickness of the animated border.',
+        },
+        {
+            name: 'borderRadius',
+            type: 'string | number',
+            default: '64',
+            description: 'Border radius of the container.',
+        },
+        {
+            name: 'contentPadding',
+            type: 'string | number',
+            default: '5',
+            description: 'Padding inside the border around the content.',
+        },
+        {
+            name: 'contentBg',
+            type: 'string',
+            default: '"rgba(0, 0, 0, 1)"',
+            description: 'Background color of the content area.',
+        },
+        {
+            name: 'contentClassName',
+            type: 'string',
+            description: 'Additional CSS classes for the content area.',
+        },
+        {
+            name: 'isCenterContent',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'Centers the content both vertically and horizontally.',
+        },
+        {
+            name: 'blurIntensity',
+            type: 'number',
+            default: '10',
+            description: 'Blur intensity of the background effect.',
+        },
+        {
+            name: 'blurOpacity',
+            type: 'number',
+            default: '0.9',
+            description: 'Opacity of the blurred background effect.',
+        },
+        {
+            name: 'enableShadow',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'Enables the gradient shadow effect around the border.',
+        },
+        {
+            name: 'shadowVariant',
+            type: "'subtle' | 'medium' | 'intense' | 'glow' | 'neon' | 'soft' | 'custom'",
+            default: '"custom"',
+            description:
+                'Predefined or custom shadow intensity and blur style.',
+        },
+        {
+            name: 'shadowDirection',
+            type: "'bottom' | 'top' | 'left' | 'right' | 'all'",
+            default: '"all"',
+            description: 'Direction of the shadow offset.',
+        },
+        {
+            name: 'shadowDistance',
+            type: 'number',
+            default: '10',
+            description:
+                "Distance of the custom shadow offset (used when shadowVariant is 'custom').",
+        },
+        {
+            name: 'shadowOpacity',
+            type: 'number',
+            default: '0.6',
+            description:
+                "Opacity of the custom shadow (used when shadowVariant is 'custom').",
+        },
+        {
+            name: 'shadowBlur',
+            type: 'number',
+            default: '30',
+            description:
+                "Blur radius of the custom shadow (used when shadowVariant is 'custom').",
+        },
+        {
+            name: 'enableHover',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'Enables hover animations like scaling and brightness.',
+        },
+        {
+            name: 'hoverScale',
+            type: 'number',
+            default: '1.05',
+            description: 'Scale factor applied on hover.',
+        },
+        {
+            name: 'hoverBrighten',
+            type: 'number',
+            default: '1.2',
+            description: 'Brightness increase applied on hover.',
+        },
+        {
+            name: 'hoverSpeedMultiplier',
+            type: 'number',
+            default: '1.5',
+            description: 'Multiplier that increases animation speed on hover.',
+        },
+        {
+            name: 'hoverBlurIncrease',
+            type: 'number',
+            default: '5',
+            description: 'Additional blur amount applied on hover.',
+        },
+        {
+            name: 'containerClassName',
+            type: 'string',
+            description: 'Additional CSS classes for the outer container.',
+        },
+        {
+            name: 'style',
+            type: 'CSSProperties',
+            description: 'Inline styles for the outer container.',
+        },
+    ],
 }
