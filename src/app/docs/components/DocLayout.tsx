@@ -720,7 +720,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
             )}
 
             {/* Main content */}
-            <div className="w-[50%] sm:w-full md:w-full xl:w-[70%] 2xl:w-[50%]  h-screen">
+            <div className="w-full sm:w-full md:w-full xl:w-[70%] 2xl:w-[50%] h-screen">
                 <ActiveLink />
                 <div ref={mainContentRef} className="h-full fade-edges">
                     <div className="max-w-4xl mx-auto md:px-8 md:py-12 py-8">
