@@ -331,4 +331,172 @@ export const MotionTextAnimation: React.FC<SmoothTextAnimationProps> = ({
             isLiveDemo: false,
         },
     ],
+    propsTab: [
+        {
+            name: 'lines',
+            type: 'string[]',
+            default: "['We Don't Just Design.', 'We Design with Soul.']",
+            description: 'Array of text lines to animate',
+        },
+        {
+            name: 'splitBy',
+            type: "SplitType ('word' | 'char' | 'line')",
+            default: "'word'",
+            description:
+                'How to split the text for animation - by word, character, or line',
+        },
+        {
+            name: 'staggerDelay',
+            type: 'number',
+            default: '0.08',
+            description: 'Delay between each animated element in seconds',
+        },
+        {
+            name: 'animationDuration',
+            type: 'number',
+            default: '1.2',
+            description: 'Duration of the animation in seconds',
+        },
+        {
+            name: 'delayBetweenLines',
+            type: 'number',
+            default: '0.3',
+            description: 'Delay between animating different lines in seconds',
+        },
+        {
+            name: 'springConfig',
+            type: 'SpringConfig',
+            default: "{ type: 'spring', stiffness: 100 }",
+            description: 'Spring animation configuration object',
+        },
+        {
+            name: 'usePhysics',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to use physics-based spring animations',
+        },
+        {
+            name: 'customEasing',
+            type: 'EasingType (number[] | string)',
+            default: '[0.25, 0.46, 0.45, 0.94]',
+            description: 'Custom easing curve for non-physics animations',
+        },
+        {
+            name: 'enableBlur',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to apply blur effect during animation',
+        },
+        {
+            name: 'blurIntensity',
+            type: 'number',
+            default: '8',
+            description: 'Intensity of the blur effect in pixels',
+        },
+        {
+            name: 'enableScale',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'Whether to apply scale transformation during animation',
+        },
+        {
+            name: 'enableRotation',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether to apply rotation effect during animation',
+        },
+        {
+            name: 'rotationRange',
+            type: '[number, number]',
+            default: '[-2, 2]',
+            description: 'Min and max rotation values in degrees',
+        },
+        {
+            name: 'yOffset',
+            type: 'number',
+            default: '20',
+            description: 'Vertical offset for the initial position in pixels',
+        },
+        {
+            name: 'xOffset',
+            type: 'number',
+            default: '0',
+            description: 'Horizontal offset for the initial position in pixels',
+        },
+        {
+            name: 'enableFloat',
+            type: 'boolean',
+            default: 'true',
+            description:
+                'Whether to add subtle floating effect to final positions',
+        },
+        {
+            name: 'floatIntensity',
+            type: 'number',
+            default: '2',
+            description: 'Intensity of the floating effect in pixels',
+        },
+        {
+            name: 'className',
+            type: 'string',
+            default: "''",
+            description: 'Additional CSS classes for the root container',
+        },
+        {
+            name: 'textClassName',
+            type: 'string',
+            default: "'text-4xl font-bold text-center'",
+            description: 'CSS classes for text styling',
+        },
+        {
+            name: 'containerClassName',
+            type: 'string',
+            default: "'flex flex-col justify-center items-center '",
+            description: 'CSS classes for the main container',
+        },
+        {
+            name: 'lineClassName',
+            type: 'string',
+            default: "'flex flex-row gap-2 flex-wrap justify-center'",
+            description: 'CSS classes for individual line containers',
+        },
+        {
+            name: 'autoPlay',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether the animation starts automatically',
+        },
+        {
+            name: 'loop',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether the animation should loop continuously',
+        },
+        {
+            name: 'dark',
+            type: 'boolean',
+            default: 'false',
+            description:
+                'Whether to use dark theme (black text instead of white)',
+        },
+        {
+            name: 'onAnimationComplete',
+            type: '() => void',
+            default: '() => {}',
+            description: 'Callback function triggered when animation completes',
+        },
+        {
+            name: 'replay',
+            type: 'boolean',
+            default: 'false',
+            description: 'Whether to replay the animation',
+        },
+        {
+            name: 'trigger',
+            type: "TriggerType ('mount' | 'hover' | 'click' | 'inView')",
+            default: "'mount'",
+            description: 'What event triggers the animation',
+        },
+    ],
 }
