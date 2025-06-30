@@ -62,6 +62,13 @@ type PropsTabItem = {
     default?: string
     description?: string
 }
+// Variant component type
+export type VariantItem = {
+    title: string
+    component: JSX.Element
+    description?: string
+}
+
 // Full document content type
 export type DocContent = {
     title: string
@@ -73,6 +80,7 @@ export type DocContent = {
     SEOTitle?: string
     SEODescription?: string
     sections: ContentSection[]
+    variants?: VariantItem[]
     variantTab?: ContentSection[]
     propsTab?: PropsTabItem[]
 }

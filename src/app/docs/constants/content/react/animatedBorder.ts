@@ -2,6 +2,15 @@ import React from 'react'
 import { releaseDate } from '../../releaseDate/releaseDate'
 import { BuildPreviewAnimatedBorder } from '../Builds/BuildPreviewAnimatedBorder'
 import { DocContent } from '../../types'
+import { 
+  BasicUsage,
+  GradientBorder, 
+  HoverEffect,
+  CustomColors,
+  WithShadowEffect,
+  CardLayout,
+  ButtonVariant
+} from '../Builds/Variants/AnimatedBorder/AnimatedBorder'
 
 export const animatedBorderContent: DocContent = {
     title: 'Animated Border',
@@ -10,6 +19,164 @@ export const animatedBorderContent: DocContent = {
     preview: React.createElement(BuildPreviewAnimatedBorder),
     isLock: true,
     releaseDate: releaseDate.animatedBorder,
+    variants: [
+        {
+            title: 'Basic Usage',
+            component: React.createElement(BasicUsage),
+        },
+        {
+            title: 'Gradient Border',
+            component: React.createElement(GradientBorder),
+        },
+        {
+            title: 'Hover Effect',
+            component: React.createElement(HoverEffect),
+        },
+    ],
+    variantTab: [
+        {
+            preview: React.createElement(BasicUsage),
+            title: 'Basic Usage',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder>
+  <span className="text-white font-medium">Animated Border</span>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(GradientBorder),
+            title: 'Gradient Border',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder
+  colors={['#8c80db', '#6a42c2', '#32247a', '#2b1c83', '#8b5dff', '#8c80db']}
+  width={250}
+  height={80}
+  contentBg="rgba(20, 20, 30, 1)"
+>
+  <div className="flex items-center justify-center w-full h-full">
+    <span className="text-white font-medium">Gradient Border</span>
+  </div>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(HoverEffect),
+            title: 'Hover Effect',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder
+  colors={['#8b5cf6', '#ec4899', '#06b6d4']}
+  width={250}
+  height={80}
+  contentBg="rgba(20, 20, 30, 1)"
+  enableHover={true}
+  hoverScale={1.1}
+  hoverBrighten={1.3}
+  hoverSpeedMultiplier={2}
+  hoverBlurIncrease={10}
+>
+  <div className="flex items-center justify-center w-full h-full">
+    <span className="text-white font-medium">Hover Effect</span>
+  </div>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(CustomColors),
+            title: 'Custom Colors',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder
+  colors={['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57']}
+  width={250}
+  height={80}
+>
+  <span className="text-white font-medium">Custom Colors</span>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(WithShadowEffect),
+            title: 'With Shadow Effect',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder
+  enableShadow={true}
+  shadowVariant="glow"
+  shadowDirection="all"
+  colors={['#8b5cf6', '#ec4899', '#06b6d4']}
+>
+  <span className="text-white font-medium">Glowing Border</span>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(CardLayout),
+            title: 'Card Layout',
+            codeSrc: 'Example',
+            code: `<AnimatedBorder
+  width={300}
+  height={200}
+  borderRadius={16}
+  contentBg="rgba(20, 20, 30, 1)"
+  contentPadding={20}
+  enableShadow={true}
+  shadowVariant="medium"
+  isCenterContent={true}
+>
+  <div className="text-white text-center w-full">
+    <h3 className="text-xl font-bold mb-2">Premium Card</h3>
+    <p className="text-gray-300 text-sm">
+      This is a card with animated border and custom styling.
+    </p>
+  </div>
+</AnimatedBorder>`,
+            isLiveDemo: false,
+        },
+        {
+            preview: React.createElement(ButtonVariant),
+            title: 'Button Variant',
+            codeSrc: 'Example',
+            code: `<div className="flex gap-6">
+  <AnimatedBorder
+    width={145}
+    height={70}
+    borderRadius={25}
+    duration={2}
+    hoverScale={1.05}
+    colors={['#22c55e', '#16a34a', '#15803d']}
+    contentBg="rgba(20, 20, 20, 1)"
+    enableShadow={true}
+    shadowVariant="subtle"
+    shadowDirection="all"
+    blurIntensity={10}
+    isCenterContent={true}
+  >
+    <button className="text-white font-medium w-full h-full">
+      Success
+    </button>
+  </AnimatedBorder>
+  
+  <AnimatedBorder
+    width={145}
+    height={70}
+    borderRadius={25}
+    duration={2}
+    reverse={true}
+    hoverScale={1.05}
+    colors={['#ef4444', '#dc2626', '#b91c1c']}
+    contentBg="rgba(20, 20, 20, 1)"
+    enableShadow={true}
+    shadowVariant="subtle"
+    shadowDirection="all"
+    blurIntensity={10}
+    isCenterContent={true}
+  >
+    <button className="text-white font-medium w-full h-full">
+      Danger
+    </button>
+  </AnimatedBorder>
+</div>`,
+            isLiveDemo: false,
+        },
+    ],
     sections: [
         {
             title: 'Install Animated Border',
@@ -343,136 +510,7 @@ export default AnimatedBorder;`,
             copy_event: 'AnimatedBorder Component',
             isLiveDemo: false,
         },
-        {
-            title: 'Basic Usage',
-            codeSrc: 'page.tsx',
-            code: `import AnimatedBorder from '@/components/ui/AnimatedBorder';
 
-export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <AnimatedBorder>
-        <span className="text-white font-medium">Animated Border</span>
-      </AnimatedBorder>
-    </div>
-  );
-}`,
-            copy_event: 'Basic Usage - AnimatedBorder',
-            isLiveDemo: true,
-        },
-        {
-            title: 'Custom Colors',
-            codeSrc: 'page.tsx',
-            code: `import AnimatedBorder from '@/components/ui/AnimatedBorder';
-
-export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <AnimatedBorder
-        colors={['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57']}
-        width={250}
-        height={80}
-      >
-        <span className="text-white font-medium">Custom Colors</span>
-      </AnimatedBorder>
-    </div>
-  );
-}`,
-            copy_event: 'Custom Colors - AnimatedBorder',
-            isLiveDemo: true,
-        },
-        {
-            title: 'With Shadow Effect',
-            codeSrc: 'page.tsx',
-            code: `import AnimatedBorder from '@/components/ui/AnimatedBorder';
-
-export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <AnimatedBorder
-        enableShadow={true}
-        shadowVariant="glow"
-        shadowDirection="all"
-        colors={['#8b5cf6', '#ec4899', '#06b6d4']}
-      >
-        <span className="text-white font-medium">Glowing Border</span>
-      </AnimatedBorder>
-    </div>
-  );
-}`,
-            copy_event: 'With Shadow Effect - AnimatedBorder',
-            isLiveDemo: true,
-        },
-        {
-            title: 'Card Layout',
-            codeSrc: 'page.tsx',
-            code: `import AnimatedBorder from '@/components/ui/AnimatedBorder';
-
-export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-black">
-      <AnimatedBorder
-        width={300}
-        height={200}
-        borderRadius={16}
-        contentBg="rgba(20, 20, 30, 1)"
-        contentPadding={20}
-        enableShadow={true}
-        shadowVariant="medium"
-      >
-        <div className="text-white">
-          <h3 className="text-xl font-bold mb-2">Premium Card</h3>
-          <p className="text-gray-300">
-            This is a card with animated border and custom styling.
-          </p>
-        </div>
-      </AnimatedBorder>
-    </div>
-  );
-}`,
-            copy_event: 'Card Layout - AnimatedBorder',
-            isLiveDemo: true,
-        },
-        {
-            title: 'Button Variant',
-            codeSrc: 'page.tsx',
-            code: `import AnimatedBorder from '@/components/ui/AnimatedBorder';
-
-export default function Page() {
-  return (
-    <div className="flex gap-4 items-center justify-center min-h-screen bg-black">
-      <AnimatedBorder
-        width={120}
-        height={45}
-        borderRadius={25}
-        duration={2}
-        hoverScale={1.1}
-        colors={['#10b981', '#059669', '#047857']}
-      >
-        <button className="text-white font-medium w-full h-full">
-          Success
-        </button>
-      </AnimatedBorder>
-      
-      <AnimatedBorder
-        width={120}
-        height={45}
-        borderRadius={25}
-        duration={2}
-        reverse={true}
-        hoverScale={1.1}
-        colors={['#ef4444', '#dc2626', '#b91c1c']}
-      >
-        <button className="text-white font-medium w-full h-full">
-          Danger
-        </button>
-      </AnimatedBorder>
-    </div>
-  );
-}`,
-            copy_event: 'Button Variant - AnimatedBorder',
-            isLiveDemo: true,
-        },
     ],
     propsTab: [
         {

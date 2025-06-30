@@ -11,56 +11,58 @@ export const getStartedTableOfContents: TableOfContentsItem[] = [
 // Table of contents for backgrounds pages with tab support
 export const backgroundsSquareGridTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'Install GridBackground', anchor: '#install-gridbackground', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
     { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
-    { label: 'Copy source code', anchor: '#copy-source-code', tab: 'preview' },
+    { label: 'Square Grid Background', anchor: '#square-grid-background', tab: 'preview' },
     // Variants tab items
-    { label: 'Simple Grid', anchor: '#simple-grid', tab: 'variants' },
-    { label: 'Animated Grid', anchor: '#animated-grid', tab: 'variants' },
-    { label: 'Responsive Grid', anchor: '#responsive-grid', tab: 'variants' },
+    { label: 'Dark Varaint', anchor: '#dark-varaint', tab: 'variants' },
+    { label: 'Dark Varaint with Overlay', anchor: '#dark-varaint-with-overlay', tab: 'variants' },
 ]
 
 export const backgroundsDottedGridTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'Install DottedGridContent', anchor: '#install-dottedgridcontent', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
     { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
-    { label: 'Copy source code', anchor: '#copy-source-code', tab: 'preview' },
+    { label: 'Dotted Background', anchor: '#dotted-background', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Dotted Grid', anchor: '#basic-dotted-grid', tab: 'variants' },
-    { label: 'Animated Dots', anchor: '#animated-dots', tab: 'variants' },
-    { label: 'Custom Spacing', anchor: '#custom-spacing', tab: 'variants' },
+    { label: 'Dark Varaint', anchor: '#dark-varaint', tab: 'variants' },
+    { label: 'Dark Varaint with Overlay', anchor: '#dark-varaint-with-overlay', tab: 'variants' },
 ]
 
-export const backgroundParallaxGridTableOfContents: TableOfContentsItem[] = [
+export const parallaxGridBackgroundTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
+    { label: 'Install Parallax Grid', anchor: '#install-parallax-grid', tab: 'preview' },
     { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Usage', anchor: '#usage', tab: 'preview' },
+    { label: 'Add Utility File', anchor: '#add-utility-file', tab: 'preview' },
+    { label: 'Parallax Grid Background', anchor: '#parallax-grid-background', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Parallax Grid', anchor: '#basic-parallax-grid', tab: 'variants' },
-    { label: 'Customized Grid', anchor: '#customized-grid', tab: 'variants' },
-    { label: 'Interactive Grid', anchor: '#interactive-grid', tab: 'variants' },
+    { label: 'Dark Varaint', anchor: '#dark-varaint', tab: 'variants' },
+    { label: 'Dark Varaint with Overlay', anchor: '#dark-varaint-with-overlay', tab: 'variants' },
 ]
 
 export const backgroundParallaxDotTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
+    { label: 'Install Parallax Dot', anchor: '#install-parallax-dot', tab: 'preview' },
     { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Usage', anchor: '#usage', tab: 'preview' },
+    { label: 'Add Utility File', anchor: '#add-utility-file', tab: 'preview' },
+    { label: 'Parallax Dot Background', anchor: '#parallax-dot-background', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Parallax Dots', anchor: '#basic-parallax-dots', tab: 'variants' },
-    { label: 'Customized Dots', anchor: '#customized-dots', tab: 'variants' },
-    { label: 'Interactive Dots', anchor: '#interactive-dots', tab: 'variants' },
+    { label: 'Dark Varaint', anchor: '#dark-varaint', tab: 'variants' },
+    { label: 'Dark Varaint with Overlay', anchor: '#dark-varaint-with-overlay', tab: 'variants' },
 ]
 
 // ==================== ANIMATIONS ====================
 
 export const loopBadgeAnimationTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Usage', anchor: '#usage', tab: 'preview' },
+    { label: 'Install LoopBagde', anchor: '#install-loopbagde', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
+    { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
+    { label: 'LoopBadge Animation', anchor: '#loopbadge-animation', tab: 'preview' },
     // Variants tab items
+    { label: 'Badge Variants', anchor: '#badge-variants', tab: 'variants', isHeading: true },
     { label: 'Basic Badge', anchor: '#basic-badge', tab: 'variants' },
     { label: 'Custom Colors', anchor: '#custom-colors', tab: 'variants' },
     { label: 'Different Speeds', anchor: '#different-speeds', tab: 'variants' },
@@ -69,38 +71,47 @@ export const loopBadgeAnimationTableOfContents: TableOfContentsItem[] = [
 export const radiatingDotTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
     { label: 'Install RadiatingDot', anchor: '#install-radiatingdot', tab: 'preview' },
-    { label: 'Install Dependencies', anchor: '#install-depsendencies', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
     { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
     { label: 'Radiating Dot', anchor: '#radiating-dot', tab: 'preview' },
     // Variants tab items
-    { label: 'Offline Radiating Dot', anchor: '#offline-radiating-dot', tab: 'variants' },
-    { label: 'Default Radiating Dot', anchor: '#default-radiating-dot', tab: 'variants' },
-    { label: 'Away Radiating Dot', anchor: '#away-radiating-dot', tab: 'variants' },
-    { label: 'Busy Radiating Dot', anchor: '#busy-radiating-dot', tab: 'variants' },
-    { label: 'Custom-Blue Radiating Dot', anchor: '#custom-blue-radiating-dot', tab: 'variants' },
-    { label: 'Custom-Purple Radiating Dot', anchor: '#custom-purple-radiating-dot', tab: 'variants' },
-    { label: 'Custom-Orange Radiating Dot', anchor: '#custom-orange-radiating-dot', tab: 'variants' },
+    { label: 'Dot Variations', anchor: '#dot-variations', tab: 'variants', isHeading: true },
+    { label: 'Default', anchor: '#default', tab: 'variants' },
+    { label: 'Away', anchor: '#away', tab: 'variants' },
+    { label: 'Busy', anchor: '#busy', tab: 'variants' },
+    { label: 'Custom Blue', anchor: '#custom-blue', tab: 'variants' },
+    { label: 'Custom Orange', anchor: '#custom-orange', tab: 'variants' },
+    { label: 'Custom Purple', anchor: '#custom-purple', tab: 'variants' },
+    { label: 'Offline', anchor: '#offline', tab: 'variants' },
 ]
 
 export const animatedBorderTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Setup', anchor: '#setup', tab: 'preview' },
-    { label: 'Component', anchor: '#component', tab: 'preview' },
-    { label: 'Usage Example', anchor: '#usage-example', tab: 'preview' },
+    { label: 'Install Animated Border', anchor: '#install-animated-border', tab: 'preview' },
+    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
+    { label: 'AnimatedBorder Component', anchor: '#animatedborder-component', tab: 'preview' },
+    
     // Variants tab items
+    { label: 'Basic Usage', anchor: '#basic-usage', tab: 'variants' },
     { label: 'Gradient Border', anchor: '#gradient-border', tab: 'variants' },
-    { label: 'Pulsing Border', anchor: '#pulsing-border', tab: 'variants' },
     { label: 'Hover Effect', anchor: '#hover-effect', tab: 'variants' },
+    { label: 'Custom Colors', anchor: '#custom-colors', tab: 'variants' },
+    { label: 'With Shadow Effect', anchor: '#with-shadow-effect', tab: 'variants' },
+    { label: 'Card Layout', anchor: '#card-layout', tab: 'variants' },
+    { label: 'Button Variant', anchor: '#button-variant', tab: 'variants' },
 ]
 
 // ==================== CONTAINERS ====================
 
 export const draggableContainerTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Installation', anchor: '#installation', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Customization', anchor: '#customization', tab: 'preview' },
+    { label: 'Install DragableContainer', anchor: '#install-dragablecontainer', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
+    { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
+    { label: 'Draggable Container', anchor: '#draggable-container', tab: 'preview' },
     // Variants tab items
+    { label: 'Draggable Types', anchor: '#draggable-types', tab: 'variants', isHeading: true },
     { label: 'Basic Draggable', anchor: '#basic-draggable', tab: 'variants' },
     { label: 'With Constraints', anchor: '#with-constraints', tab: 'variants' },
     { label: 'With Inertia', anchor: '#with-inertia', tab: 'variants' },
@@ -108,44 +119,48 @@ export const draggableContainerTableOfContents: TableOfContentsItem[] = [
 
 export const cursorContainerTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Installation', anchor: '#installation', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Props', anchor: '#props', tab: 'preview' },
+    { label: 'Install Cursor Follow Container', anchor: '#install-cursor-follow-container', tab: 'preview' },
+    { label: 'Install Depsendencies', anchor: '#install-depsendencies', tab: 'preview' },
+    { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
+    { label: 'Cursor Follow Container', anchor: '#cursor-follow-container', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Cursor', anchor: '#basic-cursor', tab: 'variants' },
-    { label: 'Delayed Follow', anchor: '#delayed-follow', tab: 'variants' },
-    { label: 'Custom Cursor', anchor: '#custom-cursor', tab: 'variants' },
+    { label: 'Cursor Default', anchor: '#cursor-default', tab: 'variants' },
+    { label: 'Cursor Minimal', anchor: '#cursor-minimal', tab: 'variants' },
+    { label: 'Cursor Neon', anchor: '#cursor-neon', tab: 'variants' },
+    { label: 'Cursor Elegant', anchor: '#cursor-elegant', tab: 'variants' },
 ]
 
 export const liquidGlassDraggableTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Installation', anchor: '#installation', tab: 'preview' },
-    { label: 'Implementation', anchor: '#implementation', tab: 'preview' },
-    { label: 'Props', anchor: '#props', tab: 'preview' },
+    { label: 'Install Draggable Liquid Glass', anchor: '#install-draggable-liquid-glass', tab: 'preview' },
+    { label: 'Draggable Liquid Glass Effect', anchor: '#draggable-liquid-glass-effect', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Glass Effect', anchor: '#basic-glass-effect', tab: 'variants' },
+    { label: 'Usage', anchor: '#usage', tab: 'variants', isHeading: true },
 ]
 
 // ==================== COUNTDOWN ====================
 
 export const dotMatrixCountdownTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Installation', anchor: '#installation', tab: 'preview' },
-    { label: 'Component', anchor: '#component', tab: 'preview' },
-    { label: 'Usage', anchor: '#usage', tab: 'preview' },
+    { label: 'Install CountdownTimer', anchor: '#install-countdowntimer', tab: 'preview' },
+    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'Add Utility File', anchor: '#add-utility-file', tab: 'preview' },
+    { label: 'Dot Matrix Countdown Timer', anchor: '#dot-matrix-countdown-timer', tab: 'preview' },
     // Variants tab items
-    { label: 'Basic Countdown', anchor: '#basic-countdown', tab: 'variants' },
-    { label: 'Custom Colors', anchor: '#custom-colors', tab: 'variants' },
+    { label: 'Light CountdownTimer', anchor: '#light-countdowntimer', tab: 'variants' },
+    { label: 'Dark CountdownTimer', anchor: '#dark-countdowntimer', tab: 'variants' },
 ]
 
 // ==================== TEXT ANIMATIONS ====================
 
 export const motionTextRevealTableOfContents: TableOfContentsItem[] = [
     // Preview tab items
-    { label: 'Installation', anchor: '#installation', tab: 'preview' },
-    { label: 'Component', anchor: '#component', tab: 'preview' },
-    { label: 'Usage', anchor: '#usage', tab: 'preview' },
+    { label: 'Installation', anchor: '#install-framer-text-reveal', tab: 'preview' },
+    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'Add util file', anchor: '#add-util-file', tab: 'preview' },
+    { label: 'Motion Text Reveal', anchor: '#motion-text-reveal', tab: 'preview' },
     // Variants tab items
+    { label: 'Reveal Effects', anchor: '#reveal-effects', tab: 'variants', isHeading: true },
     { label: 'Basic Text Reveal', anchor: '#basic-text-reveal', tab: 'variants' },
     { label: 'Staggered Reveal', anchor: '#staggered-reveal', tab: 'variants' },
     { label: 'Custom Animation', anchor: '#custom-animation', tab: 'variants' },
@@ -209,6 +224,26 @@ export const framerTextAnimationTableOfContents: TableOfContentsItem[] = [
     { label: 'Button Text', anchor: '#button-text', tab: 'variants' },
 ]
 
+// ==================== SCROLL WAVES ====================
+
+export const scrollWaveTableOfContents: TableOfContentsItem[] = [
+    // Preview tab items
+    { label: 'Install Scroll Waves', anchor: '#install-scroll-waves', tab: 'preview' },
+    { label: 'Install Dependencies', anchor: '#install-dependencies', tab: 'preview' },
+    { label: 'ScrollWaves of component', anchor: '#scrollwaves-of-component', tab: 'preview' },
+    
+    // Variants tab items - grouped by styles
+    { label: 'Wave Styles', anchor: '#wave-styles', tab: 'variants', isHeading: true },
+    { label: 'Classic Waveform', anchor: '#classic-waveform', tab: 'variants' },
+    { label: 'Neon Glow Waveform', anchor: '#neon-glow-waveform', tab: 'variants' },
+    { label: 'Minimal Monochrome', anchor: '#minimal-monochrome', tab: 'variants' },
+    
+    { label: 'Specialized Variants', anchor: '#specialized-variants', tab: 'variants', isHeading: true },
+    { label: 'Thick Bars Waveform', anchor: '#thick-bars-waveform', tab: 'variants' },
+    { label: 'Dense Frequency', anchor: '#dense-frequency', tab: 'variants' },
+    { label: 'Audio Spectrum Style', anchor: '#audio-spectrum-style', tab: 'variants' },
+]
+
 // ==================== OTHER ====================
 
 export const comingSoonTableOfContents: TableOfContentsItem[] = [
@@ -229,7 +264,7 @@ export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
     // Backgrounds pages
     'backgrounds-squaregrid': backgroundsSquareGridTableOfContents,
     'backgrounds-dottedgrid': backgroundsDottedGridTableOfContents,
-    'backgrounds-parallaxgrid': backgroundParallaxGridTableOfContents,
+    'backgrounds-parallaxgrid': parallaxGridBackgroundTableOfContents,
     'backgrounds-parallaxdot': backgroundParallaxDotTableOfContents,
 
     // Animations
@@ -248,6 +283,9 @@ export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
     // Text animations
     'motion-text-reveal': motionTextRevealTableOfContents,
     'framer-text-animation': framerTextAnimationTableOfContents,
+    
+    // Scroll Waves
+    'scroll-wave': scrollWaveTableOfContents,
 
     // Other
     'coming-soon': comingSoonTableOfContents,
