@@ -233,7 +233,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <div className="flex flex-col justify-center items-start md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:pl-20 sm:px-12 px-4 overflow-y-auto">
+        <div className="flex flex-col justify-center items-start md:flex-row min-h-screen bg-[var(--bg-dark)] w-full pb-12 lg:pb-20 lg:pt-36 pt-22 lg:pl-0 sm:px-12 px-4 overflow-y-auto">
             {/* Left Sidebar - desktop */}
             <motion.div
                 layout="size"
@@ -251,13 +251,13 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                     delay: 0.2,
                     duration: 0.8,
                 }}
-                className="w-[25%] lg:w-[15%] whitespace-nowrap flex-shrink-0 h-[calc(100vh-11rem)] hidden md:block "
+                className="w-[25%] lg:w-[19%] whitespace-nowrap flex-shrink-0 h-[calc(100vh-11rem)] hidden md:block "
             >
                 <div
                     ref={leftSidebarRef}
                     className="h-full modern-scrollbar fade-edges relative"
                 >
-                    <div className="sticky top-0 bg-[var(--bg-dark)] z-10 pt-6 px-4">
+                    <div className="sticky top-0 bg-[var(--bg-dark)] z-10 pt-6 px-2">
                         <div className="flex mb-6 border-b border-[rgba(255,255,255,0.1)] max-w-[300px]">
                             {frameworks.map((framework) => (
                                 <button
@@ -280,7 +280,7 @@ function DocLayoutInner({ children }: { children: React.ReactNode }) {
                             ))}
                         </div>
                     </div>
-                    <div className="px-4 pb-6">
+                    <div className="px-2 pb-6">
                         <div className="md:space-y-6 space-y-5">
                             {navItems.gettingStarted.map((item, index) => (
                                 <div key={index}>
