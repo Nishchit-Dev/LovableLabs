@@ -19,7 +19,7 @@ export const BuildPreviewDotMatrixCountDown = () => {
                         pixelSize={6}
                         onComplete={() => console.log('Timer completed!')}
                     />
-                     <CountdownTimer
+                    <CountdownTimer
                         initialTime={100520}
                         pixelSize={6}
                         dark

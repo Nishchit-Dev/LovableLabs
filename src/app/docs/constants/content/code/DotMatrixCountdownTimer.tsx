@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react'
 
 interface CountdownTimerProps {
     initialTime?: number // in seconds
+    targetDateTime?: {
+        date: string // dd-mm-yyyy
+        time: string // hh-mm-ss (24h format)
+    }
     onComplete?: () => void
     pixelSize?: number
     activeColor?: string
@@ -16,6 +20,7 @@ interface CountdownTimerProps {
 
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     initialTime = 300, // 5 minutes default
+    targetDateTime,
     onComplete,
     pixelSize = 4,
     activeColor = '#ffffff',
@@ -25,7 +30,26 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     control = false,
     dark = false,
 }) => {
-    const [timeLeft, setTimeLeft] = useState(initialTime)
+    // Calculate initial time left if targetDateTime is provided
+    const calculateTimeLeftFromTarget = () => {
+        if (!targetDateTime) return initialTime;
+        
+        // Parse the target date and time
+        const [day, month, year] = targetDateTime.date.split('-').map(Number);
+        const [hours, minutes, seconds] = targetDateTime.time.split('-').map(Number);
+        
+        // Create Date objects
+        const targetDate = new Date(year, month - 1, day, hours, minutes, seconds);
+        const now = new Date();
+        
+        // Calculate the difference in seconds
+        const diffSeconds = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
+        
+        // Return the difference or 0 if it's negative (past date)
+        return diffSeconds > 0 ? diffSeconds : 0;
+    };
+    
+    const [timeLeft, setTimeLeft] = useState(targetDateTime ? calculateTimeLeftFromTarget() : initialTime)
     const [isRunning, setIsRunning] = useState(autoStart)
 
     // Digit patterns (7x5 pixel grid for each digit)
@@ -137,18 +161,30 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
         if (isRunning && timeLeft > 0) {
             interval = setInterval(() => {
                 setTimeLeft((prev) => {
-                    if (prev <= 1) {
-                        setIsRunning(false)
-                        onComplete?.()
-                        return 0
+                    // If using targetDateTime, recalculate remaining time on each tick
+                    if (targetDateTime) {
+                        const remainingTime = calculateTimeLeftFromTarget();
+                        if (remainingTime <= 0) {
+                            setIsRunning(false);
+                            onComplete?.();
+                            return 0;
+                        }
+                        return remainingTime;
+                    } else {
+                        // Original countdown logic for initialTime
+                        if (prev <= 1) {
+                            setIsRunning(false);
+                            onComplete?.();
+                            return 0;
+                        }
+                        return prev - 1;
                     }
-                    return prev - 1
-                })
-            }, 1000)
+                });
+            }, 1000);
         }
 
         return () => clearInterval(interval)
-    }, [isRunning, timeLeft, onComplete])
+    }, [isRunning, timeLeft, onComplete, targetDateTime])
 
     const formatTime = (seconds: number) => {
         const hours = Math.floor(seconds / 3600)
@@ -202,8 +238,9 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
     const handleStart = () => setIsRunning(true)
     const handlePause = () => setIsRunning(false)
     const handleReset = () => {
-        setTimeLeft(initialTime)
-        setIsRunning(false)
+        // Reset using the appropriate time source
+        setTimeLeft(targetDateTime ? calculateTimeLeftFromTarget() : initialTime);
+        setIsRunning(false);
     }
 
     const addTime = (seconds: number) => {
@@ -298,6 +335,27 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({
 // Demo component with multiple timer examples
 const CountdownTimerDemo = () => {
     const [customTime, setCustomTime] = useState(180) // 3 minutes
+    
+    // Create a date 7 days in the future for demo
+    const getFutureDate = () => {
+        const future = new Date();
+        future.setDate(future.getDate() + 7); // 7 days from now
+        
+        const day = future.getDate().toString().padStart(2, '0');
+        const month = (future.getMonth() + 1).toString().padStart(2, '0');
+        const year = future.getFullYear();
+        
+        const hours = future.getHours().toString().padStart(2, '0');
+        const minutes = future.getMinutes().toString().padStart(2, '0');
+        const seconds = future.getSeconds().toString().padStart(2, '0');
+        
+        return {
+            date: `${day}-${month}-${year}`,
+            time: `${hours}-${minutes}-${seconds}`
+        };
+    };
+    
+    const targetDate = getFutureDate();
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black p-4">
@@ -382,6 +440,25 @@ const CountdownTimerDemo = () => {
                             Set custom time (seconds)
                         </span>
                     </div>
+                </div>
+
+                {/* Target DateTime Timer */}
+                <div className="bg-gray-800 rounded-2xl p-8 shadow-2xl">
+                    <h3 className="text-lg font-semibold text-white mb-6 text-center">
+                        Countdown to Specific Date & Time
+                    </h3>
+                    <p className="text-center text-gray-400 mb-4">
+                        Counting down to: {targetDate.date.replace(/-/g, '/')} at {targetDate.time.replace(/-/g, ':')}
+                    </p>
+                    <CountdownTimer
+                        targetDateTime={targetDate}
+                        pixelSize={6}
+                        activeColor="#5e60ce"
+                        inactiveColor="#22223b"
+                        backgroundColor="#0f0e17"
+                        onComplete={() => console.log('Target date reached!')}
+                        control={true}
+                    />
                 </div>
 
                 {/* Compact Timers */}
