@@ -31,7 +31,10 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LovableLabs UI',
+  title: {
+    template: '%s | LovableLabs UI',
+    default: 'LovableLabs UI',
+  },
   description:
     'A set of beautifully-designed, accessible UI components and a code distribution platform. Works with your favorite frameworks. Enhance your projects with LovableLabs UI.',
   keywords: [
