@@ -1,13 +1,11 @@
 import { Metadata } from 'next'
 import React from 'react'
 
-// Generate metadata dynamically based on slug and framework
+// Generate metadata dynamically based on slug
 export async function generateMetadata({ 
-  params,
-  searchParams 
+  params 
 }: { 
-  params: { slug: string },
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { slug: string }
 }): Promise<Metadata> {
   // Format the slug into a readable component name
   const formatComponentName = (slug: string): string => {
@@ -18,16 +16,10 @@ export async function generateMetadata({
   
   const componentName = formatComponentName(params.slug);
   
-  // Get framework from query parameter or default to React
-  let framework = 'React';
-  if (searchParams && typeof searchParams.framework === 'string') {
-    framework = searchParams.framework.charAt(0).toUpperCase() + searchParams.framework.slice(1);
-  }
-  
   return {
-    title: `${componentName} | Docs for ${framework}`,
-    description: `Learn how to use the ${componentName} component from LovableLabs UI in your ${framework} applications.`,
-    keywords: `${componentName}, ${framework} component, LovableLabs UI, UI library, ${framework} UI, ${params.slug}`,
+    title: `${componentName} | Docs for React`,
+    description: `Learn how to use the ${componentName} component from LovableLabs UI in your React applications.`,
+    keywords: `${componentName}, React component, LovableLabs UI, UI library, React UI, ${params.slug}`,
   };
 }
 
@@ -37,7 +29,4 @@ export default function SlugLayout({
   children: React.ReactNode
 }) {
   return <>{children}</>
-} 
-
-
-
+}
