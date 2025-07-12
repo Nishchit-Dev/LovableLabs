@@ -168,6 +168,24 @@ export const getDocCategories = (framework: string): Category[] => {
             ],
         },
         {
+            title: 'Page Transitions',
+            slug: 'Page Transitions',
+            items: [
+                {
+                    badge: {
+                        text: 'New',
+                        color: 'text-green-500',
+                        bgColor: 'bg-green-100',
+                    },
+                    label: 'Curtain Transition',
+                    path: `/docs/curtain-transition?framework=${framework}`,
+                    isLock: true,
+                    releaseDate: releaseDate.curtainTransition,
+                    varaints: 5,
+                },
+            ],
+        },
+        {
             title: 'Coming Soon',
             slug: 'Coming Soon',
 

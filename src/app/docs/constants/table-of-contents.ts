@@ -244,6 +244,22 @@ export const scrollWaveTableOfContents: TableOfContentsItem[] = [
     { label: 'Audio Spectrum Style', anchor: '#audio-spectrum-style', tab: 'variants' },
 ]
 
+// ==================== CURTAIN TRANSITION ====================
+
+export const curtainTransitionTableOfContents: TableOfContentsItem[] = [
+    // Preview tab items
+    { label: 'Install Curtain Transition', anchor: '#install-curtain-transition', tab: 'preview' },
+    { label: 'CurtainTransition Component', anchor: '#curtaintransition-component', tab: 'preview' },
+    { label: 'Usage Example', anchor: '#usage-example', tab: 'preview' },
+    
+    // Variants tab items
+    { label: 'Basic Usage', anchor: '#basic-usage', tab: 'variants' },
+    { label: 'Custom Title', anchor: '#custom-title', tab: 'variants' },
+    { label: 'Colored Curtain', anchor: '#colored-curtain', tab: 'variants' },
+    { label: 'Fade Animation', anchor: '#fade-animation', tab: 'variants' },
+    { label: 'Split Animation', anchor: '#split-animation', tab: 'variants' },
+]
+
 // ==================== OTHER ====================
 
 export const comingSoonTableOfContents: TableOfContentsItem[] = [
@@ -286,6 +302,9 @@ export const pageTableOfContents: Record<string, TableOfContentsItem[]> = {
     
     // Scroll Waves
     'scroll-wave': scrollWaveTableOfContents,
+
+    // Curtain Transition
+    'curtain-transition': curtainTransitionTableOfContents,
 
     // Other
     'coming-soon': comingSoonTableOfContents,

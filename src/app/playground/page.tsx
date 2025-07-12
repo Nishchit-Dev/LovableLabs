@@ -3,16 +3,17 @@
 import { LoopBadge } from '../docs/constants/content/code/LoopBadge'
 import { DottedBackground } from '../docs/constants/content/code/DottedBackground'
 import { GridBackground } from '../docs/constants/content/code/GridBackground'
-import React, { useState, Suspense } from 'react'
+import React, { useState, Suspense, useRef, useEffect } from 'react'
 import { DragableItem } from '../docs/constants/content/code/DragableContainer'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import CurtainTransition from '../docs/constants/content/code/CurtainTransition'
 
 import {
     cursorPresets,
     SpringCursor,
 } from '../docs/constants/content/code/CursorFollow'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Settings, Eye, EyeOff } from 'lucide-react'
 import { BuildPreivewDraggableContainer } from '../docs/constants/content/Builds/BuildPreviewDragableContainer'
 import { RadiatingDot } from '../docs/constants/content/code/RadiatingDot'
 import AnimatedBorder from '../docs/constants/content/code/AnimatedBorder'
@@ -23,6 +24,263 @@ import { ParallaxDotBackground } from '../docs/constants/content/code/ParallaxDo
 import { MotionTextAnimation } from '../docs/constants/content/code/MotionTextReveal'
 import DraggableLiquidGlass from '../docs/constants/content/code/DraggableLiquidGlass'
 import { ScrollWaveform } from '../docs/constants/content/code/ScrollWave'
+
+// Transition Icons
+const SlideIcon = () => (
+  <div className="w-8 h-8 bg-gradient-to-t from-purple-500 to-purple-300 rounded-lg flex items-center justify-center">
+    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+    </svg>
+  </div>
+);
+
+const FadeIcon = () => (
+  <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-pink-400 rounded-lg flex items-center justify-center">
+    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+  </div>
+);
+
+const SplitIcon = () => (
+  <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-lg flex items-center justify-center">
+    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+    </svg>
+  </div>
+);
+
+// Toggle Component
+const Toggle = ({ enabled, onToggle }: { enabled: boolean; onToggle: () => void }) => (
+  <button
+    onClick={onToggle}
+    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
+      enabled ? 'bg-purple-500' : 'bg-gray-600'
+    }`}
+  >
+    <span
+      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+        enabled ? 'translate-x-6' : 'translate-x-1'
+      }`}
+    />
+  </button>
+);
+
+// Tooltip Component
+const Tooltip = ({ children, content, show }: { children: React.ReactNode; content: string; show: boolean }) => (
+  <div className="relative">
+    {children}
+    <AnimatePresence>
+      {show && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, x: 10 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          exit={{ opacity: 0, scale: 0.8, x: 10 }}
+          className="absolute top-1/2 right-full transform -translate-y-1/2 mr-6 px-4 py-2.5 text-sm text-white bg-gray-900 rounded-lg whitespace-nowrap z-[100] shadow-xl border border-white/10"
+        >
+          {content}
+          <div className="absolute top-1/2 left-full transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-transparent border-l-gray-900"></div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+);
+
+// Enhanced Transition Settings Component
+const TransitionSettings = ({ 
+    isEnabled, 
+    setIsEnabled, 
+    animationStyle, 
+    setAnimationStyle 
+}: {
+    isEnabled: boolean;
+    setIsEnabled: (enabled: boolean) => void;
+    animationStyle: 'slide-up' | 'fade' | 'split';
+    setAnimationStyle: (style: 'slide-up' | 'fade' | 'split') => void;
+}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [selectedTransition, setSelectedTransition] = useState('curtain');
+    const [showFirstTimeTooltip, setShowFirstTimeTooltip] = useState(true);
+    
+    const panelRef = useRef<HTMLDivElement>(null);
+    const settingsButtonRef = useRef<HTMLButtonElement>(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                panelRef.current && 
+                !panelRef.current.contains(event.target as Node) &&
+                settingsButtonRef.current &&
+                !settingsButtonRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    // Hide first-time tooltip after 5 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowFirstTimeTooltip(false);
+        }, 5000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const transitionComponents = [
+        {
+            id: 'curtain',
+            name: 'Curtain Transition',
+            description: 'Full-screen overlay with smooth reveal effect',
+            icon: '🎭',
+            styles: [
+                { id: 'slide-up', name: 'Slide', icon: <SlideIcon /> },
+                { id: 'fade', name: 'Fade', icon: <FadeIcon /> },
+                { id: 'split', name: 'Split', icon: <SplitIcon /> }
+            ]
+        }
+    ];
+
+    const selectedComponent = transitionComponents.find(comp => comp.id === selectedTransition);
+
+    return (
+        <div className="fixed top-6 right-6 z-50">
+            {/* Settings Button */}
+            <Tooltip 
+                content="You can use transition effects from our library" 
+                show={showFirstTimeTooltip && !isOpen}
+            >
+                <button
+                    ref={settingsButtonRef}
+                    onClick={() => {
+                        setIsOpen(!isOpen);
+                        setShowFirstTimeTooltip(false);
+                    }}
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                    className="w-12 h-12 bg-black/80 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-black/90 transition-all duration-200 shadow-lg border border-white/10"
+                >
+                    <Settings className="w-5 h-5" />
+                </button>
+            </Tooltip>
+
+            {/* Settings Panel */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        ref={panelRef}
+                        initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                        className="absolute top-16 right-0 w-[450px] bg-black/90 backdrop-blur-xl text-white rounded-xl shadow-2xl border border-white/10 overflow-hidden z-40"
+                    >
+                        {/* Header */}
+                        <div className="p-4 border-b border-gray-700/50">
+                            <div className="flex items-center gap-2">
+                                <span className="text-lg">🎯</span>
+                                <h3 className="font-semibold text-lg">Transition Settings</h3>
+                            </div>
+                        </div>
+
+                        {/* Enable Transitions */}
+                        <div className="p-4 border-b border-gray-700/50">
+                            <div className="flex items-center justify-between mb-3">
+                                <div>
+                                    <h4 className="font-medium mb-1">Enable Transitions</h4>
+                                    <p className="text-sm text-gray-400">
+                                        Components will transition with curtain effect
+                                    </p>
+                                </div>
+                                <Toggle 
+                                    enabled={isEnabled} 
+                                    onToggle={() => setIsEnabled(!isEnabled)} 
+                                />
+                            </div>
+                        </div>
+
+                        {/* Transition Components List */}
+                        {isEnabled && (
+                            <>
+                                <div className="p-4 border-b border-gray-700/50">
+                                    <h4 className="font-medium mb-3">Transition Components</h4>
+                                    <div className="space-y-2">
+                                        {transitionComponents.map((component) => (
+                                            <motion.div
+                                                key={component.id}
+                                                onClick={() => setSelectedTransition(component.id)}
+                                                whileHover={{ scale: 1.02 }}
+                                                whileTap={{ scale: 0.98 }}
+                                                className={`p-3 rounded-lg cursor-pointer transition-all ${
+                                                    selectedTransition === component.id
+                                                        ? 'bg-purple-600 text-white shadow-lg'
+                                                        : 'bg-gray-800/50 hover:bg-gray-700/50'
+                                                }`}
+                                            >
+                                                <div className="flex items-center gap-3">
+                                                    <span className="text-xl">{component.icon}</span>
+                                                    <div className="flex-1">
+                                                        <div className="font-medium">{component.name}</div>
+                                                        <div className="text-xs text-gray-400 mt-1">
+                                                            {component.description}
+                                                        </div>
+                                                    </div>
+                                                    {selectedTransition === component.id && (
+                                                        <motion.div 
+                                                            initial={{ scale: 0 }}
+                                                            animate={{ scale: 1 }}
+                                                            className="w-2 h-2 bg-white rounded-full"
+                                                        />
+                                                    )}
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Animation Styles */}
+                                {selectedComponent && selectedComponent.styles && (
+                                    <div className="p-4 border-b border-gray-700/50">
+                                        <h4 className="font-medium mb-3">Animation Style</h4>
+                                        <div className="grid grid-cols-3 gap-2">
+                                            {selectedComponent.styles.map((style) => (
+                                                <motion.button
+                                                    key={style.id}
+                                                    onClick={() => setAnimationStyle(style.id as 'slide-up' | 'fade' | 'split')}
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    className={`p-3 rounded-lg flex flex-col items-center gap-2 transition-all ${
+                                                        animationStyle === style.id
+                                                            ? 'bg-purple-600 text-white shadow-lg'
+                                                            : 'bg-gray-800/50 hover:bg-gray-700/50'
+                                                    }`}
+                                                >
+                                                    {style.icon}
+                                                    <span className="text-xs font-medium">{style.name}</span>
+                                                </motion.button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Instructions */}
+                                <div className="p-4 bg-purple-900/20 border-t border-purple-800/30">
+                                    <p className="text-sm text-purple-200 leading-relaxed">
+                                        <strong>Instructions:</strong> Navigate between components using the arrow 
+                                        buttons to see the {animationStyle} transition effect!
+                                    </p>
+                                </div>
+                            </>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    )
+}
 
 const SpringFollowCursorDevMode = () => {
     const [config, setConfig] = useState(cursorPresets.default)
@@ -382,17 +640,15 @@ const CountDownDevMode = () => {
         </>
     )
 }
-const satellites = [
-    { delay: 0, color: 'bg-red-500', size: 'w-4 h-4' },
-    { delay: 1, color: 'bg-green-500', size: 'w-3 h-3' },
-    { delay: 2, color: 'bg-blue-500', size: 'w-5 h-5' },
-]
+
 const ContentSlider = () => {
     const slides = [
         {
             title: 'ScrollWave',
             description:
                 'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            curtainTitle: 'ScrollWave',
+            curtainColor: 'bg-gradient-to-br from-cyan-900 via-blue-900 to-indigo-900',
             Component: (
                 <div className="">
                     <ScrollWaveform 
@@ -405,6 +661,8 @@ const ContentSlider = () => {
             title: 'LoopBadge',
             description:
                 'This badge demonstrates a looping animation. Useful for drawing attention to UI elements.',
+            curtainTitle: 'LoopBadge',
+            curtainColor: 'bg-gradient-to-br from-purple-900 via-violet-900 to-indigo-900',
             Component: (
                 <div className="flex flex-col items-center justify-center h-40">
                     <LoopBadge />
@@ -415,6 +673,8 @@ const ContentSlider = () => {
             title: 'Cursor Container',
             description:
                 'This badge demonstrates a looping animation. Useful for drawing attention to UI elements.',
+            curtainTitle: 'Cursor Follow',
+            curtainColor: 'bg-gradient-to-br from-pink-900 via-purple-900 to-violet-900',
             Component: (
                 <div className="w-full h-full flex justify-center items-center ">
                     <SpringFollowCursorDevMode />
@@ -425,6 +685,8 @@ const ContentSlider = () => {
             title: 'Radiating Dot',
             description:
                 'This badge demonstrates a Radiating Dot animation. Useful for drawing attention to UI elements.',
+            curtainTitle: 'Radiating Dot',
+            curtainColor: 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900',
             Component: (
                 <div className="w-full h-full flex justify-center items-center ">
                     <OnlineStatusDevMode />
@@ -435,6 +697,8 @@ const ContentSlider = () => {
             title: 'Animated Border',
             description:
                 'This component creates an animated border effect with customizable colors and shadows.',
+            curtainTitle: 'Animated Border',
+            curtainColor: 'bg-gradient-to-br from-orange-900 via-red-900 to-pink-900',
             Component: (
                 <div className="w-full h-full flex justify-center items-center">
                     <AnimatedBorderDevMode />
@@ -444,6 +708,8 @@ const ContentSlider = () => {
         {
             title: 'Drag & Drop',
             description: 'Drag the item below to see drag-and-drop in action.',
+            curtainTitle: 'Drag & Drop',
+            curtainColor: 'bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900',
             Component: (
                 <div className="flex flex-col items-center justify-center ">
                     <div className="realative top-1/4 left-1/4 text-center">
@@ -491,9 +757,11 @@ const ContentSlider = () => {
             ),
         },
         {
-            title: 'Dot-Martix CountDown',
+            title: 'Dot-Matrix CountDown',
             description:
                 'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            curtainTitle: 'CountDown Timer',
+            curtainColor: 'bg-gradient-to-br from-slate-900 via-gray-900 to-black',
             Component: (
                 <div className="w-full h-full flex justify-center items-center">
                     <CountDownDevMode />
@@ -504,6 +772,8 @@ const ContentSlider = () => {
             title: 'Motion Text Animation',
             description:
                 'This component creates an animated CountDown Effect with customizable colors and controls and more.',
+            curtainTitle: 'Text Animation',
+            curtainColor: 'bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900',
             Component: (
                 <div className="">
                     <MotionTextAnimation
@@ -517,12 +787,51 @@ const ContentSlider = () => {
     ]
 
     const [current, setCurrent] = useState(0)
+    const [showTransition, setShowTransition] = useState(false)
+    const [transitionKey, setTransitionKey] = useState(0)
+    
+    // Transition settings
+    const [transitionsEnabled, setTransitionsEnabled] = useState(false)
+    const [animationStyle, setAnimationStyle] = useState<'slide-up' | 'fade' | 'split'>('slide-up')
 
-    const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length)
-    const prevSlide = () =>
+    const nextSlide = () => {
+        if (transitionsEnabled) {
+            setShowTransition(true)
+            setTransitionKey(prev => prev + 1)
+            setTimeout(() => {
+                setCurrent((prev) => (prev + 1) % slides.length)
+                setTimeout(() => setShowTransition(false), 100)
+            }, 1000)
+        } else {
+            setCurrent((prev) => (prev + 1) % slides.length)
+        }
+    }
+
+    const prevSlide = () => {
+        if (transitionsEnabled) {
+            setShowTransition(true)
+            setTransitionKey(prev => prev + 1)
+            setTimeout(() => {
+                setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
+                setTimeout(() => setShowTransition(false), 100)
+            }, 1000)
+        } else {
         setCurrent((prev) => (prev - 1 + slides.length) % slides.length)
+        }
+    }
+
+    const currentSlide = slides[current]
 
     return (
+        <>
+            {/* Enhanced Transition Settings Component */}
+            <TransitionSettings 
+                isEnabled={transitionsEnabled}
+                setIsEnabled={setTransitionsEnabled}
+                animationStyle={animationStyle}
+                setAnimationStyle={setAnimationStyle}
+            />
+
         <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -538,10 +847,23 @@ const ContentSlider = () => {
                     <ChevronLeft />
                 </button>
                 <div className="flex-1 flex flex-col items-center justify-center ">
+                        <div className="flex justify-center items-center flex-col flex-1 h-full relative">
+                            {showTransition && transitionsEnabled ? (
+                                <CurtainTransition
+                                    key={transitionKey}
+                                    title={currentSlide.curtainTitle}
+                                    titleColor="text-white"
+                                    titleSize="text-4xl md:text-6xl"
+                                    curtainColor={currentSlide.curtainColor}
+                                    animationStyle={animationStyle}
+                                    duration={800}
+                                    curtainAnimationDuration={800}
+                                    contentAnimationDuration={400}
+                                >
                     <div className="flex justify-center items-center flex-col flex-1 h-full">
-                        {slides[current].Component}
+                                        {currentSlide.Component}
                         <motion.h2
-                            key={slides[current].title}
+                                            key={currentSlide.title}
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{
@@ -551,25 +873,34 @@ const ContentSlider = () => {
                             }}
                             className="text-2xl font-semibold mb-2 mt-10"
                         >
-                            {slides[current].title}
+                                            {currentSlide.title}
                         </motion.h2>
-                        {/* <motion.p
-                            key={slides[current].description}
+                                        <span className="text-sm text-gray-500">
+                                            {current + 1} / {slides.length}
+                                        </span>
+                                    </div>
+                                </CurtainTransition>
+                            ) : (
+                                <>
+                                    {currentSlide.Component}
+                                    <motion.h2
+                                        key={currentSlide.title}
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{
-                                delay: 0.05,
                                 type: 'spring',
                                 stiffness: 200,
                                 damping: 18,
                             }}
-                            className="text-gray-700 mb-4"
+                                        className="text-2xl font-semibold mb-2 mt-10"
                         >
-                            {slides[current].description}
-                        </motion.p> */}
+                                        {currentSlide.title}
+                                    </motion.h2>
                         <span className="text-sm text-gray-500">
                             {current + 1} / {slides.length}
                         </span>
+                                </>
+                            )}
                     </div>
                 </div>
                 <button
@@ -581,6 +912,7 @@ const ContentSlider = () => {
                 </button>
             </div>
         </motion.div>
+        </>
     )
 }
 

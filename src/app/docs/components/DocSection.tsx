@@ -361,7 +361,7 @@ const VariantsTab = ({ content }: DocSectionProps) => {
 
                             <div className="mb-16 w-full min-w-0 ">
                                 {section.title && (
-                                    <div className="mb-6 mt-2 relative z-10">
+                                    <div className="mb-6 mt-2 relative ">
                                         <h2
                                             id={generateSectionId(
                                                 section.title

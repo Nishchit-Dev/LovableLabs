@@ -16,6 +16,7 @@ import { liquidGlassDraggableContent } from './draggableLiquidGlass'
 import { comingSoonContent } from './comingSoon'
 import { FramerTextAnimationContent } from './framerTextAnimation'
 import { scrollWaveContent } from './scrollWave'
+import { curtainTransitionContent } from './curtainTransition'
 
 // Re-export all imported modules
 export {
@@ -34,5 +35,6 @@ export {
     liquidGlassDraggableContent,
     comingSoonContent,
     FramerTextAnimationContent,
-    scrollWaveContent
+    scrollWaveContent,
+    curtainTransitionContent
 }

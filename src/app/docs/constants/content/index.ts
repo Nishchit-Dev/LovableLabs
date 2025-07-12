@@ -68,6 +68,7 @@ const slugToContentKey: Record<string, string> = {
     'coming-soon': 'comingSoonContent',
     'framer-text-animation': 'FramerTextAnimationContent',
     'scroll-waves': 'scrollWaveContent',
+    'curtain-transition': 'curtainTransitionContent',
 }
 // Export all content
 const contentExports = {
